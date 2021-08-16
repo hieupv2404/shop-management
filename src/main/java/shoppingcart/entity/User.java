@@ -1,6 +1,9 @@
 package shoppingcart.entity;
 
+import shoppingcart.security.EncryptMD5;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Date;
 import java.util.List;
 
@@ -10,14 +13,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true)
     String username;
-    @Column(nullable = false)
+    @Column
+    @Email
+    String email;
+    @Column
     String password;
     @Column
-    Boolean active=false;
+    Boolean active = false;
     @Column
-    Boolean admin=false;
+    Boolean admin = false;
     @Column
     String firstName;
     @Column
@@ -54,7 +60,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = EncryptMD5.EncryptedToMD5(password);
     }
 
     public Boolean getActive() {
@@ -119,5 +125,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
