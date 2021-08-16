@@ -8,7 +8,7 @@ public class Rate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @Column
+    @Column(columnDefinition = "TEXT")
     String comment;
     @ManyToOne
     @JoinColumn(name="user_id")
