@@ -3,6 +3,7 @@ package shoppingcart.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,8 @@ import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
 import shoppingcart.security.EncryptMD5;
 import shoppingcart.service.EmailService;
+
+import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/auth")
@@ -37,16 +40,20 @@ public class AuthenticationController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return new ResponseEntity<>(HttpStatus.valueOf(200));
         } else {
-            return new ResponseEntity<>("wrong userId",
-                    HttpStatus.valueOf(404));
+            return new ResponseEntity<>("wrong userId", HttpStatus.valueOf(404));
         }
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> post(@RequestBody User input) {
         if (userRepository.findByUsername(input.getUsername())==null) {
-            userRepository.save(input);
-            emailService.sendSimpleMessage(input.getEmail(),"welcome my shop","test mail");
+            //userRepository.save(input);
+            //emailService.sendSimpleMessage(input.getEmail(),"welcome my shop","test mail");
+            try {
+                emailService.sendMessageUsingThymeleafTemplate(input.getEmail(),"welcome my shop");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
             return new ResponseEntity<>(null,
                     HttpStatus.valueOf(201));
         } else return new ResponseEntity<>(null, HttpStatus.valueOf(404));
