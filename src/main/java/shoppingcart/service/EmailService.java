@@ -43,7 +43,7 @@ public class EmailService {
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
         for (int i = 1; i < 8; i++) {
-            File file = new File("..\\shopping-cart\\src\\main\\resources\\templates\\mails\\images\\image-" + i + ".png");
+            File file = new File("..\\shopping-cart\\src\\main\\resources\\templates\\thymeleaf\\images\\image-" + i + ".png");
             helper.addInline("image_" + i + ".png", file);
         }
         emailSender.send(message);
@@ -58,7 +58,7 @@ public class EmailService {
 
         Context thymeleafContext = new Context();
 //        thymeleafContext.setVariables(templateModel);
-        String htmlBody = thymeleafTemplateEngine.process("index.html", thymeleafContext);
+        String htmlBody = thymeleafTemplateEngine.process("thymeleaf/index.html", thymeleafContext);
 
         sendHtmlMessage(to, subject, htmlBody);
     }
