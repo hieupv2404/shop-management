@@ -58,7 +58,7 @@ public class EmailService {
 
         Context thymeleafContext = new Context();
 //        thymeleafContext.setVariables(templateModel);
-        String htmlBody = thymeleafTemplateEngine.process("thymeleaf/index.html", thymeleafContext);
+        String htmlBody = thymeleafTemplateEngine.process("thymeleaf/mail.html", thymeleafContext);
 
         sendHtmlMessage(to, subject, htmlBody);
     }
