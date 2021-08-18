@@ -1,5 +1,8 @@
 package shoppingcart.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
