@@ -9,6 +9,6 @@ public class WebController {
 
     @GetMapping("")
     public String getHome(){
-        return "haha";
+        return "home";
     }
 }
