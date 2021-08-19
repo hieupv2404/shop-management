@@ -2,8 +2,12 @@ package shoppingcart.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -22,16 +26,23 @@ public class User {
     @Column
     Boolean admin=false;
     @Column
+//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String firstName;
     @Column
+//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String lastName;
     @Column
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     Date birthday;
     @Column
+//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     Boolean sex;
     @Column
+//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String address;
     @Column
+//    @NotEmpty(message = "Sai định dạng")
+//    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;

@@ -29,37 +29,37 @@ public class UserController {
 
     }
 
-//    @PutMapping("/updatePassword/{id}/{oldPassword}")
-//    public User updatePassword(@PathVariable Integer id, @PathVariable String oldPassword, @RequestBody User user) {
-//        return userService.updatePassword(id,user,oldPassword);
-//    }
-//
-//    @GetMapping("/showUser/{id}")
-//    public ResponseEntity<User> showUser(@PathVariable Integer id) {
-//        Optional<User> userOptional = userService.findById(id);
-//        if (!userOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/showProduct")
-//    public ResponseEntity<Iterable<Product>> findAllProduct() {
-//        List<Product> products = (List<Product>) productService.findAll();
-//        if (products.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(products, HttpStatus.OK);
-//    }
-//
-//
-//    @GetMapping()
-//    public ResponseEntity<Iterable<User>> findAllUser() {
-//        List<User> users = (List<User>) userService.findAll();
-//        if (users.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(users, HttpStatus.OK);
-//    }
+    @PutMapping("/updatePassword/{id}/{oldPassword}")
+    public User updatePassword(@PathVariable Integer id, @PathVariable String oldPassword, @RequestBody User user) {
+        return userService.updatePassword(id,user,oldPassword);
+    }
+
+    @GetMapping("/showUser/{id}")
+    public ResponseEntity<User> showUser(@PathVariable Integer id) {
+        Optional<User> userOptional = userService.findById(id);
+        if (!userOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/showProduct")
+    public ResponseEntity<Iterable<Product>> findAllProduct() {
+        List<Product> products = (List<Product>) productService.findAll();
+        if (products.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+
+    @GetMapping()
+    public ResponseEntity<Iterable<User>> findAllUser() {
+        List<User> users = (List<User>) userService.findAll();
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 
 }
