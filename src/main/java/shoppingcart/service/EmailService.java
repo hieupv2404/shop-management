@@ -14,6 +14,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.net.URL;
+import java.util.Map;
 
 @Component
 public class EmailService {
@@ -53,11 +54,11 @@ public class EmailService {
     private SpringTemplateEngine thymeleafTemplateEngine;
 
     public void sendMessageUsingThymeleafTemplate(
-            String to, String subject)
+            String to, String subject, Map templateModel)
             throws MessagingException {
 
         Context thymeleafContext = new Context();
-//        thymeleafContext.setVariables(templateModel);
+        thymeleafContext.setVariables(templateModel);
         String htmlBody = thymeleafTemplateEngine.process("thymeleaf/mail.html", thymeleafContext);
 
         sendHtmlMessage(to, subject, htmlBody);

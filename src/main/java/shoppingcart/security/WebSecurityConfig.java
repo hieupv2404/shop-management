@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/*").permitAll()
                 .antMatchers("/user/**").hasRole("USER") //allow login api for all
                 .antMatchers("/admin/**").hasRole("ADMIN") //allow login api for all
-                .antMatchers("/*").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
 
         ;

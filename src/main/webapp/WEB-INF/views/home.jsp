@@ -31,21 +31,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-<%--        <!-- Latest compiled and minified CSS -->--%>
-<%--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>--%>
+    <%--        <!-- Latest compiled and minified CSS -->--%>
+    <%--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>--%>
 
-<%--        <!-- Optional theme -->--%>
-<%--        <link rel="stylesheet" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>--%>
+    <%--        <!-- Optional theme -->--%>
+    <%--        <link rel="stylesheet" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>--%>
 
-<%--        <!-- Latest compiled and minified JavaScript -->--%>
-<%--        <script src=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"/></script>--%>
+    <%--        <!-- Latest compiled and minified JavaScript -->--%>
+    <%--        <script src=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"/></script>--%>
     <!--//tags -->
-    <link href="<c:url value=" /resources/static/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
-    <link href="<c:url value=" /resources/static/css/style.css"/>" rel="stylesheet" type="text/css" media="all"/>
-    <link href="<c:url value=" /resources/static/css/font-awesome.css"/>" rel="stylesheet">
-    <link href="<c:url value=" /resources/static/css/easy-responsive-tabs.css"/>" rel='stylesheet' type='text/css'/>
+    <link href="<%= request.getContextPath() %>/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= request.getContextPath() %>/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= request.getContextPath() %>/static/css/font-awesome.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/static/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
     <!-- //for bootstrap working -->
-    <link href="<c:url value="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800"/>" rel="stylesheet"/>
+    <link href="<c:url value="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800"/>"
+          rel="stylesheet"/>
     <link href="<c:url value="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic"/>"
           rel='stylesheet' type='text/css'/>
 </head>
@@ -137,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
                                             <a href="mens.html"><img
-                                                    src="<%= request.getContextPath() %>/bootstrap/images/top2.jpg"
+                                                    src="<c:url value="/static/images/top2.jpg"/>"
                                                     alt=" "/></a>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
@@ -195,7 +196,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
-                                            <a href="womens.html"><img src="bootstrap/images/top1.jpg" alt=" "/></a>
+                                            <a href="womens.html"><img src="<c:url value="/static/images/top1.jpg"/>"
+                                                                       alt=" "/></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -277,7 +279,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 </div>
                 <div class="col-md-4 modal_body_right modal_body_right1">
-                    <img src="bootstrap/images/log_pic.jpg" alt=" "/>
+                    <img src="/static/images/log_pic.jpg" alt=" "/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -297,29 +299,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-                    <form action="#" method="post">
+                    <form:form action="/auth/register" method="post" modelAttribute="user">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="Name" required="">
+                            <form:input type="text" name="Username" required="" path="username"/>
                             <label>Name</label>
                             <span></span>
                         </div>
+                        <div>
+                            <form:errors path="username">error</form:errors>
+                        </div>
+                        <div>
+                            <form:>${errorUser}</form:>
+                        </div>
                         <div class="styled-input">
-                            <input type="email" name="Email" required="">
+                            <form:input type="email" name="Email" required="" path="email"/>
                             <label>Email</label>
                             <span></span>
                         </div>
-                        <div class="styled-input">
-                            <input type="password" name="password" required="">
-                            <label>Password</label>
-                            <span></span>
+                        <div>
+                            <form:errors path="email">error</form:errors>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="Confirm Password" required="">
-                            <label>Confirm Password</label>
+                            <form:input type="text" name="password" required="" path="phone"/>
+                            <label>Phone number</label>
                             <span></span>
                         </div>
-                        <input type="submit" value="Sign Up">
-                    </form>
+                        <form:button>Submit</form:button>
+                    </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
                         <li><a href="#" class="facebook">
                             <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
@@ -343,7 +349,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 </div>
                 <div class="col-md-4 modal_body_right modal_body_right1">
-                    <img src="bootstrap/images/log_pic.jpg" alt=" "/>
+                    <img src="/static/images/log_pic.jpg" alt=" "/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -353,6 +359,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //Modal2 -->
 
+<%--Modal3--%>
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body modal-body-sub_agile">
+                <div class="col-md-8 modal_body_left modal_body_left1">
+                    <h3 class="agileinfo_sign">Notification <span>Now</span></h3>
+                    <h4>Sign up sucessfull</h4><br>
+                    <h5>Please check your email to get password and verify!</h5>
+                    <br>
+                    <button type="button" class="close" data-dismiss="modal" style="justify-items: center">Ok</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- //Modal content-->
+    </div>
+</div>
+<%--//Model3--%>
 <!-- banner -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -426,7 +455,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="banner_bottom_agile_info_inner_w3ls">
             <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
                 <figure class="effect-roxy">
-                    <img src="bootstrap/images/bottom1.jpg" alt=" " class="img-responsive"/>
+                    <img src="/static/images/bottom1.jpg" alt=" " class="img-responsive"/>
                     <figcaption>
                         <h3><span>F</span>all Ahead</h3>
                         <p>New Arrivals</p>
@@ -435,7 +464,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
                 <figure class="effect-roxy">
-                    <img src="bootstrap/images/bottom2.jpg" alt=" " class="img-responsive"/>
+                    <img src="/static/images/bottom2.jpg" alt=" " class="img-responsive"/>
                     <figcaption>
                         <h3><span>F</span>all Ahead</h3>
                         <p>New Arrivals</p>
@@ -449,7 +478,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- schedule-bottom -->
 <div class="schedule-bottom">
     <div class="col-md-6 agileinfo_schedule_bottom_left">
-        <img src="bootstrap/images/mid.jpg" alt=" " class="img-responsive"/>
+        <img src="/static/images/mid.jpg" alt=" " class="img-responsive"/>
     </div>
     <div class="col-md-6 agileits_schedule_bottom_right">
         <div class="w3ls_schedule_bottom_right_grid">
@@ -486,7 +515,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="womens.html">
                 <div class="bb-left-agileits-w3layouts-inner grid">
                     <figure class="effect-roxy">
-                        <img src="bootstrap/images/bb1.jpg" alt=" " class="img-responsive"/>
+                        <img src="/static/images/bb1.jpg" alt=" " class="img-responsive"/>
                         <figcaption>
                             <h3><span>S</span>ale </h3>
                             <p>Upto 55%</p>
@@ -499,7 +528,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="mens.html">
                 <div class="bb-middle-agileits-w3layouts grid">
                     <figure class="effect-roxy">
-                        <img src="bootstrap/images/bottom3.jpg" alt=" " class="img-responsive"/>
+                        <img src="/static/images/bottom3.jpg" alt=" " class="img-responsive"/>
                         <figcaption>
                             <h3><span>S</span>ale </h3>
                             <p>Upto 55%</p>
@@ -510,7 +539,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="mens.html">
                 <div class="bb-middle-agileits-w3layouts forth grid">
                     <figure class="effect-roxy">
-                        <img src="bootstrap/images/bottom4.jpg" alt=" " class="img-responsive">
+                        <img src="/static/images/bottom4.jpg" alt=" " class="img-responsive">
                         <figcaption>
                             <h3><span>S</span>ale </h3>
                             <p>Upto 65%</p>
@@ -525,11 +554,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--/grids-->
 <div class="agile_last_double_sectionw3ls">
     <div class="col-md-6 multi-gd-img multi-gd-text ">
-        <a href="womens.html"><img src="bootstrap/images/bot_1.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
+        <a href="womens.html"><img src="/static/images/bot_1.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
 
     </div>
     <div class="col-md-6 multi-gd-img multi-gd-text ">
-        <a href="womens.html"><img src="bootstrap/images/bot_2.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
+        <a href="womens.html"><img src="/static/images/bot_2.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
     </div>
     <div class="clearfix"></div>
 </div>
@@ -551,8 +580,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m1.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m1.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -590,8 +619,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m2.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m2.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m2.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m2.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -629,8 +658,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m3.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m3.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m3.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m3.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -668,8 +697,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m4.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m4.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m4.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m4.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -707,8 +736,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m5.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m5.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m5.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m5.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -746,8 +775,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m7.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m7.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m7.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m7.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -785,8 +814,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m6.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m6.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m6.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m6.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -824,8 +853,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/m8.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/m8.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/m8.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m8.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -868,8 +897,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w1.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w1.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w1.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w1.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -907,8 +936,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w2.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w2.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w2.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w2.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -946,8 +975,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w3.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w3.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w3.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w3.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -985,8 +1014,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w4.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w4.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w4.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w4.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1024,8 +1053,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w5.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w5.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w5.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w5.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1063,8 +1092,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w6.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w6.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w6.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w6.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1102,8 +1131,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w7.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w7.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w7.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w7.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1141,8 +1170,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/w8.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/w8.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/w8.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/w8.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1185,8 +1214,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b1.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b1.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b1.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b1.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1224,8 +1253,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b2.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b2.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b2.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b2.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1263,8 +1292,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b3.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b3.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b3.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b3.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1302,8 +1331,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b4.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b4.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b4.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b4.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1341,8 +1370,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b5.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b5.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b5.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b5.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1380,8 +1409,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b6.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b6.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b6.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b6.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1419,8 +1448,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b7.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b7.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b7.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b7.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1458,8 +1487,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/b8.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/b8.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/b8.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/b8.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1501,8 +1530,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s1.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s1.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s1.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s1.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1540,8 +1569,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s2.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s2.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s2.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s2.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1579,8 +1608,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s3.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s3.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s3.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s3.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1618,8 +1647,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s4.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s4.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s4.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s4.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1657,8 +1686,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s5.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s5.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s5.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s5.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1696,8 +1725,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s6.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s6.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s6.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s6.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1735,8 +1764,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s7.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s7.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s7.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s7.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1774,8 +1803,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
-                                <img src="bootstrap/images/s8.jpg" alt="" class="pro-image-front">
-                                <img src="bootstrap/images/s8.jpg" alt="" class="pro-image-back">
+                                <img src="/static/images/s8.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/s8.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -1953,23 +1982,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 sign-gd flickr-post">
                     <h4>Flickr <span>Posts</span></h4>
                     <ul>
-                        <li><a href="single.html"><img src="bootstrap/images/t1.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t2.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t3.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t4.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t1.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t2.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t3.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t2.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="bootstrap/images/t4.jpg" alt=" "
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" "
                                                        class="img-responsive"/></a></li>
                     </ul>
                 </div>
@@ -2070,12 +2099,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                                          style="opacity: 1;"> </span></a>
 
 <!-- js -->
-<script type="text/javascript" src="bootstrap/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
-<script src="bootstrap/js/modernizr.custom.js"></script>
+<script src="/static/js/modernizr.custom.js"></script>
 <!-- Custom-JavaScript-File-Links -->
 <!-- cart-js -->
-<script src="bootstrap/js/minicart.min.js"></script>
+<script src="/static/js/minicart.min.js"></script>
 <script>
     // Mini Cart
     paypal.minicart.render({
@@ -2089,7 +2118,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //cart-js -->
 <!-- script for responsive tabs -->
-<script src="bootstrap/js/easy-responsive-tabs.js"></script>
+<script src="/static/js/easy-responsive-tabs.js"></script>
+
+<script>
+    var Msg = "<%=session.getAttribute("error")%>";
+    if (Msg !="null") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            $('#myModal2').modal('toggle');
+        });
+
+    }
+</script>
+
+<script>
+    var Msg = "<%=session.getAttribute("signUpSuccess")%>";
+    if (Msg !="null") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            $('#myModal3').modal('toggle');
+        });
+
+    }
+</script>
+
 <script>
     $(document).ready(function () {
         $('#horizontalTab').easyResponsiveTabs({
@@ -2114,15 +2168,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- //script for responsive tabs -->
 <!-- stats -->
-<script src="bootstrap/js/jquery.waypoints.min.js"></script>
-<script src="bootstrap/js/jquery.countup.js"></script>
+<script src="/static/js/jquery.waypoints.min.js"></script>
+<script src="/static/js/jquery.countup.js"></script>
 <script>
     $('.counter').countUp();
 </script>
 <!-- //stats -->
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="bootstrap/js/move-top.js"></script>
-<script type="text/javascript" src="bootstrap/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/static/js/move-top.js"></script>
+<script type="text/javascript" src="/static/js/jquery.easing.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
@@ -2151,6 +2205,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <!-- for bootstrap working -->
-<script type="text/javascript" src="<%= request.getContextPath() %>/WEB-INF/views/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="<c:url value="/static/js/bootstrap.js"/>"></script>
 </body>
 </html>

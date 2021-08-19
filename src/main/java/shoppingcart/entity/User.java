@@ -4,6 +4,8 @@ import shoppingcart.security.EncryptMD5;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
@@ -14,11 +16,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column(unique = true)
+    @Pattern(regexp = "[a-zA-Z0-9]*", message = "Username must not contain special characters")
     String username;
     @Column
     @Email
     String email;
     @Column
+    @Min(value = 6, message = "Password at least 6 characters")
     String password;
     @Column
     Boolean active = false;

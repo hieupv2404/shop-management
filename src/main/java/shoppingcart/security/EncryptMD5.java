@@ -30,3 +30,4 @@ public class EncryptMD5 {
         return encryptedpassword;
     }
 }
+

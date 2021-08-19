@@ -1,24 +1,29 @@
 package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
-import shoppingcart.security.EncryptMD5;
 import shoppingcart.service.EmailService;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.Random;
 
-@RestController
+@Controller
+@ControllerAdvice
 @RequestMapping("/auth")
 public class AuthenticationController {
+
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -26,43 +31,44 @@ public class AuthenticationController {
     @Autowired
     private EmailService emailService;
 
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(
-            @RequestParam(value = "username", defaultValue = "") String username,
-            @RequestParam(value = "password", defaultValue = "") String password) {
-        User user = userRepository.findByUsername(username);
-        if (user != null) {
-            if (!EncryptMD5.EncryptedToMD5(password).equals(user.getPassword())) {
-                return new ResponseEntity<>("wrong password", HttpStatus.valueOf(200));
-            }
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, EncryptMD5.EncryptedToMD5(password)));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            return new ResponseEntity<>(HttpStatus.valueOf(200));
-        } else {
-            return new ResponseEntity<>("wrong userId", HttpStatus.valueOf(404));
+    public static String randomPassword(Integer length) {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = length;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
         }
+        String generatedString = buffer.toString();
+        return generatedString;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> post(@RequestBody User input) {
-        if (userRepository.findByUsername(input.getUsername())==null) {
+    public String postRegister(@Valid @ModelAttribute("user") User input, BindingResult bindingResult, ModelMap modelMap, HttpSession httpSession) throws MessagingException {
+        if (bindingResult.hasFieldErrors("username")) {
+            return "home";
+        }
+        if (userRepository.findByUsername(input.getUsername()) == null) {
             //userRepository.save(input);
-            //emailService.sendSimpleMessage(input.getEmail(),"welcome my shop","test mail");
-            try {
-                emailService.sendMessageUsingThymeleafTemplate(input.getEmail(),"welcome my shop");
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-            return new ResponseEntity<>(null,
-                    HttpStatus.valueOf(201));
-        } else return new ResponseEntity<>(null, HttpStatus.valueOf(404));
+            Map<String, Object> map = new ModelMap();
+            map.put("key", randomPassword(10));
+            emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
+            httpSession.setAttribute("signUpSuccess", "true");
+            return "redirect:/";
+        }
+        modelMap.addAttribute("errorUser", "username is exist");
+        return "home";
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(){
-        SecurityContextHolder.clearContext();
-        return new ResponseEntity<>(HttpStatus.valueOf(200));
+    @ExceptionHandler(MessagingException.class)
+    public ModelAndView handleException(MessagingException ex) {
+        //Do something additional if required
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("errorPage");
+        modelAndView.addObject("message", ex.getMessage());
+        return modelAndView;
     }
 }
-
