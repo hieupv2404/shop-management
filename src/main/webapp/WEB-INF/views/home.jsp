@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.apache.catalina.filters.ExpiresFilter" %><%--
   Created by IntelliJ IDEA.
   User: Black Diamond
   Date: 8/18/2021
@@ -78,7 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <!-- header-bot -->
         <div class="col-md-4 logo_agile">
-            <h1><a href="index.html"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag"
+            <h1><a href="/"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag"
                                                                   aria-hidden="true"></i></a></h1>
         </div>
         <!-- header-bot -->
@@ -243,19 +243,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-                    <form action="#" method="post">
+                    <form:form action="/auth/signIn" method="post" modelAttribute="userSignIn">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="Name" required="">
-                            <label>Name</label>
+                            <form:input type="text" name="Username" required="" path="username"/>
+                            <label>Username</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="email" name="Email" required="">
-                            <label>Email</label>
+                            <form:input type="password" name="Email" required="" path="password"/>
+                            <label>Password</label>
                             <span></span>
                         </div>
                         <input type="submit" value="Sign In">
-                    </form>
+                    </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
                         <li><a href="#" class="facebook">
                             <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
@@ -301,26 +301,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
                     <form:form action="/auth/register" method="post" modelAttribute="user">
                         <div class="styled-input agile-styled-input-top">
-                            <form:input type="text" name="Username" required="" path="username"/>
+                            <form:input type="text" name="Username" required="" path="username" value="${againUser.username}"/>
                             <label>Name</label>
                             <span></span>
                         </div>
                         <div>
-                            <form:errors path="username">error</form:errors>
+                            <p style="color: red">${errorUsername}</p>
                         </div>
                         <div>
-                            <form:>${errorUser}</form:>
+                            <p style="color: red">${existUsername}</p>
                         </div>
                         <div class="styled-input">
-                            <form:input type="email" name="Email" required="" path="email"/>
+                            <form:input type="email" name="Email" required="" path="email" value="${againUser.email}"/>
                             <label>Email</label>
                             <span></span>
                         </div>
                         <div>
-                            <form:errors path="email">error</form:errors>
+                            <p style="color: red">${errorEmail}</p>
                         </div>
                         <div class="styled-input">
-                            <form:input type="text" name="password" required="" path="phone"/>
+                            <form:input type="text" name="password" required="" path="phone" value="${againUser.phone}"/>
                             <label>Phone number</label>
                             <span></span>
                         </div>
@@ -357,6 +357,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- //Modal content-->
     </div>
 </div>
+<%session.removeAttribute("againUser");session.removeAttribute("errorUsername");session.removeAttribute("errorEmail");session.removeAttribute("errorPhone");session.removeAttribute("existUsername");%>
 <!-- //Modal2 -->
 
 <%--Modal3--%>
@@ -370,7 +371,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Notification <span>Now</span></h3>
-                    <h4>Sign up sucessfull</h4><br>
+                    <h4>Sign up successful</h4><br>
                     <h5>Please check your email to get password and verify!</h5>
                     <br>
                     <button type="button" class="close" data-dismiss="modal" style="justify-items: center">Ok</button>
@@ -2122,7 +2123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script>
     var Msg = "<%=session.getAttribute("error")%>";
-    if (Msg !="null") {
+    if (Msg != "null") {
         // function alertName() {
         //     $('#myModal3').modal("show");
         $(window).on('load', function () {
@@ -2134,11 +2135,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script>
     var Msg = "<%=session.getAttribute("signUpSuccess")%>";
-    if (Msg !="null") {
+    if (Msg == "true") {
         // function alertName() {
         //     $('#myModal3').modal("show");
         $(window).on('load', function () {
             $('#myModal3').modal('toggle');
+            <%session.removeAttribute("signUpSuccess"); %>
+        });
+
+    }
+</script>
+<script>
+    var Msg = "<%=session.getAttribute("errorSignUp")%>";
+    if (Msg == "true") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            $('#myModal2').modal('toggle');
+            <%session.removeAttribute("errorSignUp"); %>
+        });
+
+    }
+</script>
+<script>
+    var Msg = "<%=session.getAttribute("signIn")%>";
+    if (Msg == "true") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            $('#myModal').modal('toggle');
+            <%session.removeAttribute("signIn"); %>
         });
 
     }

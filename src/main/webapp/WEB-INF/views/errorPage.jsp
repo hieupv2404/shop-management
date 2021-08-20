@@ -10,6 +10,7 @@
 <head>
     <title>Title</title>
 </head>
-<h4>error</h4>
+<body>
+<h4>Server send mail fail</h4>
 </body>
 </html>

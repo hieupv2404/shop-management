@@ -1,7 +1,12 @@
 package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
+import shoppingcart.security.EncryptMD5;
 import shoppingcart.service.EmailService;
 
 import javax.mail.MessagingException;
@@ -48,20 +54,53 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public String postRegister(@Valid @ModelAttribute("user") User input, BindingResult bindingResult, ModelMap modelMap, HttpSession httpSession) throws MessagingException {
-        if (bindingResult.hasFieldErrors("username")) {
-            return "home";
+        if (bindingResult.hasErrors()) {
+            httpSession.setAttribute("errorSignUp", "true");
+            httpSession.setAttribute("againUser", input);
+            if (bindingResult.hasFieldErrors("username"))
+                httpSession.setAttribute("errorUsername", "username invalid");
+            if (bindingResult.hasFieldErrors("email"))
+                httpSession.setAttribute("errorEmail", "email invalid");
+            if (bindingResult.hasFieldErrors("phone"))
+                httpSession.setAttribute("errorPhone", "phone invalid");
+            return "redirect:/";
         }
         if (userRepository.findByUsername(input.getUsername()) == null) {
-            //userRepository.save(input);
+            userRepository.save(input);
             Map<String, Object> map = new ModelMap();
             map.put("key", randomPassword(10));
             emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
             httpSession.setAttribute("signUpSuccess", "true");
             return "redirect:/";
         }
-        modelMap.addAttribute("errorUser", "username is exist");
-        return "home";
+        httpSession.setAttribute("errorSignUp", "true");
+        httpSession.setAttribute("againUser", input);
+        httpSession.setAttribute("existUsername", "username is exist");
+        return "redirect:/";
     }
+
+    @PostMapping("/signIn")
+    public String postSignIn(@ModelAttribute("userSignIn") User user,ModelMap modelMap, HttpSession httpSession) {
+        System.out.println(user.getPassword());
+        User userReal = userRepository.findByUsername(user.getUsername());
+        if (userReal != null) {
+            if (!user.getPassword().equals(userReal.getPassword())) {
+                System.out.println("login fail");
+                return "redirect:/";
+            }
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            System.out.println("login Success");
+            return "redirect:/";
+        } else {
+            return "redirect:/";
+        }
+    }
+//    @GetMapping("/logout")
+//    public String postLogout(){
+//        SecurityContextHolder.clearContext();
+//        return "redirect:/";
+//    }
 
     @ExceptionHandler(MessagingException.class)
     public ModelAndView handleException(MessagingException ex) {
