@@ -96,11 +96,11 @@ public class AuthenticationController {
             return "redirect:/";
         }
     }
-//    @GetMapping("/logout")
-//    public String postLogout(){
-//        SecurityContextHolder.clearContext();
-//        return "redirect:/";
-//    }
+    @GetMapping("/logout")
+    public String postLogout(){
+        SecurityContextHolder.clearContext();
+        return "redirect:/";
+    }
 
     @ExceptionHandler(MessagingException.class)
     public ModelAndView handleException(MessagingException ex) {
