@@ -26,23 +26,22 @@ public class User {
     @Column
     Boolean admin=false;
     @Column
-//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String firstName;
     @Column
-//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String lastName;
     @Column
     @DateTimeFormat(pattern="dd/MM/yyyy")
     Date birthday;
     @Column
-//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     Boolean sex;
     @Column
-//    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String address;
     @Column
-//    @NotEmpty(message = "Sai định dạng")
-//    @Pattern(regexp = "(^$|[0-9]{10})")
+    @NotEmpty(message = "Sai định dạng")
+    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;

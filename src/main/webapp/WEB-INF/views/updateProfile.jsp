@@ -82,16 +82,19 @@
                     <div class="row mt-2">
                         <form:hidden path="id" readonly="readonly" class="form-control" ></form:hidden>
                         <div class="col-md-6"><label class="labels">First Name</label>
-                            <form:input path="firstName" readonly="readonly" class="form-control" ></form:input>
+                            <form:input path="firstName"  class="form-control" ></form:input>
+                            <form:errors path="firstName" cssClass="error"/>
                         </div>
                         <div class="col-md-6"><label class="labels">Last Name</label>
 <%--                            <input type="text" class="form-control" value="" placeholder="lastName">--%>
                             <form:input path="lastName" readonly="readonly" class="form-control" ></form:input>
+                            <form:errors path="lastName" cssClass="error"/>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Birthday</label>
                            <form:input path="birthday" readonly="readonly" class="form-control" ></form:input>
+                            <form:errors path="birthday" cssClass="error"/>
                         </div>
                         <div class="col-md-12"><label class="labels">Sex</label>
 <%--                            <form:input path="sex" readonly="readonly" class="form-control" ></form:input>--%>
@@ -103,9 +106,11 @@
                         </div>
                         <div class="col-md-12"><label class="labels">Address</label>
                             <form:input path="address" readonly="readonly" class="form-control" ></form:input>
+                            <form:errors path="address" cssClass="error"/>
                         </div>
                         <div class="col-md-12"><label class="labels">Phone</label>
                             <form:input path="phone" readonly="readonly" class="form-control" ></form:input>
+                            <form:errors path="phone" cssClass="error"/>
                         </div>
                     </div>
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>

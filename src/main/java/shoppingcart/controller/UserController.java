@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
-import shoppingcart.repository.ProductRepository;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
 
@@ -29,9 +29,9 @@ public class UserController {
 
     }
 
-    @PutMapping("/updatePassword/{id}/{oldPassword}")
-    public User updatePassword(@PathVariable Integer id, @PathVariable String oldPassword, @RequestBody User user) {
-        return userService.updatePassword(id,user,oldPassword);
+    @PutMapping("/updatePassword")
+    public User updatePassword(@RequestBody ChangePasswordDto changePasswordDto) {
+        return userService.updatePassword(changePasswordDto );
     }
 
     @GetMapping("/showUser/{id}")

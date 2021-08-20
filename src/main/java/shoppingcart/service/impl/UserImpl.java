@@ -3,7 +3,7 @@ package shoppingcart.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shoppingcart.DTO.DTOUser;
+import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
 import shoppingcart.service.UserService;
@@ -38,7 +38,7 @@ public class UserImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Integer id, User user) {
+    public User updateUser(Integer id,User user) {
         if (user != null) {
             User user1 = userRepository.getById(id);
             if (user1 != null) {
@@ -55,16 +55,14 @@ public class UserImpl implements UserService {
     }
 
     @Override
-    public User updatePassword(Integer id, User user, String oldPassword) {
-        if (user != null) {
-            User user1 = userRepository.getById(id);
-            if (user1 != null && oldPassword.equals(user1.getPassword())) {
-                user1.setPassword(user.getPassword());
-                return userRepository.save(user1);
+    public User updatePassword(ChangePasswordDto changePasswordDto) {
+        Optional<User> user1 = userRepository.findById(changePasswordDto.getId());
+        if (user1.isPresent()) {
+            if (user1.get().getPassword().equals(changePasswordDto.getOldPassword())) {
+                user1.get().setPassword(changePasswordDto.getPassword());
+                return userRepository.save(user1.get());
             }
         }
         return null;
     }
-
-
 }
