@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h4>Server send mail fail</h4>
+<h4>${errorName}</h4>
+<h4>${message}</h4>
 </body>
 </html>

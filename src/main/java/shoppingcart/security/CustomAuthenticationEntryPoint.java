@@ -17,6 +17,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         System.out.println(httpServletRequest.getMethod());
         System.out.println(e.getMessage());
         //httpServletResponse.sendRedirect("errorPage.jsp");
+        httpServletRequest.setAttribute("errorName","your access is denied");
         httpServletRequest.getRequestDispatcher("/WEB-INF/views/errorPage.jsp").forward(httpServletRequest,httpServletResponse);
         //httpServletResponse.sendError(403,"fuck u");
         //httpServletResponse.sendRedirect("http://localhost:8080/errorPage");

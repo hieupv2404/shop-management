@@ -1,5 +1,6 @@
 package shoppingcart.entity;
 
+import org.hibernate.validator.constraints.Length;
 import shoppingcart.security.EncryptMD5;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class User {
     @Email
     String email;
     @Column(nullable = true)
-    @Min(value = 6, message = "Password at least 6 characters")
+    @Length(min = 6, message = "Password at least 6 characters")
     String password;
     @Column
     Boolean active = false;

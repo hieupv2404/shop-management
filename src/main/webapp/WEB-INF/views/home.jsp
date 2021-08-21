@@ -245,7 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
                     <form:form action="/auth/signIn" method="post" modelAttribute="userSignIn">
                         <div class="styled-input agile-styled-input-top">
-                            <form:input type="text" name="Username" required="" path="username"/>
+                            <form:input type="text" name="Username" required="" path="username" />
                             <label>Username</label>
                             <span></span>
                         </div>
@@ -254,7 +254,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <label>Password</label>
                             <span></span>
                         </div>
-                        <input type="submit" value="Sign In">
+                        <div>
+                            <p style="color: red">${errorSignIn}</p>
+                        </div>
+                        <form:button>Sign In</form:button>
                     </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
                         <li><a href="#" class="facebook">
@@ -2161,17 +2164,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
 </script>
 <script>
-    var Msg = "<%=session.getAttribute("signIn")%>";
-    if (Msg == "true") {
-        // function alertName() {
-        //     $('#myModal3').modal("show");
+    var Msg = "<%=session.getAttribute("errorSignIn")%>";
+    if (Msg != "null") {
         $(window).on('load', function () {
             $('#myModal').modal('toggle');
-            <%session.removeAttribute("signIn"); %>
+            <%session.removeAttribute("errorSignIn"); %>
         });
 
     }
 </script>
+
 
 <script>
     $(document).ready(function () {

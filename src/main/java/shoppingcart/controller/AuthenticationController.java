@@ -66,7 +66,7 @@ public class AuthenticationController {
             return "redirect:/";
         }
         if (userRepository.findByUsername(input.getUsername()) == null) {
-            if (userRepository.findByEmail(input.getEmail())!=null){
+            if (userRepository.findByEmail(input.getEmail()) != null) {
                 httpSession.setAttribute("errorSignUp", "true");
                 httpSession.setAttribute("againUser", input);
                 httpSession.setAttribute("existEmail", "email is exist");
@@ -75,6 +75,7 @@ public class AuthenticationController {
             String newPassword = randomPassword(10);
             map.put("key", newPassword);
             input.setPassword(newPassword);
+            System.out.println(EncryptMD5.EncryptedToMD5(newPassword));
             userRepository.save(input);
             emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
             httpSession.setAttribute("signUpSuccess", "true");
@@ -91,17 +92,15 @@ public class AuthenticationController {
         System.out.println(user.getPassword());
         User userReal = userRepository.findByUsername(user.getUsername());
         if (userReal != null) {
-            if (!user.getPassword().equals(userReal.getPassword())) {
-                System.out.println("login fail");
+            if (user.getPassword().equals(userReal.getPassword())) {
+                Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("login Success");
                 return "redirect:/";
             }
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println("login Success");
-            return "redirect:/";
-        } else {
-            return "redirect:/";
         }
+        httpSession.setAttribute("errorSignIn", "wrong password or username");
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
@@ -116,6 +115,7 @@ public class AuthenticationController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("errorPage");
         modelAndView.addObject("message", ex.getMessage());
+        modelAndView.addObject("errorName", "send mail fail by internal server");
         return modelAndView;
     }
 }

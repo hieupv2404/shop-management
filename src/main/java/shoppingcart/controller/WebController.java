@@ -28,6 +28,9 @@ public class WebController {
         if (httpSession.getAttribute("againUser")!=null){
             modelMap.addAttribute("againUser",httpSession.getAttribute("againUser"));
         }
+        if (httpSession.getAttribute("errorSignIn")!=null){
+            modelMap.addAttribute("errorSignIn",httpSession.getAttribute("errorSignIn"));
+        }
         if (httpSession.getAttribute("errorUsername")!=null){
             modelMap.addAttribute("errorUsername",httpSession.getAttribute("errorUsername"));
         }
@@ -47,7 +50,9 @@ public class WebController {
     }
 
     @GetMapping("/errorPage")
-    public String getErrorPage(){
+    public String getErrorPage(ModelMap modelMap){
+
+        modelMap.addAttribute("errorName","send mail fail by internal server");
         return "errorPage";
     }
 }
