@@ -34,10 +34,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <%--        <!-- Latest compiled and minified JavaScript -->--%>
     <%--        <script src=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"/></script>--%>
     <!--//tags -->
-    <link href="/WEB-INF/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/WEB-INF/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/WEB-INF/static/css/font-awesome.css" rel="stylesheet">
-    <link href="/WEB-INF/static/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
+    <link href="<%= request.getContextPath() %>/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= request.getContextPath() %>/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= request.getContextPath() %>/static/css/font-awesome.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/static/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
     <!-- //for bootstrap working -->
     <link href="<c:url value="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800"/>"
           rel="stylesheet"/>
