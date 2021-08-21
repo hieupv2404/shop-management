@@ -1,5 +1,8 @@
 package shoppingcart.DTO;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 public class ChangePasswordDto {
     private Integer id;
     private String password;

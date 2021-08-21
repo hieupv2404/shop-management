@@ -19,6 +19,9 @@
         body {
             background: rgb(154, 154, 147)
         }
+        #errorMessage {
+            color: red;
+        }
         .disabled {
             background-color: #aeaeae !important;
             border-color: #aeaeae !important;
@@ -75,7 +78,7 @@
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" width="50%">
                     <span class="font-weight-bold">${userChangePassword.username}</span
-                    <span class="text-black-50">lethanhdat210520@gmail.com</span>
+
                     <span> </span>
                 </div>
             </div>
@@ -95,13 +98,15 @@
 <%--                            <form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
                         <div class="col-md-12"><label class="labels">Confirm Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass">
+                            <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
+                                   oninput="kiemtra(event)">
+                            <p id="errorMessage"></p>
                                 <%--<form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
 
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary " type="submit">Save Password</button>
+                        <button class="btn btn-primary " type="submit" id="buttonSave">Save Password</button>
                     </div>
                 </div>
             </div>
@@ -110,5 +115,21 @@
     </div>
     </div>
 </form:form>
+<%--<script>--%>
+<%--    function kiemtra(e) {--%>
+<%--        var newPass = document.getElementById("newPass").value;--%>
+<%--        const confirmPass = e.target.value;--%>
+<%--        console.log(newPass);--%>
+<%--        console.log(confirmPass);--%>
+<%--        if (newPass == confirmPass) {--%>
+<%--            console.log("dung");--%>
+<%--            document.getElementById("errorMessage").innerHTML= "";--%>
+<%--            document.getElementById("buttonSave").classList.remove("disabled");--%>
+<%--        } else {--%>
+<%--            document.getElementById("errorMessage").innerHTML = "Mat khau khong trung khop voi mat khau moi";--%>
+<%--            document.getElementById("buttonSave").classList.add("disabled");--%>
+<%--        }--%>
+<%--    }--%>
+<%--</script>--%>
 </body>
 </html>
