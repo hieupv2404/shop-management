@@ -75,6 +75,7 @@
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" width="50%">
                     <span class="font-weight-bold">${userChangePassword.username}</span
+                    <span class="text-black-50">lethanhdat210520@gmail.com</span>
                     <span> </span>
                 </div>
             </div>
