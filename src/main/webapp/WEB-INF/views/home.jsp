@@ -319,6 +319,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div>
                             <p style="color: red">${errorEmail}</p>
                         </div>
+                        <div>
+                            <p style="color: red">${existEmail}</p>
+                        </div>
                         <div class="styled-input">
                             <form:input type="text" name="password" required="" path="phone" value="${againUser.phone}"/>
                             <label>Phone number</label>
@@ -357,7 +360,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- //Modal content-->
     </div>
 </div>
-<%session.removeAttribute("againUser");session.removeAttribute("errorUsername");session.removeAttribute("errorEmail");session.removeAttribute("errorPhone");session.removeAttribute("existUsername");%>
+<%session.removeAttribute("againUser");session.removeAttribute("errorUsername");session.removeAttribute("errorEmail");session.removeAttribute("errorPhone");session.removeAttribute("existUsername");session.removeAttribute("existEmail");%>
 <!-- //Modal2 -->
 
 <%--Modal3--%>

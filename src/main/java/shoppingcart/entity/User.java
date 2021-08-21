@@ -21,7 +21,7 @@ public class User {
     @Column
     @Email
     String email;
-    @Column
+    @Column(nullable = true)
     @Min(value = 6, message = "Password at least 6 characters")
     String password;
     @Column

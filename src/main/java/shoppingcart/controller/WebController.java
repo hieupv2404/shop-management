@@ -40,6 +40,14 @@ public class WebController {
         if (httpSession.getAttribute("existUsername")!=null){
             modelMap.addAttribute("existUsername",httpSession.getAttribute("existUsername"));
         }
+        if (httpSession.getAttribute("existEmail")!=null){
+            modelMap.addAttribute("existEmail",httpSession.getAttribute("existEmail"));
+        }
         return "home";
+    }
+
+    @GetMapping("/errorPage")
+    public String getErrorPage(){
+        return "errorPage";
     }
 }
