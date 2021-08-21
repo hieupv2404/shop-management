@@ -66,9 +66,16 @@ public class AuthenticationController {
             return "redirect:/";
         }
         if (userRepository.findByUsername(input.getUsername()) == null) {
-            userRepository.save(input);
+            if (userRepository.findByEmail(input.getEmail())!=null){
+                httpSession.setAttribute("errorSignUp", "true");
+                httpSession.setAttribute("againUser", input);
+                httpSession.setAttribute("existEmail", "email is exist");
+            }
             Map<String, Object> map = new ModelMap();
-            map.put("key", randomPassword(10));
+            String newPassword = randomPassword(10);
+            map.put("key", newPassword);
+            input.setPassword(newPassword);
+            userRepository.save(input);
             emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
             httpSession.setAttribute("signUpSuccess", "true");
             return "redirect:/";
@@ -80,7 +87,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signIn")
-    public String postSignIn(@ModelAttribute("userSignIn") User user,ModelMap modelMap, HttpSession httpSession) {
+    public String postSignIn(@ModelAttribute("userSignIn") User user, ModelMap modelMap, HttpSession httpSession) {
         System.out.println(user.getPassword());
         User userReal = userRepository.findByUsername(user.getUsername());
         if (userReal != null) {
@@ -96,8 +103,9 @@ public class AuthenticationController {
             return "redirect:/";
         }
     }
+
     @GetMapping("/logout")
-    public String postLogout(){
+    public String postLogout() {
         SecurityContextHolder.clearContext();
         return "redirect:/";
     }
