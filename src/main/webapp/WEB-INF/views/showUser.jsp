@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                         <div class="d-flex flex-column align-items-center"> <img class="photo" src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="">
-                            <p class="fw-bold h4 mt-3">${showUser.get().username}</p>
+                            <p class="fw-bold h4 mt-4">${showUser.get().username}</p>
                             <p class="text-muted">Full Stack Developer</p>
                             <span class="text-black-50">lethanhdat210520@gmail.com</span>
 
