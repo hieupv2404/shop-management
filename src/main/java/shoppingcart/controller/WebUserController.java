@@ -43,14 +43,16 @@ public class WebUserController {
     }
 
     @RequestMapping(value = "/updateUser.htm", method = RequestMethod.POST)
-    public String updateUserProfile(@Valid @ModelAttribute(name = "userUpdate") User userUpdate, @RequestParam(name = "sex") Boolean sex, BindingResult bindingResult) {
+    public String updateUserProfile(@Valid @ModelAttribute(name = "userUpdate") User userUpdate,
+                                    BindingResult bindingResult,
+                                    @RequestParam(name = "sex") Boolean sex) {
+        if (bindingResult.hasErrors()) {
+            return "updateProfile";
+        }
         System.out.println(bindingResult.hasErrors());
         System.out.println(userUpdate.getBirthday());
         userUpdate.setSex(sex);
         User user = userService.updateUser(userUpdate.getId(),userUpdate);
-        if (bindingResult.hasErrors()) {
-            return "updateProfile";
-        }
         return "redirect:getAll.htm";
     }
 
@@ -63,7 +65,10 @@ public class WebUserController {
     }
 
     @RequestMapping(value = "/changePassword.htm", method = RequestMethod.POST)
-    public String changePassword(@RequestParam(name = "id") Integer id, @RequestParam(name = "currentPass") String oldPassword, @RequestParam(name = "newPass") String password, @RequestParam(name = "confirmPass") String confirmPassword) {
+    public String changePassword(@RequestParam(name = "id") Integer id,
+                                 @RequestParam(name = "currentPass") String oldPassword,
+                                 @RequestParam(name = "newPass") String password,
+                                 @RequestParam(name = "confirmPass") String confirmPassword) {
         ChangePasswordDto changePasswordDto = new ChangePasswordDto();
         changePasswordDto.setId(id);
         changePasswordDto.setOldPassword(oldPassword);
@@ -72,7 +77,7 @@ public class WebUserController {
             User user = userService.updatePassword(changePasswordDto);
             return "redirect:getAll.htm";
         }
-        return "changePassword";
+        return "redirect:/user/initChangePassword.htm?id="+id;
     }
 
 
