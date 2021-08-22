@@ -34,6 +34,7 @@
             background-color: #c5cee4
         }
 
+
         .breadcrumb a {
             text-decoration: none
         }
@@ -132,7 +133,11 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Sex</p>
-                            <p class="py-2 text-muted"><form:input path="sex" cssStyle="border: 0; background: white" disabled="true"></form:input></p>
+                            <p class="py-2 text-muted">
+                                <c:if test="${showUser.get().sex == true}">Nam</c:if>
+                                <c:if test="${showUser.get().sex == false}">Nữ</c:if>
+                            </p>
+<%--                            <p class="py-2 text-muted"><form:input path="sex" cssStyle="border: 0; background: white" disabled="true"></form:input></p>--%>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <p class="py-2">Address</p>
