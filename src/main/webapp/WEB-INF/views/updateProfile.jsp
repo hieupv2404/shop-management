@@ -105,7 +105,7 @@
                             <select class="form-control" name="sex">
                                 <option value="true">--select--</option>
                                 <option value="true" <c:if test="${userUpdate.sex == true}">selected</c:if>>Nam</option>
-                                <option value="false"  <c:if test="${userUpdate.sex == false}">selected</c:if>>Nữ</option>
+                                <option value="false" <c:if test="${userUpdate.sex == false}">selected</c:if>>Nữ</option>
                             </select>
                         </div>
                         <div class="col-md-12"><label class="labels">Address</label>

@@ -19,7 +19,7 @@
         body {
             background: rgb(154, 154, 147)
         }
-        #errorMessage {
+        .error {
             color: red;
         }
         .disabled {
@@ -90,23 +90,25 @@
                     <div class="row mt-3">
                         <input type="hidden" name="id" value="${userChangePassword.id}"/>
                         <div class="col-md-12"><label class="labels">Current Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass">
+                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass"
+                                   id="currentPass" oninput="kiemtraOldPass(event)">
 <%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
+                            <p id="errorOldPass" class="error"></p>
                         </div>
                         <div class="col-md-12"><label class="labels">New Password</label>
-                            <input type="text" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass">
+                            <input type="text" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass" oninput="kiemtra(event)">
 <%--                            <form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
                         <div class="col-md-12"><label class="labels">Confirm Password</label>
                             <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
                                    oninput="kiemtra(event)">
-                            <p id="errorMessage"></p>
+                            <p id="errorMessage" class="error"></p>
                                 <%--<form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
 
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary " type="submit" id="buttonSave">Save Password</button>
+                        <button class="btn btn-primary disabled" type="submit" id="buttonSave">Save Password</button>
                     </div>
                 </div>
             </div>
@@ -115,21 +117,57 @@
     </div>
     </div>
 </form:form>
-<%--<script>--%>
-<%--    function kiemtra(e) {--%>
-<%--        var newPass = document.getElementById("newPass").value;--%>
-<%--        const confirmPass = e.target.value;--%>
-<%--        console.log(newPass);--%>
-<%--        console.log(confirmPass);--%>
-<%--        if (newPass == confirmPass) {--%>
-<%--            console.log("dung");--%>
-<%--            document.getElementById("errorMessage").innerHTML= "";--%>
-<%--            document.getElementById("buttonSave").classList.remove("disabled");--%>
-<%--        } else {--%>
-<%--            document.getElementById("errorMessage").innerHTML = "Mat khau khong trung khop voi mat khau moi";--%>
-<%--            document.getElementById("buttonSave").classList.add("disabled");--%>
-<%--        }--%>
-<%--    }--%>
-<%--</script>--%>
+<script>
+    function kiemtra(e) {
+        var newPass = document.getElementById("newPass").value;
+        var confirmPass = document.getElementById("confirmPass").value;
+        if (newPass == confirmPass) {
+            document.getElementById("errorMessage").innerHTML= "";
+        } else {
+            document.getElementById("errorMessage").innerHTML = "Mat khau hien tai khong dung. Vui long nhap lai!";
+        }
+    }
+    function kiemtraOldPass(e) {
+        var currentPass = e.target.value;
+        if (currentPass == ${userChangePassword.password}) {
+            document.getElementById("errorOldPass").innerHTML= "";
+        } else {
+            document.getElementById("errorOldPass").innerHTML = "Mat khau hien tai khong dung. Vui long nhap lai!";
+        }
+    }
+
+   document.getElementById("confirmPass").addEventListener("input", function(){
+       var currentPass = document.getElementById("currentPass").value;
+       var newPass = document.getElementById("newPass").value;
+       var confirmPass = this.value;
+       if (newPass == confirmPass && currentPass == ${userChangePassword.password}) {
+            document.getElementById("buttonSave").classList.remove("disabled");
+       } else {
+           document.getElementById("buttonSave").classList.add("disabled");
+       }
+   });
+
+    document.getElementById("currentPass").addEventListener("input", function(){
+        var currentPass = this.value;
+        var newPass = document.getElementById("newPass").value;
+        var confirmPass = document.getElementById("confirmPass").value
+        if (newPass == confirmPass && currentPass == ${userChangePassword.password}) {
+            document.getElementById("buttonSave").classList.remove("disabled");
+        } else {
+            document.getElementById("buttonSave").classList.add("disabled");
+        }
+    });
+
+    document.getElementById("newPass").addEventListener("input", function(){
+        var currentPass = document.getElementById("currentPass").value;
+        var newPass = this.value;
+        var confirmPass = document.getElementById("confirmPass").value
+        if (newPass == confirmPass && currentPass == ${userChangePassword.password}) {
+            document.getElementById("buttonSave").classList.remove("disabled");
+        } else {
+            document.getElementById("buttonSave").classList.add("disabled");
+        }
+    });
+</script>
 </body>
 </html>

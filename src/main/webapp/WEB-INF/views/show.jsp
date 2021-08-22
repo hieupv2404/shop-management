@@ -40,7 +40,11 @@
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.birthday}</td>
-                    <td>${user.sex}</td>
+                    <td>
+                        <c:if test="${user.sex == true}">Nam</c:if>
+                        <c:if test="${user.sex == false}">Nữ</c:if>
+                    </td>
+
                     <td>${user.address}</td>
                     <td>${user.phone}</td>
                     <td> <button> <a href="initUpdateProfile.htm?id=${user.id}"> Update Profile </a></button></td>
