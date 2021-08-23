@@ -199,7 +199,7 @@
 </form:form>
 <div style="flex-direction: row-reverse;justify-self: center;display: flex ">
     <div style="margin: auto">
-        <a style="width: 250px" href="initUpdateProfile.htm?id=${userId}" class="btn btn-primary btn-lg active" role="button"
+        <a style="width: 250px" href="update/profile.htm?id=${userId}" class="btn btn-primary btn-lg active" role="button"
            aria-pressed="true">Update profile</a>
     </div>
     <div style="margin: auto;">

@@ -34,7 +34,7 @@ public class WebUserController {
     }
 
 
-    @RequestMapping(value = "/initUpdateProfile.htm")
+    @RequestMapping(value = "update/profile.htm", method = RequestMethod.GET)
     public ModelAndView initUpdateProfile(@RequestParam(name = "id") Integer id) {
         ModelAndView mav = new ModelAndView("updateProfile");
         Optional<User> userUpdate = userService.findById(id);
@@ -42,7 +42,7 @@ public class WebUserController {
         return mav;
     }
 
-    @RequestMapping(value = "/updateUser.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "update/profile.htm", method = RequestMethod.POST)
     public String updateUserProfile(@Valid @ModelAttribute(name = "userUpdate") User userUpdate,
                                     BindingResult bindingResult,
                                     @RequestParam(name = "sex") Boolean sex) {
@@ -53,7 +53,7 @@ public class WebUserController {
         System.out.println(userUpdate.getBirthday());
         userUpdate.setSex(sex);
         User user = userService.updateUser(userUpdate.getId(),userUpdate);
-        return "redirect:getAll.htm";
+        return "redirect:/user/profile"+"?id="+userUpdate.getId();
     }
 
     @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
