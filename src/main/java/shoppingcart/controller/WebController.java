@@ -49,6 +49,7 @@ public class WebController {
         if (httpSession.getAttribute("existEmail")!=null){
             modelMap.addAttribute("existEmail",httpSession.getAttribute("existEmail"));
         }
+        //list men lengh 8
         return "home";
     }
 
