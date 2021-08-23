@@ -50,7 +50,6 @@
                     <td> <button> <a href="initUpdateProfile.htm?id=${user.id}"> Update Profile </a></button></td>
                     <td> <button> <a href="initShowUser.htm?id=${user.id}"> Show Profile </a></button></td>
                     <td> <button> <a href="initChangePassword.htm?id=${user.id}"> Change Password </a></button></td>
-                    <td> <button> <a href="initShowProduct.htm?id=${user.id}"> Show Product </a></button></td>
 
                 </tr>
             </c:forEach>
@@ -58,5 +57,6 @@
         </table>
     </form>
     </tbody>
+<td> <button> <a href="initShowProduct.htm"> Show Product </a></button></td>
 </body>
 </html>

@@ -2070,12 +2070,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                                              style="opacity: 1;"> </span></a>
 
     <!-- js -->
-    <script type="text/javascript" src="bootstrap/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
     <!-- //js -->
-    <script src="bootstrap/js/modernizr.custom.js"></script>
+    <script src="/static/js/modernizr.custom.js"></script>
     <!-- Custom-JavaScript-File-Links -->
     <!-- cart-js -->
-    <script src="bootstrap/js/minicart.min.js"></script>
+    <script src="/static/js/minicart.min.js"></script>
     <script>
         // Mini Cart
         paypal.minicart.render({
@@ -2089,7 +2089,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!-- //cart-js -->
     <!-- script for responsive tabs -->
-    <script src="bootstrap/js/easy-responsive-tabs.js"></script>
+    <script src="/static/js/easy-responsive-tabs.js"></script>
     <script>
         $(document).ready(function () {
             $('#horizontalTab').easyResponsiveTabs({
@@ -2114,15 +2114,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //script for responsive tabs -->
     <!-- stats -->
-    <script src="bootstrap/js/jquery.waypoints.min.js"></script>
-    <script src="bootstrap/js/jquery.countup.js"></script>
+    <script src="/static/js/jquery.waypoints.min.js"></script>
+    <script src="/static/js/jquery.countup.js"></script>
     <script>
         $('.counter').countUp();
     </script>
     <!-- //stats -->
     <!-- start-smoth-scrolling -->
-    <script type="text/javascript" src="bootstrap/js/move-top.js"></script>
-    <script type="text/javascript" src="bootstrap/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="/static/js/move-top.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.easing.min.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
@@ -2151,7 +2151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
     <!-- for bootstrap working -->
-    <script type="text/javascript" src="<%= request.getContextPath() %>/WEB-INF/views/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/static/js/bootstrap.js"></script>
     </body>
 </form:form>
 
