@@ -1,6 +1,9 @@
 package shoppingcart.service.impl;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import shoppingcart.entity.Product;
 import shoppingcart.repository.ProductRepository;
@@ -32,5 +35,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void remove(Integer id) {
         productRepository.deleteById(id);
+    }
+
+//T
+    public Iterable<Product> getProductsByCategoryId(Integer categoryId) {
+        Iterable<Product> listResult = productRepository.getProductsByCategoryId(categoryId);
+        return listResult;
     }
 }
