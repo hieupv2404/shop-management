@@ -71,7 +71,7 @@
     </style>
 </head>
 <body>
-<form:form action="changePassword.htm" modelAttribute="userChangePassword" method="post">
+<form:form action="/change/password.htm" modelAttribute="userChangePassword" method="post">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-5 border-right">

@@ -203,7 +203,7 @@
            aria-pressed="true">Update profile</a>
     </div>
     <div style="margin: auto;">
-        <a style="width: 250px" href="initChangePassword.htm?id=${userId}" class="btn btn-primary btn-lg active" role="button"
+        <a style="width: 250px" href="change/password.htm?id=${userId}" class="btn btn-primary btn-lg active" role="button"
            aria-pressed="true">Change password</a>
     </div>
 </div>

@@ -56,7 +56,7 @@ public class WebUserController {
         return "redirect:getAll.htm";
     }
 
-    @RequestMapping(value = "/initChangePassword.htm")
+    @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
     public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id) {
         ModelAndView mav = new ModelAndView("changePassword");
         Optional<User> userChangePassword = userService.findById(id);
@@ -64,7 +64,7 @@ public class WebUserController {
         return mav;
     }
 
-    @RequestMapping(value = "/changePassword.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "/change/password.htm", method = RequestMethod.POST)
     public String changePassword(@RequestParam(name = "id") Integer id,
                                  @RequestParam(name = "currentPass") String oldPassword,
                                  @RequestParam(name = "newPass") String password,
@@ -81,7 +81,7 @@ public class WebUserController {
     }
 
 
-    @RequestMapping(value = "/initShowUser.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView showProduct(int id) {
         ModelAndView mav = new ModelAndView("showUser");
         Optional<User> showUser = userService.findById(id);
