@@ -19,6 +19,9 @@
         body {
             background: rgb(154, 154, 147)
         }
+        .error {
+            color: red;
+        }
         .disabled {
             background-color: #aeaeae !important;
             border-color: #aeaeae !important;
@@ -75,7 +78,7 @@
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" width="50%">
                     <span class="font-weight-bold">${userChangePassword.username}</span
-                    <span class="text-black-50">lethanhdat210520@gmail.com</span>
+
                     <span> </span>
                 </div>
             </div>
@@ -87,21 +90,25 @@
                     <div class="row mt-3">
                         <input type="hidden" name="id" value="${userChangePassword.id}"/>
                         <div class="col-md-12"><label class="labels">Current Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass">
+                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass"
+                                   id="currentPass" oninput="kiemtraOldPass(event)">
 <%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
+                            <p id="errorOldPass" class="error"></p>
                         </div>
                         <div class="col-md-12"><label class="labels">New Password</label>
-                            <input type="text" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass">
+                            <input type="text" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass" oninput="kiemtra(event)">
 <%--                            <form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
                         <div class="col-md-12"><label class="labels">Confirm Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass">
+                            <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
+                                   oninput="kiemtra(event)">
+                            <p id="errorMessage" class="error"></p>
                                 <%--<form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
 
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary " type="submit">Save Password</button>
+                        <button class="btn btn-primary disabled" type="submit" id="buttonSave">Save Password</button>
                     </div>
                 </div>
             </div>
@@ -110,5 +117,57 @@
     </div>
     </div>
 </form:form>
+<script>
+    function kiemtra(e) {
+        var newPass = document.getElementById("newPass").value;
+        var confirmPass = document.getElementById("confirmPass").value;
+        if (newPass == confirmPass) {
+            document.getElementById("errorMessage").innerHTML= "";
+        } else {
+            document.getElementById("errorMessage").innerHTML = "Mat khau hien tai khong dung. Vui long nhap lai!";
+        }
+    }
+    function kiemtraOldPass(e) {
+        var currentPass = e.target.value;
+        if (currentPass == ${userChangePassword.password}) {
+            document.getElementById("errorOldPass").innerHTML= "";
+        } else {
+            document.getElementById("errorOldPass").innerHTML = "Mat khau hien tai khong dung. Vui long nhap lai!";
+        }
+    }
+
+   document.getElementById("confirmPass").addEventListener("input", function(){
+       var currentPass = document.getElementById("currentPass").value;
+       var newPass = document.getElementById("newPass").value;
+       var confirmPass = this.value;
+       if (newPass == confirmPass && currentPass == ${userChangePassword.password}) {
+            document.getElementById("buttonSave").classList.remove("disabled");
+       } else {
+           document.getElementById("buttonSave").classList.add("disabled");
+       }
+   });
+
+    document.getElementById("currentPass").addEventListener("input", function(){
+        var currentPass = this.value;
+        var newPass = document.getElementById("newPass").value;
+        var confirmPass = document.getElementById("confirmPass").value
+        if (newPass == confirmPass && currentPass == ${userChangePassword.password}) {
+            document.getElementById("buttonSave").classList.remove("disabled");
+        } else {
+            document.getElementById("buttonSave").classList.add("disabled");
+        }
+    });
+
+    document.getElementById("newPass").addEventListener("input", function(){
+        var currentPass = document.getElementById("currentPass").value;
+        var newPass = this.value;
+        var confirmPass = document.getElementById("confirmPass").value
+        if (newPass == confirmPass && currentPass == ${userChangePassword.password}) {
+            document.getElementById("buttonSave").classList.remove("disabled");
+        } else {
+            document.getElementById("buttonSave").classList.add("disabled");
+        }
+    });
+</script>
 </body>
 </html>

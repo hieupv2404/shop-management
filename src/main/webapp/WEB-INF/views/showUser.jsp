@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Show Blog</title>
@@ -33,6 +34,12 @@
         .breadcrumb {
             background-color: #c5cee4
         }
+
+
+        .text-muted {
+            min-width: 174.4px;
+        }
+
 
         .breadcrumb a {
             text-decoration: none
@@ -90,7 +97,7 @@
                 <div class="row">
                     <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                         <div class="d-flex flex-column align-items-center"> <img class="photo" src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="">
-                            <p class="fw-bold h4 mt-3">${showUser.get().username}</p>
+                            <p class="fw-bold h4 mt-4">${showUser.get().username}</p>
                             <p class="text-muted">Full Stack Developer</p>
                             <span class="text-black-50">lethanhdat210520@gmail.com</span>
 
@@ -120,27 +127,41 @@
                     <div class="col-12 bg-white px-3 mb-3 pb-3">
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">First Name</p>
-                            <p class="py-2 text-muted"><form:input path="firstName" cssStyle="border: 0; background: white" disabled="true"></form:input></p>
+                            <p class="py-2 text-muted">
+                                ${showUser.get().firstName}
+                            </p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Last Name</p>
-                            <p class="py-2 text-muted"><form:input path="lastName" cssStyle="border: 0; background: white" disabled="true"></form:input></p>
+                            <p class="py-2 text-muted">
+        <%--                                <form:input path="lastName" cssStyle="border: 0; background: white" disabled="true"></form:input>--%>
+                                ${showUser.get().lastName}
+                            </p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Birthday</p>
-                            <p class="py-2 text-muted"><form:input path="birthday" cssStyle="border: 0; background: white" disabled="true"></form:input></p>
+                            <p class="py-2 text-muted">
+                                <fmt:formatDate pattern = "dd/MM/yyyy" value = "${showUser.get().birthday}" /></p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Sex</p>
-                            <p class="py-2 text-muted"><form:input path="sex" cssStyle="border: 0; background: white" disabled="true"></form:input></p>
+                            <p class="py-2 text-muted">
+                                <c:if test="${showUser.get().sex == true}">Nam</c:if>
+                                <c:if test="${showUser.get().sex == false}">Nữ</c:if>
+                            </p>
+<%--                            <p class="py-2 text-muted"><form:input path="sex" cssStyle="border: 0; background: white" disabled="true"></form:input></p>--%>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <p class="py-2">Address</p>
-                            <p class="py-2 text-muted"><form:input path="address" cssStyle="border: 0; background: white" disabled="true"></form:input></p>
+                            <p class="py-2 text-muted">
+                                ${showUser.get().address}
+                            </p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Phone</p>
-                            <p class="py-2 text-muted"><form:input path="phone" cssStyle="border: 0; background: white" disabled="true"></form:input></p>
+                            <p class="py-2 text-muted">
+                                ${showUser.get().phone}
+                            </p>
                         </div>
                     </div>
                     <div class="col-12 bg-white px-3 pb-4">
