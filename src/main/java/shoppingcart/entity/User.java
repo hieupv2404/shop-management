@@ -1,5 +1,12 @@
 package shoppingcart.entity;
 
+import org.hibernate.validator.constraints.Length;
+import shoppingcart.security.EncryptMD5;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,14 +24,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true)
+    @Pattern(regexp = "[a-zA-Z0-9]*", message = "Username must not contain special characters")
     String username;
-    @Column(nullable = false)
+    @Column
+    @Email
+    String email;
+    @Column(nullable = true)
+    @Length(min = 6, message = "Password at least 6 characters")
     String password;
     @Column
-    Boolean active=false;
+    Boolean active = false;
     @Column
-    Boolean admin=false;
+    Boolean admin = false;
     @Column
     @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String firstName;
@@ -67,7 +79,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = EncryptMD5.EncryptedToMD5(password);
     }
 
     public Boolean getActive() {
@@ -132,5 +144,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
