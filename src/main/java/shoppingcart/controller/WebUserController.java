@@ -86,6 +86,7 @@ public class WebUserController {
         ModelAndView mav = new ModelAndView("showUser");
         Optional<User> showUser = userService.findById(id);
         mav.addObject("showUser", showUser);
+        mav.addObject("userId",id);
         return mav;
     }
 

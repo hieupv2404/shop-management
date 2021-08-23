@@ -95,7 +95,8 @@ public class AuthenticationController {
             if (user.getPassword().equals(userReal.getPassword())) {
                 Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println("login Success");
+                httpSession.setAttribute("userId",userReal.getId());
+                System.out.println(userReal.getId());
                 return "redirect:/";
             }
         }

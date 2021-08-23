@@ -21,6 +21,9 @@ public class WebController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
         {
             modelMap.addAttribute("name",SecurityContextHolder.getContext().getAuthentication().getName());
+            if (httpSession.getAttribute("userId")!=null){
+                modelMap.addAttribute("userId",httpSession.getAttribute("userId"));
+            }
             return "homeAfterSignIn";
         }
         modelMap.addAttribute("user",new User());

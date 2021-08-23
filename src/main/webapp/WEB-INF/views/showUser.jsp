@@ -160,5 +160,7 @@
         </div>
     </div>
 </form:form>
+<td> <button> <a href="initUpdateProfile.htm?id=${userId}"> Update Profile </a></button></td>
+<td> <button> <a href="initChangePassword.htm?id=${userId}"> Change Password </a></button></td>
 </body>
 </html>
