@@ -8,6 +8,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
 
+import shoppingcart.security.EncryptMD5;
+
 @SpringBootApplication
 public class ShoppingCartApplication extends SpringBootServletInitializer{
 
