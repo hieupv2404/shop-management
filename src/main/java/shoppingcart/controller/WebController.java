@@ -54,10 +54,10 @@ public class WebController {
             modelMap.addAttribute("existEmail",httpSession.getAttribute("existEmail"));
         }
         //list men length 8
-        Iterable<Product> menProduct = productServiceImpl.getProductsByCategoryId(3);
-        Iterable<Product> womenProduct = productServiceImpl.getProductsByCategoryId(4);
-        Iterable<Product> bagProduct = productServiceImpl.getProductsByCategoryId(5);
-        Iterable<Product> footwearProduct = productServiceImpl.getProductsByCategoryId(6);
+        Iterable<Product> menProduct = productServiceImpl.getProductsByCategoryId(4);
+        Iterable<Product> womenProduct = productServiceImpl.getProductsByCategoryId(5);
+        Iterable<Product> bagProduct = productServiceImpl.getProductsByCategoryId(2);
+        Iterable<Product> footwearProduct = productServiceImpl.getProductsByCategoryId(3);
         modelMap.addAttribute("menProduct",menProduct);
         modelMap.addAttribute("womenProduct", womenProduct);
         modelMap.addAttribute("bagProduct",bagProduct);
