@@ -13,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class User {
     @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String lastName;
     @Column
-    @DateTimeFormat(pattern="mm/dd/yy")
+    @DateTimeFormat(pattern="mm/dd/yyyy")
     Date birthday;
     @Column
     Boolean sex;
@@ -112,8 +113,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public Date getBirthday() { return birthday; }
+
+    public String getBirthday(Integer integer) {
+        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+        return formatter.format(birthday);
     }
 
     public void setBirthday(Date birthday) {

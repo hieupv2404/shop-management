@@ -102,7 +102,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Birthday</label>
-                            <form:input type="text" path="birthday" class="form-control" id="datepicker"/>
+                            <form:input type="text" path="birthday" class="form-control" id="datepicker" value="${userUpdate.getBirthday(1)}"/>
                             <p style="color:red;">${errorBirthday}</p>
                         </div>
                         <div class="col-md-12"><label class="labels">Sex</label>
