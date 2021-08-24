@@ -42,7 +42,7 @@ public class User {
     @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String lastName;
     @Column
-    @DateTimeFormat(pattern="dd/MM/yyyy")
+    @DateTimeFormat(pattern="mm/dd/yy")
     Date birthday;
     @Column
     Boolean sex;
@@ -51,7 +51,7 @@ public class User {
     String address;
     @Column
     @NotEmpty(message = "Sai định dạng")
-    @Pattern(regexp = "(^$|[0-9]{10})")
+    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "Phone invalid")
     String phone;
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;
