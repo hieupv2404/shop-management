@@ -137,30 +137,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-                                            <a href="mens.html"><img
+                                            <a href="mens.htm"><img
                                                     src="<c:url value="/static/images/top2.jpg"/>"
                                                     alt=" "/></a>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.html">Clothing</a></li>
-                                                <li><a href="mens.html">Wallets</a></li>
-                                                <li><a href="mens.html">Footwear</a></li>
-                                                <li><a href="mens.html">Watches</a></li>
-                                                <li><a href="mens.html">Accessories</a></li>
-                                                <li><a href="mens.html">Bags</a></li>
-                                                <li><a href="mens.html">Caps & Hats</a></li>
+                                                <li><a href="mens.htm">Clothing</a></li>
+                                                <li><a href="mens.htm">Wallets</a></li>
+                                                <li><a href="mens.htm">Footwear</a></li>
+                                                <li><a href="mens.htm">Watches</a></li>
+                                                <li><a href="mens.htm">Accessories</a></li>
+                                                <li><a href="mens.htm">Bags</a></li>
+                                                <li><a href="mens.htm">Caps & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.html">Jewellery</a></li>
-                                                <li><a href="mens.html">Sunglasses</a></li>
-                                                <li><a href="mens.html">Perfumes</a></li>
-                                                <li><a href="mens.html">Beauty</a></li>
-                                                <li><a href="mens.html">Shirts</a></li>
-                                                <li><a href="mens.html">Sunglasses</a></li>
-                                                <li><a href="mens.html">Swimwear</a></li>
+                                                <li><a href="mens.htm">Jewellery</a></li>
+                                                <li><a href="mens.htm">Sunglasses</a></li>
+                                                <li><a href="mens.htm">Perfumes</a></li>
+                                                <li><a href="mens.htm">Beauty</a></li>
+                                                <li><a href="mens.htm">Shirts</a></li>
+                                                <li><a href="mens.htm">Sunglasses</a></li>
+                                                <li><a href="mens.htm">Swimwear</a></li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -584,7 +584,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="resp-tabs-container">
                 <!--/tab_one-->
                 <div class="tab1">
-                    <c:forEach items="${menProduct}" var="menpro">
+                    <c:forEach items="${men}" var="menpro">
                     <div class="col-md-3 product-men">
                         <div class="men-pro-item simpleCart_shelfItem">
                             <div class="men-thumb-item">
@@ -905,7 +905,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--//tab_one-->
                 <!--/tab_two-->
                 <div class="tab2">
-                    <c:forEach items="${womenProduct}" var="womenpro">
+                    <c:forEach items="${women}" var="womenpro">
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
@@ -1226,7 +1226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <!--//tab_two-->
                 <div class="tab3">
-                    <c:forEach items="${bagProduct}" var="bagpro">
+                    <c:forEach items="${bag}" var="bagpro">
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
@@ -1545,7 +1545,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clearfix"></div>
                 </div>
                 <div class="tab4">
-                    <c:forEach items="${footwearProduct}" var="footpro">
+                    <c:forEach items="${footwear}" var="footpro">
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">

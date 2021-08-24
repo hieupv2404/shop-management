@@ -1,6 +1,11 @@
 package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
+import shoppingcart.security.EncryptMD5;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
 
@@ -52,32 +58,35 @@ public class WebUserController {
         System.out.println(bindingResult.hasErrors());
         System.out.println(userUpdate.getBirthday());
         userUpdate.setSex(sex);
-        User user = userService.updateUser(userUpdate.getId(),userUpdate);
+        User user = userService.updateUser(userUpdate.getId(), userUpdate);
         return "redirect:getAll.htm";
     }
 
     @RequestMapping(value = "/initChangePassword.htm")
-    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id) {
+    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id,
+                                           @RequestParam(name = "messages", required = false) String messages) {
         ModelAndView mav = new ModelAndView("changePassword");
         Optional<User> userChangePassword = userService.findById(id);
         mav.addObject("userChangePassword", userChangePassword.get());
+        mav.addObject("message",messages);
         return mav;
     }
 
     @RequestMapping(value = "/changePassword.htm", method = RequestMethod.POST)
     public String changePassword(@RequestParam(name = "id") Integer id,
                                  @RequestParam(name = "currentPass") String oldPassword,
-                                 @RequestParam(name = "newPass") String password,
-                                 @RequestParam(name = "confirmPass") String confirmPassword) {
+                                 @RequestParam(name = "newPass") String password) {
         ChangePasswordDto changePasswordDto = new ChangePasswordDto();
         changePasswordDto.setId(id);
         changePasswordDto.setOldPassword(oldPassword);
         changePasswordDto.setPassword(password);
-        if (password.equals(confirmPassword)) {
-            User user = userService.updatePassword(changePasswordDto);
-            return "redirect:getAll.htm";
+        User user = userService.updatePassword(changePasswordDto);
+        if (user == null) {
+            String messages = "loi roi";
+            return "redirect:/user/initChangePassword.htm?id=" + id + "&messages="+messages;
+        } else {
+            return "redirect:/user/getAll.htm";
         }
-        return "redirect:/user/initChangePassword.htm?id="+id;
     }
 
 
@@ -96,7 +105,5 @@ public class WebUserController {
         mav.addObject("productIterable", productIterable);
         return mav;
     }
-
-
 
 }
