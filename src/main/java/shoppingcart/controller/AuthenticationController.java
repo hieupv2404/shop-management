@@ -70,13 +70,14 @@ public class AuthenticationController {
                 httpSession.setAttribute("errorSignUp", "true");
                 httpSession.setAttribute("againUser", input);
                 httpSession.setAttribute("existEmail", "email is exist");
+                return "redirect:/";
             }
             Map<String, Object> map = new ModelMap();
             String newPassword = randomPassword(10);
             map.put("key", newPassword);
             input.setPassword(newPassword);
-            userRepository.save(input);
             emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
+            userRepository.save(input);
             httpSession.setAttribute("signUpSuccess", "true");
             return "redirect:/";
         }
