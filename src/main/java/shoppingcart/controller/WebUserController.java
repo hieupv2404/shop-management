@@ -2,16 +2,19 @@ package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
+import shoppingcart.repository.UserRepository;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +27,17 @@ public class WebUserController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private  UserRepository userRepository;
+
+    private boolean checkAccessRightUserById(Integer id, Principal principal) {
+        User user=userRepository.findById(id).isPresent()?userRepository.findById(id).get():null;
+        if (user!=null){
+            return user.getUsername().equals(principal.getName());
+        }
+        return false;
+    }
+
 
     @GetMapping(value = "/getAll.htm")
     public ModelAndView getAllUser() {
@@ -34,59 +48,80 @@ public class WebUserController {
     }
 
 
-    @RequestMapping(value = "/initUpdateProfile.htm")
-    public ModelAndView initUpdateProfile(@RequestParam(name = "id") Integer id) {
+    @RequestMapping(value = "update/profile.htm", method = RequestMethod.GET)
+    public ModelAndView initUpdateProfile(@RequestParam(name = "id") Integer id,Principal principal) {
+        if (!checkAccessRightUserById(id, principal)){
+            ModelAndView mav = new ModelAndView("errorPage");
+            mav.addObject("errorName","your access is denied");
+            return mav;
+        }
         ModelAndView mav = new ModelAndView("updateProfile");
         Optional<User> userUpdate = userService.findById(id);
         mav.addObject("userUpdate", userUpdate.get());
         return mav;
     }
 
-    @RequestMapping(value = "/updateUser.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "update/profile.htm", method = RequestMethod.POST)
     public String updateUserProfile(@Valid @ModelAttribute(name = "userUpdate") User userUpdate,
                                     BindingResult bindingResult,
-                                    @RequestParam(name = "sex") Boolean sex) {
+                                    @RequestParam(name = "sex") Boolean sex, Principal principal, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
             return "updateProfile";
         }
-        System.out.println(bindingResult.hasErrors());
-        System.out.println(userUpdate.getBirthday());
+        if (!checkAccessRightUserById(userUpdate.getId(), principal)){
+            modelMap.addAttribute("errorName","your access is denied");
+            return "errorPage";
+        }
         userUpdate.setSex(sex);
-        User user = userService.updateUser(userUpdate.getId(),userUpdate);
-        return "redirect:getAll.htm";
+        User user = userService.updateUser(userUpdate.getId(), userUpdate);
+        return "redirect:/user/show/profile" + "?id=" + userUpdate.getId();
     }
 
-    @RequestMapping(value = "/initChangePassword.htm")
-    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id) {
+    @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
+    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id, Principal principal) {
+        if (!checkAccessRightUserById(id, principal)){
+            ModelAndView mav = new ModelAndView("errorPage");
+            mav.addObject("errorName","your access is denied");
+            return mav;
+        }
         ModelAndView mav = new ModelAndView("changePassword");
         Optional<User> userChangePassword = userService.findById(id);
         mav.addObject("userChangePassword", userChangePassword.get());
         return mav;
     }
 
-    @RequestMapping(value = "/changePassword.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "/change/password.htm", method = RequestMethod.POST)
     public String changePassword(@RequestParam(name = "id") Integer id,
                                  @RequestParam(name = "currentPass") String oldPassword,
                                  @RequestParam(name = "newPass") String password,
-                                 @RequestParam(name = "confirmPass") String confirmPassword) {
+                                 @RequestParam(name = "confirmPass") String confirmPassword, Principal principal, ModelMap modelMap) {
+        if (!checkAccessRightUserById(id, principal)){
+            modelMap.addAttribute("errorName","your access is denied");
+            return "errorPage";
+        }
         ChangePasswordDto changePasswordDto = new ChangePasswordDto();
         changePasswordDto.setId(id);
         changePasswordDto.setOldPassword(oldPassword);
         changePasswordDto.setPassword(password);
         if (password.equals(confirmPassword)) {
             User user = userService.updatePassword(changePasswordDto);
-            return "redirect:getAll.htm";
+            return "redirect:/user/show/profile" + "?id=" + id;
         }
-        return "redirect:/user/initChangePassword.htm?id="+id;
+        return "redirect:/user/initChangePassword.htm?id=" + id;
     }
 
 
-    @RequestMapping(value = "/initShowUser.htm", method = RequestMethod.GET)
-    public ModelAndView showProduct(int id) {
+    @RequestMapping(value = "/show/profile", method = RequestMethod.GET)
+    public ModelAndView showProduct(int id, Principal principal) {
+        if (!checkAccessRightUserById(id, principal)){
+            ModelAndView mav = new ModelAndView("errorPage");
+            mav.addObject("errorName","your access is denied");
+            return mav;
+        }
         ModelAndView mav = new ModelAndView("showUser");
         Optional<User> showUser = userService.findById(id);
         mav.addObject("showUser", showUser);
-        mav.addObject("userId",id);
+        mav.addObject("userId", id);
         return mav;
     }
 
@@ -97,7 +132,6 @@ public class WebUserController {
         mav.addObject("productIterable", productIterable);
         return mav;
     }
-
 
 
 }
