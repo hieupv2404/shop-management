@@ -76,8 +76,8 @@ public class AuthenticationController {
             String newPassword = randomPassword(10);
             map.put("key", newPassword);
             input.setPassword(newPassword);
-            userRepository.save(input);
             emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
+            userRepository.save(input);
             httpSession.setAttribute("signUpSuccess", "true");
             return "redirect:/";
         }

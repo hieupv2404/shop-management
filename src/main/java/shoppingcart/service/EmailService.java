@@ -43,8 +43,13 @@ public class EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
+        // ClassLoader classLoader = new ReadFile().getClass().getClassLoader();
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+
         for (int i = 1; i < 8; i++) {
-            File file = new File("..\\shop-management\\src\\main\\resources\\templates\\thymeleaf\\images\\image-" + i + ".png");
+            String fileName = "templates/thymeleaf/images/image-" + i + ".png";
+//            File file = new File("..\\..\\..\\..\\resources\\templates\\thymeleaf\\images\\image-" + i + ".png");
+            File file = new File(classLoader.getResource(fileName).getFile());
             helper.addInline("image_" + i + ".png", file);
         }
         emailSender.send(message);
