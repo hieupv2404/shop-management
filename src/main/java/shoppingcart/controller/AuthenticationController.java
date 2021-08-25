@@ -70,14 +70,14 @@ public class AuthenticationController {
                 httpSession.setAttribute("errorSignUp", "true");
                 httpSession.setAttribute("againUser", input);
                 httpSession.setAttribute("existEmail", "email is exist");
-                return "redirect:/";
             }
             Map<String, Object> map = new ModelMap();
             String newPassword = randomPassword(10);
             map.put("key", newPassword);
             input.setPassword(newPassword);
-            emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
+            System.out.println(EncryptMD5.EncryptedToMD5(newPassword));
             userRepository.save(input);
+            emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
             httpSession.setAttribute("signUpSuccess", "true");
             return "redirect:/";
         }
@@ -113,8 +113,11 @@ public class AuthenticationController {
         //Do something additional if required
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("errorPage");
+        modelAndView.addObject("errorPre","5");
+        modelAndView.addObject("errorMed","0");
+        modelAndView.addObject("errorSuf","0");
         modelAndView.addObject("message", ex.getMessage());
-        modelAndView.addObject("errorName", "send mail fail by internal server");
+        modelAndView.addObject("errorName", "Send mail fail by internal server");
         return modelAndView;
     }
 }

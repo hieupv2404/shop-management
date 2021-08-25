@@ -1,4 +1,3 @@
-<%@ page import="shoppingcart.security.EncryptMD5" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
@@ -65,13 +64,14 @@
     </style>
 </head>
 <body>
-<form:form action="/change/password.htm" modelAttribute="userChangePassword" method="post">
+<form:form action="/user/change/password.htm" modelAttribute="userChangePassword" method="post">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-5 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" width="50%">
                     <span class="font-weight-bold">${userChangePassword.username}</span
+
                     <span> </span>
                 </div>
             </div>
@@ -83,20 +83,19 @@
                     <div class="row mt-3">
                         <input type="hidden" name="id" value="${userChangePassword.id}"/>
                         <div class="col-md-12"><label class="labels">Current Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass">
+                            <input type="password" class="form-control" value="" placeholder="Current Password" name="currentPass">
                                 <%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
                             <p id="errorOldPass" class="error">
-<%--                                <c:if test="${message != null}">curentPassword sai</c:if>--%>
-                                ${message}
+                                <c:if test="${message != null}">Mật khẩu cũ không đúng</c:if>
+<%--                                ${message}--%>
                             </p>
-
                         </div>
                         <div class="col-md-12"><label class="labels">New Password</label>
-                            <input type="text" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass" oninput="kiemtra(event)">
+                            <input type="password" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass" oninput="kiemtra(event)">
                                 <%--                            <form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
                         <div class="col-md-12"><label class="labels">Confirm Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
+                            <input type="password" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
                                    oninput="kiemtra(event)">
                             <p id="errorMessage" class="error"></p>
                                 <%--<form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
@@ -105,7 +104,8 @@
                     </div>
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary disabled" type="submit" id="buttonSave">Save Password</button>
-                        <button class="btn btn-primary " type="submit" id="buttonCancel">Cancel</button>
+                            <a style= "height: 35px; width: 131px" href="/user/show/profile?id=${userChangePassword.id}" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
+                               aria-pressed="true">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,6 @@
         var confirmPass = document.getElementById("confirmPass").value;
         if (newPass == confirmPass) {
             document.getElementById("errorMessage").innerHTML= "";
-            document.getElementById("buttonSave").classList.remove("disabled");
         } else {
             document.getElementById("errorMessage").innerHTML = "Mat khau khong khop. Vui long nhap lai!";
         }
@@ -145,7 +144,6 @@
             document.getElementById("buttonSave").classList.add("disabled");
         }
     });
-
 </script>
 </body>
 </html>

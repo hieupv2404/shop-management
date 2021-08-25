@@ -149,7 +149,7 @@
                     <div class="d-flex align-items-center justify-content-between border-bottom">
                         <p class="py-2">Birthday</p>
                         <p class="py-2 text-muted">
-                            <fmt:formatDate pattern="dd/MM/yyyy" value="${showUser.get().birthday}"/></p>
+                            ${showUser.get().getBirthday(1)}</p>
                     </div>
                     <div class="d-flex align-items-center justify-content-between border-bottom">
                         <p class="py-2">Sex</p>
