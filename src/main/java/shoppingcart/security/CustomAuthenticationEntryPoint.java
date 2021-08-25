@@ -13,9 +13,9 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        System.out.println("here");
-        System.out.println(httpServletRequest.getMethod());
-        System.out.println(e.getMessage());
+//        System.out.println("here");
+//        System.out.println(httpServletRequest.getMethod());
+//        System.out.println(e.getMessage());
         //httpServletResponse.sendRedirect("errorPage.jsp");
         httpServletRequest.setAttribute("errorName","your access is denied");
         httpServletRequest.getRequestDispatcher("/WEB-INF/views/errorPage.jsp").forward(httpServletRequest,httpServletResponse);
