@@ -89,13 +89,12 @@ public class AuthenticationController {
 
     @PostMapping("/signIn")
     public String postSignIn(@ModelAttribute("userSignIn") User user, ModelMap modelMap, HttpSession httpSession) {
-        System.out.println(user.getPassword());
         User userReal = userRepository.findByUsername(user.getUsername());
         if (userReal != null) {
             if (user.getPassword().equals(userReal.getPassword())) {
                 Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println("login Success");
+                httpSession.setAttribute("userId",userReal.getId());
                 return "redirect:/";
             }
         }
