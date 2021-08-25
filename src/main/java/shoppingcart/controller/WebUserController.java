@@ -1,6 +1,7 @@
 package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -82,7 +83,7 @@ public class WebUserController {
         }
         userUpdate.setSex(sex);
         User user = userService.updateUser(userUpdate.getId(), userUpdate);
-        return "redirect:/user/show/profile" + "?id=" + userUpdate.getId();
+        return "redirect:/user/show/profile?id=" + userUpdate.getId();
     }
 
     @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
@@ -123,7 +124,8 @@ public class WebUserController {
             String messages = "loi roi";
             return "redirect:/change/password.htm?id=" + id + "&messages="+messages;
         } else {
-            return "redirect:/user/getAll.htm";
+            SecurityContextHolder.clearContext();
+            return "redirect:/";
         }
     }
 

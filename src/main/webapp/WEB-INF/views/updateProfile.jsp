@@ -71,7 +71,7 @@
 </head>
 <body>
 
-<form:form action="updateUser.htm" modelAttribute="userUpdate" method="post">
+<form:form action="/user/update/profile.htm" modelAttribute="userUpdate" method="post">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-5 border-right">

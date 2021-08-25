@@ -64,7 +64,7 @@
     </style>
 </head>
 <body>
-<form:form action="changePassword.htm" modelAttribute="userChangePassword" method="post">
+<form:form action="/user/change/password.htm" modelAttribute="userChangePassword" method="post">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-5 border-right">
@@ -83,7 +83,7 @@
                     <div class="row mt-3">
                         <input type="hidden" name="id" value="${userChangePassword.id}"/>
                         <div class="col-md-12"><label class="labels">Current Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass">
+                            <input type="password" class="form-control" value="" placeholder="Current Password" name="currentPass">
                                 <%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
                             <p id="errorOldPass" class="error">
                                 <c:if test="${message != null}">Mật khẩu cũ không đúng</c:if>
@@ -91,11 +91,11 @@
                             </p>
                         </div>
                         <div class="col-md-12"><label class="labels">New Password</label>
-                            <input type="text" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass" oninput="kiemtra(event)">
+                            <input type="password" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass" oninput="kiemtra(event)">
                                 <%--                            <form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
                         <div class="col-md-12"><label class="labels">Confirm Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
+                            <input type="password" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
                                    oninput="kiemtra(event)">
                             <p id="errorMessage" class="error"></p>
                                 <%--<form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary disabled" type="submit" id="buttonSave">Save Password</button>
-                            <a style= "height: 35px; width: 131px" href="/user/getAll.htm" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
+                            <a style= "height: 35px; width: 131px" href="/user/show/profile?id=${userChangePassword.id}" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
                                aria-pressed="true">Cancel</a>
                     </div>
                 </div>
