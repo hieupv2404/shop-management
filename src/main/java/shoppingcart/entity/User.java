@@ -39,12 +39,14 @@ public class User {
     @Column
     Boolean admin = false;
     @Column
-    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Not be empty ")
     @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$",
-            message = "sai dinh dang")
+            message = "Not contain special characters and numbers")
     String firstName;
     @Column
-    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Not be empty ")
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$",
+            message = "Not contain special characters and numbers")
     String lastName;
     @Column
     @DateTimeFormat(pattern="mm/dd/yyyy")
@@ -52,10 +54,10 @@ public class User {
     @Column
     Boolean sex;
     @Column
-    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Not be empty ")
     String address;
     @Column
-    @NotEmpty(message = "Sai định dạng")
+    @NotEmpty(message = "Not be empty ")
     @Pattern(regexp = "(84|0[3|9])+([0-9]{8})\\b", message = "Wrong Format Number Phone")
 //    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
