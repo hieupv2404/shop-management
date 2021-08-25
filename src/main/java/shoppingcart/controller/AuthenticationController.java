@@ -113,8 +113,11 @@ public class AuthenticationController {
         //Do something additional if required
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("errorPage");
+        modelAndView.addObject("errorPre","5");
+        modelAndView.addObject("errorMed","0");
+        modelAndView.addObject("errorSuf","0");
         modelAndView.addObject("message", ex.getMessage());
-        modelAndView.addObject("errorName", "send mail fail by internal server");
+        modelAndView.addObject("errorName", "Send mail fail by internal server");
         return modelAndView;
     }
 }
