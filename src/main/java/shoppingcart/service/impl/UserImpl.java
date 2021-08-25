@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
+import shoppingcart.security.EncryptMD5;
 import shoppingcart.service.UserService;
 
 import java.util.Optional;
@@ -58,7 +59,8 @@ public class UserImpl implements UserService {
     public User updatePassword(ChangePasswordDto changePasswordDto) {
         Optional<User> user1 = userRepository.findById(changePasswordDto.getId());
         if (user1.isPresent()) {
-            if (user1.get().getPassword().equals(changePasswordDto.getOldPassword())) {
+            if (user1.get().getPassword().equals(EncryptMD5.EncryptedToMD5(changePasswordDto.getOldPassword()))
+            || user1.get().getPassword().equals(changePasswordDto.getOldPassword())) {
                 user1.get().setPassword(changePasswordDto.getPassword());
                 return userRepository.save(user1.get());
             }
