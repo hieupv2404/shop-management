@@ -75,7 +75,6 @@ public class AuthenticationController {
             String newPassword = randomPassword(10);
             map.put("key", newPassword);
             input.setPassword(newPassword);
-            System.out.println(EncryptMD5.EncryptedToMD5(newPassword));
             userRepository.save(input);
             emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
             httpSession.setAttribute("signUpSuccess", "true");

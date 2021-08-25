@@ -26,7 +26,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column(unique = true)
-    @Pattern(regexp = "[a-zA-Z0-9]*", message = "Username must not contain special characters")
+    @Pattern(regexp = "[a-zA-Z0-9]+", message = "Username must not contain special characters")
     String username;
     @Column
     @Email
