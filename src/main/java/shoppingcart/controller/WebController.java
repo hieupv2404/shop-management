@@ -30,6 +30,11 @@ public class WebController {
     public ProductService productService;
     @GetMapping("")
     public String getHome(ModelMap modelMap, HttpSession httpSession){
+        Iterable<Category> categories = categoryRepository.findAll();
+        categories.forEach(category -> {
+            Iterable<Product> productIterable = productServiceImpl.getProductsByCategoryId(category.getId());
+            modelMap.addAttribute(category.getName(),productIterable);
+        });
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
         {
             modelMap.addAttribute("name",SecurityContextHolder.getContext().getAuthentication().getName());
@@ -62,11 +67,6 @@ public class WebController {
             modelMap.addAttribute("existEmail",httpSession.getAttribute("existEmail"));
         }
         //list men length 8
-        Iterable<Category> categories = categoryRepository.findAll();
-        categories.forEach(category -> {
-            Iterable<Product> productIterable = productServiceImpl.getProductsByCategoryId(category.getId());
-            modelMap.addAttribute(category.getName(),productIterable);
-        });
         return "home";
     }
 
