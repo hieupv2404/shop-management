@@ -44,7 +44,6 @@ public class EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
-        //ClassLoader classLoader = new ReadFile().getClass().getClassLoader();
         //ClassLoader classLoader = ClassLoader.getSystemClassLoader();
 //        ClassLoader classLoader= this.getClass().getClassLoader();
 //        for (int i = 1; i < 8; i++) {
@@ -66,7 +65,6 @@ public class EmailService {
         Context thymeleafContext = new Context();
         thymeleafContext.setVariables(templateModel);
         String htmlBody = thymeleafTemplateEngine.process("thymeleaf/mail.html", thymeleafContext);
-
         sendHtmlMessage(to, subject, htmlBody);
     }
 

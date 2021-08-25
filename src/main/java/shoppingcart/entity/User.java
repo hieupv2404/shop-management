@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -24,7 +26,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column(unique = true)
-    @Pattern(regexp = "[a-zA-Z0-9]*", message = "Username must not contain special characters")
+    @Pattern(regexp = "[a-zA-Z0-9]+", message = "Username must not contain special characters")
     String username;
     @Column
     @Email
@@ -37,10 +39,14 @@ public class User {
     @Column
     Boolean admin = false;
     @Column
-    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Not be empty ")
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$",
+            message = "Not contain special characters and numbers")
     String firstName;
     @Column
-    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Not be empty ")
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$",
+            message = "Not contain special characters and numbers")
     String lastName;
     @Column
     @DateTimeFormat(pattern="mm/dd/yyyy")
@@ -48,11 +54,12 @@ public class User {
     @Column
     Boolean sex;
     @Column
-    @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Size(min = 1, max = 45, message = "Not be empty ")
     String address;
     @Column
-    @NotEmpty(message = "Sai định dạng")
-    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "Phone invalid")
+    @NotEmpty(message = "Not be empty ")
+    @Pattern(regexp = "(84|0[3|9])+([0-9]{8})\\b", message = "Wrong Format Number Phone")
+//    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;
@@ -113,11 +120,15 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() { return birthday; }
+    public Date getBirthday() {
+        return birthday;
+    }
 
     public String getBirthday(Integer integer) {
-        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
-        return formatter.format(birthday);
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        if (birthday!=null)
+            return formatter.format(birthday);
+        else return formatter.format(new Date());
     }
 
     public void setBirthday(Date birthday) {

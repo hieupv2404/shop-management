@@ -1,10 +1,6 @@
 package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
-import shoppingcart.security.EncryptMD5;
 import shoppingcart.repository.UserRepository;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
@@ -34,14 +29,14 @@ public class WebUserController {
     private ProductService productService;
 
     @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
-    private boolean checkAccessRightUserById(Integer id, Principal principal) {
-        User user=userRepository.findById(id).isPresent()?userRepository.findById(id).get():null;
-        if (user!=null){
-            return user.getUsername().equals(principal.getName());
+    private boolean checkAccessWrongUserById(Integer id, Principal principal) {
+        User user = userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
+        if (user != null) {
+            return !user.getUsername().equals(principal.getName());
         }
-        return false;
+        return true;
     }
 
 
@@ -55,10 +50,13 @@ public class WebUserController {
 
 
     @RequestMapping(value = "update/profile.htm", method = RequestMethod.GET)
-    public ModelAndView initUpdateProfile(@RequestParam(name = "id") Integer id,Principal principal) {
-        if (!checkAccessRightUserById(id, principal)){
+    public ModelAndView initUpdateProfile(@RequestParam(name = "id") Integer id, Principal principal) {
+        if (checkAccessWrongUserById(id, principal)) {
             ModelAndView mav = new ModelAndView("errorPage");
-            mav.addObject("errorName","your access is denied");
+            mav.addObject("errorPre", "4");
+            mav.addObject("errorMed", "0");
+            mav.addObject("errorSuf", "3");
+            mav.addObject("errorName", "your access is denied");
             return mav;
         }
         ModelAndView mav = new ModelAndView("updateProfile");
@@ -73,24 +71,29 @@ public class WebUserController {
                                     @RequestParam(name = "sex") Boolean sex, Principal principal, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
             if (bindingResult.hasFieldErrors("birthday"))
-                modelMap.addAttribute("errorBirthday","Date format invalid");
+                modelMap.addAttribute("errorBirthday", "Date format invalid");
             return "updateProfile";
         }
-        if (!checkAccessRightUserById(userUpdate.getId(), principal)){
-            modelMap.addAttribute("errorName","your access is denied");
+        if (checkAccessWrongUserById(userUpdate.getId(), principal)) {
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "your access is denied");
             return "errorPage";
         }
         userUpdate.setSex(sex);
         User user = userService.updateUser(userUpdate.getId(), userUpdate);
-        return "redirect:/user/show/profile" + "?id=" + userUpdate.getId();
+        return "redirect:/user/show/profile?id=" + userUpdate.getId();
     }
 
     @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
-    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id,
-                                            @RequestParam(name = "messages", required = false) String messages, Principal principal) {
-        if (!checkAccessRightUserById(id, principal)){
+    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id, Principal principal,@RequestParam(name = "messages", required = false) String messages) {
+        if (checkAccessWrongUserById(id, principal)) {
             ModelAndView mav = new ModelAndView("errorPage");
-            mav.addObject("errorName","your access is denied");
+            mav.addObject("errorPre", "4");
+            mav.addObject("errorMed", "0");
+            mav.addObject("errorSuf", "3");
+            mav.addObject("errorName", "your access is denied");
             return mav;
         }
         ModelAndView mav = new ModelAndView("changePassword");
@@ -104,9 +107,12 @@ public class WebUserController {
     public String changePassword(@RequestParam(name = "id") Integer id,
                                  @RequestParam(name = "currentPass") String oldPassword,
                                  @RequestParam(name = "newPass") String password,
-                                 @RequestParam(name = "confirmPass") String confirmPassword, Principal principal, ModelMap modelMap) {
-        if (!checkAccessRightUserById(id, principal)){
-            modelMap.addAttribute("errorName","your access is denied");
+                                 Principal principal, ModelMap modelMap) {
+        if (checkAccessWrongUserById(id, principal)) {
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "your access is denied");
             return "errorPage";
         }
         ChangePasswordDto changePasswordDto = new ChangePasswordDto();
@@ -116,18 +122,22 @@ public class WebUserController {
         User user = userService.updatePassword(changePasswordDto);
         if (user == null) {
             String messages = "loi roi";
-            return "redirect:/user/initChangePassword.htm?id=" + id + "&messages="+messages;
+            return "redirect:/user/change/password.htm?id=" + id + "&messages="+messages;
         } else {
-            return "redirect:/user/getAll.htm";
+            SecurityContextHolder.clearContext();
+            return "redirect:/";
         }
     }
 
 
     @RequestMapping(value = "/show/profile", method = RequestMethod.GET)
     public ModelAndView showProduct(int id, Principal principal) {
-        if (!checkAccessRightUserById(id, principal)){
+        if (checkAccessWrongUserById(id, principal)) {
             ModelAndView mav = new ModelAndView("errorPage");
-            mav.addObject("errorName","your access is denied");
+            mav.addObject("errorPre", "4");
+            mav.addObject("errorMed", "0");
+            mav.addObject("errorSuf", "3");
+            mav.addObject("errorName", "your access is denied");
             return mav;
         }
         ModelAndView mav = new ModelAndView("showUser");
@@ -144,4 +154,6 @@ public class WebUserController {
         mav.addObject("productIterable", productIterable);
         return mav;
     }
+
+
 }
