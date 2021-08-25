@@ -7,8 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.nashorn.internal.ir.annotations.Ignore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,6 +39,8 @@ public class User {
     Boolean admin = false;
     @Column
     @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$",
+            message = "sai dinh dang")
     String firstName;
     @Column
     @Size(min = 1, max = 45, message = "Không được bỏ trống")
@@ -53,7 +55,8 @@ public class User {
     String address;
     @Column
     @NotEmpty(message = "Sai định dạng")
-    @Pattern(regexp = "(^$|[0-9]{10})")
+    @Pattern(regexp = "(84|0[3|9])+([0-9]{8})\\b", message = "Wrong Format Number Phone")
+//    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;

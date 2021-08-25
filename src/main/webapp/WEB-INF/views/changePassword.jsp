@@ -86,8 +86,8 @@
                             <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass">
                                 <%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
                             <p id="errorOldPass" class="error">
-<%--                                <c:if test="${message != null}">curentPassword sai</c:if>--%>
-                                ${message}
+                                <c:if test="${message != null}">Mật khẩu cũ không đúng</c:if>
+<%--                                ${message}--%>
                             </p>
                         </div>
                         <div class="col-md-12"><label class="labels">New Password</label>
@@ -104,7 +104,8 @@
                     </div>
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary disabled" type="submit" id="buttonSave">Save Password</button>
-                        <button class="btn btn-primary " type="submit" id="buttonCancel">Cancel</button>
+                            <a style= "height: 35px; width: 131px" href="/user/getAll.htm" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
+                               aria-pressed="true">Cancel</a>
                     </div>
                 </div>
             </div>
