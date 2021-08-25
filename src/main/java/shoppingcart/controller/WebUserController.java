@@ -86,7 +86,7 @@ public class WebUserController {
     }
 
     @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
-    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id, Principal principal) {
+    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id, Principal principal,@RequestParam(name = "messages", required = false) String messages) {
         if (checkAccessWrongUserById(id, principal)) {
             ModelAndView mav = new ModelAndView("errorPage");
             mav.addObject("errorPre", "4");
