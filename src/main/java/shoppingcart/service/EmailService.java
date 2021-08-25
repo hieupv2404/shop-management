@@ -15,6 +15,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.net.URL;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class EmailService {
@@ -43,10 +44,15 @@ public class EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
-        for (int i = 1; i < 8; i++) {
-            File file = new File("..\\shop-management\\src\\main\\resources\\templates\\thymeleaf\\images\\image-" + i + ".png");
-            helper.addInline("image_" + i + ".png", file);
-        }
+        //ClassLoader classLoader = new ReadFile().getClass().getClassLoader();
+        //ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+//        ClassLoader classLoader= this.getClass().getClassLoader();
+//        for (int i = 1; i < 8; i++) {
+//            String fileName = "templates/thymeleaf/images/image-" + i + ".png";
+////            File file = new File("..\\..\\..\\..\\resources\\templates\\thymeleaf\\images\\image-" + i + ".png");
+//            File file = new File(Objects.requireNonNull(classLoader.getResource(fileName)).getFile());
+//            helper.addInline("image_" + i + ".png", file);
+//        }
         emailSender.send(message);
     }
 

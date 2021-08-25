@@ -70,14 +70,14 @@ public class AuthenticationController {
                 httpSession.setAttribute("errorSignUp", "true");
                 httpSession.setAttribute("againUser", input);
                 httpSession.setAttribute("existEmail", "email is exist");
+                return "redirect:/";
             }
             Map<String, Object> map = new ModelMap();
             String newPassword = randomPassword(10);
             map.put("key", newPassword);
             input.setPassword(newPassword);
-            System.out.println(EncryptMD5.EncryptedToMD5(newPassword));
-            userRepository.save(input);
             emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
+            userRepository.save(input);
             httpSession.setAttribute("signUpSuccess", "true");
             return "redirect:/";
         }
@@ -89,13 +89,12 @@ public class AuthenticationController {
 
     @PostMapping("/signIn")
     public String postSignIn(@ModelAttribute("userSignIn") User user, ModelMap modelMap, HttpSession httpSession) {
-        System.out.println(user.getPassword());
         User userReal = userRepository.findByUsername(user.getUsername());
         if (userReal != null) {
             if (user.getPassword().equals(userReal.getPassword())) {
                 Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println("login Success");
+                httpSession.setAttribute("userId",userReal.getId());
                 return "redirect:/";
             }
         }

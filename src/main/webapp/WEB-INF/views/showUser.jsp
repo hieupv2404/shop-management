@@ -14,7 +14,8 @@
     <title>Show Blog</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js	">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js	">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <style>
 
@@ -85,39 +86,46 @@
     <div class="container">
         <div class="row">
             <div class="col-12 p-0">
-                <nav aria-label="breadcrumb ">
-                    <ol class="breadcrumb py-3 px-3">
-                        <li class="breadcrumb-item"><a href="http://localhost:8080/user/getAll.htm">Home</a></li>
-<%--                        <li class="breadcrumb-item"><a href="http://localhost:8080/user/getAll.htm">Library</a></li>--%>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
-                    </ol>
-                </nav>
+<%--                <nav aria-label="breadcrumb ">--%>
+<%--                    <ol class="breadcrumb py-3 px-3">--%>
+<%--                        <li class="breadcrumb-item"><a href="http://localhost:8080/user/getAll.htm">Home</a></li>--%>
+<%--                            &lt;%&ndash;                        <li class="breadcrumb-item"><a href="http://localhost:8080/user/getAll.htm">Library</a></li>&ndash;%&gt;--%>
+<%--                        <li class="breadcrumb-item active" aria-current="page">Data</li>--%>
+<%--                    </ol>--%>
+<%--                </nav>--%>
             </div>
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
-                        <div class="d-flex flex-column align-items-center">  <img src="/static/images/photo-1541647376583-8934aaf3448a.png" alt=" "/>
+                        <div class="d-flex flex-column align-items-center"><img class="photo"
+                                                                                src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                                                                                alt="">
                             <p class="fw-bold h4 mt-4">${showUser.get().username}</p>
                             <p class="text-muted">Full Stack Developer</p>
-                            <span class="text-black-50">lethanhdat210520@gmail.com</span>
+                            <span class="text-black-50">${showUser.get().email}</span>
 
                         </div>
                     </div>
                     <div class="col-12 bg-white p-0 px-2 pb-3 mb-3">
                         <div class="d-flex justify-content-between border-bottom py-2 px-3">
-                            <p><span class="fas fa-globe me-2"></span>Website</p> <a href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
+                            <p><span class="fas fa-globe me-2"></span>Website</p> <a
+                                href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2 px-3">
-                            <p><span class="fab fa-github-alt me-2"></span>Github</p> <a href="https://github.com/lethanhdat215/mvc">https://www.facebook.com/letthanhdat210520/</a>
+                            <p><span class="fab fa-github-alt me-2"></span>Github</p> <a
+                                href="https://github.com/lethanhdat215/mvc">https://www.facebook.com/letthanhdat210520/</a>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2 px-3">
-                            <p><span class="fab fa-twitter me-2"></span>Twitter</p> <a href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
+                            <p><span class="fab fa-twitter me-2"></span>Twitter</p> <a
+                                href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2 px-3">
-                            <p><span class="fab fa-instagram me-2"></span>Instagram</p> <a href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
+                            <p><span class="fab fa-instagram me-2"></span>Instagram</p> <a
+                                href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
                         </div>
                         <div class="d-flex justify-content-between py-2 px-3">
-                            <p><span class="fab fa-facebook-f me-2"></span>facebook</p> <a href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
+                            <p><span class="fab fa-facebook-f me-2"></span>facebook</p> <a
+                                href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
                         </div>
                     </div>
                 </div>
@@ -128,20 +136,20 @@
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">First Name</p>
                             <p class="py-2 text-muted">
-                                ${showUser.get().firstName}
+                                    ${showUser.get().firstName}
                             </p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Last Name</p>
                             <p class="py-2 text-muted">
-        <%--                                <form:input path="lastName" cssStyle="border: 0; background: white" disabled="true"></form:input>--%>
-                                ${showUser.get().lastName}
+                                    <%--                                <form:input path="lastName" cssStyle="border: 0; background: white" disabled="true"></form:input>--%>
+                                    ${showUser.get().lastName}
                             </p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Birthday</p>
                             <p class="py-2 text-muted">
-                                <fmt:formatDate pattern = "dd/MM/yyyy" value = "${showUser.get().birthday}" /></p>
+                                <fmt:formatDate pattern="dd/MM/yyyy" value="${showUser.get().birthday}"/></p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Sex</p>
@@ -149,37 +157,55 @@
                                 <c:if test="${showUser.get().sex == true}">Nam</c:if>
                                 <c:if test="${showUser.get().sex == false}">Nữ</c:if>
                             </p>
-<%--                            <p class="py-2 text-muted"><form:input path="sex" cssStyle="border: 0; background: white" disabled="true"></form:input></p>--%>
+                                <%--                            <p class="py-2 text-muted"><form:input path="sex" cssStyle="border: 0; background: white" disabled="true"></form:input></p>--%>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <p class="py-2">Address</p>
                             <p class="py-2 text-muted">
-                                ${showUser.get().address}
+                                    ${showUser.get().address}
                             </p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="py-2">Phone</p>
                             <p class="py-2 text-muted">
-                                ${showUser.get().phone}
+                                    ${showUser.get().phone}
                             </p>
-                        </div>
-                    </div>
-                    <div class="col-12 bg-white px-3 pb-4">
-                        <h8 class="d-flex align-items-center mb-3 fw-bold py-3"><i class="text-info me-2">assignment</i>Project Status</h8> <small>Web Design</small>
-                        <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 60%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> <small>One Page</small>
-                        <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> <small>Mobile Template</small>
-                        <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<%--                        </div>--%>
+<%--&lt;%&ndash;                    </div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                    <div class="col-12 bg-white px-3 pb-4">&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        <h8 class="d-flex align-items-center mb-3 fw-bold py-3"><i class="text-info me-2">assignment</i>Project&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                            Status&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        </h8>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        <small>Web Design</small>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        <div class="progress mb-3" style="height: 5px">&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                            <div class="progress-bar bg-primary" role="progressbar" style="width: 60%"&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                                 aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        </div>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        <small>One Page</small>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        <div class="progress mb-3" style="height: 5px">&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                            <div class="progress-bar bg-primary" role="progressbar" style="width: 72%"&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                                 aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        </div>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        <small>Mobile Template</small>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        <div class="progress mb-3" style="height: 5px">&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                                 aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                        </div>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                    </div>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;                </div>&ndash;%&gt;--%>
+<%--            </div>--%>
         </div>
     </div>
 </form:form>
+<div style="flex-direction: row-reverse;justify-self: center;display: flex ">
+    <div style="margin: auto">
+        <a style="width: 250px" href="/user/update/profile.htm?id=${userId}" class="btn btn-primary btn-lg active" role="button"
+           aria-pressed="true">Update profile</a>
+    </div>
+    <div style="margin: auto;">
+        <a style="width: 250px" href="/user/change/password.htm?id=${userId}" class="btn btn-primary btn-lg active" role="button"
+           aria-pressed="true">Change password</a>
+    </div>
+</div>
 </body>
 </html>

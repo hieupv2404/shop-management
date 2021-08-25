@@ -7,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
