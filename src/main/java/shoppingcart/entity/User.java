@@ -116,8 +116,10 @@ public class User {
     public Date getBirthday() { return birthday; }
 
     public String getBirthday(Integer integer) {
-        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        if (birthday!=null)
         return formatter.format(birthday);
+        else return formatter.format(new Date());
     }
 
     public void setBirthday(Date birthday) {
