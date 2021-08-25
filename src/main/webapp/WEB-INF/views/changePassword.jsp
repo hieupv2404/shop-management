@@ -86,7 +86,7 @@
                             <input type="password" class="form-control" value="" placeholder="Current Password" name="currentPass">
                                 <%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
                             <p id="errorOldPass" class="error">
-                                <c:if test="${message != null}">Mật khẩu cũ không đúng</c:if>
+                                <c:if test="${message != null}">Old password is incorrect </c:if>
 <%--                                ${message}--%>
                             </p>
                         </div>

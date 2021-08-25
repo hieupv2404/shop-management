@@ -122,7 +122,7 @@ public class WebUserController {
         User user = userService.updatePassword(changePasswordDto);
         if (user == null) {
             String messages = "loi roi";
-            return "redirect:/change/password.htm?id=" + id + "&messages="+messages;
+            return "redirect:/user/change/password.htm?id=" + id + "&messages="+messages;
         } else {
             SecurityContextHolder.clearContext();
             return "redirect:/";
