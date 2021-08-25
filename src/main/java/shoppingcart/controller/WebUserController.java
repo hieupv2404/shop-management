@@ -106,7 +106,7 @@ public class WebUserController {
     public String changePassword(@RequestParam(name = "id") Integer id,
                                  @RequestParam(name = "currentPass") String oldPassword,
                                  @RequestParam(name = "newPass") String password,
-                                 @RequestParam(name = "confirmPass") String confirmPassword, Principal principal, ModelMap modelMap) {
+                                 Principal principal, ModelMap modelMap) {
         if (checkAccessWrongUserById(id, principal)) {
             modelMap.addAttribute("errorPre", "4");
             modelMap.addAttribute("errorMed", "0");
