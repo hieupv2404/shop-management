@@ -1,6 +1,11 @@
 package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -9,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
+import shoppingcart.security.EncryptMD5;
 import shoppingcart.repository.UserRepository;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
@@ -80,7 +86,8 @@ public class WebUserController {
     }
 
     @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
-    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id, Principal principal) {
+    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id,
+                                            @RequestParam(name = "messages", required = false) String messages, Principal principal) {
         if (!checkAccessRightUserById(id, principal)){
             ModelAndView mav = new ModelAndView("errorPage");
             mav.addObject("errorName","your access is denied");
@@ -89,6 +96,7 @@ public class WebUserController {
         ModelAndView mav = new ModelAndView("changePassword");
         Optional<User> userChangePassword = userService.findById(id);
         mav.addObject("userChangePassword", userChangePassword.get());
+        mav.addObject("message",messages);
         return mav;
     }
 
@@ -105,11 +113,13 @@ public class WebUserController {
         changePasswordDto.setId(id);
         changePasswordDto.setOldPassword(oldPassword);
         changePasswordDto.setPassword(password);
-        if (password.equals(confirmPassword)) {
-            User user = userService.updatePassword(changePasswordDto);
-            return "redirect:/user/show/profile" + "?id=" + id;
+        User user = userService.updatePassword(changePasswordDto);
+        if (user == null) {
+            String messages = "loi roi";
+            return "redirect:/user/initChangePassword.htm?id=" + id + "&messages="+messages;
+        } else {
+            return "redirect:/user/getAll.htm";
         }
-        return "redirect:/user/initChangePassword.htm?id=" + id;
     }
 
 
