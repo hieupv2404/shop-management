@@ -6,8 +6,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+import shoppingcart.entity.Category;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
+import shoppingcart.repository.CategoryRepository;
+import shoppingcart.service.ProductService;
 import shoppingcart.service.impl.ProductServiceImpl;
 
 import javax.servlet.http.HttpSession;
@@ -20,14 +24,15 @@ import java.util.List;
 public class WebController {
     @Autowired
     public ProductServiceImpl productServiceImpl;
+    @Autowired
+    public CategoryRepository categoryRepository;
+    @Autowired
+    public ProductService productService;
     @GetMapping("")
     public String getHome(ModelMap modelMap, HttpSession httpSession){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
         {
             modelMap.addAttribute("name",SecurityContextHolder.getContext().getAuthentication().getName());
-            if (httpSession.getAttribute("userId")!=null){
-                modelMap.addAttribute("userId",httpSession.getAttribute("userId"));
-            }
             return "homeAfterSignIn";
         }
         modelMap.addAttribute("user",new User());
@@ -54,14 +59,11 @@ public class WebController {
             modelMap.addAttribute("existEmail",httpSession.getAttribute("existEmail"));
         }
         //list men length 8
-        Iterable<Product> menProduct = productServiceImpl.getProductsByCategoryId(4);
-        Iterable<Product> womenProduct = productServiceImpl.getProductsByCategoryId(5);
-        Iterable<Product> bagProduct = productServiceImpl.getProductsByCategoryId(2);
-        Iterable<Product> footwearProduct = productServiceImpl.getProductsByCategoryId(3);
-        modelMap.addAttribute("menProduct",menProduct);
-        modelMap.addAttribute("womenProduct", womenProduct);
-        modelMap.addAttribute("bagProduct",bagProduct);
-        modelMap.addAttribute("footwearProduct",footwearProduct);
+        Iterable<Category> categories = categoryRepository.findAll();
+        categories.forEach(category -> {
+            Iterable<Product> productIterable = productServiceImpl.getProductsByCategoryId(category.getId());
+            modelMap.addAttribute(category.getName(),productIterable);
+        });
         return "home";
     }
 
@@ -71,4 +73,15 @@ public class WebController {
         modelMap.addAttribute("errorName","send mail fail by internal server");
         return "errorPage";
     }
+
+    @GetMapping(value = "/mens.htm")
+    public ModelAndView showMen() {
+        ModelAndView mav = new ModelAndView("mens");
+        Iterable<Product> productIterable = productService.findAll();
+        mav.addObject("productIterable", productIterable);
+        return mav;
+    }
+
+
+
 }

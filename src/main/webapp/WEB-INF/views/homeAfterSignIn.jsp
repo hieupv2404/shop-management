@@ -49,7 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" id="home">
   <div class="container">
     <ul>
-      <li><a href="/user/show/profile?id=${userId}"><i class="fa fa-unlock-alt"
+      <li><a href="/user/userProfile"><i class="fa fa-unlock-alt"
                                                                     aria-hidden="true"></i> ${name} </a></li>
       <li><a href="/auth/logout" ><i class="fa fa-pencil-square-o"
                                                                      aria-hidden="true"></i> Logout </a></li>

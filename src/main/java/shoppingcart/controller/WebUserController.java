@@ -98,6 +98,7 @@ public class WebUserController {
         ModelAndView mav = new ModelAndView("changePassword");
         Optional<User> userChangePassword = userService.findById(id);
         mav.addObject("userChangePassword", userChangePassword.get());
+        mav.addObject("message",messages);
         return mav;
     }
 
@@ -117,11 +118,14 @@ public class WebUserController {
         changePasswordDto.setId(id);
         changePasswordDto.setOldPassword(oldPassword);
         changePasswordDto.setPassword(password);
-        if (password.equals(confirmPassword)) {
-            User user = userService.updatePassword(changePasswordDto);
-            return "redirect:/user/show/profile" + "?id=" + id;
+        User user = userService.updatePassword(changePasswordDto);
+        if (user == null) {
+            String messages = "loi roi";
+            return "redirect:/user/initChangePassword.htm?id=" + id + "&messages="+messages;
+        } else {
+            return "redirect:/user/getAll.htm";
         }
-        return "redirect:/user/initChangePassword.htm?id=" + id;
+        return "redirect:/user/change/password.htm?id=" + id;
     }
 
 
@@ -149,4 +153,6 @@ public class WebUserController {
         mav.addObject("productIterable", productIterable);
         return mav;
     }
+
+
 }

@@ -1,4 +1,3 @@
-<%@ page import="shoppingcart.security.EncryptMD5" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
@@ -33,36 +32,29 @@
             box-shadow: none;
             border-color: #9A9A93FF;
         }
-
         .profile-button {
             background: rgb(177, 174, 174);
             box-shadow: none;
             border: none
         }
-
         .profile-button:hover {
             background:  #9A9A93FF;
         }
-
         .profile-button:focus {
             background:  #9A9A93FF;
             box-shadow: none
         }
-
         .profile-button:active {
             background: #9A9A93FF;
             box-shadow: none
         }
-
         .back:hover {
             color: #9A9A93FF;
             cursor: pointer
         }
-
         .labels {
             font-size: 11px
         }
-
         .add-experience:hover {
             background:#9A9A93FF;
             color: #fff;
@@ -72,13 +64,14 @@
     </style>
 </head>
 <body>
-<form:form action="/change/password.htm" modelAttribute="userChangePassword" method="post">
+<form:form action="changePassword.htm" modelAttribute="userChangePassword" method="post">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-5 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" width="50%">
                     <span class="font-weight-bold">${userChangePassword.username}</span
+
                     <span> </span>
                 </div>
             </div>
@@ -90,14 +83,16 @@
                     <div class="row mt-3">
                         <input type="hidden" name="id" value="${userChangePassword.id}"/>
                         <div class="col-md-12"><label class="labels">Current Password</label>
-                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass"
-                                   id="currentPass">
-<%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
-                            <p id="errorOldPass" class="error"></p>
+                            <input type="text" class="form-control" value="" placeholder="Current Password" name="currentPass">
+                                <%--                            <form:input path="oldPassword" readonly="readonly" class="form-control" ></form:input>--%>
+                            <p id="errorOldPass" class="error">
+                                <c:if test="${message != null}">Mật khẩu cũ không đúng</c:if>
+<%--                                ${message}--%>
+                            </p>
                         </div>
                         <div class="col-md-12"><label class="labels">New Password</label>
                             <input type="text" class="form-control" value="" placeholder="New Password" id="newPass" name="newPass" oninput="kiemtra(event)">
-<%--                            <form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
+                                <%--                            <form:input path="password" readonly="readonly" class="form-control" ></form:input>--%>
                         </div>
                         <div class="col-md-12"><label class="labels">Confirm Password</label>
                             <input type="text" class="form-control" value="" placeholder="Confirm Password" id="confirmPass" name="confirmPass"
@@ -109,6 +104,8 @@
                     </div>
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary disabled" type="submit" id="buttonSave">Save Password</button>
+                            <a style= "height: 35px; width: 131px" href="/user/getAll.htm" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
+                               aria-pressed="true">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -123,29 +120,30 @@
         var confirmPass = document.getElementById("confirmPass").value;
         if (newPass == confirmPass) {
             document.getElementById("errorMessage").innerHTML= "";
-            document.getElementById("buttonSave").classList.remove("disabled");
         } else {
-            document.getElementById("errorMessage").innerHTML = "Mat khau hien tai khong dung. Vui long nhap lai!";
-        }
-    }
-    function kiemtraOldPass(e) {
-        var currentPass = e.target.value;
-        if (currentPass == ${userChangePassword.password}) {
-            document.getElementById("errorOldPass").innerHTML= "";
-        } else {
-            document.getElementById("errorOldPass").innerHTML = "Mat khau hien tai khong dung. Vui long nhap lai!";
+            document.getElementById("errorMessage").innerHTML = "Mat khau khong khop. Vui long nhap lai!";
         }
     }
 
-   document.getElementById("confirmPass").addEventListener("input", function(){
-       var currentPass = document.getElementById("currentPass").value;
-       var newPass = document.getElementById("newPass").value;
-       var confirmPass = this.value;
-       if (newPass == confirmPass) {
+    document.getElementById("confirmPass").addEventListener("input", function(){
+        var newPass = document.getElementById("newPass").value;
+        var confirmPass = this.value;
+        if (newPass == confirmPass) {
             document.getElementById("buttonSave").classList.remove("disabled");
-       } else {
-           document.getElementById("buttonSave").classList.add("disabled");
-       }
+        } else {
+            document.getElementById("buttonSave").classList.add("disabled");
+        }
+    });
+
+    document.getElementById("newPass").addEventListener("input", function(){
+        var newPass = this.value;
+        var confirmPass = document.getElementById("confirmPass").value
+        if (newPass == confirmPass ) {
+            document.getElementById("buttonSave").classList.remove("disabled");
+        } else {
+            document.getElementById("buttonSave").classList.add("disabled");
+        }
+    });
 </script>
 </body>
 </html>

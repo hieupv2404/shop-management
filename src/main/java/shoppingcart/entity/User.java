@@ -7,13 +7,14 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -38,12 +39,14 @@ public class User {
     Boolean admin = false;
     @Column
     @Size(min = 1, max = 45, message = "Không được bỏ trống")
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$",
+            message = "sai dinh dang")
     String firstName;
     @Column
     @Size(min = 1, max = 45, message = "Không được bỏ trống")
     String lastName;
     @Column
-    @DateTimeFormat(pattern="mm/dd/yyyy")
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     Date birthday;
     @Column
     Boolean sex;
@@ -52,7 +55,8 @@ public class User {
     String address;
     @Column
     @NotEmpty(message = "Sai định dạng")
-    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "Phone invalid")
+    @Pattern(regexp = "(84|0[3|9])+([0-9]{8})\\b", message = "Wrong Format Number Phone")
+//    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;
@@ -113,13 +117,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() { return birthday; }
-
-    public String getBirthday(Integer integer) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        if (birthday!=null)
-        return formatter.format(birthday);
-        else return formatter.format(new Date());
+    public Date getBirthday() {
+        return birthday;
     }
 
     public void setBirthday(Date birthday) {
