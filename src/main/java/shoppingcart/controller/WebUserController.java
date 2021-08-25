@@ -72,6 +72,8 @@ public class WebUserController {
                                     BindingResult bindingResult,
                                     @RequestParam(name = "sex") Boolean sex, Principal principal, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
+            if (bindingResult.hasFieldErrors("birthday"))
+                modelMap.addAttribute("errorBirthday","Date format invalid");
             return "updateProfile";
         }
         if (!checkAccessRightUserById(userUpdate.getId(), principal)){
@@ -142,5 +144,4 @@ public class WebUserController {
         mav.addObject("productIterable", productIterable);
         return mav;
     }
-
 }

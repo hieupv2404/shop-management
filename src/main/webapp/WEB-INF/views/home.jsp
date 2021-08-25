@@ -330,6 +330,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <label>Phone number</label>
                             <span></span>
                         </div>
+                        <div>
+                            <p style="color: red">${errorPhone}</p>
+                        </div>
                         <form:button>Submit</form:button>
                     </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
