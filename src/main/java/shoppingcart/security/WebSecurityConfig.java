@@ -52,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers("/user/**").hasRole("USER") //allow login api for role USER
-                .antMatchers("/user/**").hasRole("ADMIN") //allow login api for role ADMIN
+                .antMatchers("/user/**").access("hasRole('USER') or hasRole('ADMIN')") //allow login api for role USER
+//                .antMatchers("/user/**").hasRole("ADMIN") //allow login api for role ADMIN
                 .antMatchers("/admin/**").hasRole("ADMIN") //allow login api rol ADMIN
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
