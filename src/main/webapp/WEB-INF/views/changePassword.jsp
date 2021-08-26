@@ -104,7 +104,7 @@
                     </div>
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary disabled" type="submit" id="buttonSave" style="height: 35px; width: 100px">Save</button>
-                            <a style= "height: 35px; width: 100px; background-color: red" href="/user/show/profile?id=${userChangePassword.id}" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
+                            <a style= "height: 35px; width: 100px; background-color: #951111FF  " href="/user/show/profile?id=${userChangePassword.id}" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
                                aria-pressed="true" >Back</a>
                     </div>
                 </div>
