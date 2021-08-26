@@ -141,9 +141,13 @@
 
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary disabled" type="submit" id="buttonSave" style="height: 35px; width: 100px">Save</button>
-                            <a style= "height: 35px; width: 100px; background-color: red" href="/user/show/profile?id=${userChangePassword.id}" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
-                               aria-pressed="true" >Back</a>
+                        <button class="btn btn-light" type="submit" id="buttonSave"
+                                style="height: 50px; width: 150px">Save
+                        </button>
+                        <a class="btn btn-danger danger-color-dark" style="height: 50px; width: 150px"
+                           href="/user/show/profile?id=${userChangePassword.id}" type="submit"
+                           id="buttonCancel" role="button"
+                           aria-pressed="true">Back</a>
                     </div>
                 </div>
             </div>
