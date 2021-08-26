@@ -1,6 +1,21 @@
 package shoppingcart.entity;
 
+import org.hibernate.validator.constraints.Length;
+import shoppingcart.security.EncryptMD5;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,25 +25,41 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true)
+    @Pattern(regexp = "[a-zA-Z0-9]+", message = "Username must not contain special characters")
     String username;
-    @Column(nullable = false)
+    @Column
+    @Email
+    String email;
+    @Column(nullable = true)
+    @Length(min = 6, message = "Password at least 6 characters")
     String password;
     @Column
-    Boolean active=false;
+    Boolean active = false;
     @Column
-    Boolean admin=false;
+    Boolean admin = false;
     @Column
+    @Size(min = 1, max = 45, message = "Not be empty ")
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$",
+            message = "Not contain special characters and numbers")
     String firstName;
     @Column
+    @Size(min = 1, max = 45, message = "Not be empty ")
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$",
+            message = "Not contain special characters and numbers")
     String lastName;
     @Column
+    @DateTimeFormat(pattern="mm/dd/yyyy")
     Date birthday;
     @Column
     Boolean sex;
     @Column
+    @Size(min = 1, max = 45, message = "Not be empty ")
     String address;
     @Column
+    @NotEmpty(message = "Not be empty ")
+    @Pattern(regexp = "(84|0[3|9])+([0-9]{8})\\b", message = "Wrong Format Number Phone")
+//    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;
@@ -54,7 +85,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = EncryptMD5.EncryptedToMD5(password);
     }
 
     public Boolean getActive() {
@@ -93,6 +124,13 @@ public class User {
         return birthday;
     }
 
+    public String getBirthday(Integer integer) {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        if (birthday!=null)
+            return formatter.format(birthday);
+        else return formatter.format(new Date());
+    }
+
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
@@ -119,5 +157,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
