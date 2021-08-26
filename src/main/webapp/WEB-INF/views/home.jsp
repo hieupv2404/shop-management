@@ -383,7 +383,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>Sign up successful</h4><br>
                     <h5>Please check your email to get password and verify!</h5>
                     <br>
-                    <button type="button" class="close" data-dismiss="modal" style="justify-items: center">Ok</button>
+                    <a href="https://mail.google.com/mail/u/0/#inbox" class="close" data-dismiss="modal" style="justify-items: center">Ok</a>
                 </div>
                 <div class="clearfix"></div>
             </div>
