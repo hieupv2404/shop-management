@@ -118,7 +118,7 @@
                             <form:input path="address" class="form-control"/>
                             <form:errors path="address" cssClass="error" cssStyle="color: red"/>
                         </div>
-                        <div class="col-md-12"><label class="labels">Phone</label>
+                        <div class="col-md-12"><label class="labels">Phone<h7 style="color: red">(*)</h7></label>
                             <form:input path="phone" class="form-control"/>
                             <form:errors path="phone" cssClass="error" cssStyle="color: #760b0b"/>
                         </div>
