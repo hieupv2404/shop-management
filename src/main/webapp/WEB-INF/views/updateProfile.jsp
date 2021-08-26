@@ -120,12 +120,12 @@
                         </div>
                         <div class="col-md-12"><label class="labels">Phone</label>
                             <form:input path="phone" class="form-control"/>
-                            <form:errors path="phone" cssClass="error" cssStyle="color: red"/>
+                            <form:errors path="phone" cssClass="error" cssStyle="color: #760b0b"/>
                         </div>
                     </div>
                     <div style="flex-direction: row-reverse;justify-self: center;display: flex ">
                         <div class="mt-5 text-center" style="margin: auto">
-                            <a style="width: 200px; background-color: red" href="/user/show/profile?id=${userId}"
+                            <a style="width: 200px; background-color: #951111FF  " href="/user/show/profile?id=${userId}"
                                class="btn btn-primary btn-lg active" role="button"
                                aria-pressed="true">Back</a>
                         </div>
