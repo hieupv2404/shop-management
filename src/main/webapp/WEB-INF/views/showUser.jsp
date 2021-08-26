@@ -119,14 +119,7 @@
                         <p><span class="fab fa-twitter me-2"></span>Twitter</p> <a
                             href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
                     </div>
-                    <div class="d-flex justify-content-between border-bottom py-2 px-3">
-                        <p><span class="fab fa-instagram me-2"></span>Instagram</p> <a
-                            href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
-                    </div>
-                    <div class="d-flex justify-content-between py-2 px-3">
-                        <p><span class="fab fa-facebook-f me-2"></span>facebook</p> <a
-                            href="https://www.facebook.com/letthanhdat210520/">https://www.facebook.com/letthanhdat210520/</a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -199,18 +192,16 @@
                 </form:form>
                 <div style="flex-direction: column;justify-self: center;display: flex ">
                     <div style="margin: auto;padding: 10px">
-                        <a style="width: 350px" href="/user/update/profile.htm?id=${userId}"
+                        <a style="width: 270px" href="/user/update/profile.htm?id=${userId}"
                            class="btn btn-primary btn-lg active" role="button"
                            aria-pressed="true">Update profile</a>
-                    </div>
-                    <div style="margin: auto; padding: 10px">
-                        <a style="width: 350px" href="/user/change/password.htm?id=${userId}"
+                        <a style="width: 270px" href="/user/change/password.htm?id=${userId}"
                            class="btn btn-primary btn-lg active" role="button"
                            aria-pressed="true">Change password</a>
                     </div>
                     <div style="margin: auto; padding: 10px">
-                        <a style="width: 350px" href="/" class="btn btn-primary btn-lg active" role="button"
-                           aria-pressed="true">Cancel</a>
+                        <a style="width: 545px;"  href="/" class="btn btn-primary btn-lg active" role="button"
+                           aria-pressed="true">Home</a>
                     </div>
                 </div>
 </body>

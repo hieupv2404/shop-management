@@ -90,22 +90,22 @@
                     </div>
                     <div class="row mt-2">
                         <form:hidden path="id" readonly="readonly" class="form-control"/>
-                        <div class="col-md-6"><label class="labels">First Name</label>
+                        <div class="col-md-6"><label class="labels">First Name<h7 style="color: red">(*)</h7></label>
                             <form:input path="firstName" class="form-control"/>
                             <form:errors path="firstName" cssClass="error" cssStyle="color: red"/>
                         </div>
-                        <div class="col-md-6"><label class="labels">Last Name</label>
+                        <div class="col-md-6"><label class="labels">Last Name<h7 style="color: red">(*)</h7></label>
                                 <%--                            <input type="text" class="form-control" value="" placeholder="lastName">--%>
                             <form:input path="lastName" class="form-control"/>
                             <form:errors path="lastName" cssClass="error" cssStyle="color: red"/>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Birthday</label>
+                        <div class="col-md-12"><label class="labels">Birthday<h7 style="color: red">(*)</h7></label>
                             <form:input type="text" path="birthday" class="form-control" id="datepicker" value="${userUpdate.getBirthday(1)}"/>
                             <p style="color:red;">${errorBirthday}</p>
                         </div>
-                        <div class="col-md-12"><label class="labels">Sex</label>
+                        <div class="col-md-12"><label class="labels">Sex<h7 style="color: red">(*)</h7></label>
                                 <%--                            <form:input path="sex" readonly="readonly" class="form-control" ></form:input>--%>
                             <select class="form-control" name="sex">
                                 <option value="true">--select--</option>
@@ -114,7 +114,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-md-12"><label class="labels">Address</label>
+                        <div class="col-md-12"><label class="labels">Address<h7 style="color: red">(*)</h7></label>
                             <form:input path="address" class="form-control"/>
                             <form:errors path="address" cssClass="error" cssStyle="color: red"/>
                         </div>
@@ -125,14 +125,12 @@
                     </div>
                     <div style="flex-direction: row-reverse;justify-self: center;display: flex ">
                         <div class="mt-5 text-center" style="margin: auto">
-                            <button style="width: 200px" class="btn btn-primary btn-lg active" type="submit">Save
-                                Profile
-                            </button>
+                            <a style="width: 200px; background-color: red" href="/user/show/profile?id=${userId}"
+                               class="btn btn-primary btn-lg active" role="button"
+                               aria-pressed="true">Back</a>
                         </div>
                         <div class="mt-5 text-center" style="margin: auto">
-                            <a style="width: 200px" href="/user/show/profile?id=${userId}"
-                               class="btn btn-primary btn-lg active" role="button"
-                               aria-pressed="true">Cancel</a>
+                            <button style="width: 200px" class="btn btn-primary btn-lg active" type="submit">Save</button>
                         </div>
                     </div>
                 </div>
