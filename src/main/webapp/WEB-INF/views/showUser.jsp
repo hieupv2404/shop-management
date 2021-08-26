@@ -11,12 +11,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Show Blog</title>
+    <title>Show User</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js	">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<%--    <link rel="stylesheet"--%>
+<%--          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js	">--%>
+<%--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">--%>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
@@ -28,11 +28,15 @@
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script><%--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--%>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <%--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--%>
 
     <style>
 
@@ -180,7 +184,7 @@
                     <div class="d-flex align-items-center justify-content-between border-bottom">
                         <p class="py-2">Birthday</p>
                         <p class="py-2 text-muted">
-                            ${showUser.get().getBirthday(1)}</p>
+                                ${showUser.get().getBirthday(1)}</p>
                     </div>
                     <div class="d-flex align-items-center justify-content-between border-bottom">
                         <p class="py-2">Sex</p>
@@ -190,7 +194,7 @@
                         </p>
                             <%--                            <p class="py-2 text-muted"><form:input path="sex" cssStyle="border: 0; background: white" disabled="true"></form:input></p>--%>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center justify-content-between border-bottom">
                         <p class="py-2">Address</p>
                         <p class="py-2 text-muted">
                                 ${showUser.get().address}
@@ -229,7 +233,7 @@
                 </div>
                 </form:form>
                 <div style="flex-direction: column;justify-self: center;display: flex ">
-                    <div style="margin: auto;padding: 10px">
+                    <div style="margin: auto;padding: 0px;flex-direction: row;display: flex">
                         <a style="width: 270px" href="/user/update/profile.htm?id=${userId}"
                            class="btn btn-primary btn-lg active" role="button"
                            aria-pressed="true">Update profile</a>
@@ -237,8 +241,8 @@
                            class="btn btn-primary btn-lg active" role="button"
                            aria-pressed="true">Change password</a>
                     </div>
-                    <div style="margin: auto; padding: 10px">
-                        <a style="width: 545px;"  href="/" class="btn btn-primary btn-lg active" role="button"
+                    <div style="margin: auto; padding: 0px">
+                        <a style="width: 550px;" href="/" class="btn btn-primary btn-lg active" role="button"
                            aria-pressed="true">Home</a>
                     </div>
                 </div>

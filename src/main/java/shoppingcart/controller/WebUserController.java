@@ -136,9 +136,9 @@ public class WebUserController {
             if (!user.getActive()) {
                 user.setActive(true);
                 userRepository.save(user);
-                httpSession.setAttribute("changePassSs","true");
                 httpSession.removeAttribute("notActive");
             }
+            httpSession.setAttribute("changePassSs","true");
             return "redirect:/user/show/profile?id="+id;
         }
     }
@@ -146,7 +146,7 @@ public class WebUserController {
 
     @RequestMapping(value = "/show/profile", method = RequestMethod.GET)
     public ModelAndView showProduct(int id, Principal principal) {
-        if (checkAccessWrongUserAndActiveById(id, principal)) {
+        if (checkAccessWrongUserById(id, principal)) {
             ModelAndView mav = new ModelAndView("errorPage");
             mav.addObject("errorPre", "4");
             mav.addObject("errorMed", "0");
