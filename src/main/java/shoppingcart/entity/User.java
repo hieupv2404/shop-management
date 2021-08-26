@@ -57,8 +57,8 @@ public class User {
     @Size(min = 1, max = 45, message = "Not be empty ")
     String address;
     @Column
-//    @NotEmpty(message = "Not be empty ")
-//    @Pattern(regexp = "(84|0[3|9])+([0-9]{8})\\b", message = "Wrong Format Number Phone")
+    @NotEmpty(message = "Not be empty ")
+    @Pattern(regexp = "(84|0[3|9])+([0-9]{8})\\b", message = "Wrong Format Number Phone")
 //    @Pattern(regexp = "(^$|[0-9]{10})")
     String phone;
     @OneToMany(mappedBy = "user")
