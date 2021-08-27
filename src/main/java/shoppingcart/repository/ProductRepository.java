@@ -8,9 +8,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import shoppingcart.entity.Product;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     //
-    @Query("SELECT u FROM Product u where u.category.id=:categoryId")
-     Iterable<Product> getProductsByCategoryId(@Param("categoryId") Integer categoryId);
+//    @Query("SELECT u FROM Product u where u.category.id=:categoryId")
+//     Iterable<Product> getProductsByCategoryId(@Param("categoryId") Integer categoryId);
+
+    Iterable<Product> findAllByCategory_Id(Integer categoryId);
 }
