@@ -17,20 +17,17 @@ public class Product {
     Long price;
     @Column
     Double rateAverage=0.0;
-    @ManyToOne
-    @JoinColumn(name="category_id")
-    private Category category;
+    @ManyToMany(mappedBy = "productList")
+    private List<Category> category;
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     private List<Rate> rateList;
 
-    public Product(Integer id, String name, Long price, Double rateAverage, Category category, List<Rate> rateList) {
+    public Product(Integer id, String name, Long price, Double rateAverage) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.rateAverage = rateAverage;
-        this.category = category;
-        this.rateList = rateList;
     }
 
     public Product() {
@@ -68,11 +65,7 @@ public class Product {
         this.rateAverage = rateAverage;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
+    public void setCategory(List<Category> category) {
         this.category = category;
     }
 

@@ -49,10 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" id="home">
   <div class="container">
     <ul>
-      <li><a href="/user/show/profile?id=${userId}"><i class="fa fa-unlock-alt"
-                                                                    aria-hidden="true"></i> ${name} </a></li>
-      <li><a href="/auth/logout" ><i class="fa fa-pencil-square-o"
-                                                                     aria-hidden="true"></i> Logout </a></li>
+      <li><a href="/user/show/profile?id=${userId}"><i class="fa fa-unlock-alt" aria-hidden="true"></i> ${name} </a></li>
+      <li><a href="/auth/logout" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Logout </a></li>
       <li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
       <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
               href="mailto:info@example.com">info@example.com</a></li>
@@ -458,7 +456,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
                   <div class="men-cart-pro">
                     <div class="inner-men-cart-pro">
-                      <a href="single.html" class="link-product-add-cart">Quick View</a>
+                      <a href="/show/product?id=${menpro.id}" class="link-product-add-cart">Quick View</a>
                     </div>
                   </div>
                   <span class="product-new-top">New</span>
@@ -2007,55 +2005,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //cart-js -->
 <!-- script for responsive tabs -->
 <script src="/static/js/easy-responsive-tabs.js"></script>
-
-<script>
-  var Msg = "<%=session.getAttribute("error")%>";
-  if (Msg != "null") {
-    // function alertName() {
-    //     $('#myModal3').modal("show");
-    $(window).on('load', function () {
-      $('#myModal2').modal('toggle');
-    });
-
-  }
-</script>
-
-<script>
-  var Msg = "<%=session.getAttribute("signUpSuccess")%>";
-  if (Msg == "true") {
-    // function alertName() {
-    //     $('#myModal3').modal("show");
-    $(window).on('load', function () {
-      $('#myModal3').modal('toggle');
-      <%session.removeAttribute("signUpSuccess"); %>
-    });
-
-  }
-</script>
-<script>
-  var Msg = "<%=session.getAttribute("errorSignUp")%>";
-  if (Msg == "true") {
-    // function alertName() {
-    //     $('#myModal3').modal("show");
-    $(window).on('load', function () {
-      $('#myModal2').modal('toggle');
-      <%session.removeAttribute("errorSignUp"); %>
-    });
-
-  }
-</script>
-<script>
-  var Msg = "<%=session.getAttribute("signIn")%>";
-  if (Msg == "true") {
-    // function alertName() {
-    //     $('#myModal3').modal("show");
-    $(window).on('load', function () {
-      $('#myModal').modal('toggle');
-      <%session.removeAttribute("signIn"); %>
-    });
-
-  }
-</script>
 
 <script>
   $(document).ready(function () {
