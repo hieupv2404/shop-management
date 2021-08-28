@@ -55,13 +55,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" id="home">
     <div class="container">
         <ul>
-            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt"
-                                                                          aria-hidden="true"></i> Sign In </a></li>
-            <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o"
-                                                                           aria-hidden="true"></i> Sign Up </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
             <li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
-            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
-                    href="mailto:info@example.com">info@example.com</a></li>
+            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
         </ul>
     </div>
 </div>
@@ -383,7 +380,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>Sign up successful</h4><br>
                     <h5>Please check your email to get password and verify!</h5>
                     <br>
-                    <button type="button" class="close" data-dismiss="modal" style="justify-items: center">Ok</button>
+                    <a href="https://mail.google.com/mail/u/0/#inbox" class="close" data-dismiss="modal" style="justify-items: center">Ok</a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -595,7 +592,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
-                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                        <a href="/show/product?id=${menpro.id}" class="link-product-add-cart">Quick View</a>
                                     </div>
                                 </div>
                                 <span class="product-new-top">New</span>

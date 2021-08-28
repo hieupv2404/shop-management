@@ -14,6 +14,7 @@ import shoppingcart.repository.UserRepository;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Optional;
@@ -30,6 +31,14 @@ public class WebUserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    private boolean checkAccessWrongUserAndActiveById(Integer id, Principal principal) {
+        User user = userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
+        if (user != null) {
+            return !(user.getUsername().equals(principal.getName()) && user.getActive());
+        }
+        return true;
+    }
 
     private boolean checkAccessWrongUserById(Integer id, Principal principal) {
         User user = userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
@@ -51,7 +60,7 @@ public class WebUserController {
 
     @RequestMapping(value = "update/profile.htm", method = RequestMethod.GET)
     public ModelAndView initUpdateProfile(@RequestParam(name = "id") Integer id, Principal principal) {
-        if (checkAccessWrongUserById(id, principal)) {
+        if (checkAccessWrongUserAndActiveById(id, principal)) {
             ModelAndView mav = new ModelAndView("errorPage");
             mav.addObject("errorPre", "4");
             mav.addObject("errorMed", "0");
@@ -74,7 +83,7 @@ public class WebUserController {
                 modelMap.addAttribute("errorBirthday", "Date format invalid");
             return "updateProfile";
         }
-        if (checkAccessWrongUserById(userUpdate.getId(), principal)) {
+        if (checkAccessWrongUserAndActiveById(userUpdate.getId(), principal)) {
             modelMap.addAttribute("errorPre", "4");
             modelMap.addAttribute("errorMed", "0");
             modelMap.addAttribute("errorSuf", "3");
@@ -87,7 +96,7 @@ public class WebUserController {
     }
 
     @RequestMapping(value = "/change/password.htm", method = RequestMethod.GET)
-    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id, Principal principal,@RequestParam(name = "messages", required = false) String messages) {
+    public ModelAndView initChangePassword(@RequestParam(name = "id") Integer id, Principal principal, @RequestParam(name = "messages", required = false) String messages) {
         if (checkAccessWrongUserById(id, principal)) {
             ModelAndView mav = new ModelAndView("errorPage");
             mav.addObject("errorPre", "4");
@@ -99,7 +108,7 @@ public class WebUserController {
         ModelAndView mav = new ModelAndView("changePassword");
         Optional<User> userChangePassword = userService.findById(id);
         mav.addObject("userChangePassword", userChangePassword.get());
-        mav.addObject("message",messages);
+        mav.addObject("message", messages);
         return mav;
     }
 
@@ -107,7 +116,7 @@ public class WebUserController {
     public String changePassword(@RequestParam(name = "id") Integer id,
                                  @RequestParam(name = "currentPass") String oldPassword,
                                  @RequestParam(name = "newPass") String password,
-                                 Principal principal, ModelMap modelMap) {
+                                 Principal principal, ModelMap modelMap, HttpSession httpSession) {
         if (checkAccessWrongUserById(id, principal)) {
             modelMap.addAttribute("errorPre", "4");
             modelMap.addAttribute("errorMed", "0");
@@ -122,10 +131,15 @@ public class WebUserController {
         User user = userService.updatePassword(changePasswordDto);
         if (user == null) {
             String messages = "loi roi";
-            return "redirect:/user/change/password.htm?id=" + id + "&messages="+messages;
+            return "redirect:/user/change/password.htm?id=" + id + "&messages=" + messages;
         } else {
-            SecurityContextHolder.clearContext();
-            return "redirect:/";
+            if (!user.getActive()) {
+                user.setActive(true);
+                userRepository.save(user);
+                httpSession.removeAttribute("notActive");
+            }
+            httpSession.setAttribute("changePassSs","true");
+            return "redirect:/user/show/profile?id="+id;
         }
     }
 
@@ -154,6 +168,4 @@ public class WebUserController {
         mav.addObject("productIterable", productIterable);
         return mav;
     }
-
-
 }

@@ -94,6 +94,10 @@ public class AuthenticationController {
                 Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 httpSession.setAttribute("userId",userReal.getId());
+                if (!userReal.getActive()){
+                    httpSession.setAttribute("notActive","true");
+                    return "redirect:/user/change/password.htm?id="+userReal.getId();
+                }
                 return "redirect:/";
             }
         }

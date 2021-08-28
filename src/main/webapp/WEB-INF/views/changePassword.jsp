@@ -11,10 +11,26 @@
 <html>
 <head>
     <title>Change Password</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <%--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--%>
+    <%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>--%>
+    <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--%>
     <style>
         body {
             background: rgb(154, 154, 147)
@@ -64,6 +80,28 @@
     </style>
 </head>
 <body>
+<!--Modal: modalCookie-->
+<div class="modal fade top" id="modalCookie1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Body-->
+            <div class="modal-body">
+                <div class="row d-flex justify-content-center align-items-center">
+
+                    <p class="pt-3 pr-2">Your account is not active, please change your's password to active! Before you
+                        active, other feature of user is denied</p>
+
+<%--                    <a type="button" class="btn btn-primary">Learn more <i class="fas fa-book ml-1"></i></a>--%>
+                    <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">Ok, thanks</a>
+                </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalCookie-->
 <form:form action="/user/change/password.htm" modelAttribute="userChangePassword" method="post">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
@@ -103,9 +141,13 @@
 
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary disabled" type="submit" id="buttonSave" style="height: 35px; width: 100px">Save</button>
-                            <a style= "height: 35px; width: 100px; background-color: #951111FF  " href="/user/show/profile?id=${userChangePassword.id}" class="btn btn-primary " type="submit" id="buttonCancel" class="btn btn-primary btn-lg active" role="button"
-                               aria-pressed="true" >Back</a>
+                        <button class="btn btn-light" type="submit" id="buttonSave"
+                                style="height: 50px; width: 150px">Save
+                        </button>
+                        <a class="btn btn-danger danger-color-dark" style="height: 50px; width: 150px"
+                           href="/user/show/profile?id=${userChangePassword.id}" type="submit"
+                           id="buttonCancel" role="button"
+                           aria-pressed="true">Back</a>
                     </div>
                 </div>
             </div>
@@ -119,13 +161,13 @@
         var newPass = document.getElementById("newPass").value;
         var confirmPass = document.getElementById("confirmPass").value;
         if (newPass == confirmPass) {
-            document.getElementById("errorMessage").innerHTML= "";
+            document.getElementById("errorMessage").innerHTML = "";
         } else {
             document.getElementById("errorMessage").innerHTML = "Mat khau khong khop. Vui long nhap lai!";
         }
     }
 
-    document.getElementById("confirmPass").addEventListener("input", function(){
+    document.getElementById("confirmPass").addEventListener("input", function () {
         var newPass = document.getElementById("newPass").value;
         var confirmPass = this.value;
         if (newPass == confirmPass) {
@@ -135,15 +177,27 @@
         }
     });
 
-    document.getElementById("newPass").addEventListener("input", function(){
+    document.getElementById("newPass").addEventListener("input", function () {
         var newPass = this.value;
         var confirmPass = document.getElementById("confirmPass").value
-        if (newPass == confirmPass ) {
+        if (newPass == confirmPass) {
             document.getElementById("buttonSave").classList.remove("disabled");
         } else {
             document.getElementById("buttonSave").classList.add("disabled");
         }
     });
+</script>
+<script>
+    var Msg = "<%=session.getAttribute("notActive")%>";
+    if (Msg != "null") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            $('#modalCookie1').modal('toggle');
+            <%session.removeAttribute("notActive");%>
+        });
+
+    }
 </script>
 </body>
 </html>
