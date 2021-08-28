@@ -39,7 +39,6 @@ public class ProductServiceImpl implements ProductService {
 
 //T
     public Iterable<Product> getProductsByCategoryId(Integer categoryId) {
-        Iterable<Product> listResult = productRepository.getProductsByCategoryId(categoryId);
-        return listResult;
+        return productRepository.findAllByCategory_Id(categoryId);
     }
 }

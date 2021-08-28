@@ -168,6 +168,4 @@ public class WebUserController {
         mav.addObject("productIterable", productIterable);
         return mav;
     }
-
-
 }

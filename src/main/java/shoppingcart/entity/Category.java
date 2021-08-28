@@ -13,8 +13,12 @@ public class Category {
     Integer id;
     @Column(unique = true,nullable = false)
     String name;
-    @OneToMany(mappedBy = "category")
+    @ManyToMany()
     @JsonIgnore
+    @JoinTable(name = "category_product",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> productList;
 
     public Category(Integer id, String name, List<Product> productList) {

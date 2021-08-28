@@ -55,13 +55,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" id="home">
     <div class="container">
         <ul>
-            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt"
-                                                                          aria-hidden="true"></i> Sign In </a></li>
-            <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o"
-                                                                           aria-hidden="true"></i> Sign Up </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
             <li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
-            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
-                    href="mailto:info@example.com">info@example.com</a></li>
+            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
         </ul>
     </div>
 </div>
@@ -304,8 +301,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
                     <form:form action="/auth/register" method="post" modelAttribute="user">
                         <div class="styled-input agile-styled-input-top">
-                            <form:input type="text" name="Username" required="" path="username"
-                                        value="${againUser.username}"/>
+                            <form:input type="text" name="Username" required="" path="username" value="${againUser.username}"/>
                             <label>Name</label>
                             <span></span>
                         </div>
@@ -327,8 +323,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <p style="color: red">${existEmail}</p>
                         </div>
                         <div class="styled-input">
-                            <form:input type="text" name="password" required="" path="phone"
-                                        value="${againUser.phone}"/>
+                            <form:input type="text" name="password" required="" path="phone" value="${againUser.phone}"/>
                             <label>Phone number</label>
                             <span></span>
                         </div>
@@ -598,17 +593,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--/tab_one-->
                 <div class="tab1">
                     <c:forEach items="${men}" var="menpro">
-                        <div class="col-md-3 product-men">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item">
-                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
-                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                        </div>
+                    <div class="col-md-3 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item">
+                                <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
+                                <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        <a href="/show/product?id=${menpro.id}" class="link-product-add-cart">Quick View</a>
                                     </div>
-                                    <span class="product-new-top">New</span>
+                                </div>
+                                <span class="product-new-top">New</span>
 
                                 </div>
                                 <div class="item-info-product ">
