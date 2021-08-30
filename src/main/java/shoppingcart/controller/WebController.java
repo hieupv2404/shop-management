@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.Category;
@@ -102,5 +103,14 @@ public class WebController {
             return "detailsProductAfterSignIn";
         setUpSignInAndSignUp(modelMap, httpSession);
         return "detailsProduct";
+    }
+
+    @GetMapping("/search")
+    public String searchProduct(@RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession ) {
+        if (isLogin(modelMap, httpSession))
+            return "searchResultAfterSignIn";
+        setUpSignInAndSignUp(modelMap, httpSession);
+        modelMap.addAttribute("keySearch",keySearch);
+        return "searchResult";
     }
 }

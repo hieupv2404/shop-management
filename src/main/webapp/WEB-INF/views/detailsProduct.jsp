@@ -499,7 +499,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="occasion-cart" style="display: flex;flex-direction: row">
+            <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                     <form action="#" method="post">
                         <fieldset>
@@ -516,7 +516,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </fieldset>
                     </form>
                 </div>
-                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                <div class="snipcart-details  hvr-outline-out button2">
 
                 <input type="submit" name="submit" value="Rate" class="button">
                 </div>
@@ -1123,6 +1123,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- for bootstrap working -->
 <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+
+
 <script>
     var Msg = "<%=session.getAttribute("error")%>";
     if (Msg != "null") {
@@ -1134,7 +1136,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     }
 </script>
-
 <script>
     var Msg = "<%=session.getAttribute("signUpSuccess")%>";
     if (Msg == "true") {
