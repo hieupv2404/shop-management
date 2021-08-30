@@ -216,11 +216,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <form action="#" method="post" class="last">
+                <form action="#" method="get" class="last">
                     <input type="hidden" name="cmd" value="_cart">
                     <input type="hidden" name="display" value="1">
-                    <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down"
-                                                                                        aria-hidden="true"></i></button>
+                    <button class="w3view-cart" type="submit" name="submit" value="">
+                        <a href="#" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        </a>
+                    </button>
                 </form>
 
             </div>
@@ -615,7 +618,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <span class="item_price">${menpro.rateAverage}*</span>
                                     </div>
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                        <form action="#" method="post">
+                                        <form action="#" method="get">
                                             <fieldset>
                                                 <input type="hidden" name="cmd" value="_cart"/>
                                                 <input type="hidden" name="add" value="1"/>
@@ -626,7 +629,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="currency_code" value="USD"/>
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
-                                                <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                <a href="#" data-toggle="modal" data-target="#myModal">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                </a>
                                             </fieldset>
                                         </form>
                                     </div>
@@ -664,7 +669,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <span class="item_price">${womenpro.rateAverage}*</span>
                                     </div>
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                        <form action="#" method="post">
+                                        <form action="cart.htm" method="get">
                                             <fieldset>
                                                 <input type="hidden" name="cmd" value="_cart"/>
                                                 <input type="hidden" name="add" value="1"/>
@@ -675,7 +680,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="currency_code" value="USD"/>
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
-                                                <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                <a href="#" data-toggle="modal" data-target="#myModal">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                </a>
                                             </fieldset>
                                         </form>
                                     </div>
@@ -712,7 +719,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <span class="item_price">${bagpro.rateAverage}*</span>
                                     </div>
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                        <form action="#" method="post">
+                                        <form action="cart.htm" method="post">
                                             <fieldset>
                                                 <input type="hidden" name="cmd" value="_cart"/>
                                                 <input type="hidden" name="add" value="1"/>
@@ -723,7 +730,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="currency_code" value="USD"/>
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
-                                                <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                <a href="#" data-toggle="modal" data-target="#myModal">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                </a>
                                             </fieldset>
                                         </form>
                                     </div>
@@ -759,7 +768,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <span class="item_price">${menpro.rateAverage}*</span>
                                     </div>
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                        <form action="#" method="post">
+                                        <form action="cart.htm" method="post">
                                             <fieldset>
                                                 <input type="hidden" name="cmd" value="_cart"/>
                                                 <input type="hidden" name="add" value="1"/>
@@ -770,7 +779,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="currency_code" value="USD"/>
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
-                                                <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                <a href="#" data-toggle="modal" data-target="#myModal">
+                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                </a>
                                             </fieldset>
                                         </form>
                                     </div>
