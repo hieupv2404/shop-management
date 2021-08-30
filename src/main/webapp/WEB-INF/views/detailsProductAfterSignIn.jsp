@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
   <title>Elite Shoppy an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Single :: w3layouts</title>
@@ -257,21 +259,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>
     </div>
     <div class="col-md-8 single-right-left simpleCart_shelfItem">
-      <h3>Big Wing Sneakers  (Navy)</h3>
-      <p><span class="item_price">$650</span> <del>- $900</del></p>
-      <div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
+      <h3>${product.name}</h3>
+      <p><span class="item_price">$${product.price}</span>
+        <del>- $900</del>
+      </p>
+      <div >
+        <c:forEach var="i" begin="1" end="5">
+          <c:choose>
+            <c:when test="${i<=product.rateAverage+1}">
+              <span class="fa fa-star checked"></span>
+            </c:when>
+            <c:otherwise>
+              <span class="fa fa-star"></span>
+            </c:otherwise>
+          </c:choose>
+        </c:forEach>
       </div>
       <div class="description">
         <h5>Check delivery, payment options and charges at your location</h5>
@@ -321,7 +323,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </fieldset>
           </form>
         </div>
-
       </div>
       <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
         <li class="share">Share On : </li>

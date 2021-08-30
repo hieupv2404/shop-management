@@ -499,7 +499,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="occasion-cart">
+            <div class="occasion-cart" style="display: flex;flex-direction: row">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                     <form action="#" method="post">
                         <fieldset>
@@ -516,7 +516,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </fieldset>
                     </form>
                 </div>
+                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
 
+                <input type="submit" name="submit" value="Rate" class="button">
+                </div>
             </div>
             <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
                 <li class="share">Share On :</li>
