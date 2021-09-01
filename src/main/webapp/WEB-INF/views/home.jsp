@@ -143,9 +143,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.htm">Clothing</a></li>
+                                                <li><a href="/search/category/clothing">Clothing</a></li>
                                                 <li><a href="mens.htm">Wallets</a></li>
-                                                <li><a href="mens.htm">Footwear</a></li>
+                                                <li><a href="/search/category/footwear">Footwear</a></li>
                                                 <li><a href="mens.htm">Watches</a></li>
                                                 <li><a href="mens.htm">Accessories</a></li>
                                                 <li><a href="mens.htm">Bags</a></li>

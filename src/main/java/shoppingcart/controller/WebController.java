@@ -7,11 +7,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.Item;
+import shoppingcart.DTO.utils.ListUtils;
 import shoppingcart.entity.Cart;
 import shoppingcart.entity.Category;
 import shoppingcart.entity.Product;
@@ -24,11 +24,8 @@ import shoppingcart.service.UserService;
 import shoppingcart.service.impl.ProductServiceImpl;
 
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class WebController {
@@ -104,7 +101,7 @@ public class WebController {
         return "cart";
     }
 
-    @PostMapping ("/addCart")
+    @PostMapping("/addCart")
     public String addCart(@RequestParam(name = "productId") Integer productId,
                           @RequestParam(name = "userId") Integer userId,
                           @RequestParam(name = "amount") Integer amount, HttpSession session) {
@@ -114,7 +111,7 @@ public class WebController {
         if (session.getAttribute("cart") == null) {
             cart = new HashMap<>();
         } else {
-            cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+            cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         }
         if (cart.containsKey(productId)) {
             cart.get(productId).setQuantity(cart.get(productId).getQuantity() + amount);
@@ -128,7 +125,7 @@ public class WebController {
     @PostMapping("/editCart")
     public String editCart(@RequestParam(name = "cartId") Integer cartId,
                            @RequestParam(name = "amount") Integer amount,
-                           @RequestParam(name = "amount1") Integer amount1,HttpSession session) {
+                           @RequestParam(name = "amount1") Integer amount1, HttpSession session) {
 //        Item item = new Item();
 //        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
 //        item.setQuantity(amount);
@@ -145,7 +142,7 @@ public class WebController {
 
     @GetMapping("/deleteCart")
     public String deleteCartItem(@RequestParam(name = "productId") Integer productId, HttpSession session) {
-        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         cart.remove(productId);
         session.setAttribute("cart", cart);
         return "redirect:showCart";
@@ -183,8 +180,8 @@ public class WebController {
         return "detailsProduct";
     }
 
-    @GetMapping("/search/{pageIndex}/{size}")
-    public String searchProduct(@RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @PathVariable Integer pageIndex, @PathVariable Integer size) {
+    @GetMapping("/search/")
+    public String searchProduct(@RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
         modelMap.addAttribute("keySearch", keySearch);
         if (pageIndex > 0 && size > 0) {
             Pageable pageable = PageRequest.of(pageIndex, size);
@@ -202,5 +199,18 @@ public class WebController {
             modelMap.addAttribute("errorName", "forbidden");
             return "errorPage";
         }
+    }
+
+    @GetMapping("/search/category/{men}")
+    public String searchProductByCategory(@PathVariable(name = "men") String keySearch, ModelMap modelMap, HttpSession httpSession) {
+
+        List<Product> productList= productRepository.findAllByCategory_Name(keySearch);
+        List<Product> productList1= productRepository.findAllByCategory_Name(keySearch);
+        productList.removeIf(product -> !productList1.contains(product));
+        modelMap.addAttribute("list", ListUtils.getPage(productList,0,5));
+        if (isLogin(modelMap, httpSession))
+            return "searchResultAfterSignIn";
+        setUpSignInAndSignUp(modelMap, httpSession);
+        return "mens";
     }
 }

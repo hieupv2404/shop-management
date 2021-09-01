@@ -15,5 +15,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 //     Iterable<Product> getProductsByCategoryId(@Param("categoryId") Integer categoryId);
 
     Iterable<Product> findAllByCategory_Id(Integer categoryId);
+
     Page<Product> findAllByNameContaining(String keySearch, Pageable pageable);
+
+    List<Product> findAllByCategory_Name(String categoryName);
 }
