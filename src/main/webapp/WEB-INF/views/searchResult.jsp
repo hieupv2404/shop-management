@@ -1,16 +1,17 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%--
+  Created by IntelliJ IDEA.
+  User: Black Diamond
+  Date: 30-Aug-21
+  Time: 6:11 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Elite Shoppy an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template |Men's ::
+    <title>Elite Shoppy an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Single ::
         w3layouts</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,23 +25,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--//tags -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //tags -->
+    <link href="<%= request.getContextPath() %>/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= request.getContextPath() %>/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= request.getContextPath() %>/static/css/font-awesome.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/static/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
+    <link href="<%= request.getContextPath() %>/static/css/flexslider.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="<%= request.getContextPath() %>/static/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
     <!-- //for bootstrap working -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
-    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'
-          rel='stylesheet' type='text/css'>
+    <link href="<c:url value="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800"/>"
+          rel="stylesheet"/>
+    <link href="<c:url value="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic"/>"
+          rel='stylesheet' type='text/css'/>
 </head>
 <body>
 <!-- header -->
 <div class="header" id="home">
     <div class="container">
         <ul>
-            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt"
-                                                                          aria-hidden="true"></i> Sign In </a></li>
+            <li><a href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt"
+                                                                         aria-hidden="true"></i> Sign In </a></li>
             <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o"
                                                                            aria-hidden="true"></i> Sign Up </a></li>
             <li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
@@ -54,8 +59,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
-            <form action="#" method="post">
-                <input type="search" name="search" placeholder="Search here..." required="">
+            <form action="/search" method="post">
+                <input type="search" name="keySearch" placeholder="Search here..." required="">
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
             </form>
@@ -115,13 +120,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li class="active menu__item"><a class="menu__link" href="index.html">Home <span
                                     class="sr-only">(current)</span></a></li>
                             <li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
-                            <li class="dropdown menu__item menu__item--current">
+                            <li class="dropdown menu__item">
                                 <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">Men's wear <span class="caret"></span></a>
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-                                            <a href="mens.html"><img src="images/top2.jpg" alt=" "/></a>
+                                            <a href="mens.html"><img src="/static/images/top2.jpg" alt=" "/></a>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
@@ -178,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
-                                            <a href="womens.html"><img src="images/top1.jpg" alt=" "/></a>
+                                            <a href="womens.html"><img src="/static/images/top1.jpg" alt=" "/></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -224,19 +229,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-                    <form action="#" method="post">
+                    <form:form action="/auth/signIn" method="post" modelAttribute="userSignIn">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="Name" required="">
-                            <label>Name</label>
+                            <form:input type="text" name="Username" required="" path="username"/>
+                            <label>Username</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="email" name="Email" required="">
-                            <label>Email</label>
+                            <form:input type="password" name="Email" required="" path="password"/>
+                            <label>Password</label>
                             <span></span>
                         </div>
-                        <input type="submit" value="Sign In">
-                    </form>
+                        <div>
+                            <p style="color: red">${errorSignIn}</p>
+                        </div>
+                        <form:button>Sign In</form:button>
+                    </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
                         <li><a href="#" class="facebook">
                             <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
@@ -260,7 +268,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 </div>
                 <div class="col-md-4 modal_body_right modal_body_right1">
-                    <img src="images/log_pic.jpg" alt=" "/>
+                    <img src="/static/images/log_pic.jpg" alt=" "/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -280,29 +288,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-                    <form action="#" method="post">
+                    <form:form action="/auth/register" method="post" modelAttribute="user">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="Name" required="">
+                            <form:input type="text" name="Username" required="" path="username"
+                                        value="${againUser.username}"/>
                             <label>Name</label>
                             <span></span>
                         </div>
+                        <div>
+                            <p style="color: red">${errorUsername}</p>
+                        </div>
+                        <div>
+                            <p style="color: red">${existUsername}</p>
+                        </div>
                         <div class="styled-input">
-                            <input type="email" name="Email" required="">
+                            <form:input type="email" name="Email" required="" path="email" value="${againUser.email}"/>
                             <label>Email</label>
                             <span></span>
                         </div>
-                        <div class="styled-input">
-                            <input type="password" name="password" required="">
-                            <label>Password</label>
-                            <span></span>
+                        <div>
+                            <p style="color: red">${errorEmail}</p>
+                        </div>
+                        <div>
+                            <p style="color: red">${existEmail}</p>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="Confirm Password" required="">
-                            <label>Confirm Password</label>
+                            <form:input type="text" name="password" required="" path="phone"
+                                        value="${againUser.phone}"/>
+                            <label>Phone number</label>
                             <span></span>
                         </div>
-                        <input type="submit" value="Sign Up">
-                    </form>
+                        <div>
+                            <p style="color: red">${errorPhone}</p>
+                        </div>
+                        <form:button>Submit</form:button>
+                    </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
                         <li><a href="#" class="facebook">
                             <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
@@ -326,7 +346,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 </div>
                 <div class="col-md-4 modal_body_right modal_body_right1">
-                    <img src="images/log_pic.jpg" alt=" "/>
+                    <img src="/static/images/log_pic.jpg" alt=" "/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -334,18 +354,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- //Modal content-->
     </div>
 </div>
+<%
+    session.removeAttribute("againUser");
+    session.removeAttribute("errorUsername");
+    session.removeAttribute("errorEmail");
+    session.removeAttribute("errorPhone");
+    session.removeAttribute("existUsername");
+    session.removeAttribute("existEmail");
+%>
 <!-- //Modal2 -->
+
+<%--Modal3--%>
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body modal-body-sub_agile">
+                <div class="col-md-8 modal_body_left modal_body_left1">
+                    <h3 class="agileinfo_sign">Notification <span>Now</span></h3>
+                    <h4>Sign up successful</h4><br>
+                    <h5>Please check your email to get password and verify!</h5>
+                    <br>
+                    <a href="https://mail.google.com/mail/u/0/#inbox" class="close" data-dismiss="modal"
+                       style="justify-items: center">Ok</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- //Modal content-->
+    </div>
+</div>
+<%--//Model3--%>
+<!--/single_page-->
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l">
     <div class="container">
-        <h3>Men's <span>Wear  </span></h3>
+        <h3>Search <span>Product </span></h3>
         <!--/w3_short-->
         <div class="services-breadcrumb">
             <div class="agile_inner_breadcrumb">
 
                 <ul class="w3_short">
                     <li><a href="index.html">Home</a><i>|</i></li>
-                    <li>Men's Wear</li>
+                    <li>Search Product</li>
                 </ul>
             </div>
         </div>
@@ -354,151 +408,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 
 <!-- banner-bootom-w3-agileits -->
+<div>
+    <h3>Search result for: ${keySearch}</h3>
+</div>
 <div class="banner-bootom-w3-agileits">
     <div class="container">
-        <!-- mens -->
         <div class="col-md-4 products-left">
             <div class="filter-price">
                 <h3>Filter By <span>Price</span></h3>
                 <ul class="dropdown-menu6">
                     <li>
-                        <div id="slider-range"></div>
+                        <div type="slider" id="slider-range"></div>
                         <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;"/>
                     </li>
                 </ul>
             </div>
-            <div class="css-treeview">
-                <h4>Categories</h4>
-                <ul class="tree-list-pad">
-                    <li><input type="checkbox" checked="checked" id="item-0"/><label for="item-0"><i
-                            class="fa fa-long-arrow-right" aria-hidden="true"></i> Men's Wear</label>
-                        <ul>
-                            <li><input type="checkbox" id="item-0-0"/><label for="item-0-0"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i>Ethnic Wear</label>
-                                <ul>
-                                    <li><a href="mens.html">Shirts</a></li>
-                                    <li><a href="mens.html">Caps</a></li>
-                                    <li><a href="mens.html">Shoes</a></li>
-                                    <li><a href="mens.html">Pants</a></li>
-                                    <li><a href="mens.html">SunGlasses</a></li>
-                                    <li><a href="mens.html">Trousers</a></li>
-                                </ul>
-                            </li>
-                            <li><input type="checkbox" id="item-0-1"/><label for="item-0-1"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i> Party Wear</label>
-                                <ul>
-                                    <li><a href="mens.html">Shirts</a></li>
-                                    <li><a href="mens.html">Caps</a></li>
-                                    <li><a href="mens.html">Shoes</a></li>
-                                    <li><a href="mens.html">Pants</a></li>
-                                    <li><a href="mens.html">SunGlasses</a></li>
-                                    <li><a href="mens.html">Trousers</a></li>
-                                </ul>
-                            </li>
-                            <li><input type="checkbox" id="item-0-2"/><label for="item-0-2"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i> Casual Wear</label>
-                                <ul>
-                                    <li><a href="mens.html">Shirts</a></li>
-                                    <li><a href="mens.html">Caps</a></li>
-                                    <li><a href="mens.html">Shoes</a></li>
-                                    <li><a href="mens.html">Pants</a></li>
-                                    <li><a href="mens.html">SunGlasses</a></li>
-                                    <li><a href="mens.html">Trousers</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><input type="checkbox" id="item-1" checked="checked"/><label for="item-1"><i
-                            class="fa fa-long-arrow-right" aria-hidden="true"></i> Best Collections</label>
-                        <ul>
-                            <li><input type="checkbox" checked="checked" id="item-1-0"/><label for="item-1-0"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i> New Arrivals</label>
-                                <ul>
-                                    <li><a href="mens.html">Shirts</a></li>
-                                    <li><a href="mens.html">Shoes</a></li>
-                                    <li><a href="mens.html">Pants</a></li>
-                                    <li><a href="mens.html">SunGlasses</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li><input type="checkbox" checked="checked" id="item-2"/><label for="item-2"><i
-                            class="fa fa-long-arrow-right" aria-hidden="true"></i> Best Offers</label>
-                        <ul>
-                            <li><input type="checkbox" id="item-2-0"/><label for="item-2-0"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i> Summer Discount Sales</label>
-                                <ul>
-                                    <li><a href="mens.html">Shirts</a></li>
-                                    <li><a href="mens.html">Shoes</a></li>
-                                    <li><a href="mens.html">Pants</a></li>
-                                    <li><a href="mens.html">SunGlasses</a></li>
-                                </ul>
-                            </li>
-                            <li><input type="checkbox" id="item-2-1"/><label for="item-2-1"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i> Exciting Offers</label>
-                                <ul>
-                                    <li><a href="mens.html">Shirts</a></li>
-                                    <li><a href="mens.html">Shoes</a></li>
-                                    <li><a href="mens.html">Pants</a></li>
-                                    <li><a href="mens.html">SunGlasses</a></li>
-                                </ul>
-                            </li>
-                            <li><input type="checkbox" id="item-2-2"/><label for="item-2-2"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i> Flat Discounts</label>
-                                <ul>
-                                    <li><a href="mens.html">Shirts</a></li>
-                                    <li><a href="mens.html">Shoes</a></li>
-                                    <li><a href="mens.html">Pants</a></li>
-                                    <li><a href="mens.html">SunGlasses</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="community-poll">
-                <h4>Community Poll</h4>
-                <div class="swit form">
-                    <form>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio" checked=""><i></i>More convenient
-                                for shipping and delivery</label></div>
-                        </div>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio"><i></i>Lower Price</label></div>
-                        </div>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio"><i></i>Track your item</label>
-                            </div>
-                        </div>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio"><i></i>Bigger Choice</label>
-                            </div>
-                        </div>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio"><i></i>More colors to
-                                choose</label></div>
-                        </div>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio"><i></i>Secured Payment</label>
-                            </div>
-                        </div>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio"><i></i>Money back
-                                guaranteed</label></div>
-                        </div>
-                        <div class="check_box">
-                            <div class="radio"><label><input type="radio" name="radio"><i></i>Others</label></div>
-                        </div>
-                        <input type="submit" value="SEND">
-                    </form>
-                </div>
-            </div>
-            <div class="clearfix"></div>
         </div>
         <div class="col-md-8 products-right">
+            <div style="display: flex;flex-direction:  row">
             <h5>Product <span>Compare(0)</span></h5>
+            <div style="margin-left: 350px">
+                <button>Apply</button>
+            </div>
+            </div>
             <div class="sort-grid">
                 <div class="sorting">
                     <h6>Sort By</h6>
@@ -525,160 +457,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="men-wear-top">
-
-                <div id="top" class="callbacks_container">
-                    <ul class="rslides" id="slider3">
-                        <li>
-                            <img class="img-responsive" src="images/banner2.jpg" alt=" "/>
-                        </li>
-                        <li>
-                            <img class="img-responsive" src="images/banner5.jpg" alt=" "/>
-                        </li>
-                        <li>
-                            <img class="img-responsive" src="images/banner2.jpg" alt=" "/>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="men-wear-bottom">
-                <div class="col-sm-4 men-wear-left">
-                    <img class="img-responsive" src="images/bb2.jpg" alt=" "/>
-                </div>
-                <div class="col-sm-8 men-wear-right">
-                    <h4>Exclusive Men's <span>Collections</span></h4>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-                        ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                        explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                        odit aut fugit. </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-md-4 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m8.jpg" alt="" class="pro-image-front">
-                        <img src="images/m8.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Party Men's Blazer</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$260.99</span>
-                            <del>$390.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="business" value=" ">
-                                    <input type="hidden" name="item_name" value="Party Men's Blazer">
-                                    <input type="hidden" name="amount" value="30.99">
-                                    <input type="hidden" name="discount_amount" value="1.00">
-                                    <input type="hidden" name="currency_code" value="USD">
-                                    <input type="hidden" name="return" value=" ">
-                                    <input type="hidden" name="cancel_return" value=" ">
-                                    <input type="submit" name="submit" value="Add to cart" class="button">
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m7.jpg" alt="" class="pro-image-front">
-                        <img src="images/m7.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Analog Watch</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$160.99</span>
-                            <del>$290.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="business" value=" ">
-                                    <input type="hidden" name="item_name" value="Analog Watch">
-                                    <input type="hidden" name="amount" value="30.99">
-                                    <input type="hidden" name="discount_amount" value="1.00">
-                                    <input type="hidden" name="currency_code" value="USD">
-                                    <input type="hidden" name="return" value=" ">
-                                    <input type="hidden" name="cancel_return" value=" ">
-                                    <input type="submit" name="submit" value="Add to cart" class="button">
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/s1.jpg" alt="" class="pro-image-front">
-                        <img src="images/s1.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Running Shoes</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$80.99</span>
-                            <del>$89.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="business" value=" ">
-                                    <input type="hidden" name="item_name" value="Running Shoes">
-                                    <input type="hidden" name="amount" value="30.99">
-                                    <input type="hidden" name="discount_amount" value="1.00">
-                                    <input type="hidden" name="currency_code" value="USD">
-                                    <input type="hidden" name="return" value=" ">
-                                    <input type="hidden" name="cancel_return" value=" ">
-                                    <input type="submit" name="submit" value="Add to cart" class="button">
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
-
         <div class="single-pro">
             <div class="col-md-3 product-men">
                 <div class="men-pro-item simpleCart_shelfItem">
@@ -996,54 +776,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-<!-- //mens -->
-<!--/grids-->
-<div class="coupons">
-    <div class="coupons-grids text-center">
-        <div class="w3layouts_mail_grid">
-            <div class="col-md-3 w3layouts_mail_grid_left">
-                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                    <i class="fa fa-truck" aria-hidden="true"></i>
-                </div>
-                <div class="w3layouts_mail_grid_left2">
-                    <h3>FREE SHIPPING</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                </div>
-            </div>
-            <div class="col-md-3 w3layouts_mail_grid_left">
-                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                    <i class="fa fa-headphones" aria-hidden="true"></i>
-                </div>
-                <div class="w3layouts_mail_grid_left2">
-                    <h3>24/7 SUPPORT</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                </div>
-            </div>
-            <div class="col-md-3 w3layouts_mail_grid_left">
-                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                </div>
-                <div class="w3layouts_mail_grid_left2">
-                    <h3>MONEY BACK GUARANTEE</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                </div>
-            </div>
-            <div class="col-md-3 w3layouts_mail_grid_left">
-                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                    <i class="fa fa-gift" aria-hidden="true"></i>
-                </div>
-                <div class="w3layouts_mail_grid_left2">
-                    <h3>FREE GIFT COUPONS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
 
-    </div>
-</div>
-<!--grids-->
-<!-- footer -->
 <div class="footer">
     <div class="footer_agile_inner_info_w3l">
         <div class="col-md-3 footer-left">
@@ -1156,84 +889,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </p>
     </div>
 </div>
-<!-- //footer -->
 
-<!-- login -->
-<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body modal-spa">
-                <div class="login-grids">
-                    <div class="login">
-                        <div class="login-bottom">
-                            <h3>Sign up for free</h3>
-                            <form>
-                                <div class="sign-up">
-                                    <h4>Email :</h4>
-                                    <input type="text" value="Type here" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Type here';}" required="">
-                                </div>
-                                <div class="sign-up">
-                                    <h4>Password :</h4>
-                                    <input type="password" value="Password" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Password';}" required="">
-
-                                </div>
-                                <div class="sign-up">
-                                    <h4>Re-type Password :</h4>
-                                    <input type="password" value="Password" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Password';}" required="">
-
-                                </div>
-                                <div class="sign-up">
-                                    <input type="submit" value="REGISTER NOW">
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="login-right">
-                            <h3>Sign in with your account</h3>
-                            <form>
-                                <div class="sign-in">
-                                    <h4>Email :</h4>
-                                    <input type="text" value="Type here" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Type here';}" required="">
-                                </div>
-                                <div class="sign-in">
-                                    <h4>Password :</h4>
-                                    <input type="password" value="Password" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                                    <a href="#">Forgot password?</a>
-                                </div>
-                                <div class="single-bottom">
-                                    <input type="checkbox" id="brand" value="">
-                                    <label for="brand"><span></span>Remember Me.</label>
-                                </div>
-                                <div class="sign-in">
-                                    <input type="submit" value="SIGNIN">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy
-                        Policy</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //login -->
-<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover"
-                                                                         style="opacity: 1;"> </span></a>
+</body>
 <!-- js -->
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
-<script src="js/responsiveslides.min.js"></script>
+<script src="/static/js/responsiveslides.min.js"></script>
 <script>
     // You can also use "$(window).load(function() {"
     $(function () {
@@ -1253,10 +914,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     });
 </script>
-<script src="js/modernizr.custom.js"></script>
+<script src="/static/js/modernizr.custom.js"></script>
 <!-- Custom-JavaScript-File-Links -->
 <!-- cart-js -->
-<script src="js/minicart.min.js"></script>
+<script src="/static/js/minicart.min.js"></script>
 <script>
     // Mini Cart
     paypal.minicart.render({
@@ -1286,11 +947,11 @@ $(window).load(function () {
 });//]]>
 
 </script>
-<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui.js"></script>
 <!---->
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/static/js/move-top.js"></script>
+<script type="text/javascript" src="/static/js/jquery.easing.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
@@ -1318,6 +979,40 @@ $(window).load(function () {
 <!-- //here ends scrolling icon -->
 
 <!-- for bootstrap working -->
-<script type="text/javascript" src="js/bootstrap.js"></script>
-</body>
+<script type="text/javascript" src="/static/js/bootstrap.js"></script>
+
+<script>
+    var Msg = "<%=session.getAttribute("signUpSuccess")%>";
+    if (Msg == "true") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            $('#myModal3').modal('toggle');
+            <%session.removeAttribute("signUpSuccess"); %>
+        });
+
+    }
+</script>
+<script>
+    var Msg = "<%=session.getAttribute("errorSignUp")%>";
+    if (Msg == "true") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            $('#myModal2').modal('toggle');
+            <%session.removeAttribute("errorSignUp"); %>
+        });
+
+    }
+</script>
+<script>
+    var Msg = "<%=session.getAttribute("errorSignIn")%>";
+    if (Msg != "null") {
+        $(window).on('load', function () {
+            $('#myModal').modal('toggle');
+            <%session.removeAttribute("errorSignIn"); %>
+        });
+
+    }
+</script>
 </html>
