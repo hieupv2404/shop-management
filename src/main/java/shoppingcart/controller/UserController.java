@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
+import shoppingcart.service.CartSerice;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
 
@@ -22,6 +23,9 @@ public class UserController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CartSerice cartSerice;
 
     @PutMapping("/updateUser/{id}")
     public User updateUser(@PathVariable Integer id, @RequestBody User user) {
