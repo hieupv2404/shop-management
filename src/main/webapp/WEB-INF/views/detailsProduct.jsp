@@ -65,16 +65,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
-            <form action="#" method="post">
-                <input type="search" name="search" placeholder="Search here..." required="">
+            <form action="/search/1" method="get">
+                <input type="search" name="keySearch" placeholder="Search here..." required="">
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
             </form>
         </div>
         <!-- header-bot -->
         <div class="col-md-4 logo_agile">
-            <h1><a href="index.html"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag"
-                                                                  aria-hidden="true"></i></a></h1>
+            <h1><a href="/"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag"
+                                                         aria-hidden="true"></i></a></h1>
         </div>
         <!-- header-bot -->
         <div class="col-md-4 agileits-social top_content">
@@ -123,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list">
-                            <li class="active menu__item"><a class="menu__link" href="index.html">Home <span
+                            <li class="active menu__item"><a class="menu__link" href="/">Home <span
                                     class="sr-only">(current)</span></a></li>
                             <li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
                             <li class="dropdown menu__item">
@@ -211,13 +211,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <form action="#" method="post" class="last">
-                    <input type="hidden" name="cmd" value="_cart">
-                    <input type="hidden" name="display" value="1">
-                    <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down"
-                                                                                        aria-hidden="true"></i></button>
-                </form>
-
+                <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
+                        data-target="#myModal">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -404,7 +401,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="agile_inner_breadcrumb">
 
                 <ul class="w3_short">
-                    <li><a href="index.html">Home</a><i>|</i></li>
+                    <li><a href="/">Home</a><i>|</i></li>
                     <li>Single Page</li>
                 </ul>
             </div>
@@ -841,7 +838,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="footer">
     <div class="footer_agile_inner_info_w3l">
         <div class="col-md-3 footer-left">
-            <h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
+            <h2><a href="/"><span>E</span>lite Shoppy </a></h2>
             <p>Lorem ipsum quia dolor
                 sit amet, consectetur, adipisci velit, sed quia non
                 numquam eius modi tempora.</p>
@@ -869,7 +866,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-4 sign-gd">
                     <h4>Our <span>Information</span></h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="mens.html">Men's Wear</a></li>
                         <li><a href="womens.html">Women's wear</a></li>
                         <li><a href="about.html">About</a></li>

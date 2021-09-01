@@ -55,10 +55,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" id="home">
     <div class="container">
         <ul>
-            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
-            <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt"
+                                                                          aria-hidden="true"></i> Sign In </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o"
+                                                                           aria-hidden="true"></i> Sign Up </a></li>
             <li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
-            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
+            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
+                    href="mailto:info@example.com">info@example.com</a></li>
         </ul>
     </div>
 </div>
@@ -125,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list">
-                            <li class="active menu__item menu__item--current"><a class="menu__link" href="index.html">Home
+                            <li class="active menu__item menu__item--current"><a class="menu__link" href="/">Home
                                 <span class="sr-only">(current)</span></a></li>
                             <li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
                             <li class="dropdown menu__item">
@@ -216,16 +219,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <form action="#" method="get" class="last">
-                    <input type="hidden" name="cmd" value="_cart">
-                    <input type="hidden" name="display" value="1">
-                    <button class="w3view-cart" type="submit" name="submit" value="">
-                        <a href="#" data-toggle="modal" data-target="#myModal">
-                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                        </a>
-                    </button>
-                </form>
-
+                <button class="w3view-cart" type="submit" name="submit" value=""  data-toggle="modal"
+                        data-target="#myModal">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -304,7 +301,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
                     <form:form action="/auth/register" method="post" modelAttribute="user">
                         <div class="styled-input agile-styled-input-top">
-                            <form:input type="text" name="Username" required="" path="username" value="${againUser.username}"/>
+                            <form:input type="text" name="Username" required="" path="username"
+                                        value="${againUser.username}"/>
                             <label>Name</label>
                             <span></span>
                         </div>
@@ -326,7 +324,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <p style="color: red">${existEmail}</p>
                         </div>
                         <div class="styled-input">
-                            <form:input type="text" name="password" required="" path="phone" value="${againUser.phone}"/>
+                            <form:input type="text" name="password" required="" path="phone"
+                                        value="${againUser.phone}"/>
                             <label>Phone number</label>
                             <span></span>
                         </div>
@@ -596,17 +595,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--/tab_one-->
                 <div class="tab1">
                     <c:forEach items="${men}" var="menpro">
-                    <div class="col-md-3 product-men">
-                        <div class="men-pro-item simpleCart_shelfItem">
-                            <div class="men-thumb-item">
-                                <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
-                                <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
-                                <div class="men-cart-pro">
-                                    <div class="inner-men-cart-pro">
-                                        <a href="/show/product?id=${menpro.id}" class="link-product-add-cart">Quick View</a>
+                        <div class="col-md-3 product-men">
+                            <div class="men-pro-item simpleCart_shelfItem">
+                                <div class="men-thumb-item">
+                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
+                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
+                                    <div class="men-cart-pro">
+                                        <div class="inner-men-cart-pro">
+                                            <a href="/show/product?id=${menpro.id}" class="link-product-add-cart">Quick
+                                                View</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <span class="product-new-top">New</span>
+                                    <span class="product-new-top">New</span>
 
                                 </div>
                                 <div class="item-info-product ">
@@ -630,7 +630,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
                                                 <a href="#" data-toggle="modal" data-target="#myModal">
-                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                    <input type="submit" name="submit" value="Add to cart"
+                                                           class="button"/>
                                                 </a>
                                             </fieldset>
                                         </form>
@@ -681,7 +682,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
                                                 <a href="#" data-toggle="modal" data-target="#myModal">
-                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                    <input type="submit" name="submit" value="Add to cart"
+                                                           class="button"/>
                                                 </a>
                                             </fieldset>
                                         </form>
@@ -731,7 +733,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
                                                 <a href="#" data-toggle="modal" data-target="#myModal">
-                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                    <input type="submit" name="submit" value="Add to cart"
+                                                           class="button"/>
                                                 </a>
                                             </fieldset>
                                         </form>
@@ -780,7 +783,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="return" value=" "/>
                                                 <input type="hidden" name="cancel_return" value=" "/>
                                                 <a href="#" data-toggle="modal" data-target="#myModal">
-                                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                                    <input type="submit" name="submit" value="Add to cart"
+                                                           class="button"/>
                                                 </a>
                                             </fieldset>
                                         </form>
@@ -857,7 +861,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="footer">
     <div class="footer_agile_inner_info_w3l">
         <div class="col-md-3 footer-left">
-            <h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
+            <h2><a href="/"><span>E</span>lite Shoppy </a></h2>
             <p>Lorem ipsum quia dolor
                 sit amet, consectetur, adipisci velit, sed quia non
                 numquam eius modi tempora.</p>
@@ -885,7 +889,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-4 sign-gd">
                     <h4>Our <span>Information</span></h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="mens.html">Men's Wear</a></li>
                         <li><a href="womens.html">Women's wear</a></li>
                         <li><a href="about.html">About</a></li>

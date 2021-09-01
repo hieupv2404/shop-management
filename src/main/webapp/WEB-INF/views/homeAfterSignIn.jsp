@@ -120,7 +120,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav menu__list">
-              <li class="active menu__item menu__item--current"><a class="menu__link" href="index.html">Home
+              <li class="active menu__item menu__item--current"><a class="menu__link" href="/">Home
                 <span class="sr-only">(current)</span></a></li>
               <li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
               <li class="dropdown menu__item">
@@ -706,7 +706,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-4 sign-gd">
           <h4>Our <span>Information</span></h4>
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="mens.html">Men's Wear</a></li>
             <li><a href="womens.html">Women's wear</a></li>
             <li><a href="about.html">About</a></li>
