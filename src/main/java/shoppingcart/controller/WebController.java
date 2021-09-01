@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import shoppingcart.DTO.Item;
 import shoppingcart.entity.Cart;
 import shoppingcart.entity.Category;
 import shoppingcart.entity.Product;
@@ -21,6 +22,8 @@ import shoppingcart.service.impl.ProductServiceImpl;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,30 +104,47 @@ public class WebController {
     @PostMapping ("/addCart")
     public String addCart(@RequestParam(name = "productId") Integer productId,
                           @RequestParam(name = "userId") Integer userId,
-                          @RequestParam(name = "amount") Integer amount) {
-        Cart cart = new Cart();
-        cart.setProduct(productService.findById(productId).get());
-        cart.setUser(userService.findById(userId).get());
-        cart.setAmount(amount);
-        Integer check = cartSerice.addToCart(productId, amount, userService.findById(userId).get());
-        System.out.println(check);
+                          @RequestParam(name = "amount") Integer amount, HttpSession session) {
+        Product product = productService.findById(productId).get();
+        Item item = new Item(product, amount);
+        HashMap<Integer, Item> cart = null;
+        if (session.getAttribute("cart") == null) {
+            cart = new HashMap<>();
+        } else {
+            cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+        }
+        if (cart.containsKey(productId)) {
+            cart.get(productId).setQuantity(cart.get(productId).getQuantity() + amount);
+        } else {
+            cart.put(productId, item);
+        }
+        session.setAttribute("cart", cart);
         return "redirect:showCart";
     }
 
     @PostMapping("/editCart")
     public String editCart(@RequestParam(name = "cartId") Integer cartId,
                            @RequestParam(name = "amount") Integer amount,
-                           @RequestParam(name = "amount1") Integer amount1) {
-        Cart cart = cartSerice.findById(cartId).get();
-        cart.setAmount(amount);
-        cart.setAmount(amount1);
-        Cart cart2 = cartSerice.update(cart);
+                           @RequestParam(name = "amount1") Integer amount1,HttpSession session) {
+//        Item item = new Item();
+//        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+//        item.setQuantity(amount);
+//        item.setQuantity(amount1);
+//        session.setAttribute("cart", cart);
+
+
+//        Cart cart = cartSerice.findById(cartId).get();
+//        cart.setAmount(amount);
+//        cart.setAmount(amount1);
+//        Cart cart2 = cartSerice.update(cart);
         return "redirect:showCart";
     }
 
     @GetMapping("/deleteCart")
-    public String deleteCartItem(@RequestParam(name = "cartId") Integer cartId) {
-        cartSerice.remove(cartId);
+    public String deleteCartItem(@RequestParam(name = "productId") Integer productId, HttpSession session) {
+        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+        cart.remove(productId);
+        session.setAttribute("cart", cart);
         return "redirect:showCart";
     }
 

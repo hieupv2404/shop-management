@@ -415,12 +415,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-12"><strong>City:</strong></div>
-                            <div class="col-md-12">
-                                <input type="text" name="city" class="form-control" value=""/>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-md-12"><strong>Phone Number:</strong></div>
                             <div class="col-md-12"><input type="text" name="phone_number" class="form-control"
                                                           value=""/></div>
@@ -430,6 +424,9 @@
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
+                        <a href="/showCart">
+                            <button type="button" class="btn btn-primary btn-submit-fix" style="width: 100px;">Back</button>
+                        </a>
                     </div>
                 </div>
 
@@ -439,9 +436,7 @@
             </div>
         </form>
     </div>
-    <a href="/showCart">
-        <button type="submit" class="btn btn-primary btn-submit-fix" style="width: 100px;">Back</button>
-    </a>
+
 </div>
 </body>
 </html>

@@ -134,7 +134,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${cartList}" var="cart">
+            <c:forEach items="${cart}" var="item">
                 <form action="/editCart" method="post">
                     <input type="hidden" name="cartId" value="${cart.id}">
                     <tr>
@@ -145,23 +145,23 @@
                                          width="50" height="50" alt="" id="image"></div>
                                 <div class="d-flex flex-column pl-md-3 pl-1">
                                     <div>
-                                        <h6>${cart.product.name}</h6>
+                                        <h6>${item.value.product.name}</h6>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td>${cart.product.price}$</td>
+                        <td>${item.value.product.price}$</td>
                         <td>
                             <form action="/editCart" method="post">
-                                <button name="amount1" value="${cart.amount-1}">-</button>
-                                <input style="width: 50px; text-align: center" name="amount" value="${cart.amount}">
-                                <button name="amount1" value="${cart.amount+1}">+</button>
+<%--                                <button name="amount1" value="${item.value.quantity-1}">-</button>--%>
+                                <input style="width: 50px; text-align: center" name="amount" value="${item.value.quantity}">
+                                <button name="amount1" value="${item.value.quantity+1}">+</button>
                             </form>
 
                         </td>
-                        <td>${cart.product.price*cart.amount}$</td>
+                        <td>${item.value.product.price*item.value.quantity}</td>
                         <td>
-                            <a href="/deleteCart?cartId=${cart.id}" class="close">&times;</a>
+                            <a href="/deleteCart?productId=${item.value.product.id}" class="close">&times;</a>
                         </td>
                     </tr>
                 </form>
