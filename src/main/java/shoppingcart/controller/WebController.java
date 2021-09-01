@@ -7,20 +7,28 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import shoppingcart.DTO.Item;
+import shoppingcart.entity.Cart;
 import shoppingcart.entity.Category;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
 import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.ProductRepository;
+import shoppingcart.service.CartSerice;
 import shoppingcart.service.ProductService;
+import shoppingcart.service.UserService;
 import shoppingcart.service.impl.ProductServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class WebController {
@@ -32,6 +40,10 @@ public class WebController {
     private ProductRepository productRepository;
     @Autowired
     public ProductService productService;
+    @Autowired
+    private CartSerice cartSerice;
+    @Autowired
+    private UserService userService;
 
     private void setUpSignInAndSignUp(ModelMap modelMap, HttpSession httpSession) {
         modelMap.addAttribute("user", new User());
@@ -82,6 +94,69 @@ public class WebController {
         setUpSignInAndSignUp(modelMap, httpSession);
         return "home";
     }
+
+    @GetMapping("/showCart")
+    public String showCart(ModelMap modelMap, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        List<Cart> cartList = cartSerice.findByUserId(userId);
+        modelMap.addAttribute("cartList", cartList);
+        modelMap.addAttribute("total", cartSerice.getTotal(userId));
+        return "cart";
+    }
+
+    @PostMapping ("/addCart")
+    public String addCart(@RequestParam(name = "productId") Integer productId,
+                          @RequestParam(name = "userId") Integer userId,
+                          @RequestParam(name = "amount") Integer amount, HttpSession session) {
+        Product product = productService.findById(productId).get();
+        Item item = new Item(product, amount);
+        HashMap<Integer, Item> cart = null;
+        if (session.getAttribute("cart") == null) {
+            cart = new HashMap<>();
+        } else {
+            cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+        }
+        if (cart.containsKey(productId)) {
+            cart.get(productId).setQuantity(cart.get(productId).getQuantity() + amount);
+        } else {
+            cart.put(productId, item);
+        }
+        session.setAttribute("cart", cart);
+        return "redirect:showCart";
+    }
+
+    @PostMapping("/editCart")
+    public String editCart(@RequestParam(name = "cartId") Integer cartId,
+                           @RequestParam(name = "amount") Integer amount,
+                           @RequestParam(name = "amount1") Integer amount1,HttpSession session) {
+//        Item item = new Item();
+//        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+//        item.setQuantity(amount);
+//        item.setQuantity(amount1);
+//        session.setAttribute("cart", cart);
+
+
+//        Cart cart = cartSerice.findById(cartId).get();
+//        cart.setAmount(amount);
+//        cart.setAmount(amount1);
+//        Cart cart2 = cartSerice.update(cart);
+        return "redirect:showCart";
+    }
+
+    @GetMapping("/deleteCart")
+    public String deleteCartItem(@RequestParam(name = "productId") Integer productId, HttpSession session) {
+        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+        cart.remove(productId);
+        session.setAttribute("cart", cart);
+        return "redirect:showCart";
+    }
+
+    @GetMapping("/checkoutCart")
+    public String checkoutCart(ModelMap modelMap) {
+
+        return "checkout";
+    }
+
 
     @GetMapping(value = "/mens.htm")
     public ModelAndView showMen() {
