@@ -39,6 +39,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="<c:url value="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic"/>"
           rel='stylesheet' type='text/css'/>
 </head>
+<style>
+    .pagination {
+        display: inline-block;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    .pagination a.active {
+        background-color: #2fdab8;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+        border-radius: 5px;
+    }
+</style>
 <body>
 <!-- header -->
 <div class="header" id="home">
@@ -460,23 +483,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="clearfix"></div>
         <div class="single-pro">
+            <c:forEach items="${list}" var="menProd">
             <div class="col-md-3 product-men">
                 <div class="men-pro-item simpleCart_shelfItem">
                     <div class="men-thumb-item">
-                        <img src="images/m1.jpg" alt="" class="pro-image-front">
-                        <img src="images/m1.jpg" alt="" class="pro-image-back">
+                        <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
+                        <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                <a href="/show/product?id=${menProd.id}" class="link-product-add-cart">Quick View</a>
                             </div>
                         </div>
                         <span class="product-new-top">New</span>
 
                     </div>
                     <div class="item-info-product ">
-                        <h4><a href="single.html">Formal Blue Shirt</a></h4>
+                        <h4><a href="single.html">${menProd.name}</a></h4>
                         <div class="info-product-price">
-                            <span class="item_price">$45.99</span>
+                            <span class="item_price">$${menProd.price}</span>
                             <del>$69.71</del>
                         </div>
                         <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
@@ -499,284 +523,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m2.jpg" alt="" class="pro-image-front">
-                        <img src="images/m2.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Gabi Full Sleeve Sweatshirt</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$45.99</span>
-                            <del>$69.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Sweatshirt"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m3.jpg" alt="" class="pro-image-front">
-                        <img src="images/m3.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Dark Blue Track Pants</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$80.99</span>
-                            <del>$89.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Dark Blue Track Pants"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m4.jpg" alt="" class="pro-image-front">
-                        <img src="images/m4.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Round Neck Black T-Shirt</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$190.99</span>
-                            <del>$159.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Black T-Shirt"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m5.jpg" alt="" class="pro-image-front">
-                        <img src="images/m5.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Men's Black Jeans</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$60.99</span>
-                            <del>$90.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Men's Black Jeans"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m7.jpg" alt="" class="pro-image-front">
-                        <img src="images/m7.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Analog Watch</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$160.99</span>
-                            <del>$290.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Analog Watch"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m6.jpg" alt="" class="pro-image-front">
-                        <img src="images/m6.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Reversible Belt</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$30.99</span>
-                            <del>$50.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Reversible Belt"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="images/m8.jpg" alt="" class="pro-image-front">
-                        <img src="images/m8.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
-
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">Party Men's Blazer</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$260.99</span>
-                            <del>$390.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Party Men's Blazer"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+    </c:forEach>
             <div class="clearfix"></div>
+        </div>
+
+        <div class="pagination" style="border-color: red;border-width: 3px" id="page">
+
         </div>
     </div>
 </div>
-
 <div class="footer">
     <div class="footer_agile_inner_info_w3l">
         <div class="col-md-3 footer-left">
@@ -857,15 +612,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 sign-gd flickr-post">
                     <h4>Flickr <span>Posts</span></h4>
                     <ul>
-                        <li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -1014,5 +769,146 @@ $(window).load(function () {
         });
 
     }
+</script>
+<script>
+    let start = 1;
+    let limit = 1;
+    let totalcount = 20;
+    function rebuildPagination(currentPage, totalcount) {
+
+        var HTML = "";
+
+        // If there are only 6 pages or less in total, just display all pages without "..."
+        if (totalcount <= 6) {
+            for (i = 1; i <= totalcount; i++) {
+                HTML += addButton(i, currentPage);
+            }
+        }
+        // ELSE display with ...
+        else {
+
+            // Always print first page button
+            HTML += addButton("1", currentPage);
+
+            // Print "..." if currentPage is > 3
+            if (currentPage > 3) {
+                HTML += "...";
+            }
+
+            // special case where last page is selected...
+            // Without this special case, only 2 buttons would be shown after ... if you were on last page
+            if (currentPage == totalcount) {
+                HTML += addButton(currentPage - 2, currentPage);
+            }
+
+
+            // Print previous number button if currentPage > 2
+            if (currentPage > 2) {
+                HTML += addButton(currentPage - 1, currentPage);
+            }
+
+            //Print current page number button as long as it not the first or last page
+            if (currentPage != 1 && currentPage != totalcount) {
+                HTML += addButton(currentPage, currentPage);
+            }
+
+            //print next page number button if currentPage < lastPage - 1
+            if (currentPage < totalcount - 1) {
+                HTML += addButton(currentPage + 1, currentPage);
+            }
+
+            // special case where first page is selected...
+            // Without this special case, only 2 buttons would be shown before ... if you were on first page
+            if (currentPage == 1) {
+                HTML += addButton(currentPage + 2, currentPage);
+            }
+
+            //print "..." if currentPage is < lastPage -2
+            if (currentPage < totalcount - 2) {
+                HTML += "...";
+            }
+
+            //Always print last page button if there is more than 1 page
+            if (totalcount > 1) {
+                HTML += addButton(totalcount, currentPage);
+            }
+        }
+        //
+        // HTML variable contains all the above buttons,
+        //
+        document.getElementById("page").innerHTML = HTML;
+    }
+
+    //
+    // We are going to create a button, the HTML is a string that is returned
+    //
+    function addButton(number, currentPage) {
+        var HTML = "<a href='#'";
+
+        //
+        // If we are creating a button that is current page, then add yellow style
+        //
+        if (number == currentPage) {
+            HTML += "  class='active' ";
+        }
+
+        //Add click event
+        HTML += " onclick=\"handlevent(" + number + ")\">";
+
+        // Add button number
+        HTML += number;
+
+        // add closing button
+        HTML += "</button>";
+
+        // return string
+        return HTML;
+    }
+
+
+
+    rebuildPagination(start, totalcount);
+
+    //var i;
+    //var text = "";
+    //for (i = 1; i <= 12; i++) {
+    //  text += "<button  onclick=\"handlevent(" + i + ")\">" + (i) + "</button>";
+    //}
+    //document.getElementById("page").innerHTML = text;
+
+    function changePage(prev, dotted, next) {
+        if (prev) {
+            if (start > 1) {
+                start--;
+                // We have changed the start page, total rebuild the pagination
+                rebuildPagination(start, totalcount);
+            }
+            url = getUrl();
+            getData(url);
+        }
+        if (next) {
+            if (start < totalcount) {
+                start++;
+                // We have changed the start page, total rebuild the pagination
+                rebuildPagination(start, totalcount);
+            }
+            url = getUrl();
+            getData(url);
+        }
+    }
+
+
+    //
+    // When the user click on button 1,2,3,4,5,etc... we end up calling this function
+    // Value is the page number and rechange start and rebuild the pagination
+    //
+    function handlevent(value) {
+        start = value;
+        rebuildPagination(start, totalcount);
+
+        url = getUrl();
+        getData(url);
+    }
+
 </script>
 </html>

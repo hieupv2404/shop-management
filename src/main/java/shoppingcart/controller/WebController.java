@@ -2,11 +2,14 @@ package shoppingcart.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.Category;
@@ -105,12 +108,18 @@ public class WebController {
         return "detailsProduct";
     }
 
-    @GetMapping("/search")
-    public String searchProduct(@RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession ) {
+    @GetMapping("/search/{pageIndex}/{size}")
+    public String searchProduct(@RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @PathVariable Integer pageIndex, @PathVariable Integer size) {
         if (isLogin(modelMap, httpSession))
             return "searchResultAfterSignIn";
         setUpSignInAndSignUp(modelMap, httpSession);
         modelMap.addAttribute("keySearch",keySearch);
+        Pageable pageable = PageRequest.of(pageIndex, size);
+        Page<Product> page = productRepository.findAllByNameContaining(keySearch,pageable);
+        System.out.println(page.getTotalPages());
+        modelMap.addAttribute("list",page.toList());
+        modelMap.addAttribute("totalPage",page.getTotalPages());
+        httpSession.setAttribute("totalPage",page.getTotalPages());
         return "searchResult";
     }
 }

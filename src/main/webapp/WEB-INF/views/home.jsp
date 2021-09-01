@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
-            <form action="/search" method="get">
+            <form action="/search/1" method="get">
                 <input type="search" name="keySearch" placeholder="Search here..." required="">
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
