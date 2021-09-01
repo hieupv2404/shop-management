@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         display: inline-block;
     }
 
-    .pagination a {
+    .pagination a,p {
         color: black;
         float: left;
         padding: 8px 16px;
@@ -530,6 +530,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="pagination" style="border-color: red;border-width: 3px" id="page">
 
         </div>
+        <div id="totalPage" hidden>${totalPage}</div>
     </div>
 </div>
 <div class="footer">
@@ -773,7 +774,7 @@ $(window).load(function () {
 <script>
     let start = 1;
     let limit = 1;
-    let totalcount = 20;
+    let totalcount =document.getElementById("totalPage").textContent;
     function rebuildPagination(currentPage, totalcount) {
 
         var HTML = "";
@@ -792,7 +793,7 @@ $(window).load(function () {
 
             // Print "..." if currentPage is > 3
             if (currentPage > 3) {
-                HTML += "...";
+                HTML += "<p >...</p>";
             }
 
             // special case where last page is selected...
@@ -825,7 +826,7 @@ $(window).load(function () {
 
             //print "..." if currentPage is < lastPage -2
             if (currentPage < totalcount - 2) {
-                HTML += "...";
+                HTML += " <p >...</p>";
             }
 
             //Always print last page button if there is more than 1 page
@@ -859,7 +860,7 @@ $(window).load(function () {
         HTML += number;
 
         // add closing button
-        HTML += "</button>";
+        HTML += "</a>";
 
         // return string
         return HTML;
@@ -883,8 +884,6 @@ $(window).load(function () {
                 // We have changed the start page, total rebuild the pagination
                 rebuildPagination(start, totalcount);
             }
-            url = getUrl();
-            getData(url);
         }
         if (next) {
             if (start < totalcount) {
@@ -892,8 +891,6 @@ $(window).load(function () {
                 // We have changed the start page, total rebuild the pagination
                 rebuildPagination(start, totalcount);
             }
-            url = getUrl();
-            getData(url);
         }
     }
 
@@ -905,10 +902,6 @@ $(window).load(function () {
     function handlevent(value) {
         start = value;
         rebuildPagination(start, totalcount);
-
-        url = getUrl();
-        getData(url);
     }
-
 </script>
 </html>

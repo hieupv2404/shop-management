@@ -110,16 +110,22 @@ public class WebController {
 
     @GetMapping("/search/{pageIndex}/{size}")
     public String searchProduct(@RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @PathVariable Integer pageIndex, @PathVariable Integer size) {
-        if (isLogin(modelMap, httpSession))
-            return "searchResultAfterSignIn";
-        setUpSignInAndSignUp(modelMap, httpSession);
-        modelMap.addAttribute("keySearch",keySearch);
-        Pageable pageable = PageRequest.of(pageIndex, size);
-        Page<Product> page = productRepository.findAllByNameContaining(keySearch,pageable);
-        System.out.println(page.getTotalPages());
-        modelMap.addAttribute("list",page.toList());
-        modelMap.addAttribute("totalPage",page.getTotalPages());
-        httpSession.setAttribute("totalPage",page.getTotalPages());
-        return "searchResult";
+        modelMap.addAttribute("keySearch", keySearch);
+        if (pageIndex > 0 && size > 0) {
+            Pageable pageable = PageRequest.of(pageIndex, size);
+            Page<Product> page = productRepository.findAllByNameContaining(keySearch, pageable);
+            modelMap.addAttribute("list", page.toList());
+            modelMap.addAttribute("totalPage", page.getTotalPages());
+            if (isLogin(modelMap, httpSession))
+                return "searchResultAfterSignIn";
+            setUpSignInAndSignUp(modelMap, httpSession);
+            return "searchResult";
+        } else {
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "forbidden");
+            return "errorPage";
+        }
     }
 }
