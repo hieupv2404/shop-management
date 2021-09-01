@@ -153,7 +153,7 @@
                         <td>${item.value.product.price}$</td>
                         <td>
                             <form action="/editCart" method="post">
-<%--                                <button name="amount1" value="${item.value.quantity-1}">-</button>--%>
+                                <button name="amount1" value="${item.value.quantity-1}">-</button>
                                 <input style="width: 50px; text-align: center" name="amount" value="${item.value.quantity}">
                                 <button name="amount1" value="${item.value.quantity+1}">+</button>
                             </form>
@@ -178,7 +178,7 @@
                         <button class="btn btn-sm bg-light border border-dark">GO BACK</button>
                     </a></div>
                 <div class="px-md-0 px-1" id="footer-font"><b class="pl-md-4">SUBTOTAL:<span
-                        class="pl-md-4">${total}$</span></b></div>
+                        class="pl-md-4"><%--${total}$--%></span></b></div>
                 <div><a href="/checkoutCart">
                     <button class="btn btn-sm bg-dark text-white px-lg-5 px-3">CHECKOUT</button>
                 </a></div>
