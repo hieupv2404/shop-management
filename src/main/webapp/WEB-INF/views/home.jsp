@@ -70,8 +70,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
-            <form action="/search/1" method="get">
+            <form action="/search/product/default" method="get">
                 <input type="search" name="keySearch" placeholder="Search here..." required="">
+                <input type="hidden" name="pageIndex" required="" value="1">
+                <input type="hidden" name="size" required="" value="5">
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
             </form>
@@ -143,24 +145,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/clothing">Clothing</a></li>
-                                                <li><a href="mens.htm">Wallets</a></li>
-                                                <li><a href="/search/category/footwear">Footwear</a></li>
-                                                <li><a href="mens.htm">Watches</a></li>
-                                                <li><a href="mens.htm">Accessories</a></li>
-                                                <li><a href="mens.htm">Bags</a></li>
-                                                <li><a href="mens.htm">Caps & Hats</a></li>
+                                                <li><a href="/search/category/men/clothing?pageIndex=1&size=5">Clothing</a></li>
+                                                <li><a href="/search/category/men/wallets?pageIndex=1&size=5">Wallets</a></li>
+                                                <li><a href="/search/category/men/footwear?pageIndex=1&size=5">Footwear</a></li>
+                                                <li><a href="/search/category/men/watches?pageIndex=1&size=5">Watches</a></li>
+                                                <li><a href="/search/category/men/accessories?pageIndex=1&size=5">Accessories</a></li>
+                                                <li><a href="/search/category/men/bag?pageIndex=1&size=5">Bags</a></li>
+                                                <li><a href="/search/category/men/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.htm">Jewellery</a></li>
-                                                <li><a href="mens.htm">Sunglasses</a></li>
-                                                <li><a href="mens.htm">Perfumes</a></li>
-                                                <li><a href="mens.htm">Beauty</a></li>
-                                                <li><a href="mens.htm">Shirts</a></li>
-                                                <li><a href="mens.htm">Sunglasses</a></li>
-                                                <li><a href="mens.htm">Swimwear</a></li>
+                                                <li><a href="/search/category/men/jewellery?pageIndex=1&size=5">Jewellery</a></li>
+                                                <li><a href="/search/category/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/men/perfumes?pageIndex=1&size=5">Perfumes</a></li>
+                                                <li><a href="/search/category/men/beauty?pageIndex=1&size=5">Beauty</a></li>
+                                                <li><a href="/search/category/men/shirts?pageIndex=1&size=5">Shirts</a></li>
+                                                <li><a href="/search/category/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/men/swimwear?pageIndex=1&size=5">Swimwear</a></li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -175,24 +177,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="womens.html">Clothing</a></li>
-                                                <li><a href="womens.html">Wallets</a></li>
-                                                <li><a href="womens.html">Footwear</a></li>
-                                                <li><a href="womens.html">Watches</a></li>
-                                                <li><a href="womens.html">Accessories</a></li>
-                                                <li><a href="womens.html">Bags</a></li>
-                                                <li><a href="womens.html">Caps & Hats</a></li>
+                                                <li><a href="/search/category/woman/swimwear?pageIndex=1&size=5">Clothing</a></li>
+                                                <li><a href="/search/category/woman/wallets?pageIndex=1&size=5">Wallets</a></li>
+                                                <li><a href="/search/category/woman/footwear?pageIndex=1&size=5">Footwear</a></li>
+                                                <li><a href="/search/category/woman/watches?pageIndex=1&size=5">Watches</a></li>
+                                                <li><a href="/search/category/woman/accessories?pageIndex=1&size=5">Accessories</a></li>
+                                                <li><a href="/search/category/woman/bags?pageIndex=1&size=5">Bags</a></li>
+                                                <li><a href="/search/category/woman/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="womens.html">Jewellery</a></li>
-                                                <li><a href="womens.html">Sunglasses</a></li>
-                                                <li><a href="womens.html">Perfumes</a></li>
-                                                <li><a href="womens.html">Beauty</a></li>
-                                                <li><a href="womens.html">Shirts</a></li>
-                                                <li><a href="womens.html">Sunglasses</a></li>
-                                                <li><a href="womens.html">Swimwear</a></li>
+                                                <li><a href="/search/category/woman/jewellery?pageIndex=1&size=5">Jewellery</a></li>
+                                                <li><a href="/search/category/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/woman/perfumes?pageIndex=1&size=5">Perfumes</a></li>
+                                                <li><a href="/search/category/woman/beauty?pageIndex=1&size=5">Beauty</a></li>
+                                                <li><a href="/search/category/woman/shirts?pageIndex=1&size=5">Shirts</a></li>
+                                                <li><a href="/search/category/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/woman/swimwear?pageIndex=1&size=5">Swimwear</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">

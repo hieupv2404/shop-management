@@ -30,7 +30,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="<%= request.getContextPath() %>/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="<%= request.getContextPath() %>/static/css/font-awesome.css" rel="stylesheet">
     <link href="<%= request.getContextPath() %>/static/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-    <link href="<%= request.getContextPath() %>/static/css/flexslider.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="<%= request.getContextPath() %>/static/css/flexslider.css" rel="stylesheet" type="text/css"
+          media="screen"/>
     <link href="<%= request.getContextPath() %>/static/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
 
     <!-- //for bootstrap working -->
@@ -44,7 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         display: inline-block;
     }
 
-    .pagination a,p {
+    .pagination a, p {
         color: black;
         float: left;
         padding: 8px 16px;
@@ -82,8 +83,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
-            <form action="/search/1" method="get">
+            <form action="/search/product/default" method="get">
                 <input type="search" name="keySearch" placeholder="Search here..." required="">
+                <input type="hidden" name="pageIndex" required="" value="1">
+                <input type="hidden" name="size" required="" value="5">
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
             </form>
@@ -140,8 +143,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list">
-                            <li class="active menu__item"><a class="menu__link" href="/">Home <span
-                                    class="sr-only">(current)</span></a></li>
+                            <li class="active menu__item menu__item--current"><a class="menu__link" href="/">Home
+                                <span class="sr-only">(current)</span></a></li>
                             <li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
                             <li class="dropdown menu__item">
                                 <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button"
@@ -149,28 +152,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-                                            <a href="mens.html"><img src="/static/images/top2.jpg" alt=" "/></a>
+                                            <a href="mens.htm"><img
+                                                    src="<c:url value="/static/images/top2.jpg"/>"
+                                                    alt=" "/></a>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.html">Clothing</a></li>
-                                                <li><a href="mens.html">Wallets</a></li>
-                                                <li><a href="mens.html">Footwear</a></li>
-                                                <li><a href="mens.html">Watches</a></li>
-                                                <li><a href="mens.html">Accessories</a></li>
-                                                <li><a href="mens.html">Bags</a></li>
-                                                <li><a href="mens.html">Caps & Hats</a></li>
+                                                <li>
+                                                    <a href="/search/category/men/clothing?pageIndex=1&size=5">Clothing</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/men/wallets?pageIndex=1&size=5">Wallets</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/men/footwear?pageIndex=1&size=5">Footwear</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/men/watches?pageIndex=1&size=5">Watches</a>
+                                                </li>
+                                                <li><a href="/search/category/men/accessories?pageIndex=1&size=5">Accessories</a>
+                                                </li>
+                                                <li><a href="/search/category/men/bag?pageIndex=1&size=5">Bags</a></li>
+                                                <li><a href="/search/category/men/caps&hats?pageIndex=1&size=5">Caps &
+                                                    Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.html">Jewellery</a></li>
-                                                <li><a href="mens.html">Sunglasses</a></li>
-                                                <li><a href="mens.html">Perfumes</a></li>
-                                                <li><a href="mens.html">Beauty</a></li>
-                                                <li><a href="mens.html">Shirts</a></li>
-                                                <li><a href="mens.html">Sunglasses</a></li>
-                                                <li><a href="mens.html">Swimwear</a></li>
+                                                <li><a href="/search/category/men/jewellery?pageIndex=1&size=5">Jewellery</a>
+                                                </li>
+                                                <li><a href="/search/category/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/men/perfumes?pageIndex=1&size=5">Perfumes</a>
+                                                </li>
+                                                <li><a href="/search/category/men/beauty?pageIndex=1&size=5">Beauty</a>
+                                                </li>
+                                                <li><a href="/search/category/men/shirts?pageIndex=1&size=5">Shirts</a>
+                                                </li>
+                                                <li><a href="/search/category/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/men/swimwear?pageIndex=1&size=5">Swimwear</a>
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -185,42 +209,61 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="womens.html">Clothing</a></li>
-                                                <li><a href="womens.html">Wallets</a></li>
-                                                <li><a href="womens.html">Footwear</a></li>
-                                                <li><a href="womens.html">Watches</a></li>
-                                                <li><a href="womens.html">Accessories</a></li>
-                                                <li><a href="womens.html">Bags</a></li>
-                                                <li><a href="womens.html">Caps & Hats</a></li>
+                                                <li><a href="/search/category/woman/swimwear?pageIndex=1&size=5">Clothing</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/woman/wallets?pageIndex=1&size=5">Wallets</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/footwear?pageIndex=1&size=5">Footwear</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/woman/watches?pageIndex=1&size=5">Watches</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/accessories?pageIndex=1&size=5">Accessories</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/bags?pageIndex=1&size=5">Bags</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/caps&hats?pageIndex=1&size=5">Caps &
+                                                    Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="womens.html">Jewellery</a></li>
-                                                <li><a href="womens.html">Sunglasses</a></li>
-                                                <li><a href="womens.html">Perfumes</a></li>
-                                                <li><a href="womens.html">Beauty</a></li>
-                                                <li><a href="womens.html">Shirts</a></li>
-                                                <li><a href="womens.html">Sunglasses</a></li>
-                                                <li><a href="womens.html">Swimwear</a></li>
+                                                <li><a href="/search/category/woman/jewellery?pageIndex=1&size=5">Jewellery</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/perfumes?pageIndex=1&size=5">Perfumes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/woman/beauty?pageIndex=1&size=5">Beauty</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/woman/shirts?pageIndex=1&size=5">Shirts</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li><a href="/search/category/woman/swimwear?pageIndex=1&size=5">Swimwear</a>
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
-                                            <a href="womens.html"><img src="/static/images/top1.jpg" alt=" "/></a>
+                                            <a href="womens.html"><img src="<c:url value="/static/images/top1.jpg"/>"
+                                                                       alt=" "/></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </ul>
                             </li>
                             <li class="menu__item dropdown">
-                                <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">Short
+                                <a class="menu__link dropdown-toggle" href="#" data-toggle="dropdown">Short
                                     Codes <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="icons.html">Web Icons</a></li>
                                     <li><a href="typography.html">Typography</a></li>
                                 </ul>
                             </li>
-                            <li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
+                            <li class=" menu__item "><a class="menu__link" href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -228,7 +271,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <button class="w3view-cart" type="submit" name="submit" value=""  data-toggle="modal"
+                <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
                         data-target="#myModal">
                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                 </button>
@@ -446,32 +489,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="col-md-8 products-right">
             <div style="display: flex;flex-direction:  row">
-            <h5>Product <span>Compare(0)</span></h5>
-            <div style="margin-left: 350px">
-                <button>Apply</button>
-            </div>
+                <h5>Product <span>Compare(${totalProd})</span></h5>
+                <div style="margin-left: 350px">
+                    <button onclick="filterProd()">Apply</button>
+                </div>
             </div>
             <div class="sort-grid">
                 <div class="sorting">
                     <h6>Sort By</h6>
-                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-                        <option value="null">Default</option>
-                        <option value="null">Name(A - Z)</option>
-                        <option value="null">Name(Z - A)</option>
-                        <option value="null">Price(High - Low)</option>
-                        <option value="null">Price(Low - High)</option>
-                        <option value="null">Model(A - Z)</option>
-                        <option value="null">Model(Z - A)</option>
+                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect" value="default">
+                        <option value="default">Default</option>
+                        <option value="nameAsc">Name(A - Z)</option>
+                        <option value="nameDesc">Name(Z - A)</option>
+                        <option value="priceDesc">Price(High - Low)</option>
+                        <option value="priceAsc">Price(Low - High)</option>
                     </select>
                     <div class="clearfix"></div>
                 </div>
                 <div class="sorting">
                     <h6>Showing</h6>
-                    <select id="country2" onchange="change_country(this.value)" class="frm-field required sect">
-                        <option value="null">7</option>
-                        <option value="null">14</option>
-                        <option value="null">28</option>
-                        <option value="null">35</option>
+                    <select id="country2" onchange="change_country(this.value)" class="frm-field required sect" value="7">
+                        <option value="7">7</option>
+                        <option value="14">14</option>
+                        <option value="28">28</option>
+                        <option value="35">35</option>
                     </select>
                     <div class="clearfix"></div>
                 </div>
@@ -481,54 +522,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"></div>
         <div class="single-pro">
             <c:forEach items="${list}" var="menProd">
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
-                        <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="/show/product?id=${menProd.id}" class="link-product-add-cart">Quick View</a>
+                <div class="col-md-3 product-men">
+                    <div class="men-pro-item simpleCart_shelfItem">
+                        <div class="men-thumb-item">
+                            <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
+                            <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    <a href="/show/product?id=${menProd.id}" class="link-product-add-cart">Quick
+                                        View</a>
+                                </div>
                             </div>
-                        </div>
-                        <span class="product-new-top">New</span>
+                            <span class="product-new-top">New</span>
 
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="single.html">${menProd.name}</a></h4>
-                        <div class="info-product-price">
-                            <span class="item_price">$${menProd.price}</span>
-                            <del>$69.71</del>
                         </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="business" value=" "/>
-                                    <input type="hidden" name="item_name" value="Formal Blue Shirt"/>
-                                    <input type="hidden" name="amount" value="30.99"/>
-                                    <input type="hidden" name="discount_amount" value="1.00"/>
-                                    <input type="hidden" name="currency_code" value="USD"/>
-                                    <input type="hidden" name="return" value=" "/>
-                                    <input type="hidden" name="cancel_return" value=" "/>
-                                    <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                </fieldset>
-                            </form>
-                        </div>
+                        <div class="item-info-product ">
+                            <h4><a href="single.html">${menProd.name}</a></h4>
+                            <div class="info-product-price">
+                                <span class="item_price">$${menProd.price}</span>
+                                <del>$69.71</del>
+                            </div>
+                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                                <form action="#" method="post">
+                                    <fieldset>
+                                        <input type="hidden" name="cmd" value="_cart"/>
+                                        <input type="hidden" name="add" value="1"/>
+                                        <input type="hidden" name="business" value=" "/>
+                                        <input type="hidden" name="item_name" value="Formal Blue Shirt"/>
+                                        <input type="hidden" name="amount" value="30.99"/>
+                                        <input type="hidden" name="discount_amount" value="1.00"/>
+                                        <input type="hidden" name="currency_code" value="USD"/>
+                                        <input type="hidden" name="return" value=" "/>
+                                        <input type="hidden" name="cancel_return" value=" "/>
+                                        <input type="submit" name="submit" value="Add to cart" class="button"/>
+                                    </fieldset>
+                                </form>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-    </c:forEach>
+            </c:forEach>
             <div class="clearfix"></div>
         </div>
-
-        <div class="pagination" style="border-color: red;border-width: 3px" id="page">
-
-        </div>
-        <div id="totalPage" hidden>${totalPage}</div>
     </div>
+    <div id="page" class="pagination"
+         style="border-color: red;border-width: 3px; display: flex;justify-content: center"></div>
+    <div id="totalPage" hidden>${totalPage}</div>
 </div>
 <div class="footer">
     <div class="footer_agile_inner_info_w3l">
@@ -610,15 +650,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 sign-gd flickr-post">
                     <h4>Flickr <span>Posts</span></h4>
                     <ul>
-                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -671,16 +720,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Custom-JavaScript-File-Links -->
 <!-- cart-js -->
 <script src="/static/js/minicart.min.js"></script>
-<script>
-    // Mini Cart
-    paypal.minicart.render({
-        action: '#'
-    });
+<%--<script>--%>
+<%--    // Mini Cart--%>
+<%--    paypal.minicart.render({--%>
+<%--        action: '#'--%>
+<%--    });--%>
 
-    if (~window.location.search.indexOf('reset=true')) {
-        paypal.minicart.reset();
-    }
-</script>
+<%--    if (~window.location.search.indexOf('reset=true')) {--%>
+<%--        paypal.minicart.reset();--%>
+<%--    }--%>
+<%--</script>--%>
 
 <!-- //cart-js -->
 <!---->
@@ -769,16 +818,17 @@ $(window).load(function () {
     }
 </script>
 <script>
-    let start = 1;
+    let start = ${currentIndex};
     let limit = 1;
-    let totalcount =document.getElementById("totalPage").textContent;
+    let totalcount = document.getElementById("totalPage").textContent;
+
     function rebuildPagination(currentPage, totalcount) {
 
-        var HTML = "";
+        let HTML = "";
 
         // If there are only 6 pages or less in total, just display all pages without "..."
         if (totalcount <= 6) {
-            for (i = 1; i <= totalcount; i++) {
+            for (let i = 1; i <= totalcount; i++) {
                 HTML += addButton(i, currentPage);
             }
         }
@@ -841,7 +891,7 @@ $(window).load(function () {
     // We are going to create a button, the HTML is a string that is returned
     //
     function addButton(number, currentPage) {
-        var HTML = "<a href='#'";
+        let HTML = "<a href='/search/product/${sort}?keySearch=${keySearch}&pageIndex=" + number + "&size=${size}'";
 
         //
         // If we are creating a button that is current page, then add yellow style
@@ -851,10 +901,10 @@ $(window).load(function () {
         }
 
         //Add click event
-        HTML += " onclick=\"handlevent(" + number + ")\">";
+        // HTML += " onclick=\"handlevent(" + number + ")\">";
 
         // Add button number
-        HTML += number;
+        HTML += ">" + number;
 
         // add closing button
         HTML += "</a>";
@@ -862,7 +912,6 @@ $(window).load(function () {
         // return string
         return HTML;
     }
-
 
 
     rebuildPagination(start, totalcount);
@@ -899,6 +948,14 @@ $(window).load(function () {
     function handlevent(value) {
         start = value;
         rebuildPagination(start, totalcount);
+    }
+</script>
+<script>
+    function filterProd() {
+        //location.replace("")
+        var href="/search/product/" + document.getElementById("country1").value + "?keySearch=${keySearch}&pageIndex=1" + "&size=" + document.getElementById("country2").value;
+        console.log(href);
+        location.href = href;
     }
 </script>
 </html>
