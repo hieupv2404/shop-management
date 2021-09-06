@@ -231,14 +231,45 @@ public class WebController {
     }
 
     @GetMapping("/search/category/{sort}/{sex}/{category}")
-    public String searchProductByCategory(@PathVariable(name = "sort") String sort, @PathVariable(name = "sex") String sex, @PathVariable(name = "category") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
+    public String searchProductByCategory(@PathVariable(name = "sort") String sort, @PathVariable(name = "sex") String sex, @PathVariable(name = "category") String category, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
         if ((sex.equals("men") || sex.equals("woman")) && (pageIndex > 0 && size > 0)) {
-            List<Product> productList = productRepository.findAllByCategory_Name(sex);
-            List<Product> productList1 = productRepository.findAllByCategory_Name(keySearch);
+            List<Product> productList;
+            switch (sort) {
+                case "nameAsc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByNameAsc(sex);
+
+                    break;
+                case "nameDesc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByNameDesc(sex);
+
+                    break;
+                case "priceDesc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByPriceDesc(sex);
+
+                    break;
+                case "priceAsc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByPriceAsc(sex);
+
+                    break;
+                default:
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_Name(sex);
+            }
+            List<Product> productList1 = productRepository.findAllByCategory_Name(category);
             productList.removeIf(product -> !productList1.contains(product));
             modelMap.addAttribute("list", ListUtils.getPage(productList, pageIndex - 1, size));
+            modelMap.addAttribute("totalPage", ListUtils.getTotalPages(productList, size));
+            modelMap.addAttribute("size", size);
+            modelMap.addAttribute("currentIndex", pageIndex);
+            modelMap.addAttribute("totalProd", productList.size());
+            modelMap.addAttribute("sort", sort);
+            modelMap.addAttribute("category", category);
             if (isLogin(modelMap, httpSession))
-                return "searchResultAfterSignIn";
+                return "mensAfterSignIn";
             setUpSignInAndSignUp(modelMap, httpSession);
             return "mens";
         } else {

@@ -158,43 +158,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li>
-                                                    <a href="/search/category/men/clothing?pageIndex=1&size=5">Clothing</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/men/wallets?pageIndex=1&size=5">Wallets</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/men/footwear?pageIndex=1&size=5">Footwear</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/men/watches?pageIndex=1&size=5">Watches</a>
-                                                </li>
-                                                <li><a href="/search/category/men/accessories?pageIndex=1&size=5">Accessories</a>
-                                                </li>
-                                                <li><a href="/search/category/men/bag?pageIndex=1&size=5">Bags</a></li>
-                                                <li><a href="/search/category/men/caps&hats?pageIndex=1&size=5">Caps &
-                                                    Hats</a></li>
+                                                <li><a href="/search/category/default/men/clothing?pageIndex=1&size=5">Clothing</a></li>
+                                                <li><a href="/search/category/default/men/wallets?pageIndex=1&size=5">Wallets</a></li>
+                                                <li><a href="/search/category/default/men/footwear?pageIndex=1&size=5">Footwear</a></li>
+                                                <li><a href="/search/category/default/men/watches?pageIndex=1&size=5">Watches</a></li>
+                                                <li><a href="/search/category/default/men/accessories?pageIndex=1&size=5">Accessories</a></li>
+                                                <li><a href="/search/category/default/men/bag?pageIndex=1&size=5">Bags</a></li>
+                                                <li><a href="/search/category/default/men/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/men/jewellery?pageIndex=1&size=5">Jewellery</a>
-                                                </li>
-                                                <li><a href="/search/category/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/men/perfumes?pageIndex=1&size=5">Perfumes</a>
-                                                </li>
-                                                <li><a href="/search/category/men/beauty?pageIndex=1&size=5">Beauty</a>
-                                                </li>
-                                                <li><a href="/search/category/men/shirts?pageIndex=1&size=5">Shirts</a>
-                                                </li>
-                                                <li><a href="/search/category/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/men/swimwear?pageIndex=1&size=5">Swimwear</a>
-                                                </li>
+                                                <li><a href="/search/category/default/men/jewellery?pageIndex=1&size=5">Jewellery</a></li>
+                                                <li><a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/men/perfumes?pageIndex=1&size=5">Perfumes</a></li>
+                                                <li><a href="/search/category/default/men/beauty?pageIndex=1&size=5">Beauty</a></li>
+                                                <li><a href="/search/category/default/men/shirts?pageIndex=1&size=5">Shirts</a></li>
+                                                <li><a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/men/swimwear?pageIndex=1&size=5">Swimwear</a></li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -209,42 +190,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/woman/swimwear?pageIndex=1&size=5">Clothing</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/woman/wallets?pageIndex=1&size=5">Wallets</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/footwear?pageIndex=1&size=5">Footwear</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/woman/watches?pageIndex=1&size=5">Watches</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/accessories?pageIndex=1&size=5">Accessories</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/bags?pageIndex=1&size=5">Bags</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/caps&hats?pageIndex=1&size=5">Caps &
-                                                    Hats</a></li>
+                                                <li><a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Clothing</a></li>
+                                                <li><a href="/search/category/default/woman/wallets?pageIndex=1&size=5">Wallets</a></li>
+                                                <li><a href="/search/category/default/woman/footwear?pageIndex=1&size=5">Footwear</a></li>
+                                                <li><a href="/search/category/default/woman/watches?pageIndex=1&size=5">Watches</a></li>
+                                                <li><a href="/search/category/default/woman/accessories?pageIndex=1&size=5">Accessories</a></li>
+                                                <li><a href="/search/category/default/woman/bags?pageIndex=1&size=5">Bags</a></li>
+                                                <li><a href="/search/category/default/woman/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/woman/jewellery?pageIndex=1&size=5">Jewellery</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/perfumes?pageIndex=1&size=5">Perfumes</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/woman/beauty?pageIndex=1&size=5">Beauty</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/woman/shirts?pageIndex=1&size=5">Shirts</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
-                                                </li>
-                                                <li><a href="/search/category/woman/swimwear?pageIndex=1&size=5">Swimwear</a>
-                                                </li>
+                                                <li><a href="/search/category/default/woman/jewellery?pageIndex=1&size=5">Jewellery</a></li>
+                                                <li><a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/woman/perfumes?pageIndex=1&size=5">Perfumes</a></li>
+                                                <li><a href="/search/category/default/woman/beauty?pageIndex=1&size=5">Beauty</a></li>
+                                                <li><a href="/search/category/default/woman/shirts?pageIndex=1&size=5">Shirts</a></li>
+                                                <li><a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Swimwear</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
@@ -271,7 +234,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
+                <button class="w3view-cart" type="submit" name="submit" value=""  data-toggle="modal"
                         data-target="#myModal">
                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                 </button>
@@ -497,7 +460,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="sort-grid">
                 <div class="sorting">
                     <h6>Sort By</h6>
-                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect" value="default">
+                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect" >
                         <option value="default">Default</option>
                         <option value="nameAsc">Name(A - Z)</option>
                         <option value="nameDesc">Name(Z - A)</option>
@@ -508,7 +471,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="sorting">
                     <h6>Showing</h6>
-                    <select id="country2" onchange="change_country(this.value)" class="frm-field required sect" value="7">
+                    <select id="country2" onchange="change_country(this.value)" class="frm-field required sect" >
                         <option value="7">7</option>
                         <option value="14">14</option>
                         <option value="28">28</option>
@@ -953,9 +916,21 @@ $(window).load(function () {
 <script>
     function filterProd() {
         //location.replace("")
-        var href="/search/product/" + document.getElementById("country1").value + "?keySearch=${keySearch}&pageIndex=1" + "&size=" + document.getElementById("country2").value;
+        let href="/search/product/" + document.getElementById("country1").value + "?keySearch=${keySearch}&pageIndex=1" + "&size=" + document.getElementById("country2").value;
         console.log(href);
         location.href = href;
     }
+</script>
+<script>
+    $('#country1').find('option').each(function(i,e){
+        if($(e).val() == "${sort}"){
+            $('#country1').prop('selectedIndex',i);
+        }
+    });
+    $('#country2').find('option').each(function(i,e){
+        if($(e).val() == "${size}"){
+            $('#country2').prop('selectedIndex',i);
+        }
+    });
 </script>
 </html>
