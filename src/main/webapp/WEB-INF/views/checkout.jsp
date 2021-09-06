@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -346,46 +348,34 @@
         </div>
     </div>
     <div class="row cart-body">
-        <form class="form-horizontal" method="post" action="">
+        <form class="form-horizontal" method="post" action="/checkoutCart" modelAttibute="Order">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                 <!--REVIEW ORDER-->
                 <div class="panel panel-info">
                     <div class="panel-heading"><h4 style="color: white">Review Order</h4></div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="col-sm-3 col-xs-3">
-                                <img class="img-responsive"
-                                     src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg"/>
+                        <c:forEach items="${cart}" var="item">
+                            <input type="hidden" name="cartId" value="${cart.id}">
+                            <div class="form-group">
+                                <div class="col-sm-3 col-xs-3">
+                                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                                         width="120" height="70" alt="" id="image">
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="col-xs-12"><small>Name: </small>${item.value.product.name}</div>
+                                    <div class="col-xs-12"><small>Quantity: <span>${item.value.quantity}</span></small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-3 text-right">
+                                    <small>Total: </small>${item.value.product.price*item.value.quantity}$
+                                </div>
                             </div>
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="col-xs-12">Product name</div>
-                                <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
-                            </div>
-                            <div class="col-sm-3 col-xs-3 text-right">
-                                <h6><span>$</span>25.00</h6>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <hr/>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-3 col-xs-3">
-                                <img class="img-responsive"
-                                     src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg"/>
-                            </div>
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="col-xs-12">Product name</div>
-                                <div class="col-xs-12"><small>Quantity:<span>2</span></small></div>
-                            </div>
-                            <div class="col-sm-3 col-xs-3 text-right">
-                                <h6><span>$</span>50.00</h6>
-                            </div>
-                        </div>
+                        </c:forEach>
                         <hr/>
                         <div class="form-group m-0">
                             <div class="col-xs-12">
                                 <strong>Order Total</strong>
-                                <div class="pull-right"><span>$</span><span>150.00</span></div>
+                                <div class="pull-right"><span>${totalCart}$</span></div>
                             </div>
                         </div>
                     </div>
@@ -394,41 +384,44 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
                 <!--SHIPPING METHOD-->
-                <div class="panel panel-info">
-                    <div class="panel-heading"><h4 style="color: white">Shipping Address</h4></div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <div class="col-md-6 col-xs-12">
-                                <strong>First Name:</strong>
-                                <input type="text" name="first_name" class="form-control" value=""/>
+                <form:form action="/checkoutCart" modelAttribute="user" method="post">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><h4 style="color: white">Shipping Address</h4></div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-6 col-xs-12">
+                                    <strong>First Name:</strong>
+                                    <input type="text" name="firstName" class="form-control" value="${user.firstName}"/>
+                                </div>
+                                <div class="span1"></div>
+                                <div class="col-md-6 col-xs-12">
+                                    <strong>Last Name:</strong>
+                                    <input type="text" name="lastName" class="form-control" value="${user.lastName}"/>
+                                </div>
                             </div>
-                            <div class="span1"></div>
-                            <div class="col-md-6 col-xs-12">
-                                <strong>Last Name:</strong>
-                                <input type="text" name="last_name" class="form-control" value=""/>
+                            <div class="form-group">
+                                <div class="col-md-12"><strong>Address:</strong></div>
+                                <div class="col-md-12">
+                                    <input type="text" name="address" class="form-control" value="${user.address}"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12"><strong>Address:</strong></div>
-                            <div class="col-md-12">
-                                <input type="text" name="address" class="form-control" value=""/>
+                            <div class="form-group">
+                                <div class="col-md-12"><strong>Phone Number:</strong></div>
+                                <div class="col-md-12"><input type="text" name="phone" class="form-control" value="${user.phone}"/></div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12"><strong>Phone Number:</strong></div>
-                            <div class="col-md-12"><input type="text" name="phone_number" class="form-control"
-                                                          value=""/></div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
-                        <a href="/showCart">
-                            <button type="button" class="btn btn-primary btn-submit-fix" style="width: 100px;">Back</button>
-                        </a>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
+                            <a href="/showCart">
+                                <button type="button" class="btn btn-primary btn-submit-fix" style="width: 100px;">
+                                    Back
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </form:form>
 
                 <!--SHIPPING METHOD END-->
 

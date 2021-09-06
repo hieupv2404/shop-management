@@ -7,23 +7,31 @@ import java.util.Date;
 
 @Entity
 @Table(name = "oder")
-public class Oder {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String phone;
     private Long totalPrice;
     @DateTimeFormat(pattern = "mm/dd/yyyy")
     private Date createDate;
 
-    public Oder() {
+    public Order() {
     }
 
-    public Oder(Integer id, User user, Long totalPrice, Date createDate) {
+    public Order(Integer id, User user, String firstName, String lastName, String address, String phone, Long totalPrice, Date createDate) {
         this.id = id;
         this.user = user;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
         this.totalPrice = totalPrice;
         this.createDate = createDate;
     }
@@ -42,6 +50,38 @@ public class Oder {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Long getTotalPrice() {

@@ -1,10 +1,12 @@
 package shoppingcart.service;
 
 import shoppingcart.DTO.CartDTO;
+import shoppingcart.DTO.Item;
 import shoppingcart.entity.Cart;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface CartSerice extends IGeneralService<Cart> {
@@ -13,4 +15,5 @@ public interface CartSerice extends IGeneralService<Cart> {
     public Cart update(Cart cart);
     public Cart findByProductId(Integer productId);
     public Integer getTotal(Integer userId);
+    public long getTotalCart(HashMap<Integer, Item> carts);
 }
