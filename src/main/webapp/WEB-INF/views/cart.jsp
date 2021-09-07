@@ -176,7 +176,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div><a href="/">
                     <button class="btn btn-sm bg-light border border-dark">GO BACK</button>
-                    <a href="/clearCart"><button class="btn btn-sm bg-light border border-dark" style="width: 75px">CLEAR</button></a>
+                    <a href="/clearCart"><button class="btn btn-sm bg-light border border-dark" style="width: 75px" onclick="return confirm('Are you sure you want to delete this item?');">CLEAR</button></a>
                 </a></div>
                 <div class="px-md-0 px-1" id="footer-font"><b class="pl-md-4">SUBTOTAL:<span
                         class="pl-md-4">${totalCart}$</span></b></div>

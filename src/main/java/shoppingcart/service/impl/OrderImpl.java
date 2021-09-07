@@ -63,8 +63,6 @@ public class OrderImpl implements OrderService {
 
     @Override
     public Order makeOder(User user, Long totalPrice, HashMap<Integer, Item> carts) {
-        userRepository.save(user);
-
         Order order = new Order();
         order.setUser(user);
         order.setFirstName(user.getFirstName());
