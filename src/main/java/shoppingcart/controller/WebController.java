@@ -17,6 +17,7 @@ import shoppingcart.repository.ProductRepository;
 import shoppingcart.service.*;
 import shoppingcart.service.impl.ProductServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
@@ -111,7 +112,8 @@ public class WebController {
     @PostMapping("/addCart")
     public String addCart(@RequestParam(name = "productId") Integer productId,
                           @RequestParam(name = "userId") Integer userId,
-                          @RequestParam(name = "amount") Integer amount, HttpSession session) {
+                          @RequestParam(name = "amount") Integer amount,
+                          HttpServletRequest httpServletRequest, HttpSession session) {
         Product product = productService.findById(productId).get();
         Item item = new Item(product, amount);
         HashMap<Integer, Item> cart = null;
@@ -126,7 +128,8 @@ public class WebController {
             cart.put(productId, item);
         }
         session.setAttribute("cart", cart);
-        return "homeAfterSignIn";
+//        return "homeAfterSignIn";
+        return "redirect:"+httpServletRequest.getHeader("Referer");
     }
 
     @PostMapping("/editCart")
