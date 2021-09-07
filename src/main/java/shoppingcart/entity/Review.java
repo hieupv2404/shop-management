@@ -1,6 +1,7 @@
 package shoppingcart.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "review")
@@ -14,6 +15,9 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    @Column
+    private Date dateCreate;
 
     public Integer getId() {
         return id;

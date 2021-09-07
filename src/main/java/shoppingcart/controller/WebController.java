@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.Item;
 import shoppingcart.DTO.utils.ListUtils;
-import shoppingcart.entity.Cart;
-import shoppingcart.entity.Category;
-import shoppingcart.entity.Product;
-import shoppingcart.entity.User;
+import shoppingcart.entity.*;
 import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.ProductRepository;
+import shoppingcart.repository.ReviewRepository;
 import shoppingcart.service.CartSerice;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
@@ -35,6 +33,8 @@ public class WebController {
     public CategoryRepository categoryRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
     @Autowired
     public ProductService productService;
     @Autowired
@@ -279,5 +279,13 @@ public class WebController {
             modelMap.addAttribute("errorName", "forbidden");
             return "errorPage";
         }
+    }
+
+    @GetMapping("/review/{productId}")
+    public String getReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex) {
+        Pageable pageable = PageRequest.of(pageIndex - 1, 5);
+        Page<Review> reviewPage= reviewRepository.findAllByProductIdOrderByDateCreateDesc(productId,pageable);
+        modelMap.addAttribute("reviewList",reviewPage.toList());
+        return "review";
     }
 }
