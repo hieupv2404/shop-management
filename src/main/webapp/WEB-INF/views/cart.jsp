@@ -141,8 +141,8 @@
                         <td>
                             <div class="d-flex flex-row align-items-center">
                                 <div>
-                                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                                         width="50" height="50" alt="" id="image"></div>
+                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-front"  width="50" height="50" alt="" id="image">
+                                </div>
                                 <div class="d-flex flex-column pl-md-3 pl-1">
                                     <div>
                                         <h6>${item.value.product.name}</h6>
@@ -181,7 +181,9 @@
                 <div class="px-md-0 px-1" id="footer-font"><b class="pl-md-4">SUBTOTAL:<span
                         class="pl-md-4">${totalCart}$</span></b></div>
                 <div><a href="/checkoutCart">
-                    <button class="btn btn-sm bg-dark text-white px-lg-5 px-3">CHECKOUT</button>
+                    <c:if test="${totalCart > 0 }">
+                        <button class="btn btn-sm bg-dark text-white px-lg-5 px-3">CHECKOUT</button>
+                    </c:if>
                 </a></div>
             </div>
         </div>

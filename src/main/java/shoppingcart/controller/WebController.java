@@ -126,7 +126,7 @@ public class WebController {
             cart.put(productId, item);
         }
         session.setAttribute("cart", cart);
-        return "redirect:showCart";
+        return "homeAfterSignIn";
     }
 
     @PostMapping("/editCart")

@@ -358,8 +358,7 @@
                             <input type="hidden" name="cartId" value="${cart.id}">
                             <div class="form-group">
                                 <div class="col-sm-3 col-xs-3">
-                                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                                         width="120" height="70" alt="" id="image">
+                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-front" width="120" height="70" alt="" id="image">
                                 </div>
                                 <div class="col-sm-6 col-xs-6">
                                     <div class="col-xs-12"><small>Name: </small>${item.value.product.name}</div>
