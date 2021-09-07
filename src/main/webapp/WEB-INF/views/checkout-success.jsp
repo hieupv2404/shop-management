@@ -348,6 +348,9 @@
         </div>
     </div>
     <div class="row cart-body">
+        <h3 style="text-align: center; color: #3c763d" >You have successfully placed your order</h3>
+        <h4 style="padding-left: 17px">Payment invoice details </h4>
+        <form class="form-horizontal" method="post" action="/checkoutCart" modelAttibute="user">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                 <!--REVIEW ORDER-->
                 <div class="panel panel-info">
@@ -383,38 +386,38 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
                 <!--SHIPPING METHOD-->
-                <form:form action="/checkoutCart" modelAttribute="User" method="post">
+
                     <div class="panel panel-info">
                         <div class="panel-heading"><h4 style="color: white">User information</h4></div>
                         <div class="panel-body">
                             <div class="form-group">
                                 <div class="col-md-6 col-xs-12">
                                     <strong>First Name:</strong>
-                                    <input type="text" name="firstName" class="form-control" value="${User.firstName}"/>
+                                    <input type="text" name="firstName" class="form-control" readonly value="${user.firstName}"/>
                                 </div>
                                 <div class="span1"></div>
                                 <div class="col-md-6 col-xs-12">
                                     <strong>Last Name:</strong>
-                                    <input type="text" name="lastName" class="form-control" value="${User.lastName}"/>
+                                    <input type="text" name="lastName" class="form-control" readonly value="${user.lastName}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Address:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" value="${User.address}"/>
+                                    <input type="text" name="address" class="form-control" readonly value="${user.address}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Phone Number:</strong></div>
-                                <div class="col-md-12"><input type="text" name="phone" class="form-control" value="${User.phone}"/></div>
+                                <div class="col-md-12"><input type="text" name="phone" class="form-control" readonly value="${user.phone}"/></div>
                             </div>
                         </div>
                     </div>
-                </form:form>
-                <h3>Đặt hàng thành công </h3>
-                <a href="/"><button>Tiếp tục mua hàng</button></a>
+
             </div>
+        </form>
     </div>
+    <a href="/"><button>Continue to buy</button></a>
 </div>
 </body>
 </html>

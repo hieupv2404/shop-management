@@ -388,26 +388,27 @@
                     <div class="panel panel-info">
                         <div class="panel-heading"><h4 style="color: white">Shipping Address</h4></div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-md-6 col-xs-12">
-                                    <strong>First Name:</strong>
-                                    <input type="text" name="firstName" class="form-control" value="${user.firstName}"/>
+                            <div class="row mt-2">
+                                <form:hidden path="id" readonly="readonly" class="form-control"/>
+                                <div class="col-md-6"><label class="labels">First Name<h7 style="color: red">(*)</h7></label>
+                                    <form:input path="firstName" class="form-control"/>
+                                    <form:errors path="firstName" cssClass="error" cssStyle="color: red"/>
                                 </div>
-                                <div class="span1"></div>
-                                <div class="col-md-6 col-xs-12">
-                                    <strong>Last Name:</strong>
-                                    <input type="text" name="lastName" class="form-control" value="${user.lastName}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Address:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" value="${user.address}"/>
+                                <div class="col-md-6"><label class="labels">Last Name<h7 style="color: red">(*)</h7></label>
+                                        <%--                            <input type="text" class="form-control" value="" placeholder="lastName">--%>
+                                    <form:input path="lastName" class="form-control"/>
+                                    <form:errors path="lastName" cssClass="error" cssStyle="color: red"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Phone Number:</strong></div>
-                                <div class="col-md-12"><input type="text" name="phone" class="form-control" value="${user.phone}"/></div>
+                            <div class="row mt-2">
+                                <div class="col-md-12"><label class="labels">Address<h7 style="color: red">(*)</h7></label>
+                                    <form:input path="address" class="form-control"/>
+                                    <form:errors path="address" cssClass="error" cssStyle="color: red"/>
+                                </div>
+                                <div class="col-md-12"><label class="labels">Phone<h7 style="color: red">(*)</h7></label>
+                                    <form:input path="phone" class="form-control"/>
+                                    <form:errors path="phone" cssClass="error" cssStyle="color: #760b0b"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -415,9 +416,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
                             <a href="/showCart">
-                                <button type="button" class="btn btn-primary btn-submit-fix" style="width: 100px;">
-                                    Back
-                                </button>
+                                <button type="button" class="btn btn-primary btn-submit-fix" style="width: 100px;">Back</button>
                             </a>
                         </div>
                     </div>

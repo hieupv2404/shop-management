@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,6 +18,7 @@ import shoppingcart.service.*;
 import shoppingcart.service.impl.ProductServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -165,26 +167,18 @@ public class WebController {
     }
 
     @PostMapping(value = "/checkoutCart")
-    public String checkoutOder(@ModelAttribute("User") User user,
-                               ModelMap modelMap, HttpSession session
-                               /* RedirectAttributes redirectAttributes*/) {
+    public String checkoutOder(@Valid @ModelAttribute("user")  User user,
+                               BindingResult bindingResult,
+                               ModelMap modelMap, HttpSession session) {
+        if (bindingResult.hasErrors()){
+            return "checkout";
+        }
         HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         modelMap.addAttribute("totalCart", cartSerice.getTotalCart(cart));
-//        User user, Long totalPrice, HashMap<Integer, Item> carts
         Order order = orderService.makeOder(user, cartSerice.getTotalCart(cart), cart);
-     /*   redirectAttributes.addAttribute("orderId", order.getId());*/
 //        session.removeAttribute("cart");
         return "checkout-success";
     }
-
-//    @GetMapping("/checkout-success1")
-//    public String success(@ModelAttribute("User") User user, ModelMap modelMap , HttpSession session) {
-//        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
-//        modelMap.addAttribute("totalCart", cartSerice.getTotalCart(cart));
-//
-//        return "checkout-success";
-//    }
-
 
     @GetMapping("/clearCart")
     public String clearCartItem(HttpSession session) {
