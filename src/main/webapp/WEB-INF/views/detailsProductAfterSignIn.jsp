@@ -40,6 +40,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           rel='stylesheet' type='text/css'/>
 </head>
 <style>
+    .checked {
+        color: #2fdab8;
+    }
     .responsive-iframe {
         position: absolute;
         top: 0;
@@ -411,6 +414,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </fieldset>
                     </form>
                 </div>
+
+                <div class="snipcart-details  hvr-outline-out button2">
+
+                    <input type="submit" name="submit" value="Rate" class="button">
+                </div>
             </div>
             <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
                 <li class="share">Share On :</li>
@@ -466,10 +474,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="single_page_agile_its_w3ls">
                             <div class="bootstrap-tab-text-grids">
                                 <div class="bootstrap-tab-text-grid container1">
-                                    <iframe class="responsive-iframe" src="http://localhost:8080/review/1?pageIndex=1" width='1080' height='480'
+                                    <iframe class="responsive-iframe" src="http://localhost:8080/review/${product.id}?pageIndex=1" width='1080' height='480'
                                             title="Review of another user">
                                     </iframe>
                                 </div>
+                                <div class="clearfix"></div>
                                 <div class="add-review">
                                     <h4>add a review</h4>
                                     <form action="#" method="post">
@@ -913,8 +922,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!-- //login -->
-<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover"
-                                                                         style="opacity: 1;"> </span></a>
 <!-- js -->
 <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->

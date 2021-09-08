@@ -6,11 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 </head>
 <style>
@@ -98,66 +100,37 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="tab-content" style="width: 1005px">
-            <ul class="media-list">
-                <li class="media">
-                    <div class="media-body">
-                        <div class="well well-lg">
-                            <h4 class="media-heading text-uppercase reviews">Marco </h4>
-                            <ul class="media-date text-uppercase reviews list-inline">
-                                <li class="dd">22</li>
-                                <li class="mm">09</li>
-                                <li class="aaaa">2014</li>
-                            </ul>
-                            <p class="media-comment">
-                                Great snippet! Thanks for sharing.
-                            </p>
+        <c:forEach items="${reviewList}" var="review">
+            <div class="tab-content" style="width: 1005px" id="review${review.id}">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-body">
+                            <div class="well well-lg">
+                                <h4 class="media-heading text-uppercase reviews">${review.user.username} </h4>
+                                <ul class="media-date text-uppercase reviews list-inline">
+                                        <%--                                    <li class="dd">22</li>--%>
+                                        <%--                                    <li class="mm">09</li>--%>
+                                        <%--                                    <li class="aaaa">2014</li>--%>
+                                    <li>${review.dateCreate}</li>
+                                </ul>
+                                <p class="media-comment">
+                                        ${review.comment}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="tab-content" style="width: 1005px">
-            <ul class="media-list">
-                <li class="media">
-                    <div class="media-body">
-                        <div class="well well-lg">
-                            <h4 class="media-heading text-uppercase reviews">Marco </h4>
-                            <ul class="media-date text-uppercase reviews list-inline">
-                                <li class="dd">22</li>
-                                <li class="mm">09</li>
-                                <li class="aaaa">2014</li>
-                            </ul>
-                            <p class="media-comment">
-                                Great snippet! Thanks for sharing.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="tab-content" style="width: 1005px">
-            <ul class="media-list">
-                <li class="media">
-                    <div class="media-body">
-                        <div class="well well-lg">
-                            <h4 class="media-heading text-uppercase reviews">Marco </h4>
-                            <ul class="media-date text-uppercase reviews list-inline">
-                                <li class="dd">22</li>
-                                <li class="mm">09</li>
-                                <li class="aaaa">2014</li>
-                            </ul>
-                            <p class="media-comment">
-                                Great snippet! Thanks for sharing.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
+                    </li>
+                </ul>
+            </div>
+        </c:forEach>
+        <h3>${noComment}</h3>
     </div>
 </div>
-<button><a>Load more</a></button>
+<c:if test="${endList==false}">
+    <button><a href="/review/${productId}?pageIndex=${pageIndex+1}&lastPreviousReviewId=${lastReviewId}">Load more</a>
+    </button>
+</c:if>
 </body>
+<script>
+    document.getElementById("review${lastPreviousReviewId}").scrollIntoView();
+</script>
 </html>

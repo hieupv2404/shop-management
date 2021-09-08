@@ -44,6 +44,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     .checked {
         color: #2fdab8;
     }
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .container1 {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
 </style>
 <body>
 <!-- header -->
@@ -577,20 +593,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="single_page_agile_its_w3ls">
                             <div class="bootstrap-tab-text-grids">
                                 <div class="bootstrap-tab-text-grid">
-                                    <div class="bootstrap-tab-text-grid-left">
-                                        <img src="/static/images/t1.jpg" alt=" " class="img-responsive">
-                                    </div>
-                                    <div class="bootstrap-tab-text-grid-right">
-                                        <ul>
-                                            <li><a href="#">Admin</a></li>
-                                            <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</a>
-                                            </li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula
-                                            augue eget.Ut enim ad minima veniam, quis nostrum exercitationem ullam
-                                            corporis
-                                            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-                                            vel eum iure reprehenderit.</p>
+                                    <div class="bootstrap-tab-text-grid container1">
+                                        <iframe class="responsive-iframe" src="http://localhost:8080/review/${product.id}?pageIndex=1" width='1080' height='480'
+                                                title="Review of another user">
+                                        </iframe>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

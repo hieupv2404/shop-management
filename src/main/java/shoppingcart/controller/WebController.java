@@ -282,10 +282,23 @@ public class WebController {
     }
 
     @GetMapping("/review/{productId}")
-    public String getReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex) {
-        Pageable pageable = PageRequest.of(pageIndex - 1, 5);
-        Page<Review> reviewPage= reviewRepository.findAllByProductIdOrderByDateCreateDesc(productId,pageable);
-        modelMap.addAttribute("reviewList",reviewPage.toList());
+    public String getReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam(required = false, defaultValue = "-1") Integer lastPreviousReviewId) {
+        Pageable pageable = PageRequest.of(0, pageIndex * 2);
+        if (reviewRepository.findAllByProductIdOrderByDateCreateDesc(productId, pageable).getTotalElements() > 0) {
+            Page<Review> reviewPage = reviewRepository.findAllByProductIdOrderByDateCreateDesc(productId, pageable);
+            List<Review> reviewList = reviewPage.toList();
+            modelMap.addAttribute("reviewList", reviewList);
+            modelMap.addAttribute("lastReviewId", reviewList.get(reviewList.size() - 1).getId());
+            modelMap.addAttribute("lastPreviousReviewId", lastPreviousReviewId);
+            if (reviewPage.getTotalPages() == 1)
+                modelMap.addAttribute("endList", true);
+            else
+                modelMap.addAttribute("endList", false);
+        } else
+            modelMap.addAttribute("noComment", "This product has no comments, be the first to comment");
+        modelMap.addAttribute("pageIndex", pageIndex);
+        modelMap.addAttribute("productId", productId);
+
         return "review";
     }
 }
