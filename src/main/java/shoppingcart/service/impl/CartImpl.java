@@ -3,6 +3,7 @@ package shoppingcart.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shoppingcart.DTO.CartDTO;
+import shoppingcart.DTO.Item;
 import shoppingcart.entity.Cart;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
@@ -10,7 +11,9 @@ import shoppingcart.repository.CartRepository;
 import shoppingcart.repository.ProductRepository;
 import shoppingcart.service.CartSerice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -80,6 +83,14 @@ public class CartImpl implements CartSerice {
         Integer total = 0;
         for (Cart cart: findByUserId(userId)) {
             total = Math.toIntExact(total + cart.getProduct().getPrice() * cart.getAmount());
+        }
+        return total;
+    }
+
+    public long getTotalCart(HashMap<Integer, Item> carts) {
+       long total = 0;
+        for(Map.Entry<Integer, Item> cart : carts.entrySet()) {
+            total += cart.getValue().getProduct().getPrice()*cart.getValue().getQuantity();
         }
         return total;
     }
