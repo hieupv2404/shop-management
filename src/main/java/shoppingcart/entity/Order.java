@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "oder")
@@ -21,11 +22,13 @@ public class Order {
     private Long totalPrice;
     @DateTimeFormat(pattern = "mm/dd/yyyy")
     private Date createDate;
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<OrderDetail> orderDetails;
 
     public Order() {
     }
 
-    public Order(Integer id, User user, String firstName, String lastName, String address, String phone, Long totalPrice, Date createDate) {
+    public Order(Integer id, User user, String firstName, String lastName, String address, String phone, Long totalPrice, Date createDate, List<OrderDetail> orderDetails) {
         this.id = id;
         this.user = user;
         this.firstName = firstName;
@@ -34,6 +37,7 @@ public class Order {
         this.phone = phone;
         this.totalPrice = totalPrice;
         this.createDate = createDate;
+        this.orderDetails = orderDetails;
     }
 
     public Integer getId() {
@@ -98,5 +102,13 @@ public class Order {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }
