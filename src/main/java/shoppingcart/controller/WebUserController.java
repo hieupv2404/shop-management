@@ -8,9 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.ChangePasswordDto;
-import shoppingcart.entity.Product;
-import shoppingcart.entity.Review;
-import shoppingcart.entity.User;
+import shoppingcart.entity.*;
+import shoppingcart.repository.OrderRepository;
 import shoppingcart.repository.ProductRepository;
 import shoppingcart.repository.ReviewRepository;
 import shoppingcart.repository.UserRepository;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -41,6 +41,9 @@ public class WebUserController {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     private boolean checkAccessWrongUserAndActiveById(Integer id, Principal principal) {
         User user = userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
@@ -148,8 +151,8 @@ public class WebUserController {
                 userRepository.save(user);
                 httpSession.removeAttribute("notActive");
             }
-            httpSession.setAttribute("changePassSs","true");
-            return "redirect:/user/show/profile?id="+id;
+            httpSession.setAttribute("changePassSs", "true");
+            return "redirect:/user/show/profile?id=" + id;
         }
     }
 
@@ -180,20 +183,51 @@ public class WebUserController {
     }
 
     @PostMapping("/add/review/{productId}")
-    public String postReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal,@RequestParam String comment){
-        if (!productRepository.findById(productId).isPresent()){
+    public String postReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal, @RequestParam String comment) {
+        if (!productRepository.findById(productId).isPresent()) {
             modelMap.addAttribute("errorPre", "4");
             modelMap.addAttribute("errorMed", "0");
             modelMap.addAttribute("errorSuf", "3");
             modelMap.addAttribute("errorName", "your access is denied");
             return "errorPage";
         }
-        Review review=new Review();
+        Review review = new Review();
         review.setUser(userRepository.findByUsername(principal.getName()));
         review.setComment(comment);
         review.setDateCreate(new Date());
         review.setProduct(productRepository.getById(productId));
         reviewRepository.save(review);
-        return "redirect:/show/product?id="+productId;
+        return "redirect:/show/product?id=" + productId;
+    }
+
+    @GetMapping("/add/rate/{productId}")
+    public String getRate(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal) {
+        if (productRepository.findById(productId).isPresent()) {
+            modelMap.addAttribute("product", productRepository.getById(productId));
+            List<Order> orderList = orderRepository.findAllByUserIdAndDeliveredEquals(userRepository.findByUsername(principal.getName()).getId(), true);
+            modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
+            if (httpSession.getAttribute("userId") != null)
+                modelMap.addAttribute("userId", httpSession.getAttribute("userId"));
+            boolean foundOrderProduct = false;
+            for (Order order : orderList) {
+                if (!foundOrderProduct) {
+                    for (OrderDetail orderDetail : order.getOrderDetails()) {
+                        if (orderDetail.getProduct().getId().equals(productId)) {
+                            modelMap.addAttribute("msg", "can rate");
+                            foundOrderProduct = true;
+                            break;
+                        }
+                    }
+                } else break;
+            }
+            if (!foundOrderProduct) modelMap.addAttribute("msg", "can't rate");
+            return "detailsProductAfterSignIn";
+        } else {
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "your access is denied");
+            return "errorPage";
+        }
     }
 }
