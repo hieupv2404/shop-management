@@ -64,6 +64,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Rate> rateList;
 
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
+
     public Integer getId() {
         return id;
     }

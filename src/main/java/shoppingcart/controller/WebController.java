@@ -2,19 +2,20 @@ package shoppingcart.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.Item;
-import shoppingcart.entity.Cart;
-import shoppingcart.entity.Category;
-import shoppingcart.entity.Product;
-import shoppingcart.entity.User;
+import shoppingcart.DTO.utils.ListUtils;
+import shoppingcart.entity.*;
 import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.ProductRepository;
+import shoppingcart.repository.ReviewRepository;
 import shoppingcart.service.CartSerice;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
@@ -22,10 +23,8 @@ import shoppingcart.service.impl.ProductServiceImpl;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class WebController {
@@ -35,6 +34,8 @@ public class WebController {
     public CategoryRepository categoryRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
     @Autowired
     public ProductService productService;
     @Autowired
@@ -101,7 +102,7 @@ public class WebController {
         return "cart";
     }
 
-    @PostMapping ("/addCart")
+    @PostMapping("/addCart")
     public String addCart(@RequestParam(name = "productId") Integer productId,
                           @RequestParam(name = "userId") Integer userId,
                           @RequestParam(name = "amount") Integer amount, HttpSession session) {
@@ -111,7 +112,7 @@ public class WebController {
         if (session.getAttribute("cart") == null) {
             cart = new HashMap<>();
         } else {
-            cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+            cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         }
         if (cart.containsKey(productId)) {
             cart.get(productId).setQuantity(cart.get(productId).getQuantity() + amount);
@@ -125,7 +126,7 @@ public class WebController {
     @PostMapping("/editCart")
     public String editCart(@RequestParam(name = "cartId") Integer cartId,
                            @RequestParam(name = "amount") Integer amount,
-                           @RequestParam(name = "amount1") Integer amount1,HttpSession session) {
+                           @RequestParam(name = "amount1") Integer amount1, HttpSession session) {
 //        Item item = new Item();
 //        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
 //        item.setQuantity(amount);
@@ -142,7 +143,7 @@ public class WebController {
 
     @GetMapping("/deleteCart")
     public String deleteCartItem(@RequestParam(name = "productId") Integer productId, HttpSession session) {
-        HashMap<Integer, Item> cart = ( HashMap<Integer, Item>) session.getAttribute("cart");
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         cart.remove(productId);
         session.setAttribute("cart", cart);
         return "redirect:showCart";
@@ -180,12 +181,124 @@ public class WebController {
         return "detailsProduct";
     }
 
-    @GetMapping("/search")
-    public String searchProduct(@RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession ) {
-        if (isLogin(modelMap, httpSession))
-            return "searchResultAfterSignIn";
-        setUpSignInAndSignUp(modelMap, httpSession);
-        modelMap.addAttribute("keySearch",keySearch);
-        return "searchResult";
+    @GetMapping("/search/product/{sort}")
+    public String searchProduct(@PathVariable(name = "sort") String sort, @RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
+        modelMap.addAttribute("keySearch", keySearch);
+        if (pageIndex > 0 && size > 0) {
+            Pageable pageable = PageRequest.of(pageIndex - 1, size);
+            Page<Product> page;
+            switch (sort) {
+                case "nameAsc":
+                    // Làm gì đó tại đây ...
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByNameAsc(keySearch, keySearch, pageable);
+
+                    break;
+                case "nameDesc":
+                    // Làm gì đó tại đây ...
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByNameDesc(keySearch, keySearch, pageable);
+
+                    break;
+                case "priceDesc":
+                    // Làm gì đó tại đây ...
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByPriceDesc(keySearch, keySearch, pageable);
+
+                    break;
+                case "priceAsc":
+                    // Làm gì đó tại đây ...
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByPriceAsc(keySearch, keySearch, pageable);
+
+                    break;
+                default:
+                    // Làm gì đó tại đây ...
+                    page = productRepository.findAllByNameContainingOrCategory_Name(keySearch, keySearch, pageable);
+            }
+            modelMap.addAttribute("list", page.toList());
+            modelMap.addAttribute("totalPage", page.getTotalPages());
+            modelMap.addAttribute("size", size);
+            modelMap.addAttribute("currentIndex", pageIndex);
+            modelMap.addAttribute("totalProd", page.getTotalElements());
+            modelMap.addAttribute("sort", sort);
+            if (isLogin(modelMap, httpSession))
+                return "searchResultAfterSignIn";
+            setUpSignInAndSignUp(modelMap, httpSession);
+            return "searchResult";
+        } else {
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "forbidden");
+            return "errorPage";
+        }
+    }
+
+    @GetMapping("/search/category/{sort}/{sex}/{category}")
+    public String searchProductByCategory(@PathVariable(name = "sort") String sort, @PathVariable(name = "sex") String sex, @PathVariable(name = "category") String category, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
+        if ((sex.equals("men") || sex.equals("woman")) && (pageIndex > 0 && size > 0)) {
+            List<Product> productList;
+            switch (sort) {
+                case "nameAsc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByNameAsc(sex);
+
+                    break;
+                case "nameDesc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByNameDesc(sex);
+
+                    break;
+                case "priceDesc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByPriceDesc(sex);
+
+                    break;
+                case "priceAsc":
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_NameOrderByPriceAsc(sex);
+
+                    break;
+                default:
+                    // Làm gì đó tại đây ...
+                    productList = productRepository.findAllByCategory_Name(sex);
+            }
+            List<Product> productList1 = productRepository.findAllByCategory_Name(category);
+            productList.removeIf(product -> !productList1.contains(product));
+            modelMap.addAttribute("list", ListUtils.getPage(productList, pageIndex - 1, size));
+            modelMap.addAttribute("totalPage", ListUtils.getTotalPages(productList, size));
+            modelMap.addAttribute("size", size);
+            modelMap.addAttribute("currentIndex", pageIndex);
+            modelMap.addAttribute("totalProd", productList.size());
+            modelMap.addAttribute("sort", sort);
+            modelMap.addAttribute("category", category);
+            if (isLogin(modelMap, httpSession))
+                return "mensAfterSignIn";
+            setUpSignInAndSignUp(modelMap, httpSession);
+            return "mens";
+        } else {
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "forbidden");
+            return "errorPage";
+        }
+    }
+
+    @GetMapping("/review/{productId}")
+    public String getReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam(required = false, defaultValue = "-1") Integer lastPreviousReviewId) {
+        Pageable pageable = PageRequest.of(0, pageIndex * 2);
+        if (reviewRepository.findAllByProductIdOrderByDateCreateDesc(productId, pageable).getTotalElements() > 0) {
+            Page<Review> reviewPage = reviewRepository.findAllByProductIdOrderByDateCreateDesc(productId, pageable);
+            List<Review> reviewList = reviewPage.toList();
+            modelMap.addAttribute("reviewList", reviewList);
+            modelMap.addAttribute("lastReviewId", reviewList.get(reviewList.size() - 1).getId());
+            modelMap.addAttribute("lastPreviousReviewId", lastPreviousReviewId);
+            if (reviewPage.getTotalPages() == 1)
+                modelMap.addAttribute("endList", true);
+            else
+                modelMap.addAttribute("endList", false);
+        } else
+            modelMap.addAttribute("noComment", "This product has no comments, be the first to comment");
+        modelMap.addAttribute("pageIndex", pageIndex);
+        modelMap.addAttribute("productId", productId);
+        return "review";
     }
 }
