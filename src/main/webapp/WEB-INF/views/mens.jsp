@@ -621,20 +621,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <del>$69.71</del>
                             </div>
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                <form action="#" method="post">
-                                    <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart"/>
-                                        <input type="hidden" name="add" value="1"/>
-                                        <input type="hidden" name="business" value=" "/>
-                                        <input type="hidden" name="item_name" value="Formal Blue Shirt"/>
-                                        <input type="hidden" name="amount" value="30.99"/>
-                                        <input type="hidden" name="discount_amount" value="1.00"/>
-                                        <input type="hidden" name="currency_code" value="USD"/>
-                                        <input type="hidden" name="return" value=" "/>
-                                        <input type="hidden" name="cancel_return" value=" "/>
-                                        <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                    </fieldset>
-                                </form>
+                                <input type="submit" data-toggle="modal" data-target="#myModal" name="submit" value="Add to cart" class="button"/>
                             </div>
 
                         </div>
@@ -776,15 +763,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 sign-gd flickr-post">
                     <h4>Flickr <span>Posts</span></h4>
                     <ul>
-                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a></li>
-                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a></li>
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t1.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t3.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t2.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
+                        <li><a href="single.html"><img src="/static/images/t4.jpg" alt=" " class="img-responsive"/></a>
+                        </li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -1033,14 +1029,14 @@ $(window).load(function () {
     }
 </script>
 <script>
-    $('#country1').find('option').each(function(i,e){
-        if($(e).val() == "${sort}"){
-            $('#country1').prop('selectedIndex',i);
+    $('#country1').find('option').each(function (i, e) {
+        if ($(e).val() == "${sort}") {
+            $('#country1').prop('selectedIndex', i);
         }
     });
-    $('#country2').find('option').each(function(i,e){
-        if($(e).val() == "${size}"){
-            $('#country2').prop('selectedIndex',i);
+    $('#country2').find('option').each(function (i, e) {
+        if ($(e).val() == "${size}") {
+            $('#country2').prop('selectedIndex', i);
         }
     });
 </script>

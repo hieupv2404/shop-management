@@ -44,6 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     .checked {
         color: #2fdab8;
     }
+
     .responsive-iframe {
         position: absolute;
         top: 0;
@@ -54,6 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         height: 100%;
         border: none;
     }
+
     .container1 {
         position: relative;
         width: 100%;
@@ -156,24 +158,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/default/men/clothing?pageIndex=1&size=5">Clothing</a></li>
-                                                <li><a href="/search/category/default/men/wallets?pageIndex=1&size=5">Wallets</a></li>
-                                                <li><a href="/search/category/default/men/footwear?pageIndex=1&size=5">Footwear</a></li>
-                                                <li><a href="/search/category/default/men/watches?pageIndex=1&size=5">Watches</a></li>
-                                                <li><a href="/search/category/default/men/accessories?pageIndex=1&size=5">Accessories</a></li>
-                                                <li><a href="/search/category/default/men/bag?pageIndex=1&size=5">Bags</a></li>
-                                                <li><a href="/search/category/default/men/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
+                                                <li><a href="/search/category/default/men/clothing?pageIndex=1&size=5">Clothing</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/wallets?pageIndex=1&size=5">Wallets</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/footwear?pageIndex=1&size=5">Footwear</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/watches?pageIndex=1&size=5">Watches</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/men/accessories?pageIndex=1&size=5">Accessories</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/men/bag?pageIndex=1&size=5">Bags</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/caps&hats?pageIndex=1&size=5">Caps
+                                                    & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/default/men/jewellery?pageIndex=1&size=5">Jewellery</a></li>
-                                                <li><a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
-                                                <li><a href="/search/category/default/men/perfumes?pageIndex=1&size=5">Perfumes</a></li>
-                                                <li><a href="/search/category/default/men/beauty?pageIndex=1&size=5">Beauty</a></li>
-                                                <li><a href="/search/category/default/men/shirts?pageIndex=1&size=5">Shirts</a></li>
-                                                <li><a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
-                                                <li><a href="/search/category/default/men/swimwear?pageIndex=1&size=5">Swimwear</a></li>
+                                                <li><a href="/search/category/default/men/jewellery?pageIndex=1&size=5">Jewellery</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/perfumes?pageIndex=1&size=5">Perfumes</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/beauty?pageIndex=1&size=5">Beauty</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/shirts?pageIndex=1&size=5">Shirts</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/swimwear?pageIndex=1&size=5">Swimwear</a>
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -188,24 +208,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Clothing</a></li>
-                                                <li><a href="/search/category/default/woman/wallets?pageIndex=1&size=5">Wallets</a></li>
-                                                <li><a href="/search/category/default/woman/footwear?pageIndex=1&size=5">Footwear</a></li>
-                                                <li><a href="/search/category/default/woman/watches?pageIndex=1&size=5">Watches</a></li>
-                                                <li><a href="/search/category/default/woman/accessories?pageIndex=1&size=5">Accessories</a></li>
-                                                <li><a href="/search/category/default/woman/bags?pageIndex=1&size=5">Bags</a></li>
-                                                <li><a href="/search/category/default/woman/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Clothing</a>
+                                                </li>
+                                                <li><a href="/search/category/default/woman/wallets?pageIndex=1&size=5">Wallets</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/footwear?pageIndex=1&size=5">Footwear</a>
+                                                </li>
+                                                <li><a href="/search/category/default/woman/watches?pageIndex=1&size=5">Watches</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/accessories?pageIndex=1&size=5">Accessories</a>
+                                                </li>
+                                                <li><a href="/search/category/default/woman/bags?pageIndex=1&size=5">Bags</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/caps&hats?pageIndex=1&size=5">Caps
+                                                        & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/default/woman/jewellery?pageIndex=1&size=5">Jewellery</a></li>
-                                                <li><a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
-                                                <li><a href="/search/category/default/woman/perfumes?pageIndex=1&size=5">Perfumes</a></li>
-                                                <li><a href="/search/category/default/woman/beauty?pageIndex=1&size=5">Beauty</a></li>
-                                                <li><a href="/search/category/default/woman/shirts?pageIndex=1&size=5">Shirts</a></li>
-                                                <li><a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
-                                                <li><a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Swimwear</a></li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/jewellery?pageIndex=1&size=5">Jewellery</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/perfumes?pageIndex=1&size=5">Perfumes</a>
+                                                </li>
+                                                <li><a href="/search/category/default/woman/beauty?pageIndex=1&size=5">Beauty</a>
+                                                </li>
+                                                <li><a href="/search/category/default/woman/shirts?pageIndex=1&size=5">Shirts</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Swimwear</a>
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
@@ -232,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <button class="w3view-cart" type="submit" name="submit" value=""  data-toggle="modal"
+                <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
                         data-target="#myModal">
                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                 </button>
@@ -462,81 +505,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <del>- $900</del>
             </p>
             <div>
-
-<%--							<input id="rating5" type="radio" name="rating" value="5">--%>
-<%--							<label for="rating5">5</label>--%>
-<%--							<input id="rating4" type="radio" name="rating" value="4">--%>
-<%--							<label for="rating4">4</label>--%>
-<%--							<input id="rating3" type="radio" name="rating" value="3">--%>
-<%--							<label for="rating3">3</label>--%>
-<%--							<input id="rating2" type="radio" name="rating" value="2">--%>
-<%--							<label for="rating2">2</label>--%>
-<%--							<input id="rating1" type="radio" name="rating" value="1">--%>
-<%--							<label for="rating1">1</label>--%>
-                            <c:forEach var="i" begin="1" end="5">
-                                <c:choose>
-                                    <c:when test="${i<=product.rateAverage+1}">
-                                        <span class="fa fa-star checked"></span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span class="fa fa-star"></span>
-                                    </c:otherwise>
-                                </c:choose>
-    </c:forEach>
-
+                <c:forEach var="i" begin="1" end="5">
+                    <c:choose>
+                        <c:when test="${i<=product.rateAverage+1}">
+                            <span class="fa fa-star checked"></span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="fa fa-star"></span>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
             </div>
-<%--            <div class="description">--%>
-<%--                <h5>Check delivery, payment options and charges at your location</h5>--%>
-<%--                <form action="#" method="post">--%>
-<%--                    <input type="text" value="Enter pincode" onfocus="this.value = '';"--%>
-<%--                           onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">--%>
-<%--                    <input type="submit" value="Check">--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div class="color-quality">--%>
-<%--                <div class="color-quality-right">--%>
-<%--                    <h5>Quality :</h5>--%>
-<%--                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">--%>
-<%--                        <option value="null">5 Qty</option>--%>
-<%--                        <option value="null">6 Qty</option>--%>
-<%--                        <option value="null">7 Qty</option>--%>
-<%--                        <option value="null">10 Qty</option>--%>
-<%--                    </select>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="occasional">--%>
-<%--                <h5>Types :</h5>--%>
-<%--                <div class="colr ert">--%>
-<%--                    <label class="radio"><input type="radio" name="radio" checked=""><i></i>Casual Shoes</label>--%>
-<%--                </div>--%>
-<%--                <div class="colr">--%>
-<%--                    <label class="radio"><input type="radio" name="radio"><i></i>Sneakers </label>--%>
-<%--                </div>--%>
-<%--                <div class="colr">--%>
-<%--                    <label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>--%>
-<%--                </div>--%>
-<%--                <div class="clearfix"></div>--%>
-<%--            </div>--%>
             <div class="occasion-cart">
-                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                    <form action="#" method="post">
-                        <fieldset>
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="add" value="1">
-                            <input type="hidden" name="business" value=" ">
-                            <input type="hidden" name="item_name" value="Wing Sneakers">
-                            <input type="hidden" name="amount" value="650.00">
-                            <input type="hidden" name="discount_amount" value="1.00">
-                            <input type="hidden" name="currency_code" value="USD">
-                            <input type="hidden" name="return" value=" ">
-                            <input type="hidden" name="cancel_return" value=" ">
-                            <input type="submit" name="submit" value="Add to cart" class="button">
-                        </fieldset>
-                    </form>
+                <div class="snipcart-details hvr-outline-out button2">
+                    <input type="submit" name="submit" value="Add to cart" class="button" data-toggle="modal" data-target="#myModal">
                 </div>
                 <div class="snipcart-details  hvr-outline-out button2">
-
-                <input type="submit" name="submit" value="Rate" class="button">
+                    <input type="submit" name="submit" value="Rate" class="button">
                 </div>
             </div>
             <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
@@ -594,7 +579,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="bootstrap-tab-text-grids">
                                 <div class="bootstrap-tab-text-grid">
                                     <div class="bootstrap-tab-text-grid container1">
-                                        <iframe class="responsive-iframe" src="http://localhost:8080/review/${product.id}?pageIndex=1" width='1080' height='480'
+                                        <iframe class="responsive-iframe"
+                                                src="http://localhost:8080/review/${product.id}?pageIndex=1"
+                                                width='1080' height='480'
                                                 title="Review of another user">
                                         </iframe>
                                     </div>
@@ -637,162 +624,162 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="w3_agile_latest_arrivals">
             <h3 class="wthree_text_info">Featured <span>Arrivals</span></h3>
-<%--            <div class="col-md-3 product-men single">--%>
-<%--                <div class="men-pro-item simpleCart_shelfItem">--%>
-<%--                    <div class="men-thumb-item">--%>
-<%--                        <img src="/static/images/w2.jpg" alt="" class="pro-image-front">--%>
-<%--                        <img src="/static/images/w2.jpg" alt="" class="pro-image-back">--%>
-<%--                        <div class="men-cart-pro">--%>
-<%--                            <div class="inner-men-cart-pro">--%>
-<%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <span class="product-new-top">New</span>--%>
+            <%--            <div class="col-md-3 product-men single">--%>
+            <%--                <div class="men-pro-item simpleCart_shelfItem">--%>
+            <%--                    <div class="men-thumb-item">--%>
+            <%--                        <img src="/static/images/w2.jpg" alt="" class="pro-image-front">--%>
+            <%--                        <img src="/static/images/w2.jpg" alt="" class="pro-image-back">--%>
+            <%--                        <div class="men-cart-pro">--%>
+            <%--                            <div class="inner-men-cart-pro">--%>
+            <%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                        <span class="product-new-top">New</span>--%>
 
-<%--                    </div>--%>
-<%--                    <div class="item-info-product ">--%>
-<%--                        <h4><a href="single.html">Sleeveless Solid Blue Top</a></h4>--%>
-<%--                        <div class="info-product-price">--%>
-<%--                            <span class="item_price">$140.99</span>--%>
-<%--                            <del>$189.71</del>--%>
-<%--                        </div>--%>
-<%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-<%--                            <form action="#" method="post">--%>
-<%--                                <fieldset>--%>
-<%--                                    <input type="hidden" name="cmd" value="_cart">--%>
-<%--                                    <input type="hidden" name="add" value="1">--%>
-<%--                                    <input type="hidden" name="business" value=" ">--%>
-<%--                                    <input type="hidden" name="item_name" value="Sleeveless Solid Blue Top">--%>
-<%--                                    <input type="hidden" name="amount" value="30.99">--%>
-<%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
-<%--                                    <input type="hidden" name="currency_code" value="USD">--%>
-<%--                                    <input type="hidden" name="return" value=" ">--%>
-<%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
-<%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
-<%--                                </fieldset>--%>
-<%--                            </form>--%>
-<%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="item-info-product ">--%>
+            <%--                        <h4><a href="single.html">Sleeveless Solid Blue Top</a></h4>--%>
+            <%--                        <div class="info-product-price">--%>
+            <%--                            <span class="item_price">$140.99</span>--%>
+            <%--                            <del>$189.71</del>--%>
+            <%--                        </div>--%>
+            <%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
+            <%--                            <form action="#" method="post">--%>
+            <%--                                <fieldset>--%>
+            <%--                                    <input type="hidden" name="cmd" value="_cart">--%>
+            <%--                                    <input type="hidden" name="add" value="1">--%>
+            <%--                                    <input type="hidden" name="business" value=" ">--%>
+            <%--                                    <input type="hidden" name="item_name" value="Sleeveless Solid Blue Top">--%>
+            <%--                                    <input type="hidden" name="amount" value="30.99">--%>
+            <%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
+            <%--                                    <input type="hidden" name="currency_code" value="USD">--%>
+            <%--                                    <input type="hidden" name="return" value=" ">--%>
+            <%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
+            <%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
+            <%--                                </fieldset>--%>
+            <%--                            </form>--%>
+            <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-md-3 product-men single">--%>
-<%--                <div class="men-pro-item simpleCart_shelfItem">--%>
-<%--                    <div class="men-thumb-item">--%>
-<%--                        <img src="/static/images/w4.jpg" alt="" class="pro-image-front">--%>
-<%--                        <img src="/static/images/w4.jpg" alt="" class="pro-image-back">--%>
-<%--                        <div class="men-cart-pro">--%>
-<%--                            <div class="inner-men-cart-pro">--%>
-<%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <span class="product-new-top">New</span>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
+            <%--            <div class="col-md-3 product-men single">--%>
+            <%--                <div class="men-pro-item simpleCart_shelfItem">--%>
+            <%--                    <div class="men-thumb-item">--%>
+            <%--                        <img src="/static/images/w4.jpg" alt="" class="pro-image-front">--%>
+            <%--                        <img src="/static/images/w4.jpg" alt="" class="pro-image-back">--%>
+            <%--                        <div class="men-cart-pro">--%>
+            <%--                            <div class="inner-men-cart-pro">--%>
+            <%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                        <span class="product-new-top">New</span>--%>
 
-<%--                    </div>--%>
-<%--                    <div class="item-info-product ">--%>
-<%--                        <h4><a href="single.html">Black Basic Shorts</a></h4>--%>
-<%--                        <div class="info-product-price">--%>
-<%--                            <span class="item_price">$120.99</span>--%>
-<%--                            <del>$189.71</del>--%>
-<%--                        </div>--%>
-<%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-<%--                            <form action="#" method="post">--%>
-<%--                                <fieldset>--%>
-<%--                                    <input type="hidden" name="cmd" value="_cart">--%>
-<%--                                    <input type="hidden" name="add" value="1">--%>
-<%--                                    <input type="hidden" name="business" value=" ">--%>
-<%--                                    <input type="hidden" name="item_name" value="Black Basic Shorts">--%>
-<%--                                    <input type="hidden" name="amount" value="30.99">--%>
-<%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
-<%--                                    <input type="hidden" name="currency_code" value="USD">--%>
-<%--                                    <input type="hidden" name="return" value=" ">--%>
-<%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
-<%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
-<%--                                </fieldset>--%>
-<%--                            </form>--%>
-<%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="item-info-product ">--%>
+            <%--                        <h4><a href="single.html">Black Basic Shorts</a></h4>--%>
+            <%--                        <div class="info-product-price">--%>
+            <%--                            <span class="item_price">$120.99</span>--%>
+            <%--                            <del>$189.71</del>--%>
+            <%--                        </div>--%>
+            <%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
+            <%--                            <form action="#" method="post">--%>
+            <%--                                <fieldset>--%>
+            <%--                                    <input type="hidden" name="cmd" value="_cart">--%>
+            <%--                                    <input type="hidden" name="add" value="1">--%>
+            <%--                                    <input type="hidden" name="business" value=" ">--%>
+            <%--                                    <input type="hidden" name="item_name" value="Black Basic Shorts">--%>
+            <%--                                    <input type="hidden" name="amount" value="30.99">--%>
+            <%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
+            <%--                                    <input type="hidden" name="currency_code" value="USD">--%>
+            <%--                                    <input type="hidden" name="return" value=" ">--%>
+            <%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
+            <%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
+            <%--                                </fieldset>--%>
+            <%--                            </form>--%>
+            <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-md-3 product-men single">--%>
-<%--                <div class="men-pro-item simpleCart_shelfItem">--%>
-<%--                    <div class="men-thumb-item">--%>
-<%--                        <img src="/static/images/s6.jpg" alt="" class="pro-image-front">--%>
-<%--                        <img src="/static/images/s6.jpg" alt="" class="pro-image-back">--%>
-<%--                        <div class="men-cart-pro">--%>
-<%--                            <div class="inner-men-cart-pro">--%>
-<%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <span class="product-new-top">New</span>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
+            <%--            <div class="col-md-3 product-men single">--%>
+            <%--                <div class="men-pro-item simpleCart_shelfItem">--%>
+            <%--                    <div class="men-thumb-item">--%>
+            <%--                        <img src="/static/images/s6.jpg" alt="" class="pro-image-front">--%>
+            <%--                        <img src="/static/images/s6.jpg" alt="" class="pro-image-back">--%>
+            <%--                        <div class="men-cart-pro">--%>
+            <%--                            <div class="inner-men-cart-pro">--%>
+            <%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                        <span class="product-new-top">New</span>--%>
 
-<%--                    </div>--%>
-<%--                    <div class="item-info-product ">--%>
-<%--                        <h4><a href="single.html">Aero Canvas Loafers </a></h4>--%>
-<%--                        <div class="info-product-price">--%>
-<%--                            <span class="item_price">$120.99</span>--%>
-<%--                            <del>$199.71</del>--%>
-<%--                        </div>--%>
-<%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-<%--                            <form action="#" method="post">--%>
-<%--                                <fieldset>--%>
-<%--                                    <input type="hidden" name="cmd" value="_cart">--%>
-<%--                                    <input type="hidden" name="add" value="1">--%>
-<%--                                    <input type="hidden" name="business" value=" ">--%>
-<%--                                    <input type="hidden" name="item_name" value="Aero Canvas Loafers">--%>
-<%--                                    <input type="hidden" name="amount" value="30.99">--%>
-<%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
-<%--                                    <input type="hidden" name="currency_code" value="USD">--%>
-<%--                                    <input type="hidden" name="return" value=" ">--%>
-<%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
-<%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
-<%--                                </fieldset>--%>
-<%--                            </form>--%>
-<%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="item-info-product ">--%>
+            <%--                        <h4><a href="single.html">Aero Canvas Loafers </a></h4>--%>
+            <%--                        <div class="info-product-price">--%>
+            <%--                            <span class="item_price">$120.99</span>--%>
+            <%--                            <del>$199.71</del>--%>
+            <%--                        </div>--%>
+            <%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
+            <%--                            <form action="#" method="post">--%>
+            <%--                                <fieldset>--%>
+            <%--                                    <input type="hidden" name="cmd" value="_cart">--%>
+            <%--                                    <input type="hidden" name="add" value="1">--%>
+            <%--                                    <input type="hidden" name="business" value=" ">--%>
+            <%--                                    <input type="hidden" name="item_name" value="Aero Canvas Loafers">--%>
+            <%--                                    <input type="hidden" name="amount" value="30.99">--%>
+            <%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
+            <%--                                    <input type="hidden" name="currency_code" value="USD">--%>
+            <%--                                    <input type="hidden" name="return" value=" ">--%>
+            <%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
+            <%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
+            <%--                                </fieldset>--%>
+            <%--                            </form>--%>
+            <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-md-3 product-men single">--%>
-<%--                <div class="men-pro-item simpleCart_shelfItem">--%>
-<%--                    <div class="men-thumb-item">--%>
-<%--                        <img src="/static/images/w7.jpg" alt="" class="pro-image-front">--%>
-<%--                        <img src="/static/images/w7.jpg" alt="" class="pro-image-back">--%>
-<%--                        <div class="men-cart-pro">--%>
-<%--                            <div class="inner-men-cart-pro">--%>
-<%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <span class="product-new-top">New</span>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
+            <%--            <div class="col-md-3 product-men single">--%>
+            <%--                <div class="men-pro-item simpleCart_shelfItem">--%>
+            <%--                    <div class="men-thumb-item">--%>
+            <%--                        <img src="/static/images/w7.jpg" alt="" class="pro-image-front">--%>
+            <%--                        <img src="/static/images/w7.jpg" alt="" class="pro-image-back">--%>
+            <%--                        <div class="men-cart-pro">--%>
+            <%--                            <div class="inner-men-cart-pro">--%>
+            <%--                                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                        <span class="product-new-top">New</span>--%>
 
-<%--                    </div>--%>
-<%--                    <div class="item-info-product ">--%>
-<%--                        <h4><a href="single.html">Ankle Length Socks</a></h4>--%>
-<%--                        <div class="info-product-price">--%>
-<%--                            <span class="item_price">$100.99</span>--%>
-<%--                            <del>$159.71</del>--%>
-<%--                        </div>--%>
-<%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-<%--                            <form action="#" method="post">--%>
-<%--                                <fieldset>--%>
-<%--                                    <input type="hidden" name="cmd" value="_cart">--%>
-<%--                                    <input type="hidden" name="add" value="1">--%>
-<%--                                    <input type="hidden" name="business" value=" ">--%>
-<%--                                    <input type="hidden" name="item_name" value="Ankle Length Socks">--%>
-<%--                                    <input type="hidden" name="amount" value="30.99">--%>
-<%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
-<%--                                    <input type="hidden" name="currency_code" value="USD">--%>
-<%--                                    <input type="hidden" name="return" value=" ">--%>
-<%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
-<%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
-<%--                                </fieldset>--%>
-<%--                            </form>--%>
-<%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                    <div class="item-info-product ">--%>
+            <%--                        <h4><a href="single.html">Ankle Length Socks</a></h4>--%>
+            <%--                        <div class="info-product-price">--%>
+            <%--                            <span class="item_price">$100.99</span>--%>
+            <%--                            <del>$159.71</del>--%>
+            <%--                        </div>--%>
+            <%--                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
+            <%--                            <form action="#" method="post">--%>
+            <%--                                <fieldset>--%>
+            <%--                                    <input type="hidden" name="cmd" value="_cart">--%>
+            <%--                                    <input type="hidden" name="add" value="1">--%>
+            <%--                                    <input type="hidden" name="business" value=" ">--%>
+            <%--                                    <input type="hidden" name="item_name" value="Ankle Length Socks">--%>
+            <%--                                    <input type="hidden" name="amount" value="30.99">--%>
+            <%--                                    <input type="hidden" name="discount_amount" value="1.00">--%>
+            <%--                                    <input type="hidden" name="currency_code" value="USD">--%>
+            <%--                                    <input type="hidden" name="return" value=" ">--%>
+            <%--                                    <input type="hidden" name="cancel_return" value=" ">--%>
+            <%--                                    <input type="submit" name="submit" value="Add to cart" class="button">--%>
+            <%--                                </fieldset>--%>
+            <%--                            </form>--%>
+            <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
             <div class="clearfix"></div>
             <!--//slider_owl-->
         </div>
