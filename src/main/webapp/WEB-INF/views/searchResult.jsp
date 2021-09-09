@@ -506,22 +506,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <del>$69.71</del>
                             </div>
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                <form action="#" method="post">
-                                    <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart"/>
-                                        <input type="hidden" name="add" value="1"/>
-                                        <input type="hidden" name="business" value=" "/>
-                                        <input type="hidden" name="item_name" value="Formal Blue Shirt"/>
-                                        <input type="hidden" name="amount" value="30.99"/>
-                                        <input type="hidden" name="discount_amount" value="1.00"/>
-                                        <input type="hidden" name="currency_code" value="USD"/>
-                                        <input type="hidden" name="return" value=" "/>
-                                        <input type="hidden" name="cancel_return" value=" "/>
-                                        <input type="submit" name="submit" value="Add to cart" class="button"/>
-                                    </fieldset>
-                                </form>
+                                <input type="submit" data-toggle="modal" data-target="#myModal" name="submit" value="Add to cart" class="button"/>
                             </div>
-
                         </div>
                     </div>
                 </div>
