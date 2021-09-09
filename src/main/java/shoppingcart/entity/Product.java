@@ -26,14 +26,19 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
 
-    public Product(Integer id, String name, Long price, Double rateAverage) {
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
+    private List<OrderDetail> orderDetails;
+
+    public Product(){};
+
+    public Product(Integer id, String name, Long price, Double rateAverage, List<Category> category, List<Rate> rateList, List<OrderDetail> orderDetails) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.rateAverage = rateAverage;
-    }
-
-    public Product() {
+        this.category = category;
+        this.rateList = rateList;
+        this.orderDetails = orderDetails;
     }
 
     public Integer getId() {
@@ -68,6 +73,10 @@ public class Product {
         this.rateAverage = rateAverage;
     }
 
+    public List<Category> getCategory() {
+        return category;
+    }
+
     public void setCategory(List<Category> category) {
         this.category = category;
     }
@@ -78,5 +87,13 @@ public class Product {
 
     public void setRateList(List<Rate> rateList) {
         this.rateList = rateList;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }
