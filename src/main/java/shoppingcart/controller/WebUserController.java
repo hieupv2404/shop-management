@@ -181,6 +181,13 @@ public class WebUserController {
 
     @PostMapping("/add/review/{productId}")
     public String postReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal,@RequestParam String comment){
+        if (!productRepository.findById(productId).isPresent()){
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "your access is denied");
+            return "errorPage";
+        }
         Review review=new Review();
         review.setUser(userRepository.findByUsername(principal.getName()));
         review.setComment(comment);
