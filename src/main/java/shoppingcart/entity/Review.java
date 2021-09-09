@@ -1,6 +1,7 @@
 package shoppingcart.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "review")
@@ -14,6 +15,11 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+    @Column
+    private String comment;
+
+    @Column
+    private Date dateCreate;
 
     public Integer getId() {
         return id;
@@ -37,5 +43,21 @@ public class Review {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Date getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
     }
 }

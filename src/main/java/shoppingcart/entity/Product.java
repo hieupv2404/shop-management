@@ -29,8 +29,7 @@ public class Product {
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;
 
-    public Product() {
-    }
+    public Product(){};
 
     public Product(Integer id, String name, Long price, Double rateAverage, List<Category> category, List<Rate> rateList, List<OrderDetail> orderDetails) {
         this.id = id;
