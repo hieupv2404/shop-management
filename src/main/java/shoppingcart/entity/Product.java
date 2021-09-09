@@ -23,6 +23,9 @@ public class Product {
     @JsonIgnore
     private List<Rate> rateList;
 
+    @OneToMany(mappedBy = "product")
+    private List<Review> reviews;
+
     public Product(Integer id, String name, Long price, Double rateAverage) {
         this.id = id;
         this.name = name;

@@ -44,6 +44,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     .checked {
         color: #2fdab8;
     }
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .container1 {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
 </style>
 <body>
 <!-- header -->
@@ -65,16 +81,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
-            <form action="#" method="post">
-                <input type="search" name="search" placeholder="Search here..." required="">
+            <form action="/search/product/defautlt" method="get">
+                <input type="search" name="keySearch" placeholder="Search here..." required="">
+                <input type="hidden" name="pageIndex" required="" value="1">
+                <input type="hidden" name="size" required="" value="5">
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
             </form>
         </div>
         <!-- header-bot -->
         <div class="col-md-4 logo_agile">
-            <h1><a href="index.html"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag"
-                                                                  aria-hidden="true"></i></a></h1>
+            <h1><a href="/"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag"
+                                                         aria-hidden="true"></i></a></h1>
         </div>
         <!-- header-bot -->
         <div class="col-md-4 agileits-social top_content">
@@ -123,8 +141,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list">
-                            <li class="active menu__item"><a class="menu__link" href="index.html">Home <span
-                                    class="sr-only">(current)</span></a></li>
+                            <li class="active menu__item menu__item--current"><a class="menu__link" href="/">Home
+                                <span class="sr-only">(current)</span></a></li>
                             <li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
                             <li class="dropdown menu__item">
                                 <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button"
@@ -132,28 +150,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-                                            <a href="mens.html"><img src="/static/images/top2.jpg" alt=" "/></a>
+                                            <a href="mens.htm"><img
+                                                    src="<c:url value="/static/images/top2.jpg"/>"
+                                                    alt=" "/></a>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.html">Clothing</a></li>
-                                                <li><a href="mens.html">Wallets</a></li>
-                                                <li><a href="mens.html">Footwear</a></li>
-                                                <li><a href="mens.html">Watches</a></li>
-                                                <li><a href="mens.html">Accessories</a></li>
-                                                <li><a href="mens.html">Bags</a></li>
-                                                <li><a href="mens.html">Caps & Hats</a></li>
+                                                <li><a href="/search/category/default/men/clothing?pageIndex=1&size=5">Clothing</a></li>
+                                                <li><a href="/search/category/default/men/wallets?pageIndex=1&size=5">Wallets</a></li>
+                                                <li><a href="/search/category/default/men/footwear?pageIndex=1&size=5">Footwear</a></li>
+                                                <li><a href="/search/category/default/men/watches?pageIndex=1&size=5">Watches</a></li>
+                                                <li><a href="/search/category/default/men/accessories?pageIndex=1&size=5">Accessories</a></li>
+                                                <li><a href="/search/category/default/men/bag?pageIndex=1&size=5">Bags</a></li>
+                                                <li><a href="/search/category/default/men/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="mens.html">Jewellery</a></li>
-                                                <li><a href="mens.html">Sunglasses</a></li>
-                                                <li><a href="mens.html">Perfumes</a></li>
-                                                <li><a href="mens.html">Beauty</a></li>
-                                                <li><a href="mens.html">Shirts</a></li>
-                                                <li><a href="mens.html">Sunglasses</a></li>
-                                                <li><a href="mens.html">Swimwear</a></li>
+                                                <li><a href="/search/category/default/men/jewellery?pageIndex=1&size=5">Jewellery</a></li>
+                                                <li><a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/men/perfumes?pageIndex=1&size=5">Perfumes</a></li>
+                                                <li><a href="/search/category/default/men/beauty?pageIndex=1&size=5">Beauty</a></li>
+                                                <li><a href="/search/category/default/men/shirts?pageIndex=1&size=5">Shirts</a></li>
+                                                <li><a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/men/swimwear?pageIndex=1&size=5">Swimwear</a></li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -168,42 +188,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="agile_inner_drop_nav_info">
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="womens.html">Clothing</a></li>
-                                                <li><a href="womens.html">Wallets</a></li>
-                                                <li><a href="womens.html">Footwear</a></li>
-                                                <li><a href="womens.html">Watches</a></li>
-                                                <li><a href="womens.html">Accessories</a></li>
-                                                <li><a href="womens.html">Bags</a></li>
-                                                <li><a href="womens.html">Caps & Hats</a></li>
+                                                <li><a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Clothing</a></li>
+                                                <li><a href="/search/category/default/woman/wallets?pageIndex=1&size=5">Wallets</a></li>
+                                                <li><a href="/search/category/default/woman/footwear?pageIndex=1&size=5">Footwear</a></li>
+                                                <li><a href="/search/category/default/woman/watches?pageIndex=1&size=5">Watches</a></li>
+                                                <li><a href="/search/category/default/woman/accessories?pageIndex=1&size=5">Accessories</a></li>
+                                                <li><a href="/search/category/default/woman/bags?pageIndex=1&size=5">Bags</a></li>
+                                                <li><a href="/search/category/default/woman/caps&hats?pageIndex=1&size=5">Caps & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="womens.html">Jewellery</a></li>
-                                                <li><a href="womens.html">Sunglasses</a></li>
-                                                <li><a href="womens.html">Perfumes</a></li>
-                                                <li><a href="womens.html">Beauty</a></li>
-                                                <li><a href="womens.html">Shirts</a></li>
-                                                <li><a href="womens.html">Sunglasses</a></li>
-                                                <li><a href="womens.html">Swimwear</a></li>
+                                                <li><a href="/search/category/default/woman/jewellery?pageIndex=1&size=5">Jewellery</a></li>
+                                                <li><a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/woman/perfumes?pageIndex=1&size=5">Perfumes</a></li>
+                                                <li><a href="/search/category/default/woman/beauty?pageIndex=1&size=5">Beauty</a></li>
+                                                <li><a href="/search/category/default/woman/shirts?pageIndex=1&size=5">Shirts</a></li>
+                                                <li><a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a></li>
+                                                <li><a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Swimwear</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
-                                            <a href="womens.html"><img src="/static/images/top1.jpg" alt=" "/></a>
+                                            <a href="womens.html"><img src="<c:url value="/static/images/top1.jpg"/>"
+                                                                       alt=" "/></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </ul>
                             </li>
                             <li class="menu__item dropdown">
-                                <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">Short
+                                <a class="menu__link dropdown-toggle" href="#" data-toggle="dropdown">Short
                                     Codes <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="icons.html">Web Icons</a></li>
                                     <li><a href="typography.html">Typography</a></li>
                                 </ul>
                             </li>
-                            <li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
+                            <li class=" menu__item "><a class="menu__link" href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,13 +232,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <form action="#" method="post" class="last">
-                    <input type="hidden" name="cmd" value="_cart">
-                    <input type="hidden" name="display" value="1">
-                    <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down"
-                                                                                        aria-hidden="true"></i></button>
-                </form>
-
+                <button class="w3view-cart" type="submit" name="submit" value=""  data-toggle="modal"
+                        data-target="#myModal">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -404,7 +422,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="agile_inner_breadcrumb">
 
                 <ul class="w3_short">
-                    <li><a href="index.html">Home</a><i>|</i></li>
+                    <li><a href="/">Home</a><i>|</i></li>
                     <li>Single Page</li>
                 </ul>
             </div>
@@ -575,20 +593,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="single_page_agile_its_w3ls">
                             <div class="bootstrap-tab-text-grids">
                                 <div class="bootstrap-tab-text-grid">
-                                    <div class="bootstrap-tab-text-grid-left">
-                                        <img src="/static/images/t1.jpg" alt=" " class="img-responsive">
-                                    </div>
-                                    <div class="bootstrap-tab-text-grid-right">
-                                        <ul>
-                                            <li><a href="#">Admin</a></li>
-                                            <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</a>
-                                            </li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula
-                                            augue eget.Ut enim ad minima veniam, quis nostrum exercitationem ullam
-                                            corporis
-                                            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-                                            vel eum iure reprehenderit.</p>
+                                    <div class="bootstrap-tab-text-grid container1">
+                                        <iframe class="responsive-iframe" src="http://localhost:8080/review/${product.id}?pageIndex=1" width='1080' height='480'
+                                                title="Review of another user">
+                                        </iframe>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -841,7 +849,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="footer">
     <div class="footer_agile_inner_info_w3l">
         <div class="col-md-3 footer-left">
-            <h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
+            <h2><a href="/"><span>E</span>lite Shoppy </a></h2>
             <p>Lorem ipsum quia dolor
                 sit amet, consectetur, adipisci velit, sed quia non
                 numquam eius modi tempora.</p>
@@ -869,7 +877,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-4 sign-gd">
                     <h4>Our <span>Information</span></h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="mens.html">Men's Wear</a></li>
                         <li><a href="womens.html">Women's wear</a></li>
                         <li><a href="about.html">About</a></li>
