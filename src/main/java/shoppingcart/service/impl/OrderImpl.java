@@ -14,10 +14,7 @@ import shoppingcart.service.CartSerice;
 import shoppingcart.service.OrderService;
 import shoppingcart.service.ProductService;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 
@@ -73,12 +70,13 @@ public class OrderImpl implements OrderService {
         order.setCreateDate(new java.util.Date());
         orderRepository.save(order);
 
+
         for(Map.Entry<Integer, Item> cart : carts.entrySet()) {
             OrderDetail orderDetail = new OrderDetail();
             Item item = cart.getValue();
             orderDetail.setTotal(item.getProduct().getPrice()*item.getQuantity());
             orderDetail.setQuantity(item.getQuantity());
-            orderDetail.setOder(orderRepository.findById(order.getId()).get());
+            orderDetail.setOrder(order);
             orderDetail.setProduct(item.getProduct());
             orderDetailRepository.save(orderDetail);
         }

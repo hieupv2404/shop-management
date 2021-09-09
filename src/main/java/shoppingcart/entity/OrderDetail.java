@@ -1,6 +1,7 @@
 package shoppingcart.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "OderDetail")
@@ -8,10 +9,10 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "oder_id")
     private Order order;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
     private Integer quantity;
@@ -36,11 +37,11 @@ public class OrderDetail {
         this.id = id;
     }
 
-    public Order getOder() {
+    public Order getOrder() {
         return order;
     }
 
-    public void setOder(Order order) {
+    public void setOrder(Order order) {
         this.order = order;
     }
 

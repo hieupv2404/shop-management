@@ -129,7 +129,7 @@ public class WebController {
         }
         session.setAttribute("cart", cart);
 //        return "homeAfterSignIn";
-        return "redirect:"+httpServletRequest.getHeader("Referer");
+        return "redirect:" + httpServletRequest.getHeader("Referer");
     }
 
     @PostMapping("/editCart")
@@ -170,18 +170,30 @@ public class WebController {
     }
 
     @PostMapping(value = "/checkoutCart")
-    public String checkoutOder(@Valid @ModelAttribute("user")  User user,
+    public String checkoutOder(@Valid @ModelAttribute("user") User user,
                                BindingResult bindingResult,
                                ModelMap modelMap, HttpSession session) {
-        if (bindingResult.hasErrors()){
-            return "checkout";
-        }
         HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         modelMap.addAttribute("totalCart", cartSerice.getTotalCart(cart));
-        Order order = orderService.makeOder(user, cartSerice.getTotalCart(cart), cart);
-//        session.removeAttribute("cart");
-        return "checkout-success";
+        if (bindingResult.hasErrors()) {
+            return "checkout";
+        } else {
+            Order order = orderService.makeOder(user, cartSerice.getTotalCart(cart), cart);
+            modelMap.addAttribute("order", order);
+            List<OrderDetail> listOrderDetail = orderDetailService.findByOrder(order);
+            modelMap.addAttribute("listOrderDetail", listOrderDetail);
+            session.removeAttribute("cart");
+            return "checkout-success";
+        }
+//        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+//        modelMap.addAttribute("totalCart", cartSerice.getTotalCart(cart));
     }
+
+//    @GetMapping(value = "/checkoutSuccess")
+//    public String checkoutSuccess(ModelMap modelMap) {
+//
+//        return "checkout-success";
+//    }
 
     @GetMapping("/clearCart")
     public String clearCartItem(HttpSession session) {
