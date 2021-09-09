@@ -350,25 +350,24 @@
     <div class="row cart-body">
         <h3 style="text-align: center; color: #3c763d" >You have successfully placed your order</h3>
         <h4 style="padding-left: 17px">Payment invoice details </h4>
-        <form class="form-horizontal" method="post" action="/checkoutCart" modelAttibute="user">
+        <div class="form-horizontal">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                 <!--REVIEW ORDER-->
                 <div class="panel panel-info">
                     <div class="panel-heading"><h4 style="color: white">product information</h4></div>
                     <div class="panel-body">
-                        <c:forEach items="${cart}" var="item">
-                            <input type="hidden" name="cartId" value="${cart.id}">
+                        <c:forEach items="${listOrderDetail}" var="orderDetail">
                             <div class="form-group">
                                 <div class="col-sm-3 col-xs-3">
                                     <img src="/static/images/m1.jpg" alt="" class="pro-image-front" width="120" height="70" alt="" id="image">
                                 </div>
                                 <div class="col-sm-6 col-xs-6">
-                                    <div class="col-xs-12"><small>Name: </small>${item.value.product.name}</div>
-                                    <div class="col-xs-12"><small>Quantity: <span>${item.value.quantity}</span></small>
+                                    <div class="col-xs-12"><small>Name: </small>${orderDetail.product.name}</div>
+                                    <div class="col-xs-12"><small>Quantity: <span>${orderDetail.quantity}</span></small>
                                     </div>
                                 </div>
                                 <div class="col-sm-3 col-xs-3 text-right">
-                                    <small>Total: </small>${item.value.product.price*item.value.quantity}$
+                                    <small>Total: </small>${orderDetail.total}$
                                 </div>
                             </div>
                         </c:forEach>
@@ -376,7 +375,7 @@
                         <div class="form-group m-0">
                             <div class="col-xs-12">
                                 <strong>Order Total</strong>
-                                <div class="pull-right"><span>${totalCart}$</span></div>
+                                <div class="pull-right"><span>${order.totalPrice}$</span></div>
                             </div>
                         </div>
                     </div>
@@ -392,29 +391,35 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-xs-12">
                                     <strong>First Name:</strong>
-                                    <input type="text" name="firstName" class="form-control" readonly value="${user.firstName}"/>
+<%--                                    <input type="text" name="firstName" class="form-control" readonly value="${user.firstName}"/>--%>
+                                    <p>${order.firstName}</p>
                                 </div>
                                 <div class="span1"></div>
                                 <div class="col-md-6 col-xs-12">
                                     <strong>Last Name:</strong>
-                                    <input type="text" name="lastName" class="form-control" readonly value="${user.lastName}"/>
+<%--                                    <input type="text" name="lastName" class="form-control" readonly value="${user.lastName}"/>--%>
+                                    <p>${order.lastName}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Address:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" readonly value="${user.address}"/>
+<%--                                    <input type="text" name="address" class="form-control" readonly value="${user.address}"/>--%>
+                                    <p>${order.address}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Phone Number:</strong></div>
-                                <div class="col-md-12"><input type="text" name="phone" class="form-control" readonly value="${user.phone}"/></div>
+                                <div class="col-md-12">
+<%--                                    <input type="text" name="phone" class="form-control" readonly value="${user.phone}"/>--%>
+                                <p>${order.phone}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
             </div>
-        </form>
+        </div>
     </div>
     <a href="/"><button>Continue to buy</button></a>
 </div>
