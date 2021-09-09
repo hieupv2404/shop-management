@@ -481,10 +481,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="clearfix"></div>
                                 <div class="add-review">
                                     <h4>add a review</h4>
-                                    <form action="#" method="post">
-                                        <input type="text" name="Name" required="Name">
-                                        <input type="email" name="Email" required="Email">
-                                        <textarea name="Message" required=""></textarea>
+                                    <form action="/user/add/review/${product.id}" method="post">
+                                        <textarea name="comment" required=""></textarea>
                                         <input type="submit" value="SEND">
                                     </form>
                                 </div>

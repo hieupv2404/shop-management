@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.Product;
+import shoppingcart.entity.Review;
 import shoppingcart.entity.User;
+import shoppingcart.repository.ProductRepository;
+import shoppingcart.repository.ReviewRepository;
 import shoppingcart.repository.UserRepository;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
@@ -17,6 +20,7 @@ import shoppingcart.service.UserService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -31,6 +35,12 @@ public class WebUserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     private boolean checkAccessWrongUserAndActiveById(Integer id, Principal principal) {
         User user = userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
@@ -167,5 +177,16 @@ public class WebUserController {
         Iterable<Product> productIterable = productService.findAll();
         mav.addObject("productIterable", productIterable);
         return mav;
+    }
+
+    @PostMapping("/add/review/{productId}")
+    public String postReview(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal,@RequestParam String comment){
+        Review review=new Review();
+        review.setUser(userRepository.findByUsername(principal.getName()));
+        review.setComment(comment);
+        review.setDateCreate(new Date());
+        review.setProduct(productRepository.getById(productId));
+        reviewRepository.save(review);
+        return "redirect:/show/product?id="+productId;
     }
 }

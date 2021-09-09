@@ -22,6 +22,7 @@ import shoppingcart.service.UserService;
 import shoppingcart.service.impl.ProductServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -189,27 +190,27 @@ public class WebController {
             switch (sort) {
                 case "nameAsc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrderByNameAsc(keySearch, pageable);
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByNameAsc(keySearch, keySearch, pageable);
 
                     break;
                 case "nameDesc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrderByNameDesc(keySearch, pageable);
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByNameDesc(keySearch, keySearch, pageable);
 
                     break;
                 case "priceDesc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrderByPriceDesc(keySearch, pageable);
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByPriceDesc(keySearch, keySearch, pageable);
 
                     break;
                 case "priceAsc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrderByPriceAsc(keySearch, pageable);
+                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByPriceAsc(keySearch, keySearch, pageable);
 
                     break;
                 default:
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContaining(keySearch, pageable);
+                    page = productRepository.findAllByNameContainingOrCategory_Name(keySearch, keySearch, pageable);
             }
             modelMap.addAttribute("list", page.toList());
             modelMap.addAttribute("totalPage", page.getTotalPages());
@@ -298,7 +299,6 @@ public class WebController {
             modelMap.addAttribute("noComment", "This product has no comments, be the first to comment");
         modelMap.addAttribute("pageIndex", pageIndex);
         modelMap.addAttribute("productId", productId);
-
         return "review";
     }
 }

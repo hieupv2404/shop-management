@@ -16,15 +16,15 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Iterable<Product> findAllByCategory_Id(Integer categoryId);
 
-    Page<Product> findAllByNameContaining(String keySearch, Pageable pageable);
+    Page<Product> findAllByNameContainingOrCategory_Name(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrderByNameAsc(String keySearch, Pageable pageable);
+    Page<Product> findAllByNameContainingOrCategory_NameOrderByNameAsc(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrderByNameDesc(String keySearch, Pageable pageable);
+    Page<Product> findAllByNameContainingOrCategory_NameOrderByNameDesc(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrderByPriceDesc(String keySearch, Pageable pageable);
+    Page<Product> findAllByNameContainingOrCategory_NameOrderByPriceDesc(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrderByPriceAsc(String keySearch, Pageable pageable);
+    Page<Product> findAllByNameContainingOrCategory_NameOrderByPriceAsc(String keySearch,String categoryName, Pageable pageable);
 
     List<Product> findAllByCategory_Name(String categoryName);
 
