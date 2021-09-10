@@ -1,7 +1,6 @@
 package shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -9,10 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.DTO.ChangePasswordDto;
 import shoppingcart.entity.*;
-import shoppingcart.repository.OrderRepository;
-import shoppingcart.repository.ProductRepository;
-import shoppingcart.repository.ReviewRepository;
-import shoppingcart.repository.UserRepository;
+import shoppingcart.repository.*;
 import shoppingcart.service.ProductService;
 import shoppingcart.service.UserService;
 
@@ -44,6 +40,9 @@ public class WebUserController {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private RateRepository rateRepository;
 
     private boolean checkAccessWrongUserAndActiveById(Integer id, Principal principal) {
         User user = userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
@@ -200,28 +199,57 @@ public class WebUserController {
         return "redirect:/show/product?id=" + productId;
     }
 
-    @GetMapping("/add/rate/{productId}")
+    @GetMapping("/check/rate/{productId}")
     public String getRate(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal) {
         if (productRepository.findById(productId).isPresent()) {
-            modelMap.addAttribute("product", productRepository.getById(productId));
             List<Order> orderList = orderRepository.findAllByUserIdAndDeliveredEquals(userRepository.findByUsername(principal.getName()).getId(), true);
-            modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
-            if (httpSession.getAttribute("userId") != null)
-                modelMap.addAttribute("userId", httpSession.getAttribute("userId"));
             boolean foundOrderProduct = false;
             for (Order order : orderList) {
                 if (!foundOrderProduct) {
                     for (OrderDetail orderDetail : order.getOrderDetails()) {
-                        if (orderDetail.getProduct().getId().equals(productId)) {
-                            modelMap.addAttribute("msg", "can rate");
+                        if (orderDetail.getProduct().getId().equals(productId)&&!orderDetail.getRated()) {
+                            httpSession.setAttribute("ratePermitsMsg", "Can rate");
                             foundOrderProduct = true;
                             break;
                         }
                     }
                 } else break;
             }
-            if (!foundOrderProduct) modelMap.addAttribute("msg", "can't rate");
-            return "detailsProductAfterSignIn";
+            if (!foundOrderProduct) httpSession.setAttribute("ratePermitsMsg", "Can't rate");
+            return "redirect:/show/product?id=" + productId;
+        } else {
+            modelMap.addAttribute("errorPre", "4");
+            modelMap.addAttribute("errorMed", "0");
+            modelMap.addAttribute("errorSuf", "3");
+            modelMap.addAttribute("errorName", "your access is denied");
+            return "errorPage";
+        }
+    }
+
+    @PostMapping("/add/rate/{productId}")
+    public String postRate(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal,@RequestParam Integer rating) {
+        if (productRepository.findById(productId).isPresent()) {
+            List<Order> orderList = orderRepository.findAllByUserIdAndDeliveredEquals(userRepository.findByUsername(principal.getName()).getId(), true);
+            boolean foundOrderProduct = false;
+            for (Order order : orderList) {
+                if (!foundOrderProduct) {
+                    for (OrderDetail orderDetail : order.getOrderDetails()) {
+                        if (orderDetail.getProduct().getId().equals(productId)&&!orderDetail.getRated()) {
+                            httpSession.setAttribute("ratePermitsMsg", "Rate successful");
+                            orderDetail.setRated(true);
+                            Rate rate=new Rate();
+                            rate.setRateStar(rating);
+                            rate.setUser(userRepository.findByUsername(principal.getName()));
+                            rate.setProduct(productRepository.getById(productId));
+                            rateRepository.save(rate);
+                            foundOrderProduct = true;
+                            break;
+                        }
+                    }
+                } else break;
+            }
+            if (!foundOrderProduct) httpSession.setAttribute("ratePermitsMsg", "Can't rate");
+            return "redirect:/show/product?id=" + productId;
         } else {
             modelMap.addAttribute("errorPre", "4");
             modelMap.addAttribute("errorMed", "0");

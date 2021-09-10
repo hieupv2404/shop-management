@@ -8,14 +8,21 @@ public class Rate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @Column(columnDefinition = "TEXT")
-    String comment;
+    @Column()
+    Integer rateStar;
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
     @ManyToOne
     @JoinColumn(name="product_id")
     private Product product;
+    public Rate(){};
+
+    public Rate(Integer rateStar, User user, Product product) {
+        this.rateStar = rateStar;
+        this.user = user;
+        this.product = product;
+    }
 
     public Integer getId() {
         return id;
@@ -25,12 +32,12 @@ public class Rate {
         this.id = id;
     }
 
-    public String getComment() {
-        return comment;
+    public Integer getRateStar() {
+        return rateStar;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setRateStar(Integer rateStar) {
+        this.rateStar = rateStar;
     }
 
     public User getUser() {
