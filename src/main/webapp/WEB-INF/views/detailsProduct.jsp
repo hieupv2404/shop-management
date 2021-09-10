@@ -521,7 +521,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="submit" name="submit" value="Add to cart" class="button" data-toggle="modal" data-target="#myModal">
                 </div>
                 <div class="snipcart-details  hvr-outline-out button2">
-                    <input type="submit" name="submit" value="Rate" class="button">
+                    <input type="submit" name="submit" value="Rate" class="button" data-toggle="modal" data-target="#myModal">
                 </div>
             </div>
             <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
