@@ -43,6 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     .checked {
         color: #2fdab8;
     }
+
     .responsive-iframe {
         position: absolute;
         top: 0;
@@ -53,6 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         height: 100%;
         border: none;
     }
+
     .container1 {
         position: relative;
         width: 100%;
@@ -61,6 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
 </style>
 <body>
+<h3>${msg}</h3>
 <!-- header -->
 <div class="header" id="home">
     <div class="container">
@@ -271,10 +274,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
-                        data-target="#myModal">
-                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                </button>
+                <form action="/showCart" method="get" class="last">
+                    <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
+                            data-target="#myModal">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    </button>
+                </form>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -412,8 +417,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
 
                 <div class="snipcart-details  hvr-outline-out button2">
-
-                    <input type="submit" name="submit" value="Rate" class="button">
+                    <form action="/user/add/rate/${product.id}" method="get">
+                        <input type="submit" name="submit" value="Rate" class="button">
+                    </form>
                 </div>
             </div>
             <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
@@ -470,7 +476,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="single_page_agile_its_w3ls">
                             <div class="bootstrap-tab-text-grids">
                                 <div class="bootstrap-tab-text-grid container1">
-                                    <iframe class="responsive-iframe" src="http://localhost:8080/review/${product.id}?pageIndex=1" width='1080' height='480'
+                                    <iframe class="responsive-iframe"
+                                            src="http://localhost:8080/review/${product.id}?pageIndex=1" width='1080'
+                                            height='480'
                                             title="Review of another user">
                                     </iframe>
                                 </div>
