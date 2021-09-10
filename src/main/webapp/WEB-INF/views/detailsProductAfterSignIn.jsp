@@ -274,10 +274,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
-                        data-target="#myModal">
-                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                </button>
+                <form action="/showCart" method="get" class="last">
+                    <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
+                            data-target="#myModal">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    </button>
+                </form>
             </div>
         </div>
         <div class="clearfix"></div>
