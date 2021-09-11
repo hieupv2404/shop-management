@@ -410,7 +410,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                    <form action="#" method="post">
                         <form action="/addCart" method="post">
                             <fieldset>
                                 <input type="hidden" name="productId" value="${product.id}"/>
@@ -419,7 +418,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <input type="submit" name="submit" value="Add to cart" class="button"/>
                             </fieldset>
                         </form>
-                    </form>
                 </div>
 
                 <div class="snipcart-details  hvr-outline-out button2">
