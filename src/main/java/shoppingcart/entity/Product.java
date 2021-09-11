@@ -29,6 +29,9 @@ public class Product {
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;
 
+    @Column
+    private Integer rateCount= 0;
+
     public Product(){};
 
     public Product(Integer id, String name, Long price, Double rateAverage, List<Category> category, List<Rate> rateList, List<OrderDetail> orderDetails) {
@@ -95,5 +98,13 @@ public class Product {
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public Integer getRateCount() {
+        return rateCount;
+    }
+
+    public void setRateCount(Integer rateCount) {
+        this.rateCount = rateCount;
     }
 }
