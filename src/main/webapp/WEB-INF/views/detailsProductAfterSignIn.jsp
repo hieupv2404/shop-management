@@ -297,8 +297,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3 class="agileinfo_sign">Notification <span>Now</span></h3>
                     <h5>${ratePermitsMsg}</h5>
                     <br>
-                    <a href="https://mail.google.com/mail/u/0/#inbox" class="close" data-dismiss="modal"
-                       style="justify-items: center">Ok</a>
+                        <input type="submit"  data-dismiss="modal"
+                               style="float: right" value="OK">
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -336,7 +336,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <br>
                         <input hidden type="number" name="rating" value="" id="realStar">
                         <input type="submit" value="Submit"
-                               style="justify-items: center;display: flex;flex-direction: column-reverse">
+                               style="float: right">
                     </form>
                 </div>
                 <div class="clearfix"></div>
@@ -710,16 +710,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Custom-JavaScript-File-Links -->
 <!-- cart-js -->
 <script src="/static/js/minicart.min.js"></script>
-<script>
-    // Mini Cart
-    paypal.minicart.render({
-        action: '#'
-    });
-
-    if (~window.location.search.indexOf('reset=true')) {
-        paypal.minicart.reset();
-    }
-</script>
 
 <!-- //cart-js -->
 <!-- single -->
@@ -807,12 +797,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 $('#myModal3').modal('toggle');
                 <%session.removeAttribute("ratePermitsMsg"); %>
             });
-    }
-</script>
-<script>
-    function onRating(elementId) {
-        document.getElementById("realStar").value=document.getElementById(elementId).value;
-        console.log(document.getElementById("realStar").value);
     }
 </script>
 </body>

@@ -245,6 +245,7 @@ public class WebController {
     @GetMapping("/search/product/{sort}")
     public String searchProduct(@PathVariable(name = "sort") String sort, @RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
         modelMap.addAttribute("keySearch", keySearch);
+        keySearch=keySearch.trim();
         if (pageIndex > 0 && size > 0) {
             Pageable pageable = PageRequest.of(pageIndex - 1, size);
             Page<Product> page;

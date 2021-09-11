@@ -228,7 +228,7 @@ public class WebUserController {
 
     @PostMapping("/add/rate/{productId}")
     public String postRate(@PathVariable(name = "productId") Integer productId, ModelMap modelMap, HttpSession httpSession, Principal principal,@RequestParam Integer rating) {
-        if (productRepository.findById(productId).isPresent()) {
+        if (productRepository.findById(productId).isPresent()&&rating>=1&&rating<=5) {
             List<Order> orderList = orderRepository.findAllByUserIdAndDeliveredEquals(userRepository.findByUsername(principal.getName()).getId(), true);
             boolean foundOrderProduct = false;
             for (Order order : orderList) {
@@ -236,12 +236,17 @@ public class WebUserController {
                     for (OrderDetail orderDetail : order.getOrderDetails()) {
                         if (orderDetail.getProduct().getId().equals(productId)&&!orderDetail.getRated()) {
                             httpSession.setAttribute("ratePermitsMsg", "Rate successful");
+                            Product product=productRepository.getById(productId);
                             orderDetail.setRated(true);
                             Rate rate=new Rate();
                             rate.setRateStar(rating);
                             rate.setUser(userRepository.findByUsername(principal.getName()));
-                            rate.setProduct(productRepository.getById(productId));
+                            rate.setProduct(product);
                             rateRepository.save(rate);
+                            float aFloat=(float)rating;
+                            product.setRateAverage((product.getRateAverage() * product.getRateCount()) +  aFloat/ (product.getRateCount() + 1));
+                            product.setRateCount(product.getRateCount()+1);
+                            productRepository.save(product);
                             foundOrderProduct = true;
                             break;
                         }
