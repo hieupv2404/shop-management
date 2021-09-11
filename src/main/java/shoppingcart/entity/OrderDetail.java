@@ -17,6 +17,7 @@ public class OrderDetail {
     private Product product;
     private Integer quantity;
     private Long total;
+    private Boolean rated = false;
 
     public OrderDetail() {
     }
@@ -67,5 +68,13 @@ public class OrderDetail {
 
     public void setTotal(Long total) {
         this.total = total;
+    }
+
+    public Boolean getRated() {
+        return rated;
+    }
+
+    public void setRated(Boolean rated) {
+        this.rated = rated;
     }
 }
