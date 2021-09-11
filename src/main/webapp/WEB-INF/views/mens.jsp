@@ -157,41 +157,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/default/men/clothing?pageIndex=1&size=5">Clothing</a>
+                                                <li><a href="/search/category/default/men/clothing?pageIndex=1&size=7">Clothing</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/wallets?pageIndex=1&size=5">Wallets</a>
+                                                <li><a href="/search/category/default/men/wallets?pageIndex=1&size=7">Wallets</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/footwear?pageIndex=1&size=5">Footwear</a>
+                                                <li><a href="/search/category/default/men/footwear?pageIndex=1&size=7">Footwear</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/watches?pageIndex=1&size=5">Watches</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/default/men/accessories?pageIndex=1&size=5">Accessories</a>
+                                                <li><a href="/search/category/default/men/watches?pageIndex=1&size=7">Watches</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/men/bag?pageIndex=1&size=5">Bags</a>
+                                                    <a href="/search/category/default/men/accessories?pageIndex=1&size=7">Accessories</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/caps&hats?pageIndex=1&size=5">Caps
+                                                <li>
+                                                    <a href="/search/category/default/men/bag?pageIndex=1&size=7">Bags</a>
+                                                </li>
+                                                <li><a href="/search/category/default/men/caps&hats?pageIndex=1&size=7">Caps
                                                     & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
-                                                <li><a href="/search/category/default/men/jewellery?pageIndex=1&size=5">Jewellery</a>
+                                                <li><a href="/search/category/default/men/jewellery?pageIndex=1&size=7">Jewellery</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                    <a href="/search/category/default/men/sunglasses?pageIndex=1&size=7">Sunglasses</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/perfumes?pageIndex=1&size=5">Perfumes</a>
+                                                <li><a href="/search/category/default/men/perfumes?pageIndex=1&size=7">Perfumes</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/beauty?pageIndex=1&size=5">Beauty</a>
+                                                <li><a href="/search/category/default/men/beauty?pageIndex=1&size=7">Beauty</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/shirts?pageIndex=1&size=5">Shirts</a>
+                                                <li><a href="/search/category/default/men/shirts?pageIndex=1&size=7">Shirts</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/men/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                    <a href="/search/category/default/men/sunglasses?pageIndex=1&size=7">Sunglasses</a>
                                                 </li>
-                                                <li><a href="/search/category/default/men/swimwear?pageIndex=1&size=5">Swimwear</a>
+                                                <li><a href="/search/category/default/men/swimwear?pageIndex=1&size=7">Swimwear</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -208,45 +208,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
                                                 <li>
-                                                    <a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Clothing</a>
+                                                    <a href="/search/category/default/woman/swimwear?pageIndex=1&size=7">Clothing</a>
                                                 </li>
-                                                <li><a href="/search/category/default/woman/wallets?pageIndex=1&size=5">Wallets</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/default/woman/footwear?pageIndex=1&size=5">Footwear</a>
-                                                </li>
-                                                <li><a href="/search/category/default/woman/watches?pageIndex=1&size=5">Watches</a>
+                                                <li><a href="/search/category/default/woman/wallets?pageIndex=1&size=7">Wallets</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/woman/accessories?pageIndex=1&size=5">Accessories</a>
+                                                    <a href="/search/category/default/woman/footwear?pageIndex=1&size=7">Footwear</a>
                                                 </li>
-                                                <li><a href="/search/category/default/woman/bags?pageIndex=1&size=5">Bags</a>
+                                                <li><a href="/search/category/default/woman/watches?pageIndex=1&size=7">Watches</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/woman/caps&hats?pageIndex=1&size=5">Caps
+                                                    <a href="/search/category/default/woman/accessories?pageIndex=1&size=7">Accessories</a>
+                                                </li>
+                                                <li><a href="/search/category/default/woman/bags?pageIndex=1&size=7">Bags</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/caps&hats?pageIndex=1&size=7">Caps
                                                         & Hats</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
                                                 <li>
-                                                    <a href="/search/category/default/woman/jewellery?pageIndex=1&size=5">Jewellery</a>
+                                                    <a href="/search/category/default/woman/jewellery?pageIndex=1&size=7">Jewellery</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                    <a href="/search/category/default/woman/sunglasses?pageIndex=1&size=7">Sunglasses</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/woman/perfumes?pageIndex=1&size=5">Perfumes</a>
+                                                    <a href="/search/category/default/woman/perfumes?pageIndex=1&size=7">Perfumes</a>
                                                 </li>
-                                                <li><a href="/search/category/default/woman/beauty?pageIndex=1&size=5">Beauty</a>
+                                                <li><a href="/search/category/default/woman/beauty?pageIndex=1&size=7">Beauty</a>
                                                 </li>
-                                                <li><a href="/search/category/default/woman/shirts?pageIndex=1&size=5">Shirts</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/search/category/default/woman/sunglasses?pageIndex=1&size=5">Sunglasses</a>
+                                                <li><a href="/search/category/default/woman/shirts?pageIndex=1&size=7">Shirts</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/search/category/default/woman/swimwear?pageIndex=1&size=5">Swimwear</a>
+                                                    <a href="/search/category/default/woman/sunglasses?pageIndex=1&size=7">Sunglasses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/search/category/default/woman/swimwear?pageIndex=1&size=7">Swimwear</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -295,19 +295,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-                    <form action="#" method="post">
+                    <form:form action="/auth/signIn" method="post" modelAttribute="userSignIn">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="Name" required="">
-                            <label>Name</label>
+                            <form:input type="text" name="Username" required="" path="username"/>
+                            <label>Username</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="email" name="Email" required="">
-                            <label>Email</label>
+                            <form:input type="password" name="Email" required="" path="password"/>
+                            <label>Password</label>
                             <span></span>
                         </div>
-                        <input type="submit" value="Sign In">
-                    </form>
+                        <div>
+                            <p style="color: red">${errorSignIn}</p>
+                        </div>
+                        <form:button>Sign In</form:button>
+                    </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
                         <li><a href="#" class="facebook">
                             <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
@@ -351,29 +354,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-                    <form action="#" method="post">
+                    <form:form action="/auth/register" method="post" modelAttribute="user">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="Name" required="">
+                            <form:input type="text" name="Username" required="" path="username"
+                                        value="${againUser.username}"/>
                             <label>Name</label>
                             <span></span>
                         </div>
+                        <div>
+                            <p style="color: red">${errorUsername}</p>
+                        </div>
+                        <div>
+                            <p style="color: red">${existUsername}</p>
+                        </div>
                         <div class="styled-input">
-                            <input type="email" name="Email" required="">
+                            <form:input type="email" name="Email" required="" path="email" value="${againUser.email}"/>
                             <label>Email</label>
                             <span></span>
                         </div>
-                        <div class="styled-input">
-                            <input type="password" name="password" required="">
-                            <label>Password</label>
-                            <span></span>
+                        <div>
+                            <p style="color: red">${errorEmail}</p>
+                        </div>
+                        <div>
+                            <p style="color: red">${existEmail}</p>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="Confirm Password" required="">
-                            <label>Confirm Password</label>
+                            <form:input type="text" name="password" required="" path="phone"
+                                        value="${againUser.phone}"/>
+                            <label>Phone number</label>
                             <span></span>
                         </div>
-                        <input type="submit" value="Sign Up">
-                    </form>
+                        <div>
+                            <p style="color: red">${errorPhone}</p>
+                        </div>
+                        <form:button>Submit</form:button>
+                    </form:form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
                         <li><a href="#" class="facebook">
                             <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
@@ -405,6 +420,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- //Modal content-->
     </div>
 </div>
+<%
+    session.removeAttribute("againUser");
+    session.removeAttribute("errorUsername");
+    session.removeAttribute("errorEmail");
+    session.removeAttribute("errorPhone");
+    session.removeAttribute("existUsername");
+    session.removeAttribute("existEmail");
+%>
 <!-- //Modal2 -->
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l">

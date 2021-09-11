@@ -10,21 +10,21 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    //
+
 //    @Query("SELECT u FROM Product u where u.category.id=:categoryId")
 //     Iterable<Product> getProductsByCategoryId(@Param("categoryId") Integer categoryId);
 
     Iterable<Product> findAllByCategory_Id(Integer categoryId);
 
-    Page<Product> findAllByNameContainingOrCategory_Name(String keySearch,String categoryName, Pageable pageable);
+    Page<Product> findAllDistinctByNameContainingOrCategory_NameContaining(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrCategory_NameOrderByNameAsc(String keySearch,String categoryName, Pageable pageable);
+    Page<Product> findAllDistinctByNameContainingOrCategory_NameContainingOrderByNameAsc(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrCategory_NameOrderByNameDesc(String keySearch,String categoryName, Pageable pageable);
+    Page<Product> findAllDistinctByNameContainingOrCategory_NameContainingOrderByNameDesc(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrCategory_NameOrderByPriceDesc(String keySearch,String categoryName, Pageable pageable);
+    Page<Product> findAllDistinctByNameContainingOrCategory_NameContainingOrderByPriceDesc(String keySearch,String categoryName, Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrCategory_NameOrderByPriceAsc(String keySearch,String categoryName, Pageable pageable);
+    Page<Product> findAllDistinctByNameContainingOrCategory_NameContainingOrderByPriceAsc(String keySearch,String categoryName, Pageable pageable);
 
     List<Product> findAllByCategory_Name(String categoryName);
 

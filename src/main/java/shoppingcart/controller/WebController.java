@@ -31,6 +31,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.HashSet;
 
 @Controller
 public class WebController {
@@ -231,8 +232,12 @@ public class WebController {
             modelMap.addAttribute("errorName", "your access is denied");
             return "errorPage";
         }
-        if (isLogin(modelMap, httpSession))
+        if (isLogin(modelMap, httpSession)) {
+            if (httpSession.getAttribute("ratePermitsMsg")!=null){
+                modelMap.addAttribute("ratePermitsMsg",httpSession.getAttribute("ratePermitsMsg"));
+            }
             return "detailsProductAfterSignIn";
+        }
         setUpSignInAndSignUp(modelMap, httpSession);
         return "detailsProduct";
     }
@@ -240,33 +245,34 @@ public class WebController {
     @GetMapping("/search/product/{sort}")
     public String searchProduct(@PathVariable(name = "sort") String sort, @RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
         modelMap.addAttribute("keySearch", keySearch);
+        keySearch=keySearch.trim();
         if (pageIndex > 0 && size > 0) {
             Pageable pageable = PageRequest.of(pageIndex - 1, size);
             Page<Product> page;
             switch (sort) {
                 case "nameAsc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByNameAsc(keySearch, keySearch, pageable);
+                    page = productRepository.findAllDistinctByNameContainingOrCategory_NameContainingOrderByNameAsc(keySearch, keySearch, pageable);
 
                     break;
                 case "nameDesc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByNameDesc(keySearch, keySearch, pageable);
+                    page = productRepository.findAllDistinctByNameContainingOrCategory_NameContainingOrderByNameDesc(keySearch, keySearch, pageable);
 
                     break;
                 case "priceDesc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByPriceDesc(keySearch, keySearch, pageable);
+                    page = productRepository.findAllDistinctByNameContainingOrCategory_NameContainingOrderByPriceDesc(keySearch, keySearch, pageable);
 
                     break;
                 case "priceAsc":
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrCategory_NameOrderByPriceAsc(keySearch, keySearch, pageable);
+                    page = productRepository.findAllDistinctByNameContainingOrCategory_NameContainingOrderByPriceAsc(keySearch, keySearch, pageable);
 
                     break;
                 default:
                     // Làm gì đó tại đây ...
-                    page = productRepository.findAllByNameContainingOrCategory_Name(keySearch, keySearch, pageable);
+                    page = productRepository.findAllDistinctByNameContainingOrCategory_NameContaining(keySearch, keySearch, pageable);
             }
             modelMap.addAttribute("list", page.toList());
             modelMap.addAttribute("totalPage", page.getTotalPages());
