@@ -1,6 +1,8 @@
 package shoppingcart.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -10,7 +12,8 @@ public class Rate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column()
-    @Size(min = 1, max = 3)
+    @Min(1)
+    @Max(5)
     Integer rateStar;
     @ManyToOne
     @JoinColumn(name = "user_id")

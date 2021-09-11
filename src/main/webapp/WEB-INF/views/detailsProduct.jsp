@@ -580,7 +580,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="bootstrap-tab-text-grid">
                                     <div class="bootstrap-tab-text-grid container1">
                                         <iframe class="responsive-iframe"
-                                                src="http://localhost:8080/review/${product.id}?pageIndex=1"
+                                                src="https://shop-management-intern.herokuapp.com/review/${product.id}?pageIndex=1"
                                                 width='1080' height='480'
                                                 title="Review of another user">
                                         </iframe>
