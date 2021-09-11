@@ -235,7 +235,6 @@ public class WebUserController {
                 if (!foundOrderProduct) {
                     for (OrderDetail orderDetail : order.getOrderDetails()) {
                         if (orderDetail.getProduct().getId().equals(productId)&&!orderDetail.getRated()) {
-                            httpSession.setAttribute("ratePermitsMsg", "Rate successful");
                             Product product=productRepository.getById(productId);
                             orderDetail.setRated(true);
                             Rate rate=new Rate();
@@ -248,6 +247,7 @@ public class WebUserController {
                             product.setRateCount(product.getRateCount()+1);
                             productRepository.save(product);
                             foundOrderProduct = true;
+                            httpSession.setAttribute("ratePermitsMsg", "Rate successful");
                             break;
                         }
                     }
