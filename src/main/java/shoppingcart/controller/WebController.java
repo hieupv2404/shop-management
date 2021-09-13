@@ -124,7 +124,8 @@ public class WebController {
                           @RequestParam(name = "amount") Integer amount,
                           HttpServletRequest httpServletRequest, HttpSession session) {
         Product product = productService.findById(productId).get();
-        Item item = new Item(product, amount);
+        User user = userService.findById(userId).get();
+        Item item = new Item(user,product,amount);
         HashMap<Integer, Item> cart = null;
         if (session.getAttribute("cart") == null) {
             cart = new HashMap<>();
