@@ -43,6 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     .checked {
         color: #2fdab8;
     }
+
     .responsive-iframe {
         position: absolute;
         top: 0;
@@ -53,6 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         height: 100%;
         border: none;
     }
+
     .container1 {
         position: relative;
         width: 100%;
@@ -271,10 +273,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                <button class="w3view-cart" type="submit" name="submit" value="" data-toggle="modal"
-                        data-target="#myModal">
-                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                </button>
+                <form action="/showCart" method="get" class="last">
+                    <button class="w3view-cart" type="submit" name="submit" value="">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    </button>
+                </form>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -292,11 +295,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Notification <span>Now</span></h3>
-                    <h4>Sign up successful</h4><br>
-                    <h5>Please check your email to get password and verify!</h5>
+                    <h5>${ratePermitsMsg}</h5>
                     <br>
-                    <a href="https://mail.google.com/mail/u/0/#inbox" class="close" data-dismiss="modal"
-                       style="justify-items: center">Ok</a>
+                        <input type="submit"  data-dismiss="modal"
+                               style="float: right" value="OK">
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -305,6 +307,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <%--//Model3--%>
+<%--Modal4--%>
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body modal-body-sub_agile">
+                <div class="col-md-8 modal_body_left modal_body_left1">
+                    <h3 class="agileinfo_sign">Rate <span>Now</span></h3>
+                    <form action="/user/add/rate/${product.id}" method="post">
+                    <div class="rating1">
+						<span class="starRating">
+							<input id="rating5" type="radio" name="rating" value="5" checked>
+							<label for="rating5">5</label>
+							<input id="rating4" type="radio" name="rating" value="4">
+							<label for="rating4">4</label>
+							<input id="rating3" type="radio" name="rating" value="3">
+							<label for="rating3">3</label>
+							<input id="rating2" type="radio" name="rating" value="2">
+							<label for="rating2">2</label>
+							<input id="rating1" type="radio" name="rating" value="1">
+							<label for="rating1">1</label>
+						</span>
+                    </div>
+                    <br>
+                        <input hidden type="number" name="rating" value="" id="realStar">
+                        <input type="submit" value="Submit"
+                               style="float: right">
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- //Modal content-->
+    </div>
+</div>
+<%--//Model4--%>
+
 <!--/single_page-->
 <!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l">
@@ -366,58 +408,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </c:choose>
                 </c:forEach>
             </div>
-            <%--      <div class="description">--%>
-            <%--        <h5>Check delivery, payment options and charges at your location</h5>--%>
-            <%--        <form action="#" method="post">--%>
-            <%--          <input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">--%>
-            <%--          <input type="submit" value="Check">--%>
-            <%--        </form>--%>
-            <%--      </div>--%>
-            <%--      <div class="color-quality">--%>
-            <%--        <div class="color-quality-right">--%>
-            <%--          <h5>Quality :</h5>--%>
-            <%--          <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">--%>
-            <%--            <option value="null">5 Qty</option>--%>
-            <%--            <option value="null">6 Qty</option>--%>
-            <%--            <option value="null">7 Qty</option>--%>
-            <%--            <option value="null">10 Qty</option>--%>
-            <%--          </select>--%>
-            <%--        </div>--%>
-            <%--      </div>--%>
-            <%--      <div class="occasional">--%>
-            <%--        <h5>Types :</h5>--%>
-            <%--        <div class="colr ert">--%>
-            <%--          <label class="radio"><input type="radio" name="radio" checked=""><i></i>Casual Shoes</label>--%>
-            <%--        </div>--%>
-            <%--        <div class="colr">--%>
-            <%--          <label class="radio"><input type="radio" name="radio"><i></i>Sneakers </label>--%>
-            <%--        </div>--%>
-            <%--        <div class="colr">--%>
-            <%--          <label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>--%>
-            <%--        </div>--%>
-            <%--        <div class="clearfix"> </div>--%>
-            <%--      </div>--%>
             <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                    <form action="#" method="post">
-                        <fieldset>
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="add" value="1">
-                            <input type="hidden" name="business" value=" ">
-                            <input type="hidden" name="item_name" value="Wing Sneakers">
-                            <input type="hidden" name="amount" value="650.00">
-                            <input type="hidden" name="discount_amount" value="1.00">
-                            <input type="hidden" name="currency_code" value="USD">
-                            <input type="hidden" name="return" value=" ">
-                            <input type="hidden" name="cancel_return" value=" ">
-                            <input type="submit" name="submit" value="Add to cart" class="button">
-                        </fieldset>
-                    </form>
+                        <form action="/addCart" method="post">
+                            <fieldset>
+                                <input type="hidden" name="productId" value="${product.id}"/>
+                                <input type="hidden" name="userId" value="${userId}"/>
+                                <input type="hidden" name="amount" value="1"/>
+                                <input type="submit" name="submit" value="Add to cart" class="button"/>
+                            </fieldset>
+                        </form>
                 </div>
 
                 <div class="snipcart-details  hvr-outline-out button2">
-
-                    <input type="submit" name="submit" value="Rate" class="button">
+                    <form action="/user/check/rate/${product.id}" method="get">
+                        <input type="submit" name="submit" value="Rate" class="button">
+                    </form>
                 </div>
             </div>
             <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
@@ -474,7 +480,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="single_page_agile_its_w3ls">
                             <div class="bootstrap-tab-text-grids">
                                 <div class="bootstrap-tab-text-grid container1">
-                                    <iframe class="responsive-iframe" src="http://localhost:8080/review/${product.id}?pageIndex=1" width='1080' height='480'
+                                    <iframe class="responsive-iframe"
+                                            src="https://shop-management-intern.herokuapp.com/review/${product.id}?pageIndex=1" width='1080'
+                                            height='480'
                                             title="Review of another user">
                                     </iframe>
                                 </div>
@@ -518,162 +526,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="w3_agile_latest_arrivals">
             <h3 class="wthree_text_info">Featured <span>Arrivals</span></h3>
-            <%--      <div class="col-md-3 product-men single">--%>
-            <%--        <div class="men-pro-item simpleCart_shelfItem">--%>
-            <%--          <div class="men-thumb-item">--%>
-            <%--            <img src="/static/images/w2.jpg" alt="" class="pro-image-front">--%>
-            <%--            <img src="/static/images/w2.jpg" alt="" class="pro-image-back">--%>
-            <%--            <div class="men-cart-pro">--%>
-            <%--              <div class="inner-men-cart-pro">--%>
-            <%--                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-            <%--              </div>--%>
-            <%--            </div>--%>
-            <%--            <span class="product-new-top">New</span>--%>
-
-            <%--          </div>--%>
-            <%--          <div class="item-info-product ">--%>
-            <%--            <h4><a href="single.html">Sleeveless Solid Blue Top</a></h4>--%>
-            <%--            <div class="info-product-price">--%>
-            <%--              <span class="item_price">$140.99</span>--%>
-            <%--              <del>$189.71</del>--%>
-            <%--            </div>--%>
-            <%--            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-            <%--              <form action="#" method="post">--%>
-            <%--                <fieldset>--%>
-            <%--                  <input type="hidden" name="cmd" value="_cart">--%>
-            <%--                  <input type="hidden" name="add" value="1">--%>
-            <%--                  <input type="hidden" name="business" value=" ">--%>
-            <%--                  <input type="hidden" name="item_name" value="Sleeveless Solid Blue Top">--%>
-            <%--                  <input type="hidden" name="amount" value="30.99">--%>
-            <%--                  <input type="hidden" name="discount_amount" value="1.00">--%>
-            <%--                  <input type="hidden" name="currency_code" value="USD">--%>
-            <%--                  <input type="hidden" name="return" value=" ">--%>
-            <%--                  <input type="hidden" name="cancel_return" value=" ">--%>
-            <%--                  <input type="submit" name="submit" value="Add to cart" class="button">--%>
-            <%--                </fieldset>--%>
-            <%--              </form>--%>
-            <%--            </div>--%>
-
-            <%--          </div>--%>
-            <%--        </div>--%>
-            <%--      </div>--%>
-            <%--      <div class="col-md-3 product-men single">--%>
-            <%--        <div class="men-pro-item simpleCart_shelfItem">--%>
-            <%--          <div class="men-thumb-item">--%>
-            <%--            <img src="/static/images/w4.jpg" alt="" class="pro-image-front">--%>
-            <%--            <img src="/static/images/w4.jpg" alt="" class="pro-image-back">--%>
-            <%--            <div class="men-cart-pro">--%>
-            <%--              <div class="inner-men-cart-pro">--%>
-            <%--                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-            <%--              </div>--%>
-            <%--            </div>--%>
-            <%--            <span class="product-new-top">New</span>--%>
-
-            <%--          </div>--%>
-            <%--          <div class="item-info-product ">--%>
-            <%--            <h4><a href="single.html">Black Basic Shorts</a></h4>--%>
-            <%--            <div class="info-product-price">--%>
-            <%--              <span class="item_price">$120.99</span>--%>
-            <%--              <del>$189.71</del>--%>
-            <%--            </div>--%>
-            <%--            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-            <%--              <form action="#" method="post">--%>
-            <%--                <fieldset>--%>
-            <%--                  <input type="hidden" name="cmd" value="_cart">--%>
-            <%--                  <input type="hidden" name="add" value="1">--%>
-            <%--                  <input type="hidden" name="business" value=" ">--%>
-            <%--                  <input type="hidden" name="item_name" value="Black Basic Shorts">--%>
-            <%--                  <input type="hidden" name="amount" value="30.99">--%>
-            <%--                  <input type="hidden" name="discount_amount" value="1.00">--%>
-            <%--                  <input type="hidden" name="currency_code" value="USD">--%>
-            <%--                  <input type="hidden" name="return" value=" ">--%>
-            <%--                  <input type="hidden" name="cancel_return" value=" ">--%>
-            <%--                  <input type="submit" name="submit" value="Add to cart" class="button">--%>
-            <%--                </fieldset>--%>
-            <%--              </form>--%>
-            <%--            </div>--%>
-
-            <%--          </div>--%>
-            <%--        </div>--%>
-            <%--      </div>--%>
-            <%--      <div class="col-md-3 product-men single">--%>
-            <%--        <div class="men-pro-item simpleCart_shelfItem">--%>
-            <%--          <div class="men-thumb-item">--%>
-            <%--            <img src="/static/images/s6.jpg" alt="" class="pro-image-front">--%>
-            <%--            <img src="/static/images/s6.jpg" alt="" class="pro-image-back">--%>
-            <%--            <div class="men-cart-pro">--%>
-            <%--              <div class="inner-men-cart-pro">--%>
-            <%--                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-            <%--              </div>--%>
-            <%--            </div>--%>
-            <%--            <span class="product-new-top">New</span>--%>
-
-            <%--          </div>--%>
-            <%--          <div class="item-info-product ">--%>
-            <%--            <h4><a href="single.html">Aero Canvas Loafers  </a></h4>--%>
-            <%--            <div class="info-product-price">--%>
-            <%--              <span class="item_price">$120.99</span>--%>
-            <%--              <del>$199.71</del>--%>
-            <%--            </div>--%>
-            <%--            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-            <%--              <form action="#" method="post">--%>
-            <%--                <fieldset>--%>
-            <%--                  <input type="hidden" name="cmd" value="_cart">--%>
-            <%--                  <input type="hidden" name="add" value="1">--%>
-            <%--                  <input type="hidden" name="business" value=" ">--%>
-            <%--                  <input type="hidden" name="item_name" value="Aero Canvas Loafers">--%>
-            <%--                  <input type="hidden" name="amount" value="30.99">--%>
-            <%--                  <input type="hidden" name="discount_amount" value="1.00">--%>
-            <%--                  <input type="hidden" name="currency_code" value="USD">--%>
-            <%--                  <input type="hidden" name="return" value=" ">--%>
-            <%--                  <input type="hidden" name="cancel_return" value=" ">--%>
-            <%--                  <input type="submit" name="submit" value="Add to cart" class="button">--%>
-            <%--                </fieldset>--%>
-            <%--              </form>--%>
-            <%--            </div>--%>
-
-            <%--          </div>--%>
-            <%--        </div>--%>
-            <%--      </div>--%>
-            <%--      <div class="col-md-3 product-men single">--%>
-            <%--        <div class="men-pro-item simpleCart_shelfItem">--%>
-            <%--          <div class="men-thumb-item">--%>
-            <%--            <img src="/static/images/w7.jpg" alt="" class="pro-image-front">--%>
-            <%--            <img src="/static/images/w7.jpg" alt="" class="pro-image-back">--%>
-            <%--            <div class="men-cart-pro">--%>
-            <%--              <div class="inner-men-cart-pro">--%>
-            <%--                <a href="single.html" class="link-product-add-cart">Quick View</a>--%>
-            <%--              </div>--%>
-            <%--            </div>--%>
-            <%--            <span class="product-new-top">New</span>--%>
-
-            <%--          </div>--%>
-            <%--          <div class="item-info-product ">--%>
-            <%--            <h4><a href="single.html">Ankle Length Socks</a></h4>--%>
-            <%--            <div class="info-product-price">--%>
-            <%--              <span class="item_price">$100.99</span>--%>
-            <%--              <del>$159.71</del>--%>
-            <%--            </div>--%>
-            <%--            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">--%>
-            <%--              <form action="#" method="post">--%>
-            <%--                <fieldset>--%>
-            <%--                  <input type="hidden" name="cmd" value="_cart">--%>
-            <%--                  <input type="hidden" name="add" value="1">--%>
-            <%--                  <input type="hidden" name="business" value=" ">--%>
-            <%--                  <input type="hidden" name="item_name" value="Ankle Length Socks">--%>
-            <%--                  <input type="hidden" name="amount" value="30.99">--%>
-            <%--                  <input type="hidden" name="discount_amount" value="1.00">--%>
-            <%--                  <input type="hidden" name="currency_code" value="USD">--%>
-            <%--                  <input type="hidden" name="return" value=" ">--%>
-            <%--                  <input type="hidden" name="cancel_return" value=" ">--%>
-            <%--                  <input type="submit" name="submit" value="Add to cart" class="button">--%>
-            <%--                </fieldset>--%>
-            <%--              </form>--%>
-            <%--            </div>--%>
-
-            <%--          </div>--%>
-            <%--        </div>--%>
-            <%--      </div>--%>
             <div class="clearfix"></div>
             <!--//slider_owl-->
         </div>
@@ -849,77 +701,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!-- //footer -->
-
-<!-- login -->
-<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body modal-spa">
-                <div class="login-grids">
-                    <div class="login">
-                        <div class="login-bottom">
-                            <h3>Sign up for free</h3>
-                            <form>
-                                <div class="sign-up">
-                                    <h4>Email :</h4>
-                                    <input type="text" value="Type here" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Type here';}" required="">
-                                </div>
-                                <div class="sign-up">
-                                    <h4>Password :</h4>
-                                    <input type="password" value="Password" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Password';}" required="">
-
-                                </div>
-                                <div class="sign-up">
-                                    <h4>Re-type Password :</h4>
-                                    <input type="password" value="Password" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Password';}" required="">
-
-                                </div>
-                                <div class="sign-up">
-                                    <input type="submit" value="REGISTER NOW">
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="login-right">
-                            <h3>Sign in with your account</h3>
-                            <form>
-                                <div class="sign-in">
-                                    <h4>Email :</h4>
-                                    <input type="text" value="Type here" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Type here';}" required="">
-                                </div>
-                                <div class="sign-in">
-                                    <h4>Password :</h4>
-                                    <input type="password" value="Password" onfocus="this.value = '';"
-                                           onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                                    <a href="#">Forgot password?</a>
-                                </div>
-                                <div class="single-bottom">
-                                    <input type="checkbox" id="brand" value="">
-                                    <label for="brand"><span></span>Remember Me.</label>
-                                </div>
-                                <div class="sign-in">
-                                    <input type="submit" value="SIGNIN">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy
-                        Policy</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //login -->
 <!-- js -->
 <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
@@ -927,16 +708,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Custom-JavaScript-File-Links -->
 <!-- cart-js -->
 <script src="/static/js/minicart.min.js"></script>
-<script>
-    // Mini Cart
-    paypal.minicart.render({
-        action: '#'
-    });
-
-    if (~window.location.search.indexOf('reset=true')) {
-        paypal.minicart.reset();
-    }
-</script>
 
 <!-- //cart-js -->
 <!-- single -->
@@ -1010,6 +781,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- for bootstrap working -->
 <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+<script>
+    let Msg = "<%=session.getAttribute("ratePermitsMsg")%>";
+    console.log(Msg);
+    if (Msg !== "null") {
+        if (Msg === "Can rate") {
+            $(window).on('load', function () {
+                $('#myModal4').modal('toggle');
+                <%session.removeAttribute("ratePermitsMsg"); %>
+            });
+        } else
+            $(window).on('load', function () {
+                $('#myModal3').modal('toggle');
+                <%session.removeAttribute("ratePermitsMsg"); %>
+            });
+    }
+</script>
 </body>
 </html>
 
