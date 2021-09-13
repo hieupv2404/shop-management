@@ -150,7 +150,7 @@
         var year = parseInt(datepicker.slice(datepicker.length-4,datepicker.length));
         var dateNow = new Date();
         if (year > dateNow.getFullYear()) {
-          document.getElementById("erroMessage").innerHTML ="Error";
+          document.getElementById("erroMessage").innerHTML ="Invalid date of birth";
         } else {
             document.getElementById("erroMessage").innerHTML = "";
             document.getElementById("formDate").submit();
