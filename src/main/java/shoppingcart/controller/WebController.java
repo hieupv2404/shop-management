@@ -124,8 +124,7 @@ public class WebController {
                           @RequestParam(name = "amount") Integer amount,
                           HttpServletRequest httpServletRequest, HttpSession session) {
         Product product = productService.findById(productId).get();
-        User user = userService.findById(userId).get();
-        Item item = new Item(user,product,amount);
+        Item item = new Item(product,amount);
         HashMap<Integer, Item> cart = null;
         if (session.getAttribute("cart") == null) {
             cart = new HashMap<>();
@@ -137,6 +136,7 @@ public class WebController {
         } else {
             cart.put(productId, item);
         }
+        session.setAttribute("userId",userId);
         session.setAttribute("cart", cart);
 //        return "homeAfterSignIn";
         return "redirect:" + httpServletRequest.getHeader("Referer");
