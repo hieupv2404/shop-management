@@ -354,7 +354,7 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                 <!--REVIEW ORDER-->
                 <div class="panel panel-info">
-                    <div class="panel-heading"><h4 style="color: white">product information</h4></div>
+                    <div class="panel-heading"><h4 style="color: white">Product information</h4></div>
                     <div class="panel-body">
                         <c:forEach items="${listOrderDetail}" var="orderDetail">
                             <div class="form-group">

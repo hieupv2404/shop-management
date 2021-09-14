@@ -141,7 +141,8 @@
                         <td>
                             <div class="d-flex flex-row align-items-center">
                                 <div>
-                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-front"  width="50" height="50" alt="" id="image">
+                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-front" width="50"
+                                         height="50" alt="" id="image">
                                 </div>
                                 <div class="d-flex flex-column pl-md-3 pl-1">
                                     <div>
@@ -159,8 +160,9 @@
                         </td>
                         <td>${item.value.product.price*item.value.quantity}</td>
                         <td>
-<%--                            <a href="/deleteCart?productId=${item.value.product.id}" class="close">&times;</a>--%>
-                            <a href="/deleteCart?productId=${item.value.product.id}" onclick="return confirm('Are you sure you want to delete this item?');">x</a>
+                                <%--                            <a href="/deleteCart?productId=${item.value.product.id}" class="close">&times;</a>--%>
+                            <a href="/deleteCart?productId=${item.value.product.id}"
+                               onclick="return confirm('Are you sure you want to delete this item?');">x</a>
 
                         </td>
                     </tr>
@@ -176,7 +178,13 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div><a href="/">
                     <button class="btn btn-sm bg-light border border-dark">GO BACK</button>
-                    <a href="/clearCart"><button class="btn btn-sm bg-light border border-dark" style="width: 75px" onclick="return confirm('Are you sure you want to delete this item?');">CLEAR</button></a>
+                        <c:if test="${totalCart > 0}">
+                            <a href="/clearCart">
+                                <button class="btn btn-sm bg-light border border-dark" style="width: 75px"
+                                        onclick="return confirm('Are you sure you want to delete all products?');">CLEAR
+                                </button>
+                            </a>
+                        </c:if>
                 </a></div>
                 <div class="px-md-0 px-1" id="footer-font"><b class="pl-md-4">SUBTOTAL:<span
                         class="pl-md-4">${totalCart}$</span></b></div>

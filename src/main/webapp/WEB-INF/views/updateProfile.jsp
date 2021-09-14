@@ -71,7 +71,7 @@
 </head>
 <body>
 
-<form:form action="/user/update/profile.htm" modelAttribute="userUpdate" method="post">
+<form:form action="/user/update/profile.htm" modelAttribute="userUpdate" method="post" id="formDate">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-5 border-right">
@@ -102,7 +102,8 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Birthday<h7 style="color: red">(*)</h7></label>
-                            <form:input type="text" path="birthday" class="form-control" id="datepicker" value="${userUpdate.getBirthday(1)}"/>
+                            <form:input type="text" path="birthday" class="form-control" id="datepicker"  value="${userUpdate.getBirthday(1)}"/>
+                            <p id="erroMessage" style="color:red;"> </p>
                             <p style="color:red;">${errorBirthday}</p>
                         </div>
                         <div class="col-md-12"><label class="labels">Sex<h7 style="color: red">(*)</h7></label>
@@ -130,7 +131,7 @@
                                aria-pressed="true">Back</a>
                         </div>
                         <div class="mt-5 text-center" style="margin: auto">
-                            <button style="width: 200px" class="btn btn-primary btn-lg active" type="submit">Save</button>
+                            <button style="width: 200px" class="btn btn-primary btn-lg active" type="button" onclick="submitForm()">Save</button>
                         </div>
                     </div>
                 </div>
@@ -143,11 +144,37 @@
 </form:form>
 </body>
 <script>
+
+    function submitForm(){
+        var datepicker = document.getElementById("datepicker").value;
+        var year = parseInt(datepicker.slice(datepicker.length-4,datepicker.length));
+        var dateNow = new Date();
+        if (year > dateNow.getFullYear()) {
+          document.getElementById("erroMessage").innerHTML ="Invalid date of birth";
+        } else {
+            document.getElementById("erroMessage").innerHTML = "";
+            document.getElementById("formDate").submit();
+        }
+    }
+
+    function test(){
+        var datepicker = document.getElementById("datepicker").value;
+        var year = parseInt(datepicker.slice(datepicker.length-4,datepicker.length));
+        var dateNow = new Date();
+        if (year > dateNow.getFullYear()) {
+            console.log("faild");
+        } else {
+            console.log("ok");
+        }
+    };
+
     $(function () {
         $("#datepicker").datepicker({
             autoclose: true,
             todayHighlight: true,
         });
     });
+
+
 </script>
 </html>

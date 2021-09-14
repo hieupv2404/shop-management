@@ -25,7 +25,7 @@ public class Order {
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;
 
-    private Boolean delivered;
+    private Boolean delivered=false;
     public Order() {
     }
 
