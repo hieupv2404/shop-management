@@ -163,7 +163,7 @@
         if (newPass == confirmPass) {
             document.getElementById("errorMessage").innerHTML = "";
         } else {
-            document.getElementById("errorMessage").innerHTML = "Mat khau khong khop. Vui long nhap lai!";
+            document.getElementById("errorMessage").innerHTML = "Password does not match please re-enter !";
         }
     }
 
