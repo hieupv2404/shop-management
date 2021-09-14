@@ -363,4 +363,9 @@ public class WebController {
         modelMap.addAttribute("productId", productId);
         return "review";
     }
+
+    @GetMapping("/management")
+    public String getAdminPage(){
+        return "admin/home";
+    }
 }
