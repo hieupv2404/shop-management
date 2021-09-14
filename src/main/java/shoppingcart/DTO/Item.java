@@ -4,25 +4,15 @@ import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
 
 public class Item {
-    private User user;
     private Product product;
     private Integer quantity;
 
-    public Item(User user, Product product, Integer quantity) {
-        this.user = user;
+    public Item(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }
 
     public Item() {
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Product getProduct() {
