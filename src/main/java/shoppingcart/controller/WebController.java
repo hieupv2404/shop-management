@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.HtmlUtils;
 import shoppingcart.DTO.Item;
 import shoppingcart.DTO.utils.ListUtils;
 import shoppingcart.entity.*;
@@ -81,7 +85,7 @@ public class WebController {
     }
 
     private Boolean isLogin(ModelMap modelMap, HttpSession httpSession) {
-        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ANONYMOUS]")) {
             modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
             if (httpSession.getAttribute("userId") != null) {
                 modelMap.addAttribute("userId", httpSession.getAttribute("userId"));
@@ -98,8 +102,10 @@ public class WebController {
             Iterable<Product> productIterable = productServiceImpl.getProductsByCategoryId(category.getId());
             modelMap.addAttribute(category.getName(), productIterable);
         });
-        if (isLogin(modelMap, httpSession))
+        if (isLogin(modelMap, httpSession)&&!SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
             return "homeAfterSignIn";
+        if (isLogin(modelMap, httpSession)&&SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
+            return "redirect:/admin/dashboard";
         setUpSignInAndSignUp(modelMap, httpSession);
         return "home";
     }
@@ -364,8 +370,14 @@ public class WebController {
         return "review";
     }
 
-    @GetMapping("/management")
-    public String getAdminPage(){
-        return "admin/home";
+    @GetMapping("/chat")
+    public String getChat(){
+        return "chat";
+    }
+
+    @MessageMapping("/say/{Ip}")
+    @SendTo("/topic/chat")
+    public Greeting say(HelloMessage helloMessage,@DestinationVariable String Ip) throws Exception {
+        return new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
     }
 }
