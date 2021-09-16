@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +22,14 @@ public class AdminController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/dashboard")
-    public String getAdminPage(){
+    @GetMapping("/get/dashboard")
+    public String getAdminPage(HttpServletRequest httpServletRequest, HttpSession httpSession) {
+        httpSession.setAttribute("id", httpServletRequest.getSession().getId());
         return "admin/home";
     }
 
     @GetMapping("/get/chat")
-    public String getChatApp(){
-        return "admin/home";
+    public String getChatApp() {
+        return "admin/chat";
     }
 }

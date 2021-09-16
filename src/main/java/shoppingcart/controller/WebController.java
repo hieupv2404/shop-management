@@ -105,7 +105,7 @@ public class WebController {
         if (isLogin(modelMap, httpSession)&&!SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
             return "homeAfterSignIn";
         if (isLogin(modelMap, httpSession)&&SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
-            return "redirect:/admin/dashboard";
+            return "redirect:/admin/get/dashboard";
         setUpSignInAndSignUp(modelMap, httpSession);
         return "home";
     }
@@ -376,9 +376,10 @@ public class WebController {
         return "chat";
     }
 
-    @MessageMapping("/say/{Ip}")
-    @SendTo("/topic/chat")
-    public Greeting say(HelloMessage helloMessage,@DestinationVariable String Ip) throws Exception {
+    @MessageMapping("/say/{sessionId}")
+    @SendTo("/topic/chat/{sessionId}")
+    public Greeting say(HelloMessage helloMessage,@DestinationVariable String sessionId) throws Exception {
+        System.out.println("ws");
         return new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
     }
 }

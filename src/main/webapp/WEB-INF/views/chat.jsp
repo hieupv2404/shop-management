@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" isELIgnored="false"%>
+         pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -36,12 +36,13 @@
         }
 
         function connect() {
-            var socket = new SockJS('/ws');
+            let socket = new SockJS('/ws');
+            let href = "/topic/chat/" + "<%=session.getAttribute("id")%>";
             stompClient = Stomp.over(socket);
-            stompClient.connect({}, function(frame) {
+            stompClient.connect({}, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/chat', function(greeting) {
+                stompClient.subscribe(href, function (greeting) {
                     showGreeting(JSON.parse(greeting.body).name);
                 });
             });
@@ -56,8 +57,10 @@
         }
 
         function sendName() {
-            stompClient.send("/app/say", {}, JSON.stringify({
-                'name' : $("#name").val()
+            let href = "/app/say/" + "<%=session.getAttribute("id")%>";
+            console.log(href);
+            stompClient.send(href, {}, JSON.stringify({
+                'name': $("#name").val()
             }));
         }
 
@@ -65,21 +68,21 @@
             $("#greetings").append("<tr><td>" + message + "</td></tr>");
         }
 
-        $(function() {
+        $(function () {
 
-            $("form").on('submit', function(e) {
+            $("form").on('submit', function (e) {
                 e.preventDefault();
             });
 
-            $("#connect").click(function() {
+            $("#connect").click(function () {
                 connect();
             });
 
-            $("#disconnect").click(function() {
+            $("#disconnect").click(function () {
                 disconnect();
             });
 
-            $("#send").click(function() {
+            $("#send").click(function () {
                 sendName();
             });
 
@@ -96,7 +99,8 @@
                     <label for="connect">WebSocket connection:</label>
                     <button id="connect" class="btn btn-default" type="submit">Connect</button>
                     <button id="disconnect" class="btn btn-default" type="submit"
-                            disabled="disabled">Disconnect</button>
+                            disabled="disabled">Disconnect
+                    </button>
                 </div>
             </form>
         </div>
