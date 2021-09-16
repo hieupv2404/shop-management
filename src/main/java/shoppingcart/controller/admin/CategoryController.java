@@ -21,7 +21,7 @@ public class CategoryController {
 
     @GetMapping("/getAll")
     public ModelAndView getAllCategory() {
-        ModelAndView mav = new ModelAndView("admin/category/listCategory");
+        ModelAndView mav = new ModelAndView("admin/category/show");
         Iterable<Category> listCategory = categoryService.findAll();
         mav.addObject("listCategory", listCategory);
         return mav;
@@ -45,20 +45,20 @@ public class CategoryController {
     public ModelAndView initUpdateCategory(@RequestParam(name = "id") Integer id) {
         ModelAndView mav = new ModelAndView("admin/category/update");
         Optional<Category> categoryUpdate = categoryService.findById(id);
-        mav.addObject("categoryUpdate",categoryUpdate);
+        mav.addObject("categoryUpdate",categoryUpdate.get());
         return mav;
     }
 
-    @PostMapping("/updateCategory")
-    public String updateCategory(@ModelAttribute(name = "updateCategory") Category updateCategory) {
-        Category category = categoryService.updateCategory(updateCategory.getId(),updateCategory);
+    @PostMapping("/updateCategoryPost")
+    public String updateCategory(Category category) {
+        categoryService.save(category);
         return "redirect:getAll";
     }
 
     @GetMapping("/deleteCategory")
     public String deleteCategory(Integer id){
         categoryService.remove(id);
-        return "redirect:getAll";
+        return "redirect:/admin/categories/getAll";
     }
 
 }
