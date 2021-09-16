@@ -35,15 +35,4 @@ public class CategoryImpl implements CategoryService {
         categoryRepository.deleteById(id);
     }
 
-    @Override
-    public Category updateCategory(Integer id, Category category) {
-        if (category != null) {
-            Category category1 = categoryRepository.getById(id);
-            if (category1 != null) {
-                category1.setName(category.getName());
-                return categoryRepository.save(category1);
-            }
-        }
-        return null;
-    }
 }

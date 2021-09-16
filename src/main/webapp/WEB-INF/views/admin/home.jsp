@@ -51,6 +51,36 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>Category</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="/admin/categories/addCategory">Create Category</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="/admin/categories/getAll">List Category</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>product</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="/admin/products/addProduct">Create Product</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="/admin/products/getAll">List Product</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-item  ">
                         <a href="/admin/get/chat" class='sidebar-link'>
                             <i class="bi bi-chat-dots-fill"></i>

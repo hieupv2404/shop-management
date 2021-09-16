@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -52,7 +53,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item active   has-sub">
+                    <li class="sidebar-item    has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Category</span>
@@ -67,10 +68,10 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-item  has-sub">
+                    <li class="sidebar-item active has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
-                            <span>Product</span>
+                            <span>product</span>
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
@@ -124,36 +125,87 @@
                     </div>
                 </div>
             </div>
+<%--            <section class="section">--%>
+<%--                <div class="card">--%>
+<%--                    <div class="card-header">--%>
+<%--                        Simple Datatable--%>
+<%--                    </div>--%>
+<%--                    <div class="card-body">--%>
+<%--                        <form:form action="addProduct" modelAttribute="product">--%>
+<%--                            <table class="table table-striped" id="table1">--%>
+<%--                                <thead>--%>
+<%--                                <tr>--%>
+<%--                                    <th>Id</th>--%>
+<%--                                    <th>Name</th>--%>
+<%--                                    <th>Price</th>--%>
+<%--                                    <th>Images</th>--%>
+<%--                                    <th>Category</th>--%>
+<%--                                    <th>Function</th>--%>
+<%--                                </tr>--%>
+<%--                                </thead>--%>
+<%--                                <tbody>--%>
+<%--                                <tr>--%>
+<%--                                    <td><form:input path="id" cssStyle="width: 150px"></form:input></td>--%>
+<%--                                    <td><form:input path="name" cssStyle="width: 150px"></form:input></td>--%>
+<%--                                    <td><form:input path="price" cssStyle="width: 150px"></form:input></td>--%>
+<%--                                    <td><form:input path="" cssStyle="width: 150px"></form:input></td>--%>
+<%--                                    <td>--%>
+<%--                                        <select class="form-select" id="basicSelect" name="category">--%>
+<%--                                            <c:forEach items="${listCategory}" var="category">--%>
+<%--                                                <option value="${category.id}">${category.name}</option>--%>
+<%--                                            </c:forEach>--%>
+<%--                                        </select>--%>
+<%--                                    </td>--%>
+<%--                                    <td colspan="2"><input type="submit" value="Create"></td>--%>
+<%--                                </tr>--%>
+<%--                                </tbody>--%>
+<%--                            </table>--%>
+<%--                        </form:form>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </section>--%>
+
             <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        Simple Datatable
+                        <h4 class="card-title">Basic Inputs</h4>
                     </div>
+                    <form:form action="addProduct" modelAttribute="product">
                     <div class="card-body">
-                        <table class="table table-striped" id="table1">
-                            <thead>
-                            <tr>
-                                <th>Id Category</th>
-                                <th>Name Category</th>
-                                <th style="text-align: center">Function</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${listCategory}" var="category">
-                                <tr >
-                                    <td>${category.id}</td>
-                                    <td>${category.name}</td>
-                                    <td style="text-align: center">
-                                        <a href="/admin/categories/updateCategory/?id=${category.id}" class="btn  btn-success">Update</a>
-                                        <a href="/admin/categories/deleteCategory/?id=${category.id}" class="btn  btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="basicInput">Name</label>
+                                    <td><form:input path="name" class="form-control" id="basicInput"></form:input></td>
+                                </div>
+                                <div class="form-group">
+                                    <label for="helpInputTop">Price</label>
+                                    <td><form:input path="price" class="form-control" id="helpInputTop"></form:input></td>
+                                </div>
+                                <div class="form-group">
+                                    <label for="helpInputTop">RateAverage</label>
+                                    <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formFile">Images</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="basicSelect">Category</label>
+                                    <select class="form-select" id="basicSelect" name="category"  multiple>
+                                        <c:forEach items="${listCategory}" var="category">
+                                            <option value="${category.id}">${category.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <td colspan="3"><input type="submit" value="Create"></td>
+                            </div>
+                        </div>
+                        </form:form>
                     </div>
                 </div>
-
             </section>
         </div>
 

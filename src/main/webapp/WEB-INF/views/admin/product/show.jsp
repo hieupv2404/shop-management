@@ -52,7 +52,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item active   has-sub">
+                    <li class="sidebar-item    has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Category</span>
@@ -67,7 +67,7 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-item  has-sub">
+                    <li class="sidebar-item active has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Product</span>
@@ -133,19 +133,27 @@
                         <table class="table table-striped" id="table1">
                             <thead>
                             <tr>
-                                <th>Id Category</th>
-                                <th>Name Category</th>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Rate</th>
+                                <th>Images</th>
+                                <th>Category</th>
                                 <th style="text-align: center">Function</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${listCategory}" var="category">
-                                <tr >
-                                    <td>${category.id}</td>
-                                    <td>${category.name}</td>
+                            <c:forEach items="${listProduct}" var="product">
+                                <tr>
+                                    <td>${product.id}</td>
+                                    <td>${product.name}</td>
+                                    <td>${product.price}</td>
+                                    <td>${product.rateAverage}</td>
+                                    <td>${product.price}</td>
+                                    <td>${product.price}</td>
                                     <td style="text-align: center">
-                                        <a href="/admin/categories/updateCategory/?id=${category.id}" class="btn  btn-success">Update</a>
-                                        <a href="/admin/categories/deleteCategory/?id=${category.id}" class="btn  btn-danger">Delete</a>
+                                        <a href="/admin/products/updateProduct/?id=${product.id}" class="btn  btn-success">Update</a>
+                                        <a href="/admin/products/deleteProduct/?id=${product.id}" class="btn  btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>
