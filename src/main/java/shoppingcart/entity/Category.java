@@ -13,7 +13,7 @@ public class Category {
     Integer id;
     @Column(unique = true,nullable = false)
     String name;
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name = "category_product",
             joinColumns = @JoinColumn(name = "category_id"),
