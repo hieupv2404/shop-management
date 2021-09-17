@@ -134,15 +134,16 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                 <tr>
-                                    <th>Id Category</th>
                                     <th>Name Category</th>
                                     <th>Function</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><form:input path="id"></form:input></td>
-                                    <td><form:input path="name"></form:input></td>
+                                    <td>
+                                        <form:input path="name"></form:input>
+                                        <form:errors path="name" cssClass="error" cssStyle="color: red"/>
+                                    </td>
                                     <td colspan="2"><input type="submit" value="Create"></td>
                                 </tr>
                                 </tbody>

@@ -3,6 +3,7 @@ package shoppingcart.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Entity
@@ -12,6 +13,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column(unique = true,nullable = false)
+    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý ]+$",
+            message = "Not contain special characters and numbers")
     String name;
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore

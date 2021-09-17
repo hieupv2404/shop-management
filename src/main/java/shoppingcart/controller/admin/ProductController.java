@@ -2,6 +2,7 @@ package shoppingcart.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.Category;
 import shoppingcart.entity.Product;
+import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.ProductRepository;
 import shoppingcart.service.CategoryService;
 import shoppingcart.service.ProductService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class ProductController {
     private CategoryService categoryService;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/getAll")
     public ModelAndView getAllCategory() {
@@ -48,18 +53,23 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    public String addProduct(Product product, @RequestParam(name = "category") List<Integer> categoryIds) {
-        System.out.println(categoryIds.get(0));
+    public String addProduct(@Valid Product product, BindingResult bindingResult,
+                             @RequestParam(name = "category") List<Integer> categoryIds) {
+        if (bindingResult.hasErrors()) {
+            return "admin/product/creat";
+        }
         List<Category> categoryList = new ArrayList<>();
         for (Integer cateId : categoryIds) {
             Category category = categoryService.findById(cateId).get();
             categoryList.add(category);
             System.out.println(cateId);
         }
-        product.setCategory(categoryList);
-        productRepository.saveAndFlush(product);
-//        productService.save(product);
-        return "redirect:getAll";
+        productService.save(product);
+        for (Category category : categoryList) {
+            category.getProductList().add(product);
+            categoryRepository.save(category);
+        }
+        return "redirect:/admin/products/getAll";
     }
 
 

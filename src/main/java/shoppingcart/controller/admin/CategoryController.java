@@ -3,12 +3,14 @@ package shoppingcart.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.Category;
 import shoppingcart.entity.User;
 import shoppingcart.service.CategoryService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +38,10 @@ public class CategoryController {
     }
 
     @PostMapping("/addCategory")
-    public String addCategory(Category category) {
+    public String addCategory(@Valid Category category, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "admin/category/creat";
+        }
         categoryService.save(category);
         return "redirect:getAll";
     }

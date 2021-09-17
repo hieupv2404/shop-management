@@ -176,7 +176,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="basicInput">Name</label>
-                                    <td><form:input path="name" class="form-control" id="basicInput"></form:input></td>
+                                    <td>
+                                        <form:input path="name" class="form-control" id="basicInput"></form:input>
+                                        <form:errors path="name" cssClass="error" cssStyle="color: red"/>
+                                    </td>
                                 </div>
                                 <div class="form-group">
                                     <label for="helpInputTop">Price</label>
