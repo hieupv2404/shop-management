@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.HashSet;
@@ -102,9 +103,9 @@ public class WebController {
             Iterable<Product> productIterable = productServiceImpl.getProductsByCategoryId(category.getId());
             modelMap.addAttribute(category.getName(), productIterable);
         });
-        if (isLogin(modelMap, httpSession)&&!SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
+        if (isLogin(modelMap, httpSession) && !SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
             return "homeAfterSignIn";
-        if (isLogin(modelMap, httpSession)&&SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
+        if (isLogin(modelMap, httpSession) && SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
             return "redirect:/admin/get/dashboard";
         setUpSignInAndSignUp(modelMap, httpSession);
         return "home";
@@ -130,7 +131,7 @@ public class WebController {
                           @RequestParam(name = "amount") Integer amount,
                           HttpServletRequest httpServletRequest, HttpSession session) {
         Product product = productService.findById(productId).get();
-        Item item = new Item(product,amount);
+        Item item = new Item(product, amount);
         HashMap<Integer, Item> cart = null;
         if (session.getAttribute("cart") == null) {
             cart = new HashMap<>();
@@ -142,7 +143,7 @@ public class WebController {
         } else {
             cart.put(productId, item);
         }
-        session.setAttribute("userId",userId);
+        session.setAttribute("userId", userId);
         session.setAttribute("cart", cart);
 //        return "homeAfterSignIn";
         return "redirect:" + httpServletRequest.getHeader("Referer");
@@ -240,8 +241,8 @@ public class WebController {
             return "errorPage";
         }
         if (isLogin(modelMap, httpSession)) {
-            if (httpSession.getAttribute("ratePermitsMsg")!=null){
-                modelMap.addAttribute("ratePermitsMsg",httpSession.getAttribute("ratePermitsMsg"));
+            if (httpSession.getAttribute("ratePermitsMsg") != null) {
+                modelMap.addAttribute("ratePermitsMsg", httpSession.getAttribute("ratePermitsMsg"));
             }
             return "detailsProductAfterSignIn";
         }
@@ -252,7 +253,7 @@ public class WebController {
     @GetMapping("/search/product/{sort}")
     public String searchProduct(@PathVariable(name = "sort") String sort, @RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
         modelMap.addAttribute("keySearch", keySearch);
-        keySearch=keySearch.trim();
+        keySearch = keySearch.trim();
         if (pageIndex > 0 && size > 0) {
             Pageable pageable = PageRequest.of(pageIndex - 1, size);
             Page<Product> page;
@@ -372,14 +373,33 @@ public class WebController {
     }
 
     @GetMapping("/chat")
-    public String getChat(){
+    public String getChat(HttpSession httpSession, HttpServletRequest httpServletRequest) {
+        httpSession.setAttribute("sessionId", httpServletRequest.getSession().getId());
+        System.out.println(httpServletRequest.getSession().getId());
         return "chat";
     }
 
     @MessageMapping("/say/{sessionId}")
     @SendTo("/topic/chat/{sessionId}")
-    public Greeting say(HelloMessage helloMessage,@DestinationVariable String sessionId) throws Exception {
-        System.out.println("ws");
-        return new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+    public Greeting sayToClient(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
+        System.out.println("Say to Client " + sessionId);
+        Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+        greeting.setId(sessionId + "_admin_" + new Date());
+        greeting.setSender("admin");
+        greeting.setDate(new Date());
+        greeting.setSessionId(sessionId);
+        return greeting;
+    }
+
+    @MessageMapping("/say/admin/{sessionId}")
+    @SendTo({"/topic/chat/admin", "/topic/chat/{sessionId}"})
+    public Greeting sayToAdmin(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
+        System.out.println("Say to Admin");
+        Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+        greeting.setId(sessionId + "_" + new Date());
+        greeting.setSender("client");
+        greeting.setDate(new Date());
+        greeting.setSessionId(sessionId);
+        return greeting;
     }
 }

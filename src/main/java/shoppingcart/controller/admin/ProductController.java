@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.Category;
 import shoppingcart.entity.Product;
+import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.ProductRepository;
 import shoppingcart.service.CategoryService;
 import shoppingcart.service.ProductService;
@@ -25,13 +26,15 @@ public class ProductController {
     private CategoryService categoryService;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/getAll")
     public ModelAndView getAllCategory() {
         ModelAndView mav = new ModelAndView("admin/product/show");
         Iterable<Product> listProduct = productService.findAll();
         Iterable<Category> listCategory = categoryService.findAll();
-        mav.addObject("listCategory",listCategory);
+        mav.addObject("listCategory", listCategory);
         mav.addObject("listProduct", listProduct);
         return mav;
     }
@@ -49,16 +52,22 @@ public class ProductController {
 
     @PostMapping("/addProduct")
     public String addProduct(Product product, @RequestParam(name = "category") List<Integer> categoryIds) {
-        System.out.println(categoryIds.get(0));
         List<Category> categoryList = new ArrayList<>();
         for (Integer cateId : categoryIds) {
             Category category = categoryService.findById(cateId).get();
             categoryList.add(category);
-            System.out.println(cateId);
         }
-        product.setCategory(categoryList);
-        productRepository.saveAndFlush(product);
-//        productService.save(product);
+        //option 1:
+        productRepository.save(product);
+        Product product1 = productRepository.findByName(product.getName());
+        product1.setCategory(categoryList);
+        productRepository.save(product1);
+//        option 2:
+//        for (Category category : categoryList) {
+//            category.getProductList().add(product);
+//            categoryRepository.save(category);
+//        }
+
         return "redirect:getAll";
     }
 

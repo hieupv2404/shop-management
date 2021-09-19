@@ -37,13 +37,23 @@
 
         function connect() {
             let socket = new SockJS('/ws');
-            let href = "/topic/chat/" + "<%=session.getAttribute("id")%>";
+            let href = "/topic/chat/" + "<%=session.getAttribute("sessionId")%>";
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
                 stompClient.subscribe(href, function (greeting) {
-                    showGreeting(JSON.parse(greeting.body).name);
+                    if (sessionStorage.getItem("list")==null){
+                        let list=[JSON.parse(greeting.body).id.toString()];
+                        sessionStorage.setItem("list",JSON.stringify(list));
+                    }
+                    else {
+                        let list = JSON.parse(sessionStorage.getItem("list"));
+                        list.push(JSON.parse(greeting.body).id.toString());
+                        sessionStorage.setItem("list",JSON.stringify(list));
+                    }
+                    sessionStorage.setItem(JSON.parse(greeting.body).id, greeting.body);
+                    showGreeting(greeting.body);
                 });
             });
         }
@@ -57,7 +67,7 @@
         }
 
         function sendName() {
-            let href = "/app/say/" + "<%=session.getAttribute("id")%>";
+            let href = "/app/say/admin/"+ "<%=session.getAttribute("sessionId")%>";
             console.log(href);
             stompClient.send(href, {}, JSON.stringify({
                 'name': $("#name").val()
@@ -65,7 +75,7 @@
         }
 
         function showGreeting(message) {
-            $("#greetings").append("<tr><td>" + message + "</td></tr>");
+            $("#greetings").append("<tr><td>" + JSON.parse(message).name + "</td></tr>");
         }
 
         $(function () {

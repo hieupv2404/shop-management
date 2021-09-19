@@ -82,7 +82,7 @@
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="/admin/get/chat" class='sidebar-link'>
+                        <a href="/admin/get/chatBox" class='sidebar-link'>
                             <i class="bi bi-chat-dots-fill"></i>
                             <span>Chat Application</span>
                         </a>
