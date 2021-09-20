@@ -1214,6 +1214,29 @@
         // setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe(href, function (greeting) {
+            let nameList= JSON.parse(greeting.body).sessionId.toString();
+                if (sessionStorage.getItem("list")==null){
+                    let list=[JSON.parse(greeting.body).sessionId.toString()];
+                    sessionStorage.setItem("list",JSON.stringify(list));
+                    let chatList=[JSON.parse(greeting.body).id.toString()];
+                    sessionStorage.setItem(nameList,JSON.stringify(chatList));
+                }
+                else {
+                    let list = JSON.parse(sessionStorage.getItem("list"));
+                    if (!list.includes(JSON.parse(greeting.body).sessionId.toString())) {
+                        list.push(JSON.parse(greeting.body).sessionId.toString());
+                        sessionStorage.setItem("list", JSON.stringify(list));
+                        let chatList = [JSON.parse(greeting.body).id.toString()];
+                        sessionStorage.setItem(nameList, JSON.stringify(chatList));
+                    }
+                    else {
+                        let list = JSON.parse(sessionStorage.getItem(nameList));
+                        list.push(JSON.parse(greeting.body).id.toString());
+                        sessionStorage.setItem(nameList,JSON.stringify(list));
+                        document.getElementById(JSON.parse(greeting.body).sessionId.toString()).remove();
+                    }
+                }
+            sessionStorage.setItem(JSON.parse(greeting.body).id, greeting.body);
             showGreeting(greeting.body);
         });
     });
@@ -1227,9 +1250,10 @@
     }
 
     function showGreeting(message) {
+        let id=JSON.parse(message).sessionId;
         let href="/admin/get/chat?id="+JSON.parse(message).sessionId;
         $("#greetings").before("<a href="+href+" role='button'>"+
-            "<li class='media mail-read'>"+
+            "<li class='media mail-read' id="+ id +">"+
             "<div class='user-action'>"+
                 "<div class='checkbox-con me-3'>"+
                     "<div class='checkbox checkbox-shadow checkbox-sm'>"+
@@ -1299,6 +1323,15 @@
         }
     );
 </script>
+<script>
+    const array1 = JSON.parse(sessionStorage.getItem("list"));
 
+    for (const element of array1) {
+        const array2 = JSON.parse(sessionStorage.getItem(element));
+
+        console.log(array2[array2.length-1]);
+        showGreeting(sessionStorage.getItem(array2[array2.length-1]));
+    }
+</script>
 </html>
 

@@ -205,14 +205,14 @@
         // setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe(href, function (greeting) {
-            if (sessionStorage.getItem("list")==null){
-                let list=JSON.parse(greeting.body).id.toString();
-                sessionStorage.setItem("list",JSON.stringify(list));
+            if (sessionStorage.getItem("${id}")==null){
+                let list=[JSON.parse(greeting.body).id.toString()];
+                sessionStorage.setItem("${id}",JSON.stringify(list));
             }
             else {
-                let list = JSON.parse(sessionStorage.getItem("list"));
+                let list = JSON.parse(sessionStorage.getItem("${id}"));
                 list.push(JSON.parse(greeting.body).id.toString());
-                sessionStorage.setItem("list",JSON.stringify(list));
+                sessionStorage.setItem("${id}",JSON.stringify(list));
             }
             sessionStorage.setItem(JSON.parse(greeting.body).id, greeting.body);
             showGreeting(greeting.body);
@@ -269,7 +269,7 @@
     );
 </script>
 <script>
-    const array1 = JSON.parse(sessionStorage.getItem("list"));
+    const array1 = JSON.parse(sessionStorage.getItem("${id}"));
 
     for (const element of array1) {
         showGreeting(sessionStorage.getItem(element));
