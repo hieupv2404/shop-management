@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.HtmlUtils;
 import shoppingcart.DTO.Item;
 import shoppingcart.DTO.utils.ListUtils;
 import shoppingcart.entity.*;
@@ -29,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.HashSet;
@@ -81,7 +86,7 @@ public class WebController {
     }
 
     private Boolean isLogin(ModelMap modelMap, HttpSession httpSession) {
-        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ANONYMOUS]")) {
             modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
             if (httpSession.getAttribute("userId") != null) {
                 modelMap.addAttribute("userId", httpSession.getAttribute("userId"));
@@ -98,8 +103,10 @@ public class WebController {
             Iterable<Product> productIterable = productServiceImpl.getProductsByCategoryId(category.getId());
             modelMap.addAttribute(category.getName(), productIterable);
         });
-        if (isLogin(modelMap, httpSession))
+        if (isLogin(modelMap, httpSession) && !SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
             return "homeAfterSignIn";
+        if (isLogin(modelMap, httpSession) && SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
+            return "redirect:/admin/get/dashboard";
         setUpSignInAndSignUp(modelMap, httpSession);
         return "home";
     }
@@ -124,7 +131,7 @@ public class WebController {
                           @RequestParam(name = "amount") Integer amount,
                           HttpServletRequest httpServletRequest, HttpSession session) {
         Product product = productService.findById(productId).get();
-        Item item = new Item(product,amount);
+        Item item = new Item(product, amount);
         HashMap<Integer, Item> cart = null;
         if (session.getAttribute("cart") == null) {
             cart = new HashMap<>();
@@ -136,7 +143,7 @@ public class WebController {
         } else {
             cart.put(productId, item);
         }
-        session.setAttribute("userId",userId);
+        session.setAttribute("userId", userId);
         session.setAttribute("cart", cart);
 //        return "homeAfterSignIn";
         return "redirect:" + httpServletRequest.getHeader("Referer");
@@ -234,8 +241,8 @@ public class WebController {
             return "errorPage";
         }
         if (isLogin(modelMap, httpSession)) {
-            if (httpSession.getAttribute("ratePermitsMsg")!=null){
-                modelMap.addAttribute("ratePermitsMsg",httpSession.getAttribute("ratePermitsMsg"));
+            if (httpSession.getAttribute("ratePermitsMsg") != null) {
+                modelMap.addAttribute("ratePermitsMsg", httpSession.getAttribute("ratePermitsMsg"));
             }
             return "detailsProductAfterSignIn";
         }
@@ -246,7 +253,7 @@ public class WebController {
     @GetMapping("/search/product/{sort}")
     public String searchProduct(@PathVariable(name = "sort") String sort, @RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
         modelMap.addAttribute("keySearch", keySearch);
-        keySearch=keySearch.trim();
+        keySearch = keySearch.trim();
         if (pageIndex > 0 && size > 0) {
             Pageable pageable = PageRequest.of(pageIndex - 1, size);
             Page<Product> page;
@@ -363,5 +370,36 @@ public class WebController {
         modelMap.addAttribute("pageIndex", pageIndex);
         modelMap.addAttribute("productId", productId);
         return "review";
+    }
+
+    @GetMapping("/get/chat")
+    public String getChat(HttpSession httpSession, HttpServletRequest httpServletRequest) {
+        httpSession.setAttribute("sessionId", httpServletRequest.getSession().getId());
+        System.out.println(httpServletRequest.getSession().getId());
+        return "chat";
+    }
+
+    @MessageMapping("/say/{sessionId}")
+    @SendTo("/topic/chat/{sessionId}")
+    public Greeting sayToClient(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
+        System.out.println("Say to Client " + sessionId);
+        Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+        greeting.setId(sessionId + "_admin_" + new Date());
+        greeting.setSender("admin");
+        greeting.setDate(new Date());
+        greeting.setSessionId(sessionId);
+        return greeting;
+    }
+
+    @MessageMapping("/say/admin/{sessionId}")
+    @SendTo({"/topic/chat/admin", "/topic/chat/{sessionId}"})
+    public Greeting sayToAdmin(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
+        System.out.println("Say to Admin");
+        Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+        greeting.setId(sessionId + "_" + new Date());
+        greeting.setSender("client");
+        greeting.setDate(new Date());
+        greeting.setSessionId(sessionId);
+        return greeting;
     }
 }
