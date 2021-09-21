@@ -394,7 +394,7 @@ public class WebController {
     }
 
     @MessageMapping("/say/{sessionId}")
-    @SendTo("/topic/chat/{sessionId}")
+    @SendTo("/app/chat/{sessionId}")
     public Greeting sayToClient(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
         System.out.println("Say to Client " + sessionId);
         Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
@@ -406,7 +406,7 @@ public class WebController {
     }
 
     @MessageMapping("/say/admin/{sessionId}")
-    @SendTo({"/app/say/chat/admin", "/topic/chat/{sessionId}"})
+    @SendTo({"/app/say/chat/admin", "/app/chat/{sessionId}"})
     public Greeting sayToAdmin(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
         System.out.println("Say to Admin");
         Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
@@ -417,7 +417,7 @@ public class WebController {
         return greeting;
     }
 
-    @SubscribeMapping("/say/chat/admin")
+    @SubscribeMapping({"/say/chat/admin","/chat/{sessionId}"})
     @SendTo("/app/say/info")
     public  Greeting sendInfoOn() {
         adminActive=true;

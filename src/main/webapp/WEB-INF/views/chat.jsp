@@ -128,7 +128,7 @@
     }
 
     let socket = new SockJS('/ws');
-    let href = "/topic/chat/" + "<%=session.getAttribute("sessionId")%>";
+    let href = "/app/chat/" + "<%=session.getAttribute("sessionId")%>";
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         // setConnected(true);
