@@ -372,7 +372,7 @@ public class WebController {
         return "review";
     }
 
-    @GetMapping("/chat")
+    @GetMapping("/get/chat")
     public String getChat(HttpSession httpSession, HttpServletRequest httpServletRequest) {
         httpSession.setAttribute("sessionId", httpServletRequest.getSession().getId());
         System.out.println(httpServletRequest.getSession().getId());

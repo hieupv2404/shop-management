@@ -136,7 +136,7 @@
                                         <span class="avatar-status bg-success"></span>
                                     </div>
                                     <div class="name flex-grow-1">
-                                        <h6 class="mb-0">Fred</h6>
+                                        <h6 class="mb-0">${id}</h6>
                                         <span class="text-xs">Online</span>
                                     </div>
                                     <button class="btn btn-sm">

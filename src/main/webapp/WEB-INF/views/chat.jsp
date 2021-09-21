@@ -34,11 +34,6 @@
 <body>
 <div id="app">
     <div id="main">
-        <header class="mb-3">
-            <a href="#" class="burger-btn d-block d-xl-none">
-                <i class="bi bi-justify fs-3"></i>
-            </a>
-        </header>
 
         <div class="page-heading">
             <div class="page-title">
@@ -68,7 +63,7 @@
                                         <span class="avatar-status bg-success"></span>
                                     </div>
                                     <div class="name flex-grow-1">
-                                        <h6 class="mb-0">Fred</h6>
+                                        <h6 class="mb-0">Admin</h6>
                                         <span class="text-xs">Online</span>
                                     </div>
                                     <button class="btn btn-sm">
@@ -163,7 +158,7 @@
     }
 
     function showGreeting(message) {
-        if (JSON.parse(message).sender == "client") {
+        if (JSON.parse(message).sender == "admin") {
             $("#greetings").append("<div class='chat chat-left'>" +
                 "<div class='chat-body'>" +
                 "<div class='chat-message'>" + JSON.parse(message).name + "</div>" +

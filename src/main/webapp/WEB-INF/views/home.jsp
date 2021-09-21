@@ -205,14 +205,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </ul>
                             </li>
-                            <li class="menu__item dropdown">
-                                <a class="menu__link dropdown-toggle" href="#" data-toggle="dropdown">Short
-                                    Codes <b class="caret"></b></a>
-                                <ul class="dropdown-menu agile_short_dropdown">
-                                    <li><a href="icons.html">Web Icons</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                </ul>
-                            </li>
+<%--                            <li class="menu__item dropdown">--%>
+<%--                                <a class="menu__link dropdown-toggle" href="#" data-toggle="dropdown">Short--%>
+<%--                                    Codes <b class="caret"></b></a>--%>
+<%--                                <ul class="dropdown-menu agile_short_dropdown">--%>
+<%--                                    <li><a href="icons.html">Web Icons</a></li>--%>
+<%--                                    <li><a href="typography.html">Typography</a></li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+                            <li class=" menu__item "><a class="menu__link" href="/get/chat">Chat with us</a></li>
                             <li class=" menu__item "><a class="menu__link" href="contact.html">Contact</a></li>
                         </ul>
                     </div>
