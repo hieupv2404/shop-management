@@ -137,7 +137,7 @@
                             <div class="email-app-menu">
                                 <div class="form-group form-group-compose">
                                     <!-- compose button  -->
-                                    <button type="button" class="btn btn-primary btn-block my-4 compose-btn">
+                                    <button type="button" class="btn btn-primary btn-block my-4 compose-btn" id="disconnect">
                                         <i class="bx bx-plus"></i>
                                         Compose
                                     </button>
@@ -1208,7 +1208,7 @@
     }
 
     let socket = new SockJS('/ws');
-    let href = "/topic/chat/admin";
+    let href = "/app/say/chat/admin";
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         // setConnected(true);
@@ -1240,6 +1240,15 @@
             showGreeting(greeting.body);
         });
     });
+
+    function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+                stompClient.unsubscribe();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+        }
 
     function sendName() {
         let href = "/app/say/" + "<%=session.getAttribute("id")%>";
