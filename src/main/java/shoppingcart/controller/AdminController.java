@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class AdminController {
     @Autowired
     UserRepository userRepository;
-
+public static String adminSession;
     @GetMapping("/get/dashboard")
     public String getAdminPage(HttpServletRequest httpServletRequest, HttpSession httpSession) {
         httpSession.setAttribute("id", httpServletRequest.getSession().getId());
@@ -24,7 +24,8 @@ public class AdminController {
     }
 
     @GetMapping("/get/chatBox")
-    public String getChatApp() {
+    public String getChatApp(HttpServletRequest httpServletRequest) {
+        adminSession= httpServletRequest.getSession().getId();
         return "admin/chatBox";
     }
 

@@ -82,6 +82,13 @@
                     </li>
 
                     <li class="sidebar-item  ">
+                        <a href="/admin/get/users" class='sidebar-link'>
+                            <i class="bi-person-lines-fill"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item  ">
                         <a href="/admin/get/chatBox" class='sidebar-link'>
                             <i class="bi bi-chat-dots-fill"></i>
                             <span>Chat Application</span>
