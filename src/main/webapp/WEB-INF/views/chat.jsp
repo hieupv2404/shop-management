@@ -60,11 +60,11 @@
                                 <div class="media d-flex align-items-center">
                                     <div class="avatar me-3">
                                         <img src="/static/assets/images/faces/1.jpg" alt="" srcset="">
-                                        <span class="avatar-status bg-success"></span>
+                                        <span class="avatar-status ${bg}" id="bg"></span>
                                     </div>
                                     <div class="name flex-grow-1">
-                                        <h6 class="mb-0">Admin</h6>
-                                        <span class="text-xs">Online</span>
+                                        <h6 class="mb-0 ">Admin</h6>
+                                        <span class="text-xs" id="line">${line}</span>
                                     </div>
                                     <button class="btn btn-sm">
                                         <i data-feather="x"></i>
@@ -148,6 +148,29 @@
             objDiv.scrollTop = objDiv.scrollHeight;
         });
     });
+    let socket1 = new SockJS('/ws');
+    stompClient1 = Stomp.over(socket1);
+    stompClient1.connect({}, function (frame) {
+        // setConnected(true);
+        console.log('Connected: ' + frame);
+        stompClient1.subscribe("/app/say/info", function (greeting) {
+            showInfo(greeting.body);
+        });
+    });
+
+    function showInfo(message) {
+        if (JSON.parse(message).name=="online"){
+            console.log("avc");
+            document.getElementById("bg").classList.add('bg-success');
+            document.getElementById("bg").classList.remove('bg-secondary');
+            document.getElementById("line").textContent="Online";
+        }
+        else {
+            document.getElementById("bg").classList.add('bg-secondary');
+            document.getElementById("bg").classList.remove('bg-success');
+            document.getElementById("line").textContent="Offline";
+        }
+    }
 
     function sendName() {
         let href = "/app/say/admin/" + "<%=session.getAttribute("sessionId")%>";

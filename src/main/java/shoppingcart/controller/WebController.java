@@ -8,8 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -58,6 +61,8 @@ public class WebController {
     private OrderService orderService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private SimpMessageSendingOperations messagingTemplate;
 
     private void setUpSignInAndSignUp(ModelMap modelMap, HttpSession httpSession) {
         modelMap.addAttribute("user", new User());
@@ -372,10 +377,19 @@ public class WebController {
         return "review";
     }
 
+    public static boolean adminActive=false;
     @GetMapping("/get/chat")
-    public String getChat(HttpSession httpSession, HttpServletRequest httpServletRequest) {
+    public String getChat(HttpSession httpSession, HttpServletRequest httpServletRequest, ModelMap modelMap) {
         httpSession.setAttribute("sessionId", httpServletRequest.getSession().getId());
         System.out.println(httpServletRequest.getSession().getId());
+        if (!adminActive){
+            modelMap.addAttribute("bg","bg-secondary");
+            modelMap.addAttribute("line","Offline");
+        }
+        else {
+            modelMap.addAttribute("bg","bg-success");
+            modelMap.addAttribute("line","Online");
+        }
         return "chat";
     }
 
@@ -392,7 +406,7 @@ public class WebController {
     }
 
     @MessageMapping("/say/admin/{sessionId}")
-    @SendTo({"/topic/chat/admin", "/topic/chat/{sessionId}"})
+    @SendTo({"/app/say/chat/admin", "/topic/chat/{sessionId}"})
     public Greeting sayToAdmin(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
         System.out.println("Say to Admin");
         Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
@@ -402,4 +416,19 @@ public class WebController {
         greeting.setSessionId(sessionId);
         return greeting;
     }
+
+    @SubscribeMapping("/say/chat/admin")
+    @SendTo("/app/say/info")
+    public  Greeting sendInfoOn() {
+        adminActive=true;
+        return new Greeting("online");
+    }
+    @SubscribeMapping("app/say/info")
+    @SendTo("/app/say/info")
+    public  Greeting sendInfoOff() {
+        if (!adminActive)
+            return new Greeting("offline");
+        else return new Greeting("online");
+    }
+
 }
