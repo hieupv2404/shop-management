@@ -7,6 +7,7 @@ import shoppingcart.entity.User;
 import shoppingcart.repository.CategoryRepository;
 import shoppingcart.service.CategoryService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +34,17 @@ public class CategoryImpl implements CategoryService {
     @Override
     public void remove(Integer id) {
         categoryRepository.deleteById(id);
+    }
+
+    public boolean prepareArray(Category cate, List<Category> arrayOld) {
+        boolean check = true; // mac dinh check == true la chua co trong db
+        for (Category category : arrayOld) {
+            if (cate.getId() == category.getId()) { // neu ma co trong db roi thi tra ve false
+                check = false;
+                break;
+            }
+        }
+        return check;
     }
 
 }

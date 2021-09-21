@@ -56,9 +56,12 @@ public class CategoryController {
 
     @PostMapping("/updateCategoryPost")
     public String updateCategory(Category category) {
+        System.out.println(category.getId());
         categoryService.save(category);
         return "redirect:getAll";
     }
+
+
 
     @GetMapping("/deleteCategory")
     public String deleteCategory(Integer id){

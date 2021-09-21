@@ -131,27 +131,26 @@
                     </div>
                     <div class="card-body">
                         <form:form action="addCategory" modelAttribute="category">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                <tr>
-                                    <th>Name Category</th>
-                                    <th>Function</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <form:input path="name"></form:input>
-                                        <form:errors path="name" cssClass="error" cssStyle="color: red"/>
-                                    </td>
-                                    <td colspan="2"><input type="submit" value="Create"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </form:form>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Name</label>
+                                        <td>
+                                            <form:input path="name" class="form-control" id="basicInput"></form:input>
+                                            <form:errors path="name" cssClass="error" cssStyle="color: red"/>
+                                        </td>
+                                    </div>
+                                    <div class="form-group">
+                                        <td colspan="2"><input type="submit" class="btn btn-success" value="Create">
+                                        </td>
+                                    </div>
+                                </div>
+                            </div>
+                            </form:form>
+                        </div>
                     </div>
                 </div>
-
             </section>
         </div>
 

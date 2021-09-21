@@ -494,8 +494,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-front">
-                                    <img src="/static/images/m1.jpg" alt="" class="pro-image-back">
+                                    <img src="/static/images/${menpro.image}" alt="" class="pro-image-front">
+                                    <img src="/static/images/${menpro.image}" alt="" class="pro-image-back">
+                                    <img height="250px" width="100px" src="/static/images${menpro.image}"/>
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="/show/product?id=${menpro.id}" class="link-product-add-cart">Quick

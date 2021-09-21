@@ -170,7 +170,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Basic Inputs</h4>
                     </div>
-                    <form:form action="addProduct" modelAttribute="product">
+                    <form:form action="addProduct" modelAttribute="product" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -190,8 +190,11 @@
                                     <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>
                                 </div>
                                 <div class="form-group">
-                                    <label for="formFile">Images</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <label>Picture</label>
+                                    <input type="file" name="img" class="form-control" placeholder="Select Image">
+                                </div>
+                                <div class="form-group">
+                                    <td colspan="3"><input class="btn btn-success" type="submit" value="Create"></td>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -203,7 +206,6 @@
                                         </c:forEach>
                                     </select>
                                 </div>
-                                <td colspan="3"><input type="submit" value="Create"></td>
                             </div>
                         </div>
                         </form:form>

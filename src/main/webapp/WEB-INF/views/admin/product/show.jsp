@@ -149,13 +149,14 @@
                                     <td>${product.name}</td>
                                     <td>${product.price}</td>
                                     <td>${product.rateAverage}</td>
-                                    <td>${product.price}</td>
+                                    <td>
+                                        <img height="100px" width="100px" src="/static/images${product.image}"/>
+                                    </td>
                                     <td>
                                         <c:forEach items="${product.category}" var="cateItem">
                                             - ${cateItem.name} <br>
                                         </c:forEach>
                                     </td>
-                                    <td>${product.price}</td>
                                     <td style="text-align: center">
                                         <a href="/admin/products/updateProduct/?id=${product.id}"
                                            class="btn  btn-success">Update</a>
