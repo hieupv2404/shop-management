@@ -178,6 +178,7 @@
         stompClient.send(href, {}, JSON.stringify({
             'name': $("#name").val()
         }));
+        document.getElementById("name").value='';
     }
 
     function showGreeting(message) {
