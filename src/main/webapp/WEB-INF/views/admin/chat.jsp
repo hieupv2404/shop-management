@@ -199,22 +199,36 @@
     }
 
     let socket = new SockJS('/ws');
-    let href = "/app/chat/" + "${id}";
+    let href = "/app/say/chat/admin";
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         // setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe(href, function (greeting) {
-            if (sessionStorage.getItem("${id}")==null){
-                let list=[JSON.parse(greeting.body).id.toString()];
-                sessionStorage.setItem("${id}",JSON.stringify(list));
+            let nameList= JSON.parse(greeting.body).sessionId.toString();
+            if (sessionStorage.getItem("list")==null){
+                let list=[JSON.parse(greeting.body).sessionId.toString()];
+                sessionStorage.setItem("list",JSON.stringify(list));
+                let chatList=[JSON.parse(greeting.body).id.toString()];
+                sessionStorage.setItem(nameList,JSON.stringify(chatList));
             }
             else {
-                let list = JSON.parse(sessionStorage.getItem("${id}"));
-                list.push(JSON.parse(greeting.body).id.toString());
-                sessionStorage.setItem("${id}",JSON.stringify(list));
+                let list = JSON.parse(sessionStorage.getItem("list"));
+                if (!list.includes(JSON.parse(greeting.body).sessionId.toString())) {
+                    list.push(JSON.parse(greeting.body).sessionId.toString());
+                    sessionStorage.setItem("list", JSON.stringify(list));
+                    let chatList = [JSON.parse(greeting.body).id.toString()];
+                    sessionStorage.setItem(nameList, JSON.stringify(chatList));
+                }
+                else {
+                    let list = JSON.parse(sessionStorage.getItem(nameList));
+                    list.push(JSON.parse(greeting.body).id.toString());
+                    sessionStorage.setItem(nameList,JSON.stringify(list));
+                    //document.getElementById(JSON.parse(greeting.body).sessionId.toString()).remove();
+                }
             }
             sessionStorage.setItem(JSON.parse(greeting.body).id, greeting.body);
+            if (JSON.parse(greeting.body).sessionId=="${id}")
             showGreeting(greeting.body);
             let objDiv = document.getElementById("greetings");
             objDiv.scrollTop = objDiv.scrollHeight;
@@ -227,6 +241,7 @@
         stompClient.send(href, {}, JSON.stringify({
             'name': $("#name").val()
         }));
+        document.getElementById("name").value='';
     }
 
     function showGreeting(message) {
