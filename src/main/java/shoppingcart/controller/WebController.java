@@ -12,16 +12,13 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.HtmlUtils;
 import shoppingcart.DTO.Item;
 import shoppingcart.DTO.utils.ListUtils;
-import shoppingcart.entity.*;
 import shoppingcart.entity.*;
 import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.ProductRepository;
@@ -35,11 +32,9 @@ import shoppingcart.service.impl.ProductServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.HashSet;
 
 @Controller
 public class WebController {
@@ -394,7 +389,7 @@ public class WebController {
     }
 
     @MessageMapping("/say/{sessionId}")
-    @SendTo("/app/chat/{sessionId}")
+    @SendTo({"/app/chat/{sessionId}","/app/say/chat/admin"})
     public Greeting sayToClient(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
         System.out.println("Say to Client " + sessionId);
         Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
@@ -414,15 +409,25 @@ public class WebController {
         greeting.setSender("client");
         greeting.setDate(new Date());
         greeting.setSessionId(sessionId);
+        if (!adminActive) {
+            Greeting greeting1=new Greeting("admin not here, sorry about that, pls try later");
+            greeting1.setId(sessionId + "_" + new Date());
+            greeting1.setSender("admin");
+            greeting1.setDate(new Date());
+            greeting1.setSessionId(sessionId);
+            messagingTemplate.convertAndSend("/app/chat/" + sessionId, greeting);
+            return greeting1;
+        }
         return greeting;
     }
 
-    @SubscribeMapping({"/say/chat/admin","/chat/{sessionId}"})
+    @SubscribeMapping({"/say/chat/admin"})
     @SendTo("/app/say/info")
     public  Greeting sendInfoOn() {
         adminActive=true;
         return new Greeting("online");
     }
+
     @SubscribeMapping("app/say/info")
     @SendTo("/app/say/info")
     public  Greeting sendInfoOff() {
