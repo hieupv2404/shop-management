@@ -63,6 +63,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
+    private boolean block=false;
+
+    public boolean isBlock() {
+        return block;
+    }
+
+    public void setBlock(boolean block) {
+        this.block = block;
+    }
+
     public Integer getId() {
         return id;
     }

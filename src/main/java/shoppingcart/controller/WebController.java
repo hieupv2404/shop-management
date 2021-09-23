@@ -393,7 +393,7 @@ public class WebController {
     public Greeting sayToClient(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
         System.out.println("Say to Client " + sessionId);
         Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
-        greeting.setId(sessionId + "_admin_" + new Date());
+        greeting.setId(sessionId + "_admin");
         greeting.setSender("admin");
         greeting.setDate(new Date());
         greeting.setSessionId(sessionId);
@@ -405,14 +405,14 @@ public class WebController {
     public Greeting sayToAdmin(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
         System.out.println("Say to Admin");
         Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
-        greeting.setId(sessionId + "_" + new Date());
         greeting.setSender("client");
+        greeting.setId(sessionId + "_" +greeting.getSender());
         greeting.setDate(new Date());
         greeting.setSessionId(sessionId);
         if (!adminActive) {
             Greeting greeting1=new Greeting("admin not here, sorry about that, pls try later");
-            greeting1.setId(sessionId + "_" + new Date());
             greeting1.setSender("admin");
+            greeting1.setId(sessionId + "_" +greeting1.getSender());
             greeting1.setDate(new Date());
             greeting1.setSessionId(sessionId);
             messagingTemplate.convertAndSend("/app/chat/" + sessionId, greeting);

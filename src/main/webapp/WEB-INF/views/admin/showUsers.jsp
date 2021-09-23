@@ -1,12 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Black Diamond
-  Date: 13-Sep-21
-  Time: 4:14 PM
+  Date: 22-Sep-21
+  Time: 4:23 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,16 +67,16 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-item active has-sub">
+                    <li class="sidebar-item has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Product</span>
                         </a>
-                        <ul class="submenu active">
+                        <ul class="submenu ">
                             <li class="submenu-item ">
                                 <a href="/admin/products/addProduct">Create Product</a>
                             </li>
-                            <li class="submenu-item active">
+                            <li class="submenu-item ">
                                 <a href="/admin/products/getAll">List Product</a>
                             </li>
                         </ul>
@@ -89,7 +89,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item  active">
                         <a href="/admin/get/users" class='sidebar-link'>
                             <i class="bi-person-lines-fill"></i>
                             <span>Users</span>
@@ -141,26 +141,47 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Rate</th>
-                                <th>Images</th>
-                                <th>Category</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Block</th>
+                                <th>Role</th>
+                                <th>Status</th>
                                 <th style="text-align: center">Function</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${listProduct}" var="product">
+                            <c:forEach items="${users}" var="user">
                                 <tr>
-                                    <td>${product.id}</td>
-                                    <td>${product.name}</td>
-                                    <td>${product.price}</td>
-                                    <td>${product.rateAverage}</td>
-                                    <td>${product.price}</td>
-                                    <td>${product.price}</td>
-                                    <td style="text-align: center">
-                                        <a href="/admin/products/updateProduct/?id=${product.id}" class="btn  btn-success">Update</a>
-                                        <a href="/admin/products/deleteProduct/?id=${product.id}" class="btn  btn-danger">Delete</a>
+                                    <td>${user.id}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.email}</td>
+                                    <c:choose>
+                                        <c:when test="${user.block=='true'}">
+                                            <td><span class="badge bg-dark">Blocked</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><span class="badge bg-info">Allowed</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${user.admin=='true'}">
+                                            <td><span class="badge bg-primary">Admin</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><span class="badge bg-info">User</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${user.active=='true'}">
+                                            <td><span class="badge bg-success">Active</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><span class="badge bg-danger">Inactive</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <td style="display: flex;flex-direction: row;justify-content: center; ">
+                                        <a href="/admin/get/details/user?id=${user.id}" class="btn  btn-success" style="margin-right: 10px">Details</a>
+<%--                                        <a href="/admin/products/deleteProduct/?id=${product.id}" class="btn  btn-dark" style="margin-right: 10px">Block</a>--%>
                                     </td>
                                 </tr>
                             </c:forEach>
