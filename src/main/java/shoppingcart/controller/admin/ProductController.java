@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import shoppingcart.entity.Category;
@@ -88,6 +85,7 @@ public class ProductController {
         Iterable<Category> listCategory = categoryService.findAll();
         mav.addObject("productUpdate", productUpdate.get());
         mav.addObject("listCategory", listCategory);
+        mav.addObject("categoryOfProductList", productUpdate.get().getCategory());
         return mav;
     }
 
@@ -98,10 +96,12 @@ public class ProductController {
 //        System.out.println(multipartFile.getOriginalFilename());
 //        System.out.println(product.getImage());
         List<Category> categoryList = new ArrayList<>(); // nguoi dung nhap tu jsp
-        for (Integer cateId : categoryIds) {
-            Category category = categoryService.findById(cateId).get();
-            categoryList.add(category);
-            System.out.println(cateId);
+        if (categoryIds != null) {
+            for (Integer cateId : categoryIds) {
+                Category category = categoryService.findById(cateId).get();
+                categoryList.add(category);
+                System.out.println(cateId);
+            }
         }
         List<Category> oldList = productService.findById(product.getId()).get().getCategory(); // list category lay tu db theo findById
         productService.updateProduct(product, multipartFile);
@@ -112,14 +112,20 @@ public class ProductController {
                 categoryRepository.save(category);
             }
         }
-
         return "redirect:/admin/products/getAll";
     }
 
 
-    @GetMapping("/deleteProduct")
-    public String deleteProduct(Integer id) {
-        productService.remove(id);
-        return "redirect:/admin/products/getAll";
-    }
+//    @GetMapping("/deleteProduct{id}")
+//    public String deleteProduct(@PathVariable Integer id, Model model) {
+//        productRepository.deleteById(id);
+//        return "redirect:/admin/products/getAll";
+//    }
+//
+//    @RequestMapping(value = "product/{id}", method = RequestMethod.DELETE)
+//    public String delete(@PathVariable("id") Integer id) {
+//        productService.deleteProduct(id);
+//        return "redirect:/admin/products/getAll";
+//    }
+
 }

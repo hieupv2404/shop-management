@@ -1,6 +1,7 @@
 package shoppingcart.service.impl;
 
 import lombok.Data;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -89,4 +90,12 @@ public class ProductServiceImpl implements ProductService {
         return null;
     }
 
+//    @Override
+//    public void deleteProduct(Integer id) {
+//        Session session = sessionFactory.getCurrentSession();
+//        Query deleteQuery = session.createQuery("DELETE FROM Product p WHERE p.id = :id");
+//        deleteQuery.setParameter("id", id);
+//        deleteQuery.executeUpdate();
+//    }
+    
 }

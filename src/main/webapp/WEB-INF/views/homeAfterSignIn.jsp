@@ -539,8 +539,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="/static/images/w1.jpg" alt="" class="pro-image-front">
-                                    <img src="/static/images/w1.jpg" alt="" class="pro-image-back">
+                                    <img src="/static/images/${womenpro.image}" alt="" class="pro-image-front">
+                                    <img src="/static/images/${womenpro.image}" alt="" class="pro-image-back">
+                                    <img height="250px" width="100px" src="/static/images${womenpro.image}"/>
+
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -582,8 +584,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="/static/images/b1.jpg" alt="" class="pro-image-front">
-                                    <img src="/static/images/b1.jpg" alt="" class="pro-image-back">
+                                    <img src="/static/images/${bagpro.image}" alt="" class="pro-image-front">
+                                    <img src="/static/images/${bagpro.image}" alt="" class="pro-image-back">
+                                    <img height="250px" width="100px" src="/static/images${bagpro.image}"/>
+
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single.html" class="link-product-add-cart">Quick View</a>

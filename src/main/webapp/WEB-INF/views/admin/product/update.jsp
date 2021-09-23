@@ -130,9 +130,9 @@
                     <div class="card-header">
                         <h4 class="card-title">Basic Inputs</h4>
                     </div>
-<%--                    <form:form action="/updateProduct" modelAttribute="productUpdate" enctype="multipart/form-data">--%>
-                        <c:url value="/admin/products/updateProduct" var="urlPost"></c:url>
-                        <form:form action="${urlPost}" modelAttribute="productUpdate" enctype="multipart/form-data">
+                    <%--                    <form:form action="/updateProduct" modelAttribute="productUpdate" enctype="multipart/form-data">--%>
+                    <c:url value="/admin/products/updateProduct" var="urlPost"></c:url>
+                    <form:form action="${urlPost}" modelAttribute="productUpdate" enctype="multipart/form-data">
                     <td><form:hidden path="id"></form:hidden></td>
                     <div class="card-body">
                         <div class="row">
@@ -146,11 +146,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="helpInputTop">Price</label>
-                                    <td><form:input path="price" class="form-control" id="helpInputTop"></form:input></td>
+                                    <td><form:input path="price" class="form-control"
+                                                    id="helpInputTop"></form:input></td>
                                 </div>
                                 <div class="form-group">
                                     <label for="helpInputTop">RateAverage</label>
-                                    <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>
+                                    <td><form:input path="rateAverage" class="form-control"
+                                                    id="helpInputTop"></form:input></td>
                                 </div>
                                 <div class="form-group">
                                     <div>
@@ -158,17 +160,20 @@
                                         <form:hidden path="image"></form:hidden>
                                     </div>
                                     <label>Picture</label>
-                                    <input type="file" value="${productUpdate.image}" name="img" class="form-control" placeholder="Select Image">
+                                    <input type="file" value="${productUpdate.image}" name="img" class="form-control"
+                                           placeholder="Select Image">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="basicSelect">Category</label>
-                                    <select class="form-select" id="basicSelect" name="category"  multiple>
+                                    <label for="basicSelect">Category</label> <br>
+                                    <td>
                                         <c:forEach items="${listCategory}" var="category">
-                                            <option value="${category.id}">${category.name}</option>
+                                            <input type="checkbox" name="category"
+                                                <c:if test="${categoryOfProductList.contains(category)}"> checked </c:if>
+                                                   value="${category.id}"> ${category.name} <br>
                                         </c:forEach>
-                                    </select>
+                                    </td>
                                 </div>
                             </div>
                         </div>

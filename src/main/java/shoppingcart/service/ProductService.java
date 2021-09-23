@@ -8,4 +8,5 @@ import shoppingcart.entity.User;
 public interface ProductService extends IGeneralService<Product> {
     boolean save(Product product, MultipartFile uploadImage);
     public Product updateProduct( Product product,MultipartFile uploadImage );
+//    public void deleteProduct(Integer id);
 }
