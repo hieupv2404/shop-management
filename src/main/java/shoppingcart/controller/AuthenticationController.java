@@ -90,6 +90,10 @@ public class AuthenticationController {
     public String postSignIn(@ModelAttribute("userSignIn") User user, ModelMap modelMap, HttpSession httpSession) {
         User userReal = userRepository.findByUsername(user.getUsername());
         if (userReal != null) {
+            if (userReal.isBlock()){
+                httpSession.setAttribute("isBlock", "true");
+                return "redirect:/";
+            }
             if (user.getPassword().equals(userReal.getPassword())) {
                 Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
