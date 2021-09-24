@@ -3,6 +3,7 @@ package shoppingcart.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
@@ -17,12 +18,14 @@ public class Product {
             message = "Not contain special characters and numbers")
     String name;
     @Column(nullable = false)
+    @Min(value = 1, message = "Wrong Format Price")
     Long price;
     @Column
     String image;
     @Column
+    @Min(value = 1, message = "Wrong Format Rate")
     Double rateAverage=0.0;
-    @ManyToMany(mappedBy = "productList")
+    @ManyToMany(mappedBy = "productList",cascade = CascadeType.ALL)
     private List<Category> category;
     @OneToMany(mappedBy = "product")
     @JsonIgnore

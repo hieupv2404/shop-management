@@ -90,11 +90,15 @@ public class ProductController {
     }
 
     @PostMapping("/updateProduct")
-    public String updateProduct(Product product,
+    public String updateProduct(@Valid Product product, BindingResult bindingResult,
                                 @RequestParam(name = "img") MultipartFile multipartFile,
-                                @RequestParam(name = "category",required = false) List<Integer> categoryIds) {
-//        System.out.println(multipartFile.getOriginalFilename());
-//        System.out.println(product.getImage());
+                                @RequestParam(name = "category", required = false) List<Integer> categoryIds,
+                                Model model) {
+        if (bindingResult.hasErrors()) {
+            Iterable<Category> listCategory = categoryService.findAll();
+            model.addAttribute("listCategory", listCategory);
+            return "admin/product/creat";
+        }
         List<Category> categoryList = new ArrayList<>(); // nguoi dung nhap tu jsp
         if (categoryIds != null) {
             for (Integer cateId : categoryIds) {
@@ -105,22 +109,51 @@ public class ProductController {
         }
         List<Category> oldList = productService.findById(product.getId()).get().getCategory(); // list category lay tu db theo findById
         productService.updateProduct(product, multipartFile);
-        for (Category category : categoryList) {
-            boolean check = categoryService.prepareArray(category, oldList); // so sanh thang cu voi thang moi
-            if (check ) { // check thang cu voi thang moi
-                category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
+        for (Category category : oldList) {
+            {
+                List<Product>  productList = category.getProductList();
+                productList.removeIf(p -> p.getId() == product.getId());
+//                    //Xem lai product da bi xoa chua
+//                productList.forEach(System.out::println);
+                category.setProductList(productList);
                 categoryRepository.save(category);
             }
+        }
+        for (Category category : categoryList) {
+            category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
+            categoryRepository.save(category);
+            /*boolean check = categoryService.prepareArray(category, oldList); // so sanh thang cu voi thang moi
+            if (check) { // check thang cu voi thang moi
+                category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
+                categoryRepository.save(category);
+            } else {
+//                category.getProductList().remove(productService.findById(product.getId()).get().getCategory());
+//                product.setCategory(productService.findById(product.getId()).get().getCategory());
+//                category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
+                //                categoryRepository.delete(category);
+//                oldList.remove(product.getCategory());
+//                product.setCategory(categoryList);
+//                productService.save(product);
+
+//                List<Product> productList = category.getProductList();
+                *//*List<Product>  productList = category.getProductList();
+                productList.removeIf(p -> p.getId() == product.getId());
+                    //Xem lai product da bi xoa chua
+                productList.forEach(System.out::println);
+                category.setProductList(productList);
+                categoryRepository.save(category);*//*
+            }*/
         }
         return "redirect:/admin/products/getAll";
     }
 
 
-//    @GetMapping("/deleteProduct{id}")
-//    public String deleteProduct(@PathVariable Integer id, Model model) {
-//        productRepository.deleteById(id);
-//        return "redirect:/admin/products/getAll";
-//    }
+    @GetMapping("/deleteProduct")
+    public String deleteProduct( Integer id) {
+        productRepository.deleteById(id);
+        return "redirect:/admin/products/getAll";
+    }
+
 //
 //    @RequestMapping(value = "product/{id}", method = RequestMethod.DELETE)
 //    public String delete(@PathVariable("id") Integer id) {
