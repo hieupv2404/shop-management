@@ -8,17 +8,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.HtmlUtils;
 import shoppingcart.DTO.Item;
 import shoppingcart.DTO.utils.ListUtils;
-import shoppingcart.entity.*;
 import shoppingcart.entity.*;
 import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.ProductRepository;
@@ -32,10 +32,9 @@ import shoppingcart.service.impl.ProductServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Principal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.HashSet;
 
 @Controller
 public class WebController {
@@ -57,6 +56,8 @@ public class WebController {
     private OrderService orderService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private SimpMessageSendingOperations messagingTemplate;
 
     private void setUpSignInAndSignUp(ModelMap modelMap, HttpSession httpSession) {
         modelMap.addAttribute("user", new User());
@@ -102,10 +103,10 @@ public class WebController {
             Iterable<Product> productIterable = productServiceImpl.getProductsByCategoryId(category.getId());
             modelMap.addAttribute(category.getName(), productIterable);
         });
-        if (isLogin(modelMap, httpSession)&&!SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
+        if (isLogin(modelMap, httpSession) && !SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
             return "homeAfterSignIn";
-        if (isLogin(modelMap, httpSession)&&SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
-            return "redirect:/admin/dashboard";
+        if (isLogin(modelMap, httpSession) && SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
+            return "redirect:/admin/get/dashboard";
         setUpSignInAndSignUp(modelMap, httpSession);
         return "home";
     }
@@ -130,7 +131,7 @@ public class WebController {
                           @RequestParam(name = "amount") Integer amount,
                           HttpServletRequest httpServletRequest, HttpSession session) {
         Product product = productService.findById(productId).get();
-        Item item = new Item(product,amount);
+        Item item = new Item(product, amount);
         HashMap<Integer, Item> cart = null;
         if (session.getAttribute("cart") == null) {
             cart = new HashMap<>();
@@ -142,7 +143,7 @@ public class WebController {
         } else {
             cart.put(productId, item);
         }
-        session.setAttribute("userId",userId);
+        session.setAttribute("userId", userId);
         session.setAttribute("cart", cart);
 //        return "homeAfterSignIn";
         return "redirect:" + httpServletRequest.getHeader("Referer");
@@ -240,8 +241,8 @@ public class WebController {
             return "errorPage";
         }
         if (isLogin(modelMap, httpSession)) {
-            if (httpSession.getAttribute("ratePermitsMsg")!=null){
-                modelMap.addAttribute("ratePermitsMsg",httpSession.getAttribute("ratePermitsMsg"));
+            if (httpSession.getAttribute("ratePermitsMsg") != null) {
+                modelMap.addAttribute("ratePermitsMsg", httpSession.getAttribute("ratePermitsMsg"));
             }
             return "detailsProductAfterSignIn";
         }
@@ -252,7 +253,7 @@ public class WebController {
     @GetMapping("/search/product/{sort}")
     public String searchProduct(@PathVariable(name = "sort") String sort, @RequestParam(name = "keySearch") String keySearch, ModelMap modelMap, HttpSession httpSession, @RequestParam Integer pageIndex, @RequestParam Integer size) {
         modelMap.addAttribute("keySearch", keySearch);
-        keySearch=keySearch.trim();
+        keySearch = keySearch.trim();
         if (pageIndex > 0 && size > 0) {
             Pageable pageable = PageRequest.of(pageIndex - 1, size);
             Page<Product> page;
@@ -371,14 +372,68 @@ public class WebController {
         return "review";
     }
 
-    @GetMapping("/chat")
-    public String getChat(){
+    public static boolean adminActive=false;
+    @GetMapping("/get/chat")
+    public String getChat(HttpSession httpSession, HttpServletRequest httpServletRequest, ModelMap modelMap) {
+        httpSession.setAttribute("sessionId", httpServletRequest.getSession().getId());
+        System.out.println(httpServletRequest.getSession().getId());
+        if (!adminActive){
+            modelMap.addAttribute("bg","bg-secondary");
+            modelMap.addAttribute("line","Offline");
+        }
+        else {
+            modelMap.addAttribute("bg","bg-success");
+            modelMap.addAttribute("line","Online");
+        }
         return "chat";
     }
 
-    @MessageMapping("/say/{Ip}")
-    @SendTo("/topic/chat")
-    public Greeting say(HelloMessage helloMessage,@DestinationVariable String Ip) throws Exception {
-        return new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+    @MessageMapping("/say/{sessionId}")
+    @SendTo({"/app/chat/{sessionId}","/app/say/chat/admin"})
+    public Greeting sayToClient(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
+        System.out.println("Say to Client " + sessionId);
+        Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+        greeting.setId(sessionId + "_admin");
+        greeting.setSender("admin");
+        greeting.setDate(new Date());
+        greeting.setSessionId(sessionId);
+        return greeting;
     }
+
+    @MessageMapping("/say/admin/{sessionId}")
+    @SendTo({"/app/say/chat/admin", "/app/chat/{sessionId}"})
+    public Greeting sayToAdmin(HelloMessage helloMessage, @DestinationVariable String sessionId) throws Exception {
+        System.out.println("Say to Admin");
+        Greeting greeting = new Greeting(HtmlUtils.htmlEscape(helloMessage.getName()));
+        greeting.setSender("client");
+        greeting.setId(sessionId + "_" +greeting.getSender());
+        greeting.setDate(new Date());
+        greeting.setSessionId(sessionId);
+        if (!adminActive) {
+            Greeting greeting1=new Greeting("admin not here, sorry about that, pls try later");
+            greeting1.setSender("admin");
+            greeting1.setId(sessionId + "_" +greeting1.getSender());
+            greeting1.setDate(new Date());
+            greeting1.setSessionId(sessionId);
+            messagingTemplate.convertAndSend("/app/chat/" + sessionId, greeting);
+            return greeting1;
+        }
+        return greeting;
+    }
+
+    @SubscribeMapping({"/say/chat/admin"})
+    @SendTo("/app/say/info")
+    public  Greeting sendInfoOn() {
+        adminActive=true;
+        return new Greeting("online");
+    }
+
+    @SubscribeMapping("app/say/info")
+    @SendTo("/app/say/info")
+    public  Greeting sendInfoOff() {
+        if (!adminActive)
+            return new Greeting("offline");
+        else return new Greeting("online");
+    }
+
 }

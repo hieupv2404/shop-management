@@ -46,7 +46,7 @@
                     <li class="sidebar-title">Menu</li>
 
                     <li class="sidebar-item  ">
-                        <a href="/admin/dashboard" class='sidebar-link'>
+                        <a href="/admin/get/dashboard" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -72,20 +72,27 @@
                             <i class="bi bi-stack"></i>
                             <span>Product</span>
                         </a>
-                        <ul class="submenu ">
+                        <ul class="submenu active">
                             <li class="submenu-item ">
                                 <a href="/admin/products/addProduct">Create Product</a>
                             </li>
-                            <li class="submenu-item ">
+                            <li class="submenu-item active">
                                 <a href="/admin/products/getAll">List Product</a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="/admin/get/chat" class='sidebar-link'>
+                        <a href="/admin/get/chatBox" class='sidebar-link'>
                             <i class="bi bi-chat-dots-fill"></i>
                             <span>Chat Application</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="/admin/get/users" class='sidebar-link'>
+                            <i class="bi-person-lines-fill"></i>
+                            <span>Users</span>
                         </a>
                     </li>
 

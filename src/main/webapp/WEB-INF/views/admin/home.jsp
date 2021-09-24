@@ -45,7 +45,7 @@
                     <li class="sidebar-title">Menu</li>
 
                     <li class="sidebar-item active ">
-                        <a href="index.html" class='sidebar-link'>
+                        <a href="/admin/get/dashboard" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -82,14 +82,21 @@
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="/admin/get/chat" class='sidebar-link'>
+                        <a href="/admin/get/chatBox" class='sidebar-link'>
                             <i class="bi bi-chat-dots-fill"></i>
                             <span>Chat Application</span>
                         </a>
                     </li>
 
+                    <li class="sidebar-item  ">
+                        <a href="/admin/get/users" class='sidebar-link'>
+                            <i class="bi-person-lines-fill"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item">
-                        <a href="/logout" class="sidebar-link">
+                        <a href="/auth/logout" class="sidebar-link">
                             <i class="bi-person-x-fill"></i>
                             <span>Log out</span>
                         </a>
@@ -395,5 +402,4 @@
 
 <script src="/static/assets/js/main.js"></script>
 </body>
-
 </html>

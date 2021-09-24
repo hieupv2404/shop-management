@@ -205,14 +205,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </ul>
                             </li>
-                            <li class="menu__item dropdown">
-                                <a class="menu__link dropdown-toggle" href="#" data-toggle="dropdown">Short
-                                    Codes <b class="caret"></b></a>
-                                <ul class="dropdown-menu agile_short_dropdown">
-                                    <li><a href="icons.html">Web Icons</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                </ul>
-                            </li>
+<%--                            <li class="menu__item dropdown">--%>
+<%--                                <a class="menu__link dropdown-toggle" href="#" data-toggle="dropdown">Short--%>
+<%--                                    Codes <b class="caret"></b></a>--%>
+<%--                                <ul class="dropdown-menu agile_short_dropdown">--%>
+<%--                                    <li><a href="icons.html">Web Icons</a></li>--%>
+<%--                                    <li><a href="typography.html">Typography</a></li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+                            <li class=" menu__item "><a class="menu__link" href="/get/chat">Chat with us</a></li>
                             <li class=" menu__item "><a class="menu__link" href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -388,8 +389,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Notification <span>Now</span></h3>
-                    <h4>Sign up successful</h4><br>
-                    <h5>Please check your email to get password and verify!</h5>
+                    <h4 id="title">Sign up successful</h4><br>
+                    <h5 id="mess">Please check your email to get password and verify!</h5>
                     <br>
                     <a href="https://mail.google.com/mail/u/0/#inbox" class="close" data-dismiss="modal"
                        style="justify-items: center">Ok</a>
@@ -1098,6 +1099,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $(window).on('load', function () {
             $('#myModal3').modal('toggle');
             <%session.removeAttribute("signUpSuccess"); %>
+        });
+
+    }
+</script>
+
+<script>
+    var Msg = "<%=session.getAttribute("isBlock")%>";
+    if (Msg == "true") {
+        // function alertName() {
+        //     $('#myModal3').modal("show");
+        $(window).on('load', function () {
+            document.getElementById("title").innerText="Warn";
+            document.getElementById("mess").innerText="You're blocked, contact with admin to know more";
+            $('#myModal3').modal('toggle');
+            <%session.removeAttribute("isBlock"); %>
         });
 
     }

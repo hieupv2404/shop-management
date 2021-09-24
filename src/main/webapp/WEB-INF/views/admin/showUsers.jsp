@@ -1,12 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Black Diamond
-  Date: 13-Sep-21
-  Time: 4:14 PM
+  Date: 22-Sep-21
+  Time: 4:23 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,13 +46,13 @@
                     <li class="sidebar-title">Menu</li>
 
                     <li class="sidebar-item  ">
-                        <a href="/admin/dashboard" class='sidebar-link'>
+                        <a href="/admin/get/dashboard" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item active   has-sub">
+                    <li class="sidebar-item    has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Category</span>
@@ -67,7 +67,7 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-item  has-sub">
+                    <li class="sidebar-item has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Product</span>
@@ -83,13 +83,13 @@
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="/admin/get/chat" class='sidebar-link'>
+                        <a href="/admin/get/chatBox" class='sidebar-link'>
                             <i class="bi bi-chat-dots-fill"></i>
                             <span>Chat Application</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item  active">
                         <a href="/admin/get/users" class='sidebar-link'>
                             <i class="bi-person-lines-fill"></i>
                             <span>Users</span>
@@ -97,7 +97,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="/logout" class="sidebar-link">
+                        <a href="/auth/logout" class="sidebar-link">
                             <i class="bi-person-x-fill"></i>
                             <span>Log out</span>
                         </a>
@@ -119,12 +119,12 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>DataTable</h3>
-                        <p class="text-subtitle text-muted">For user to check they list</p>
+                        <p class="text-subtitle text-muted"></p>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/admin/get/dashboard">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">DataTable</li>
                             </ol>
                         </nav>
@@ -134,25 +134,54 @@
             <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        Simple Datatable
+                        User Datatable
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="table1">
                             <thead>
                             <tr>
-                                <th>Id Category</th>
-                                <th>Name Category</th>
+                                <th>Id</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Block</th>
+                                <th>Role</th>
+                                <th>Status</th>
                                 <th style="text-align: center">Function</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${listCategory}" var="category">
-                                <tr >
-                                    <td>${category.id}</td>
-                                    <td>${category.name}</td>
-                                    <td style="text-align: center">
-                                        <a href="/admin/categories/updateCategory/?id=${category.id}" class="btn  btn-success">Update</a>
-                                        <a href="/admin/categories/deleteCategory/?id=${category.id}" class="btn  btn-danger">Delete</a>
+                            <c:forEach items="${users}" var="user">
+                                <tr>
+                                    <td>${user.id}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.email}</td>
+                                    <c:choose>
+                                        <c:when test="${user.block=='true'}">
+                                            <td><span class="badge bg-dark">Blocked</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><span class="badge bg-info">Allowed</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${user.admin=='true'}">
+                                            <td><span class="badge bg-primary">Admin</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><span class="badge bg-info">User</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${user.active=='true'}">
+                                            <td><span class="badge bg-success">Active</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><span class="badge bg-danger">Inactive</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <td style="display: flex;flex-direction: row;justify-content: center; ">
+                                        <a href="/admin/get/details/user?id=${user.id}" class="btn  btn-success" style="margin-right: 10px">Details</a>
+<%--                                        <a href="/admin/products/deleteProduct/?id=${product.id}" class="btn  btn-dark" style="margin-right: 10px">Block</a>--%>
                                     </td>
                                 </tr>
                             </c:forEach>
