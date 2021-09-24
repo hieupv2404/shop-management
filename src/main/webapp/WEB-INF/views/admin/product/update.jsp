@@ -146,13 +146,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="helpInputTop">Price</label>
-                                    <td><form:input path="price" class="form-control"
-                                                    id="helpInputTop"></form:input></td>
+                                    <td>
+                                        <form:input path="price" class="form-control" id="helpInputTop"></form:input>
+                                        <form:errors path="price" cssClass="error" cssStyle="color: red"/>
+                                    </td>
                                 </div>
                                 <div class="form-group">
                                     <label for="helpInputTop">RateAverage</label>
-                                    <td><form:input path="rateAverage" class="form-control"
-                                                    id="helpInputTop"></form:input></td>
+                                    <td>
+                                        <form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input>
+                                        <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>
+                                    </td>
                                 </div>
                                 <div class="form-group">
                                     <div>
