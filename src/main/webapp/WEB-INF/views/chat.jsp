@@ -29,6 +29,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/static/chat/FileSaver.js"></script>
+
 </head>
 
 <body>
@@ -97,6 +99,7 @@
             <div class="footer clearfix mb-0 text-muted">
                 <div class="float-start">
                     <p>2021 &copy; Mazer</p>
+                    <button type="button" onclick="saveStaticDataToFile();" class="btn-info">Save chat</button>
                 </div>
                 <div class="float-end">
                     <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
@@ -228,6 +231,23 @@
     }
     let objDiv = document.getElementById("greetings");
     objDiv.scrollTop = objDiv.scrollHeight;
+</script>
+<script>
+
+    function saveStaticDataToFile() {
+        const array1 = JSON.parse(sessionStorage.getItem("list"));
+        let txt1=[];
+
+        for (const element of array1) {
+            txt1.push(JSON.parse(sessionStorage.getItem(element)).sender+": "+JSON.parse(sessionStorage.getItem(element)).name+"\n");
+            console.log(JSON.parse(sessionStorage.getItem(element)).sender+": "+JSON.parse(sessionStorage.getItem(element)).name+"\n");
+            console.log(JSON.parse(sessionStorage.getItem(element)).name.toString());
+        }
+        let blob = new Blob(txt1,
+            { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "static.txt");
+    }
+
 </script>
 </html>
 <%--<script type="text/javascript">--%>

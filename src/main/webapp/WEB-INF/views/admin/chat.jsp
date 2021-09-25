@@ -5,7 +5,7 @@
   Time: 10:09 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=US-ASCII" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/static/chat/FileSaver.js"></script>
 </head>
 
 <body>
@@ -168,6 +169,7 @@
             <div class="footer clearfix mb-0 text-muted">
                 <div class="float-start">
                     <p>2021 &copy; Mazer</p>
+                    <button type="button" onclick="saveStaticDataToFile();" class="btn-info">Save chat</button>
                 </div>
                 <div class="float-end">
                     <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
@@ -177,6 +179,23 @@
         </footer>
     </div>
 </div>
+<script>
+
+    function saveStaticDataToFile() {
+        const array1 = JSON.parse(sessionStorage.getItem("${id}"));
+        let txt1=[];
+
+        for (const element of array1) {
+            txt1.push(JSON.parse(sessionStorage.getItem(element)).sender+": "+JSON.parse(sessionStorage.getItem(element)).name+"\n");
+            console.log(JSON.parse(sessionStorage.getItem(element)).sender+": "+JSON.parse(sessionStorage.getItem(element)).name+"\n");
+            console.log(JSON.parse(sessionStorage.getItem(element)).name.toString());
+        }
+        let blob = new Blob(txt1,
+            { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "static.txt");
+    }
+
+</script>
 <script src="/static/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
 
