@@ -109,6 +109,7 @@ public class ProductController {
         }
         List<Category> oldList = productService.findById(product.getId()).get().getCategory(); // list category lay tu db theo findById
         productService.updateProduct(product, multipartFile);
+
         for (Category category : oldList) {
             {
                 List<Product>  productList = category.getProductList();
@@ -122,6 +123,7 @@ public class ProductController {
         for (Category category : categoryList) {
             category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
             categoryRepository.save(category);
+
             /*boolean check = categoryService.prepareArray(category, oldList); // so sanh thang cu voi thang moi
             if (check) { // check thang cu voi thang moi
                 category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
