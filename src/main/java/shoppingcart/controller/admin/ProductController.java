@@ -97,7 +97,9 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
             Iterable<Category> listCategory = categoryService.findAll();
             model.addAttribute("listCategory", listCategory);
-            return "admin/product/creat";
+            model.addAttribute("categoryOfProductList", product.getCategory());
+            model.addAttribute("product",product);
+            return "admin/product/updateError";
         }
         List<Category> categoryList = new ArrayList<>(); // nguoi dung nhap tu jsp
         if (categoryIds != null) {

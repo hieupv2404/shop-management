@@ -113,65 +113,26 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>Product</h3>
-<%--                        <p class="text-subtitle text-muted">Create new product</p>--%>
+                        <%--                        <p class="text-subtitle text-muted">Create new product</p>--%>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-<%--                            <ol class="breadcrumb">--%>
-<%--                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>--%>
-<%--                                <li class="breadcrumb-item active" aria-current="page">DataTable</li>--%>
-<%--                            </ol>--%>
+                            <%--                            <ol class="breadcrumb">--%>
+                            <%--                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>--%>
+                            <%--                                <li class="breadcrumb-item active" aria-current="page">DataTable</li>--%>
+                            <%--                            </ol>--%>
                         </nav>
                     </div>
                 </div>
             </div>
-<%--            <section class="section">--%>
-<%--                <div class="card">--%>
-<%--                    <div class="card-header">--%>
-<%--                        Simple Datatable--%>
-<%--                    </div>--%>
-<%--                    <div class="card-body">--%>
-<%--                        <form:form action="addProduct" modelAttribute="product">--%>
-<%--                            <table class="table table-striped" id="table1">--%>
-<%--                                <thead>--%>
-<%--                                <tr>--%>
-<%--                                    <th>Id</th>--%>
-<%--                                    <th>Name</th>--%>
-<%--                                    <th>Price</th>--%>
-<%--                                    <th>Images</th>--%>
-<%--                                    <th>Category</th>--%>
-<%--                                    <th>Function</th>--%>
-<%--                                </tr>--%>
-<%--                                </thead>--%>
-<%--                                <tbody>--%>
-<%--                                <tr>--%>
-<%--                                    <td><form:input path="id" cssStyle="width: 150px"></form:input></td>--%>
-<%--                                    <td><form:input path="name" cssStyle="width: 150px"></form:input></td>--%>
-<%--                                    <td><form:input path="price" cssStyle="width: 150px"></form:input></td>--%>
-<%--                                    <td><form:input path="" cssStyle="width: 150px"></form:input></td>--%>
-<%--                                    <td>--%>
-<%--                                        <select class="form-select" id="basicSelect" name="category">--%>
-<%--                                            <c:forEach items="${listCategory}" var="category">--%>
-<%--                                                <option value="${category.id}">${category.name}</option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </select>--%>
-<%--                                    </td>--%>
-<%--                                    <td colspan="2"><input type="submit" value="Create"></td>--%>
-<%--                                </tr>--%>
-<%--                                </tbody>--%>
-<%--                            </table>--%>
-<%--                        </form:form>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </section>--%>
-
             <section class="section">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Create new product</h4>
                     </div>
-                    <form:form action="addProduct" modelAttribute="product" enctype="multipart/form-data" method="post">
+                    <form:form action="updateProduct" modelAttribute="product" enctype="multipart/form-data" method="post">
                     <div class="card-body">
+                        <form:hidden path="id" class="form-control" id="basicInput"></form:hidden>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -191,14 +152,18 @@
                                     <label for="helpInputTop">RateAverage</label>
                                     <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>
                                     <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>
-
                                 </div>
                                 <div class="form-group">
+                                    <div>
+                                        <img height="100px" width="100px" src="/static/images${productUpdate.image}"/>
+                                        <form:hidden path="image"></form:hidden>
+                                    </div>
                                     <label>Picture</label>
-                                    <input type="file" name="img" class="form-control" placeholder="Select Image">
+                                    <input type="file" value="${productUpdate.image}" name="img" class="form-control"
+                                           placeholder="Select Image">
                                 </div>
                                 <div class="form-group">
-                                    <td colspan="3"><input class="btn btn-success" type="submit" value="Create"></td>
+                                    <td colspan="3"><input class="btn btn-success" type="submit" value="Update"></td>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -206,7 +171,9 @@
                                     <label for="basicSelect">Category</label> <br>
                                     <td>
                                         <c:forEach items="${listCategory}" var="category">
-                                            <input type="checkbox" name="category" value="${category.id}"> ${category.name} <br>
+                                            <input type="checkbox" name="category"
+                                            <c:if test="${categoryOfProductList.contains(category)}"> checked </c:if>
+                                                   value="${category.id}"> ${category.name} <br>
                                         </c:forEach>
                                     </td>
                                 </div>
