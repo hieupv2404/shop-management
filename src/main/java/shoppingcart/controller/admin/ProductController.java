@@ -97,7 +97,9 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
             Iterable<Category> listCategory = categoryService.findAll();
             model.addAttribute("listCategory", listCategory);
-            return "admin/product/creat";
+            model.addAttribute("categoryOfProductList", product.getCategory());
+            model.addAttribute("product",product);
+            return "admin/product/updateError";
         }
         List<Category> categoryList = new ArrayList<>(); // nguoi dung nhap tu jsp
         if (categoryIds != null) {
@@ -109,6 +111,7 @@ public class ProductController {
         }
         List<Category> oldList = productService.findById(product.getId()).get().getCategory(); // list category lay tu db theo findById
         productService.updateProduct(product, multipartFile);
+
         for (Category category : oldList) {
             {
                 List<Product>  productList = category.getProductList();
@@ -122,6 +125,7 @@ public class ProductController {
         for (Category category : categoryList) {
             category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
             categoryRepository.save(category);
+
             /*boolean check = categoryService.prepareArray(category, oldList); // so sanh thang cu voi thang moi
             if (check) { // check thang cu voi thang moi
                 category.getProductList().add(product); // neu co roi thi khong lam gi , neu chua co thi them vao cate
@@ -148,11 +152,11 @@ public class ProductController {
     }
 
 
-    @GetMapping("/deleteProduct")
-    public String deleteProduct( Integer id) {
-        productRepository.deleteById(id);
-        return "redirect:/admin/products/getAll";
-    }
+//    @GetMapping("/deleteProduct")
+//    public String deleteProduct( Integer id) {
+//        productRepository.deleteById(id);
+//        return "redirect:/admin/products/getAll";
+//    }
 
 //
 //    @RequestMapping(value = "product/{id}", method = RequestMethod.DELETE)
