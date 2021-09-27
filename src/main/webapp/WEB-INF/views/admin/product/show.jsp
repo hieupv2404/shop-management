@@ -97,7 +97,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="/logout" class="sidebar-link">
+                        <a href="/auth/logout" class="sidebar-link">
                             <i class="bi-person-x-fill"></i>
                             <span>Log out</span>
                         </a>
