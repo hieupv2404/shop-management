@@ -167,8 +167,8 @@
                                     <td style="text-align: center">
                                         <a href="/admin/products/updateProduct/?id=${product.id}"
                                            class="btn  btn-success">Update</a>
-                                        <a href="/admin/products/product/?id=${product.id}"
-                                           class="btn  btn-danger">Delete</a>
+<%--                                        <a href="/admin/products/deleteProduct/?id=${product.id}"--%>
+<%--                                           class="btn  btn-danger">Delete</a>--%>
                                     </td>
                                 </tr>
                             </c:forEach>
