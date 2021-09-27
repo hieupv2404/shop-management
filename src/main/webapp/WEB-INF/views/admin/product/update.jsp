@@ -132,7 +132,7 @@
 <%--                    </div>--%>
                     <%--                    <form:form action="/updateProduct" modelAttribute="productUpdate" enctype="multipart/form-data">--%>
                     <c:url value="/admin/products/updateProduct" var="urlPost"></c:url>
-                    <form:form action="${urlPost}" modelAttribute="productUpdate" enctype="multipart/form-data">
+                    <form:form action="${urlPost}" modelAttribute="productUpdate" enctype="multipart/form-data" method="post">
                     <td><form:hidden path="id"></form:hidden></td>
                     <div class="card-body">
                         <div class="row">
@@ -164,7 +164,7 @@
                                         <form:hidden path="image"></form:hidden>
                                     </div>
                                     <label>Picture</label>
-                                    <input type="file" value="${productUpdate.image}" name="img" class="form-control"
+                                    <input type="file" <%--value="${productUpdate.image}"--%> name="img" class="form-control"
                                            placeholder="Select Image">
                                 </div>
                             </div>
