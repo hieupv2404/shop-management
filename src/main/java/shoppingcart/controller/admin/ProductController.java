@@ -152,11 +152,11 @@ public class ProductController {
     }
 
 
-    @GetMapping("/deleteProduct")
-    public String deleteProduct( Integer id) {
-        productRepository.deleteById(id);
-        return "redirect:/admin/products/getAll";
-    }
+//    @GetMapping("/deleteProduct")
+//    public String deleteProduct( Integer id) {
+//        productRepository.deleteById(id);
+//        return "redirect:/admin/products/getAll";
+//    }
 
 //
 //    @RequestMapping(value = "product/{id}", method = RequestMethod.DELETE)
