@@ -112,24 +112,24 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>DataTable</h3>
-                        <p class="text-subtitle text-muted">For user to check they list</p>
+                        <h3>Product</h3>
+                        <p class="text-subtitle text-muted">Product update</p>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                            </ol>
+<%--                            <ol class="breadcrumb">--%>
+<%--                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>--%>
+<%--                                <li class="breadcrumb-item active" aria-current="page">DataTable</li>--%>
+<%--                            </ol>--%>
                         </nav>
                     </div>
                 </div>
             </div>
             <section class="section">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Basic Inputs</h4>
-                    </div>
+<%--                    <div class="card-header">--%>
+<%--                        <h4 class="card-title">Basic Inputs</h4>--%>
+<%--                    </div>--%>
                     <%--                    <form:form action="/updateProduct" modelAttribute="productUpdate" enctype="multipart/form-data">--%>
                     <c:url value="/admin/products/updateProduct" var="urlPost"></c:url>
                     <form:form action="${urlPost}" modelAttribute="productUpdate" enctype="multipart/form-data">
