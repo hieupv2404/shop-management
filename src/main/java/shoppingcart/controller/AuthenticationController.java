@@ -70,6 +70,7 @@ public class AuthenticationController {
                 httpSession.setAttribute("errorSignUp", "true");
                 httpSession.setAttribute("againUser", input);
                 httpSession.setAttribute("existEmail", "email is exist");
+                return "redirect:/";
             }
             Map<String, Object> map = new ModelMap();
             String newPassword = randomPassword(10);
