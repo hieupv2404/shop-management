@@ -26,15 +26,18 @@ public class Product {
     @Min(value = 1, message = "Wrong Format Rate")
     Double rateAverage=0.0;
     @ManyToMany(mappedBy = "productList",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Category> category;
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     private List<Rate> rateList;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<OrderDetail> orderDetails;
 
     @Column

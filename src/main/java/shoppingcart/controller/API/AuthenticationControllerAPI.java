@@ -1,4 +1,4 @@
-package shoppingcart.controller;
+package shoppingcart.controller.API;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,13 +9,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import shoppingcart.controller.AuthenticationController;
 import shoppingcart.entity.User;
 import shoppingcart.repository.UserRepository;
 import shoppingcart.security.EncryptMD5;
 import shoppingcart.service.EmailService;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -45,31 +49,47 @@ public class AuthenticationControllerAPI {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return new ResponseEntity<>(HttpStatus.valueOf(200));
         } else {
-            return new ResponseEntity<>("wrong userId", HttpStatus.valueOf(404));
+            return new ResponseEntity<>("wrong userId", HttpStatus.valueOf(400));
         }
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> post(@RequestBody User input) {
-        if (userRepository.findByUsername(input.getUsername())==null) {
-            //userRepository.save(input);
-            //emailService.sendSimpleMessage(input.getEmail(),"welcome my shop","test mail");
-            try {
-                Map<String, Object> map=new ModelMap();
-                map.put("key",AuthenticationController.randomPassword(10));
-                emailService.sendMessageUsingThymeleafTemplate(input.getEmail(),"welcome my shop",map);
-            } catch (MessagingException e) {
-                e.printStackTrace();
+    public ResponseEntity<?> register(@Valid @RequestBody User input, BindingResult bindingResult) {
+            if (bindingResult.hasErrors()) {
+                return new ResponseEntity<>("user invalid", HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<>(null,
-                    HttpStatus.valueOf(201));
-        } else return new ResponseEntity<>(null, HttpStatus.valueOf(404));
+            if (userRepository.findByUsername(input.getUsername()) == null) {
+                if (userRepository.findByEmail(input.getEmail()) != null) {
+                    return new ResponseEntity<>("email exist", HttpStatus.BAD_REQUEST);
+                }
+                String newPassword = AuthenticationController.randomPassword(10);
+                Map<String, Object> map = new ModelMap();
+                map.put("key", newPassword);
+                input.setPassword(newPassword);
+                try {
+                    emailService.sendMessageUsingThymeleafTemplate(input.getEmail(), "welcome my shop", map);
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                    return new ResponseEntity<>(null,
+                            HttpStatus.BAD_REQUEST);
+                }
+                userRepository.save(input);
+                return new ResponseEntity<>(null,
+                        HttpStatus.valueOf(201));
+            }
+        return new ResponseEntity<>("username invalid", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout(){
         SecurityContextHolder.clearContext();
         return new ResponseEntity<>(HttpStatus.valueOf(200));
+    }
+
+    @ExceptionHandler(MessagingException.class)
+    public ResponseEntity<?> handleException(MessagingException ex) {
+        //Do something additional if required
+        return new ResponseEntity<>("Send mail fail by internal server", HttpStatus.valueOf(500));
     }
 }
 
