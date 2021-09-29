@@ -120,6 +120,9 @@
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>Category</h3>
                         <p class="text-subtitle text-muted">Category List</p>
+                        <c:if test="${not empty message}">
+                            <p class="alert alert-danger"> ${message} </p>
+                        </c:if>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
