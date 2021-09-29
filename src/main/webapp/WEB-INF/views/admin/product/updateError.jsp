@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <img height="100px" width="100px" src="/static/images${productUpdate.image}"/>
+                                        <img height="100px" width="100px" src="/static/images${product.image}"/>
                                         <form:hidden path="image"></form:hidden>
                                     </div>
                                     <label>Picture</label>

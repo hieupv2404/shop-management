@@ -22,10 +22,11 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/getAll")
-    public ModelAndView getAllCategory() {
+    public ModelAndView getAllCategory(@RequestParam(name = "message",required = false) String message) {
         ModelAndView mav = new ModelAndView("admin/category/show");
         Iterable<Category> listCategory = categoryService.findAll();
         mav.addObject("listCategory", listCategory);
+        mav.addObject("message", message);
         return mav;
     }
 
@@ -65,6 +66,10 @@ public class CategoryController {
 
     @GetMapping("/deleteCategory")
     public String deleteCategory(Integer id){
+        Category category = categoryService.findById(id).get();
+        if (category.getProductList().size() > 0 ) {
+            return "redirect:/admin/categories/getAll?message=Error";
+        }
         categoryService.remove(id);
         return "redirect:/admin/categories/getAll";
     }
