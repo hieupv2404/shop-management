@@ -1,5 +1,7 @@
 package shoppingcart.DTO.utils;
 
+import org.springframework.data.domain.Page;
+
 import java.util.Collections;
 import java.util.List;
 
