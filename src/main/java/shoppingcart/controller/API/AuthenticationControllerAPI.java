@@ -38,14 +38,13 @@ public class AuthenticationControllerAPI {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(
-            @RequestParam(value = "username", defaultValue = "") String username,
-            @RequestParam(value = "password", defaultValue = "") String password) {
-        User user = userRepository.findByUsername(username);
-        if (user != null) {
-            if (!EncryptMD5.EncryptedToMD5(password).equals(user.getPassword())) {
+            @ModelAttribute("userSignIn") User user) {
+        User userReal = userRepository.findByUsername(user.getUsername());
+        if (userReal != null) {
+            if (!user.getPassword().equals(userReal.getPassword())) {
                 return new ResponseEntity<>("wrong password", HttpStatus.valueOf(200));
             }
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, EncryptMD5.EncryptedToMD5(password)));
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userReal.getUsername(), userReal.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return new ResponseEntity<>(HttpStatus.valueOf(200));
         } else {
