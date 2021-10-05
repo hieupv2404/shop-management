@@ -3,16 +3,23 @@ package shoppingcart.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import shoppingcart.DTO.CartDtoProductUser;
 import shoppingcart.DTO.ChangePasswordDto;
-import shoppingcart.entity.Cart;
-import shoppingcart.entity.Product;
-import shoppingcart.entity.User;
-import shoppingcart.service.CartSerice;
-import shoppingcart.service.ProductService;
-import shoppingcart.service.UserService;
+import shoppingcart.DTO.Item;
+import shoppingcart.entity.*;
+import shoppingcart.repository.CategoryRepository;
+import shoppingcart.service.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +35,18 @@ public class UserController {
 
     @Autowired
     private CartSerice cartSerice;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private OrderDetailService orderDetailService;
+
+    @Autowired
+    private OrderService orderService;
 
     @PutMapping("/updateUser/{id}")
     public User updateUser(@PathVariable Integer id, @RequestBody User user) {
@@ -77,29 +96,85 @@ public class UserController {
         return new ResponseEntity<>(carts, HttpStatus.OK);
     }
 
-//    @PostMapping("/addCart")
-//    public ResponseEntity<CartDtoProductUser> saveCart(@RequestBody CartDtoProductUser cart) {
-//        return new ResponseEntity<>(cartSerice.save(cart), HttpStatus.CREATED);
-//    }
-//
-//    @PutMapping("/updateCart/{id}")
-//    public ResponseEntity<CartDtoProductUser> updateCart(@PathVariable Integer id ,@RequestBody CartDtoProductUser cart) {
-//        Optional<Cart> cartOptional = cartSerice.findById(id);
-//        if (!cartOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        cart.setId(cartOptional.get().getId());
-//        return new ResponseEntity<>(cartSerice.update(cart), HttpStatus.OK);
-//    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Cart> deleteCart(@PathVariable Integer id) {
-        Optional<Cart> cartOptional = cartSerice.findById(id);
-        if (!cartOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PostMapping("/addCart")
+    public ResponseEntity<?> addCart(@RequestParam(name = "productId") Integer productId,
+                                     @RequestParam(name = "userId") Integer userId,
+                                     @RequestParam(name = "amount") Integer amount,
+                                     HttpServletRequest httpServletRequest, HttpSession session) {
+        System.out.println(productId);
+        System.out.println(userId);
+        System.out.println(amount);
+        Product product = productService.findById(productId).get();
+        Item item = new Item(product, amount);
+        HashMap<Integer, Item> cart = null;
+        if (session.getAttribute("cart") == null) {
+            cart = new HashMap<>();
+        } else {
+            cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         }
-        cartSerice.remove(id);
-        return new ResponseEntity<>(cartOptional.get(), HttpStatus.NO_CONTENT);
+        if (cart.containsKey(productId)) {
+            cart.get(productId).setQuantity(cart.get(productId).getQuantity() + amount);
+        } else {
+            cart.put(productId, item);
+        }
+        session.setAttribute("userId", userId);
+        session.setAttribute("cart", cart);
+//        return "homeAfterSignIn";
+        return new ResponseEntity<>(cart, HttpStatus.OK);
     }
+
+    @GetMapping("/showCart")
+    public ResponseEntity<?> showCart(ModelMap modelMap, HttpSession session) {
+        if (session.getAttribute("cart") != null) {
+            HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+            modelMap.addAttribute("totalCart", cartSerice.getTotalCart(cart));
+            return new ResponseEntity<>(cart, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @DeleteMapping("/deleteCart")
+    public ResponseEntity<?> deleteCartItem(@RequestParam(name = "productId") Integer productId, HttpSession session) {
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        cart.remove(productId);
+        session.setAttribute("cart", cart);
+        return new ResponseEntity<>(cart, HttpStatus.OK);
+    }
+
+    @PutMapping("/editCart")
+    public ResponseEntity<?> editCart(@RequestParam(name = "productId") Integer productId,
+                           @RequestParam(name = "amount1") Integer amount1, HttpSession session) {
+        Item item = new Item();
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        System.out.println(cart);
+        item = cart.get(productId);
+        if (amount1 < 1) {
+            cart.remove(productId);
+        } else {
+            item.setQuantity(amount1);
+            cart.put(productId, item);
+        }
+        session.setAttribute("cart", cart);
+        return new ResponseEntity<>(cart, HttpStatus.OK);
+    }
+
+//    @PostMapping(value = "/checkoutCart")
+//    public ResponseEntity<?> checkoutOder(@Valid @ModelAttribute("user") User user,
+//                               BindingResult bindingResult,
+//                               ModelMap modelMap, HttpSession session) {
+//        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+//        modelMap.addAttribute("totalCart", cartSerice.getTotalCart(cart));
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//        } else {
+//            Order order = orderService.makeOder(user, cartSerice.getTotalCart(cart), cart);
+//            modelMap.addAttribute("order", order);
+//            List<OrderDetail> listOrderDetail = orderDetailService.findByOrder(order);
+//            modelMap.addAttribute("listOrderDetail", listOrderDetail);
+//            session.removeAttribute("cart");
+//            return new ResponseEntity<>(cart, HttpStatus.OK);
+//        }
+//        }
 
 }
