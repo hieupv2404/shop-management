@@ -72,16 +72,5 @@ public class AdminControllerAPI {
         }
         return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
-
-
-//    @GetMapping("/showProduct")
-//    public ResponseEntity<Iterable<Product>> findAllProduct() {
-//        List<Product> products = (List<Product>) productService.findAll();
-//        if (products.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(products, HttpStatus.OK);
-//    }
-
 }
 
