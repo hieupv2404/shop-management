@@ -144,7 +144,7 @@ public class UserController {
 
     @PutMapping("/editCart")
     public ResponseEntity<?> editCart(@RequestParam(name = "productId") Integer productId,
-                           @RequestParam(name = "amount1") Integer amount1, HttpSession session) {
+                                      @RequestParam(name = "amount1") Integer amount1, HttpSession session) {
         Item item = new Item();
         HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         System.out.println(cart);
@@ -159,22 +159,33 @@ public class UserController {
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
-//    @PostMapping(value = "/checkoutCart")
-//    public ResponseEntity<?> checkoutOder(@Valid @ModelAttribute("user") User user,
-//                               BindingResult bindingResult,
-//                               ModelMap modelMap, HttpSession session) {
-//        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
-//        modelMap.addAttribute("totalCart", cartSerice.getTotalCart(cart));
-//        if (bindingResult.hasErrors()) {
-//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//        } else {
-//            Order order = orderService.makeOder(user, cartSerice.getTotalCart(cart), cart);
-//            modelMap.addAttribute("order", order);
-//            List<OrderDetail> listOrderDetail = orderDetailService.findByOrder(order);
-//            modelMap.addAttribute("listOrderDetail", listOrderDetail);
-//            session.removeAttribute("cart");
-//            return new ResponseEntity<>(cart, HttpStatus.OK);
-//        }
-//        }
+    @PostMapping("/checkoutCart")
+    public ResponseEntity<?> checkoutOder(@RequestParam(name = "userId") Integer userId,
+                                          @RequestParam(name = "firstName") String firstName,
+                                          @RequestParam(name = "lastName") String lastName,
+                                          @RequestParam(name = "phone") String phone,
+                                          @RequestParam(name = "address") String address,
+                                          ModelMap modelMap, HttpSession session) {
+        User user = new User();
+        user.setId(userId);
+        user.setPhone(phone);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setAddress(address);
+        System.out.println(userId);
+        System.out.println(firstName);
+        System.out.println(phone);
+        System.out.println(lastName);
+        System.out.println(address);
+
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        Order order = orderService.makeOder(user, cartSerice.getTotalCart(cart), cart);
+        modelMap.addAttribute("order", order);
+        List<OrderDetail> listOrderDetail = orderDetailService.findByOrder(order);
+        modelMap.addAttribute("listOrderDetail", listOrderDetail);
+        session.removeAttribute("cart");
+        return new ResponseEntity<>(cart, HttpStatus.OK);
+
+    }
 
 }
