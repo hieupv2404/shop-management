@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -31,6 +32,9 @@ public class UploadService {
         }
 
         try {
+            Path currentDir = Paths.get(UPLOAD_FOLDER+relativeFilePath); // currentDir = "."
+            Path fullPath = currentDir.toAbsolutePath();
+            System.out.println(fullPath);
             relativeFilePath = subFolder + Instant.now().getEpochSecond() +file.getOriginalFilename();
             Files.write(Paths.get(UPLOAD_FOLDER+relativeFilePath), file.getBytes());
         } catch (Exception e) {
