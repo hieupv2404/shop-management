@@ -71,7 +71,7 @@
                     <li class="sidebar-item active has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
-                            <span>product</span>
+                            <span>Product</span>
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
@@ -194,12 +194,12 @@
                                     <form:errors path="price" cssClass="error" cssStyle="color: red"/>
 
                                 </div>
-                                <div class="form-group">
-                                    <label for="helpInputTop">RateAverage</label>
-                                    <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>
-                                    <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>
+<%--                                <div class="form-group">--%>
+<%--                                    <label for="helpInputTop">RateAverage</label>--%>
+<%--                                    <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>--%>
+<%--                                    <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>--%>
 
-                                </div>
+<%--                                </div>--%>
                                 <div class="form-group">
                                     <label>Picture</label>
                                     <input type="file" name="img" class="form-control" placeholder="Select Image">

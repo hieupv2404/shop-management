@@ -30,7 +30,7 @@ public class AdminControllerAPI {
     public ResponseEntity<?> getDetailsUser(@RequestParam Integer id) {
         ModelMapper modelMapper = new ModelMapper();
         if (userRepository.findById(id).isPresent())
-        return new ResponseEntity<>(userRepository.findById(id).map(user -> modelMapper.map(user, UserDto.class)),HttpStatus.OK);
+            return new ResponseEntity<>(userRepository.findById(id).map(user -> modelMapper.map(user, UserDto.class)),HttpStatus.OK);
         return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
 

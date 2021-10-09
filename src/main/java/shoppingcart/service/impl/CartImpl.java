@@ -3,7 +3,9 @@ package shoppingcart.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shoppingcart.DTO.CartDTO;
+import shoppingcart.DTO.CartDtoProductUser;
 import shoppingcart.DTO.Item;
+import shoppingcart.converter.Converter;
 import shoppingcart.entity.Cart;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
@@ -24,6 +26,9 @@ public class CartImpl implements CartSerice {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private Converter converter;
 
     @Override
     public Iterable<Cart> findAll() {
@@ -94,5 +99,25 @@ public class CartImpl implements CartSerice {
         }
         return total;
     }
+
+//    @Override
+//    public CartDtoProductUser save(CartDtoProductUser cartDtoProductUser) {
+//        Product product = productRepository.findOneById(cartDtoProductUser.getProductId());
+//        Cart cart = converter.toCart(cartDtoProductUser);
+//        cart.setProduct(product);
+//        cart = cartRepository.save(cart);
+//        return converter.toCartDtoProductUser(cart);
+//    }
+//
+//
+//    @Override
+//    public CartDtoProductUser update(CartDtoProductUser cartDtoProductUser) {
+//        Cart oldCart = cartRepository.getById(cartDtoProductUser.getId());
+//        Cart cart = converter.toCart(cartDtoProductUser,oldCart);
+//        Product product = productRepository.findOneById(cartDtoProductUser.getProductId());
+//        cart.setProduct(product);
+//        cart = cartRepository.save(cart);
+//        return converter.toCartDtoProductUser(cart);
+//    }
 
 }

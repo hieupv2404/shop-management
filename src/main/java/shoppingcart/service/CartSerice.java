@@ -1,6 +1,7 @@
 package shoppingcart.service;
 
 import shoppingcart.DTO.CartDTO;
+import shoppingcart.DTO.CartDtoProductUser;
 import shoppingcart.DTO.Item;
 import shoppingcart.entity.Cart;
 import shoppingcart.entity.Product;
@@ -16,4 +17,6 @@ public interface CartSerice extends IGeneralService<Cart> {
     public Cart findByProductId(Integer productId);
     public Integer getTotal(Integer userId);
     public long getTotalCart(HashMap<Integer, Item> carts);
+//    CartDtoProductUser save(CartDtoProductUser cartDtoProductUser);
+//    CartDtoProductUser update(CartDtoProductUser cartDtoProductUser);
 }
