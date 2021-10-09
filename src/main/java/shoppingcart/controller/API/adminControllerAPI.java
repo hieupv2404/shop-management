@@ -5,24 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import shoppingcart.DTO.UserDto;
 import shoppingcart.controller.UserController;
-import shoppingcart.entity.Category;
-import shoppingcart.entity.Product;
 import shoppingcart.entity.User;
-import shoppingcart.repository.CategoryRepository;
 import shoppingcart.repository.UserRepository;
-import shoppingcart.service.CategoryService;
-import shoppingcart.service.ProductService;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -30,12 +19,6 @@ import java.util.stream.Collectors;
 public class AdminControllerAPI {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    ProductService productService;
-    @Autowired
-    CategoryService categoryService;
-    @Autowired
-    CategoryRepository categoryRepository;
 
     @GetMapping("/get/users")
     public ResponseEntity<?> getUsers() {
@@ -73,4 +56,3 @@ public class AdminControllerAPI {
         return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
 }
-
