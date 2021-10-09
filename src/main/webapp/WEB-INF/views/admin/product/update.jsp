@@ -158,13 +158,13 @@
                                         <form:errors path="price" cssClass="error" cssStyle="color: red"/>
                                     </td>
                                 </div>
-                                <div class="form-group">
-                                    <label for="helpInputTop">RateAverage</label>
-                                    <td>
-                                        <form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input>
-                                        <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>
-                                    </td>
-                                </div>
+<%--                                <div class="form-group">--%>
+<%--                                    <label for="helpInputTop">RateAverage</label>--%>
+<%--                                    <td>--%>
+<%--                                        <form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input>--%>
+<%--                                        <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>--%>
+<%--                                    </td>--%>
+<%--                                </div>--%>
                                 <div class="form-group">
                                     <div>
                                         <img height="100px" width="100px" src="/static/images${productUpdate.image}"/>
