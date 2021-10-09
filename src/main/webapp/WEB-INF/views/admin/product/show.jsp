@@ -143,7 +143,7 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Rate</th>
+<%--                                <th>Rate</th>--%>
                                 <th>Images</th>
                                 <th>Category</th>
                                 <th style="text-align: center">Function</th>
@@ -155,7 +155,7 @@
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
                                     <td>${product.price}</td>
-                                    <td>${product.rateAverage}</td>
+<%--                                    <td>${product.rateAverage}</td>--%>
                                     <td>
                                         <img height="100px" width="100px" src="/static/images${product.image}"/>
                                     </td>
@@ -167,7 +167,7 @@
                                     <td style="text-align: center">
                                         <a href="/admin/products/updateProduct/?id=${product.id}"
                                            class="btn  btn-success">Update</a>
-<%--                                        <a href="/admin/products/deleteProduct/?id=${product.id}"--%>
+<%--                                        <a href=" /admin/products/deleteProduct/?id=${product.id}"--%>
 <%--                                           class="btn  btn-danger">Delete</a>--%>
                                     </td>
                                 </tr>
