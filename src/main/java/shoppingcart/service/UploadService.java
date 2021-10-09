@@ -31,8 +31,15 @@ public class UploadService {
         }
 
         try {
-            relativeFilePath = subFolder + Instant.now().getEpochSecond() +file.getOriginalFilename();
-            Files.write(Paths.get(UPLOAD_FOLDER+relativeFilePath), file.getBytes());
+            System.out.println("ảnh file" + file.getOriginalFilename());
+            if (file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) {
+                relativeFilePath = subFolder + Instant.now().getEpochSecond() + "1633745080{87F9786F-8D4F-418A-B278-6AE81A564CCE}.png.jpg";
+                System.out.println("sai"+relativeFilePath);
+            } else {
+                relativeFilePath = subFolder + Instant.now().getEpochSecond() + file.getOriginalFilename();
+                Files.write(Paths.get(UPLOAD_FOLDER + relativeFilePath), file.getBytes());
+                System.out.println("dung"+relativeFilePath);
+            }
         } catch (Exception e) {
             System.out.println("cannot upload file");
             e.printStackTrace();
