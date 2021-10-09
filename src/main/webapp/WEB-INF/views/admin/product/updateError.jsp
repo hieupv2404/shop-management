@@ -128,7 +128,7 @@
             <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Create new product</h4>
+                        <h4 class="card-title">Update product</h4>
                     </div>
                     <form:form action="updateProduct" modelAttribute="product" enctype="multipart/form-data" method="post">
                     <div class="card-body">
@@ -148,11 +148,11 @@
                                     <form:errors path="price" cssClass="error" cssStyle="color: red"/>
 
                                 </div>
-                                <div class="form-group">
-                                    <label for="helpInputTop">RateAverage</label>
-                                    <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>
-                                    <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>
-                                </div>
+<%--                                <div class="form-group">--%>
+<%--                                    <label for="helpInputTop">RateAverage</label>--%>
+<%--                                    <td><form:input path="rateAverage" class="form-control" id="helpInputTop"></form:input></td>--%>
+<%--                                    <form:errors path="rateAverage" cssClass="error" cssStyle="color: red"/>--%>
+<%--                                </div>--%>
                                 <div class="form-group">
                                     <div>
                                         <img height="100px" width="100px" src="/static/images${product.image}"/>

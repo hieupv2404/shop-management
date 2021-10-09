@@ -24,7 +24,7 @@ public class Product {
     String image;
     @Column
     @Min(value = 1, message = "Wrong Format Rate")
-    Double rateAverage=0.0;
+    Double rateAverage=1.0;
     @ManyToMany(mappedBy = "productList",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Category> category;
