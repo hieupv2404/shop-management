@@ -1,6 +1,7 @@
 package shoppingcart.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.ToString;
 import org.springframework.validation.annotation.Validated;
 
@@ -14,6 +15,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
     @OneToOne
@@ -21,7 +23,6 @@ public class Cart {
     private Product product;
     @Column(nullable = false)
     Integer amount = 1;
-
     public Cart() {
     }
 
