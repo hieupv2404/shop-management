@@ -33,7 +33,7 @@ public class UploadService {
         try {
             System.out.println("ảnh file" + file.getOriginalFilename());
             if (file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) {
-                relativeFilePath = subFolder + Instant.now().getEpochSecond() + "1633745080{87F9786F-8D4F-418A-B278-6AE81A564CCE}.png.jpg";
+                relativeFilePath = subFolder  + "1633417261{87F9786F-8D4F-418A-B278-6AE81A564CCE}.png.jpg";
                 System.out.println("sai"+relativeFilePath);
             } else {
                 relativeFilePath = subFolder + Instant.now().getEpochSecond() + file.getOriginalFilename();
